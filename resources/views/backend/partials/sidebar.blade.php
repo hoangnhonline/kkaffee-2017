@@ -34,12 +34,7 @@
           
         </ul>
       </li>            
-      <li {{ in_array(\Request::route()->getName(), ['services.edit', 'services.index', 'services.create']) ? "class=active" : "" }}>
-          <a href="{{ route('services.index') }}">
-            <i class="fa fa-pencil-square-o"></i> 
-            <span>Dịch vụ</span>          
-          </a>       
-        </li>
+      
       <li class="treeview {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
@@ -78,19 +73,6 @@
           </a>       
         </li>
       @if(Auth::user()->role > 1)
-        <li {{ in_array(\Request::route()->getName(), ['hot-cate.edit', 'hot-cate.index']) ? "class=active" : "" }}>
-          <a href="{{ route('hot-cate.index') }}">
-            <i class="fa fa-pencil-square-o"></i> 
-            <span>Danh mục trang chủ</span>          
-          </a>       
-        </li>
-        <li {{ in_array(\Request::route()->getName(), ['bao-gia.edit', 'bao-gia.index']) ? "class=active" : "" }}>
-          <a href="{{ route('bao-gia.index') }}">
-            <i class="fa fa-pencil-square-o"></i> 
-            <span>Yêu cầu báo giá</span>          
-          </a>       
-        </li>
-      
       <li {{ in_array(\Request::route()->getName(), ['newsletter.edit', 'newsletter.index']) ? "class=active" : "" }}>
         <a href="{{ route('newsletter.index') }}">
           <i class="fa fa-pencil-square-o"></i> 
@@ -110,22 +92,7 @@
           <i class="fa fa-file-image-o"></i> 
           <span>Banner</span>          
         </a>       
-      </li> 
-      @if(Auth::user()->role > 1)
-      <li class="treeview {{ in_array(\Request::route()->getName(), ['thong-so.index', 'thong-so.create', 'thong-so.edit']) ? 'active' : '' }}">
-        <a href="#">
-          <i class="fa fa-twitch"></i> 
-          <span>Thông số sản phẩm</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li {{ in_array(\Request::route()->getName(), ['thong-so.index', 'thong-so.edit']) ? "class=active" : "" }}><a href="{{ route('thong-so.index') }}"><i class="fa fa-circle-o"></i> Thông số sản phẩm</a></li>
-          <li {{ in_array(\Request::route()->getName(), ['thong-so.create']) ? "class=active" : "" }}><a href="{{ route('thong-so.create') }}"><i class="fa fa-circle-o"></i> Thêm thông số</a></li>          
-        </ul>
-      </li>
-      @endif
+      </li>       
       @if(Auth::user()->role == 3)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['menu.index', 'account.index', 'info-seo.index', 'settings.index', 'settings.noti', 'menu.index', 'video.index', 'video.edit', 'video.create']) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 2 ) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 1 ) ? 'active' : '' }}">
         <a href="#">
@@ -136,33 +103,21 @@
           </span>
         </a>
         <ul class="treeview-menu">
-          @if(Auth::user()->role == 3)
-        
-          <li {{ \Request::route()->getName() == "settings.index" ? "class=active" : "" }}><a href="{{ route('settings.index') }}"><i class="fa fa-circle-o"></i> Thông tin houseland</a></li>
+          @if(Auth::user()->role == 3)        
+          <li {{ \Request::route()->getName() == "settings.index" ? "class=active" : "" }}><a href="{{ route('settings.index') }}"><i class="fa fa-circle-o"></i> Thông tin K KAFFEE</a></li>
           <li><a target="_blank" href="{{ route('rss') }}"><i class="fa fa-circle-o"></i> RSS</a></li>
           <li {{ (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 1 )? "class=active" : "" }}>
             <a href="{{ route('custom-link.index', ['block_id' => 1 ]) }}">
               <i class="fa fa-circle-o"></i>
-              <span>Link Footer trái</span>         
+              <span>Link Footer</span>         
             </a>       
-          </li>
-          <li {{ (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 2 )? "class=active" : "" }}>
-            <a href="{{ route('custom-link.index', ['block_id' => 2 ]) }}">
-              <i class="fa fa-circle-o"></i>
-              <span>Link Footer giữa</span>         
-            </a>       
-          </li>
-          <li {{ \Request::route()->getName() == "menu.index" ? "class=active" : "" }}><a href="{{ route('menu.index') }}"><i class="fa fa-circle-o"></i> Menu</a></li>
-          <li {{ in_array(\Request::route()->getName(), ['member.list', 'member.edit', 'member.create']) ? "class=active" : "" }}><a href="{{ route('member.index') }}"><i class="fa fa-circle-o"></i> Ban lãnh đạo</a></li>
+          </li>         
+          <li {{ \Request::route()->getName() == "menu.index" ? "class=active" : "" }}><a href="{{ route('menu.index') }}"><i class="fa fa-circle-o"></i> Menu</a></li>          
           @endif
           <li {{ \Request::route()->getName() == "account.index" ? "class=active" : "" }}><a href="{{ route('account.index') }}"><i class="fa fa-circle-o"></i> Users</a></li>              
         </ul>
       </li>
-      @endif
-      <!--<li class="header">LABELS</li>
-      <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-      <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-      <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
+      @endif      
     </ul>
   </section>
   <!-- /.sidebar -->

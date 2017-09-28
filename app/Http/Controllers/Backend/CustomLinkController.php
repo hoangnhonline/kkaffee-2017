@@ -81,7 +81,7 @@ class CustomLinkController extends Controller
             'link_text.required' => 'Bạn chưa nhập text hiển thị',            
             'link_url.required' => 'Bạn chưa nhập URL'
         ]);   
-
+        $dataArr['display_order'] = Helper::getNextOrder('custom_link', ['block_id' => $dataArr['block_id']]);
         $rs = CustomLink::create($dataArr);
 
         Session::flash('message', 'Tạo mới link thành công');
