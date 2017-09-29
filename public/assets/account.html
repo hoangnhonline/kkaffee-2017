@@ -6,11 +6,616 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Thông tin tài khoản | K Kaffee</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="lib/owlcarousel/dist/assets/owl.carousel.min.css">
+        <link rel="stylesheet" href="lib/owlcarousel/dist/assets/owl.theme.default.min.css">
+        <link rel="stylesheet" type="text/css" href="lib/fontawesome/css/font-awesome.min.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
     </head>
     <body>
-        <div>TODO write content</div>
+        <div class="wrapper">
+            <header>
+                <div class="bg_black">
+                    <div class="container">
+                        <div class="banner-top"><img src="img/banner-top.png" alt=""/></div>
+                        <nav id="nav">
+                            <a class="hidden-sm hidden-md hidden-lg nav-button-mobi" href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                            <ul class="clearfix">
+                                <li><a class="active" href="welcome.html">COFFEE</a></li>
+                                <li><a href="product.html">SHOP 24h</a></li>
+                                <li><a href="promotion.html">HỖ TRỢ TIÊU DÙNG</a></li>
+                                <li><a href="#">BẤT ĐỘNG SẢN</a></li>
+                                <li><a href="checkout.html">ĐẶT GIAO HÀNG</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="clearfix">
+                    <div class="container">
+                        <div class="pull-left">
+                            <div id="logo"><a href="/"><img id="imglogo" src="img/logo-header.png" alt=""/></a></div>
+                            <div class="option-hd option-kv dropdown">
+                                <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Khu vực
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu-header">
+                                    <li><a href="#">HTML</a></li>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">JavaScript</a></li>
+                                </ul>
+                            </div>
+                            <div class="option-hd option-dv dropdown">
+                                <button class="dropdown-toggle" type="button" data-toggle="dropdown">
+                                    Dịch vụ
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu-header">
+                                    <li><a href="#">HTML</a></li>
+                                    <li><a href="#">CSS</a></li>
+                                    <li><a href="#">JavaScript</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="pull-right logined">
+                            <div class="block-login">
+                                <a href="#" class="btn btn-yellow">Đăng ký</a>
+                                <a href="#" class="btn btn-grey">Đăng nhập</a>
+                            </div>
+                            <div class="block-logined">
+                                <div class="cart-header">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <a href="#">
+                                        Giỏ hàng<br/>
+                                        <span><b>0</b> sản phẩm</span>
+                                    </a>
+                                </div>
+                                <div class="account-header dropdown">
+                                    <img src="img/icon.png" alt="">
+                                    <a class="dropdown-toggle" data-toggle="dropdown">
+                                        Chào <b>CHRIS</b><br/>
+                                        <span>Tài khoản</span>
+                                    </a>
+                                    <ul class="dropdown-menu-header">
+                                        <li><a href="#">Thông tin tài khoản</a></li>
+                                        <li><a href="#">Quản lý đơn hàng</a></li>
+                                        <li><a href="#">Sổ địa chỉ</a></li>
+                                        <li><a href="#">Điểm tích luỹ</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div><!-- End container -->
+                </div>
+            </header>
+            <article>
+                <section class="block-image marg40">
+                    <img src="img/banner.png" alt=""/>
+                </section>
+                <div class="container">
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><a href="/">Trang chủ</a></li>
+                            <li>Thông tin đặt hàng</li>
+                        </ul>
+                    </div>
+                </div>
+                <section id="account" class="marg40">
+                    <div class="container">
+                        <div class="tabs-custom">
+                            <div class="col-tab-menu">
+                                <div class="clearfix marg10 user-account">
+                                    <div class="image"><img src="img/icon.png" alt=""/></div>
+                                    <span>
+                                        Tài khoản của<br/>
+                                        <b>Chris Lai</b>
+                                    </span>
+                                </div>
+                                <ul class="tab-menu">
+                                    <li class="active"><a href="#" data-target-id="all"><i class="fa fa-user" aria-hidden="true"></i> Thông tin tài khoản</a></li>
+                                    <li><a href="javascript:void(0)" data-target-id="tab01"><i class="fa fa-list-alt" aria-hidden="true"></i> Quản lý đơn hàng</a></li>
+                                    <li><a href="javascript:void(0)" data-target-id="tab02"><i class="fa fa-home" aria-hidden="true"></i> Số địa chỉ</a></li>
+                                    <li><a href="javascript:void(0)" data-target-id="tab03"><i class="fa fa-star" aria-hidden="true"></i> Điểm tích luỹ</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-tab-content admin-content" id="all">
+                                <div class="title-section">
+                                    THÔNG TIN TÀI KHOẢN
+                                </div>
+                                <form class="form">
+                                    <div class="row">
+                                        <div class="col-md-6 form-group clearfix">
+                                            <div class="col-form-label"><label for="username">Họ và tên</label></div>
+                                            <div class="col-form-input"><input type="text" class="form-control" id="username" value="Chris Lai"></div>
+                                        </div>
+                                        <div class="col-md-6  form-group clearfix">
+                                            <div class="col-form-label"><label for="phone">Điện thoại</label></div>
+                                            <div class="col-form-input"><input type="text" class="form-control" id="phone" value="090xxx"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="col-form-label"><label for="email">Email</label></div>
+                                            <div class="col-form-input"><input type="email" class="form-control" id="email" value="Chris_Lai_0204@yahoo.com" disabled></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-form-label"><label for="optradio">Giới tính</label></div>
+                                            <div class="col-form-input  row clearfix">
+                                                <div class="col-md-6">
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="optradio">Nam</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="radio">
+                                                        <label><input type="radio" name="optradio">Nữ</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix">
+                                        <div class="col-form-label"><label for="optradio">Ngày sinh</label></div>
+                                        <div class="col-form-input">
+                                            <div class="row clearfix">
+                                                <div class="col-md-3">
+                                                    <select class="form-group form-control">
+                                                        <option>Ngày</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select class="form-group form-control">
+                                                        <option>Tháng</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select class="form-group form-control">
+                                                        <option>Năm</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <select class="form-group form-control">
+                                                        <option>Khu vực</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="checkbox clearfix">
+                                        <div class="col-form-label"></div>
+                                        <div class="col-form-input"><label><input class="action-change-password" type="checkbox" value="">Thay đổi mật khẩu</label></div>
+                                    </div>
+                                    <div class="info-change-password">
+                                        <div class="form-group clearfix">
+                                            <div class="col-form-label"><label for="oldpwd">Pass cũ</label></div>
+                                            <div class="col-form-input"><input type="password" class="form-control" id="oldpwd"></div>                                        
+                                        </div>
+                                        <div class="form-group clearfix">
+                                            <div class="col-form-label"><label for="newpwd">Pass mới</label></div>
+                                            <div class="col-form-input"><input type="password" class="form-control" id="newpwd"></div>                                        
+                                        </div>
+                                        <div class="form-group marg30 clearfix">
+                                            <div class="col-form-label"><label for="repwd">Nhập lại</label></div>
+                                            <div class="col-form-input"><input type="password" class="form-control" id="repwd"></div>                                        
+                                        </div>
+                                        <div class="clearfix account-action">
+                                            <div class="col-form-label"></div>
+                                            <div class="col-form-input"><a href="#" class="btn btn-yellow btn-flat">Cập nhật</a></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-tab-content admin-content" id="tab01">
+                                <div class="title-section">
+                                    THÔNG TIN TÀI KHOẢN
+                                </div>
+                                <table class="table bill-booked">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Mã đơn hàng</th>
+                                            <th class="text-center">Ngày mua</th>
+                                            <th class="text-center">Sản phẩm</th>
+                                            <th class="text-center">Tổng tiền</th>
+                                            <th class="text-center">Trạng thái đơn hàng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-center cl_ea0000">123456789</td>
+                                            <td class="text-center">20/08/2017</td>
+                                            <td>Tiêu đề sản phẩm đầu tiên được chọn mua... và 2 sản phẩm khác đã mua kèm theo</td>
+                                            <td class="text-center">1.250.000đ</td>
+                                            <td class="text-center text-success">Giao hàng thành công</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center cl_ea0000">123456789</td>
+                                            <td class="text-center">20/08/2017</td>
+                                            <td>Tiêu đề sản phẩm đầu tiên được chọn mua... và 2 sản phẩm khác đã mua kèm theo</td>
+                                            <td class="text-center">1.250.000đ</td>
+                                            <td class="text-center cl_ea0000">Giao hàng không thành công</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center cl_ea0000">123456789</td>
+                                            <td class="text-center">20/08/2017</td>
+                                            <td>Tiêu đề sản phẩm đầu tiên được chọn mua... và 2 sản phẩm khác đã mua kèm theo</td>
+                                            <td class="text-center">1.250.000đ</td>
+                                            <td class="text-center text-success">Giao hàng thành công</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-center cl_ea0000">123456789</td>
+                                            <td class="text-center">20/08/2017</td>
+                                            <td>Tiêu đề sản phẩm đầu tiên được chọn mua... và 2 sản phẩm khác đã mua kèm theo</td>
+                                            <td class="text-center">1.250.000đ</td>
+                                            <td class="text-center cl_ea0000">Giao hàng không thành công</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="title-section">
+                                    CHI TIẾT ĐƠN HÀNG 123456789 - <span class="text-success">GIAO HÀNG THÀNH CÔNG</span>
+                                </div>
+                                <div class="marg10">
+                                    <div class="little-title">THÔNG BÁO</div>
+                                    <div class="well wll">
+                                        <table>
+                                            <tr>
+                                                <td>11:35:25</td>
+                                                <td>20/08/2017</td>
+                                                <td>Chúng tôi vừa bàn giao đơn hàng của quý khách đến đối tác vận chuyển KAFFEE Team. Dự kiến giao hàng vào Thứ 2 - 21/08/2017 Thứ 2 - 21/08/2017</td> 
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div class="row clearfix">
+                                        <div class="col-md-6">
+                                            <div class="little-title">ĐỊA CHỈ NGƯỜI NHẬN</div>
+                                            <div class="well wll">
+                                                <p>
+                                                    Tên người nhận: <b>Chris Lai</b>
+                                                </p>
+                                                <p>
+                                                    Địa chỉ: <b>Nhà số 216 Hoàng Văn Thụ, phường 4, quận Tân Bình, thành phố Hồ Chí Minh, Việt Nam.</b>
+                                                </p>
+                                                <p>
+                                                    Điện thoại: <b>0909 58 57 49</b>
+                                                </p>
+                                                Email: <b>tungocsang88@gmail.com</b>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="little-title">HÌNH THỨC THANH TOÁN</div>
+                                            <div class="well wll">
+                                                hanh toán tiền mặt khi nhận hàng
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix">
+                                    <div class="little-title">SẢN PHẨM ĐƯỢC ĐẶT</div>
+                                    <table class="table booked">
+                                        <thead>
+                                            <tr>
+                                                <th>Sản phẩm</th>
+                                                <th>Giá</th>
+                                                <th>Số lượng</th>
+                                                <th>Coupon giảm giá</th>
+                                                <th>Tạm tính</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="image"><img src="img/sp14.png" alt=""/></div>
+                                                    <div class="title">
+                                                        Tiêu đề sản phẩm được đặt mua hiện có trong trang quản lý đơn hàng chi tiết
+                                                        <a href="#" class="btn">Mua lại</a>
+                                                    </div>
+                                                </td>
+                                                <td class="cl_ea0000">500.000đ</td>
+                                                <td>
+                                                    <b>2</b>
+                                                </td>
+                                                <td>50.000đ</td>
+                                                <td>950.000đ</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="image"><img src="img/sp14.png" alt=""/></div>
+                                                    <div class="title">
+                                                        Tiêu đề sản phẩm được đặt mua hiện có trong trang quản lý đơn hàng chi tiết
+                                                        <a href="#" class="btn">Mua lại</a>
+                                                    </div>
+                                                </td>
+                                                <td class="cl_ea0000">500.000đ</td>
+                                                <td>
+                                                    <b>2</b>
+                                                </td>
+                                                <td>50.000đ</td>
+                                                <td>950.000đ</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="image"><img src="img/sp14.png" alt=""/></div>
+                                                    <div class="title">
+                                                        Tiêu đề sản phẩm được đặt mua hiện có trong trang quản lý đơn hàng chi tiết
+                                                        <a href="#" class="btn">Mua lại</a>
+                                                    </div>
+                                                </td>
+                                                <td class="cl_ea0000">500.000đ</td>
+                                                <td>
+                                                    <b>2</b>
+                                                </td>
+                                                <td>50.000đ</td>
+                                                <td>950.000đ</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="image"><img src="img/sp14.png" alt=""/></div>
+                                                    <div class="title">
+                                                        Tiêu đề sản phẩm được đặt mua hiện có trong trang quản lý đơn hàng chi tiết
+                                                        <a href="#" class="btn">Mua lại</a>
+                                                    </div>
+                                                </td>
+                                                <td class="cl_ea0000">500.000đ</td>
+                                                <td>
+                                                    <b>2</b>
+                                                </td>
+                                                <td>50.000đ</td>
+                                                <td>950.000đ</td>
+                                            </tr>
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="2" class="text-left"><b>Tổng phụ</b></td>
+                                                <td></td>
+                                                <td class="text-right"><b>1.539.000đ</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="2" class="text-left"><b>Phí vận chuyển <span class="cl_ea0000">4,6km</span></b></td>
+                                                
+                                                <td></td>
+                                                <td class="text-right"><b>23.000đ</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="2" class="text-left"><b>Phí phục vụ</b><br/><small>(<span class="cl_ea0000">10%</span> trên tổng đơn hàng)</small></td>
+                                                
+                                                <td></td>
+                                                <td class="text-right"><b>153.900đ</b></td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td colspan="2" class="text-left"><b>Tổng cộng</b></td>
+                                                
+                                                <td></td>
+                                                <td class="text-right"><b class="cl_ea0000">1.562.000đ</b></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-tab-content admin-content" id="tab02">
+                                <div class="title-section">
+                                    SỔ ĐỊA CHỈ
+                                </div>
+                                <div class="box-acount-address text-center">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Thêm địa chỉ mới
+                                </div>
+                                <div class="box-acount-address">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <b>CHRIS LAI</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-success"><i class="fa fa-check-square-o" aria-hidden="true"></i> Địa chỉ chính</span>
+                                                </p>
+                                                <p>
+                                                    Địa chỉ: <b>216 Hoàng Văn Thụ, phường 4, Quận Tân Bình, thành phố Hồ Chí Minh</b>
+                                                </p>
+                                                <p>
+                                                    Điện thoại: <b>0909 58 57 49</b>
+                                                </p>
+                                            </td>
+                                            <td></td>
+                                            <td><a href="#">Chỉnh sửa</a></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="box-acount-address">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <b>CHRIS LAI</b>
+                                                </p>
+                                                <p>
+                                                    Địa chỉ: <b>216 Hoàng Văn Thụ, phường 4, Quận Tân Bình, thành phố Hồ Chí Minh</b>
+                                                </p>
+                                                <p>
+                                                    Điện thoại: <b>0909 58 57 49</b>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option>Địa chỉ phụ</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-center"><a href="#">Chỉnh sửa</a></td>
+                                            <td class="text-center"><a href="#" class="text-danger">Xóa</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="box-acount-address">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <b>CHRIS LAI</b>
+                                                </p>
+                                                <p>
+                                                    Địa chỉ: <b>216 Hoàng Văn Thụ, phường 4, Quận Tân Bình, thành phố Hồ Chí Minh</b>
+                                                </p>
+                                                <p>
+                                                    Điện thoại: <b>0909 58 57 49</b>
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <select class="form-control">
+                                                    <option>Địa chỉ phụ</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                </select>
+                                            </td>
+                                            <td class="text-center"><a href="#">Chỉnh sửa</a></td>
+                                            <td class="text-center"><a href="#" class="text-danger">Xóa</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-tab-content admin-content" id="tab03">
+                                <div class="bg_star">
+                                    <div class="flag"><img src="img/flag.png" alt=""/></div>
+                                    <p>Điểm online:<b class="cl_ea0000">500</b></p>
+                                    <p>Cấp bậc:<b>Thành viên mới</b></p>
+                                    <a href="#">Xem hướng dẫn tính điểm</a>
+                                </div>
+                            </div>
+                        </div><!--End tab custom-->
+                    </div>
+                </section><!-- End News -->
+            </article>
+            <footer>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-footer col-footer-1">
+                            <div id="logo-footer"><img src="img/logo-header.png" alt=""/></div>
+                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+                        </div>
+                        <div class="col-footer col-footer-2">
+                            <div class="title-col-footer">ĐỊA CHỈ</div>
+                            <p>
+                                <b>Tập đoàn siêu thị 24h liên kết K Kaffee</b><br/>
+                                Địa chỉ: 216 Hoàng Văn Thụ, phường 4, quận Tân Bình<br/>
+                                Hotline: 0909 58 57 49<br/>
+                                Email: tungocsang88@gmail.com
+                            </p>
+                        </div>
+                        <div class="col-footer col-footer-3">
+                            <div class="title-col-footer">TẬP ĐOÀN K KAFFEE</div>
+                            <a href="welcome.html">Giới thiệu</a>
+                            <a href="#">Quy trình đặt món </a>
+                            <a href="#">Hướng dẫn thanh toán</a>
+                            <a href="#">Giải quyết khiếu nại</a>
+                            <a href="#">Dành cho đối tác</a>
+                            <a href="contact.html">Liên hệ</a>
+                        </div>
+                        <div class="col-footer col-footer-4">
+                            <div class="title-col-footer">K KAFFEE APP</div>
+                            <a href="#"><img src="img/apple.png" alt=""/></a>
+                            <a href="#"><img src="img/androi.png" alt=""/></a>
+                            <p>Hoặc đặt món qua <a href="#">Foody App</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <div class="copyright">
+                <div class="container pos_rel">
+                    2017 Designed by iweb247.vn
+                    <div class="pos_rel hidden-sm hidden-xs">
+                        <div class="cf_chat">
+                            <a href="javascript:void(0)"><i class="fa fa-weixin" aria-hidden="true"></i> Chat tư vấn</a>
+                            <div class="fb-page" data-tabs="messages" data-href="https://www.facebook.com/Surimy-shop-705004346240684/" data-width="280" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:void(0)" class="gotop"><img src="img/back-to-top.png" alt=""/></a>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            jQuery("a.nav-button-mobi").click(function () {
+                if (jQuery("body").hasClass("active-menu"))
+                {
+                    jQuery("body").removeClass("active-menu");
+                }
+                else
+                {
+                    jQuery("body").addClass("active-menu");
+                }
+            });
+            jQuery("a.gotop").click(function () {
+                $('html, body').animate({scrollTop: 0}, 'fast');
+            });
+            jQuery(".cf_chat>a").click(function () {
+                if (jQuery(this).parent().hasClass("active"))
+                {
+                    jQuery(this).parent().removeClass("active");
+                }
+                else
+                {
+                    jQuery(this).parent().addClass("active");
+                }
+            });
+            jQuery(".info-change-password").hide();
+            jQuery(".action-change-password").click(function () {
+                if (jQuery(this).is(":checked")) {
+                    jQuery(".info-change-password").show(300);
+                } else {
+                    jQuery(".info-change-password").hide(200);
+                }
+            });
+            $(document).ready(function ()
+            {
+                var navItems = $('.tab-menu li > a');
+                var navListItems = $('.tab-menu li');
+                var allWells = $('.admin-content');
+                var allWellsExceptFirst = $('.admin-content:not(:first)');
+
+                allWellsExceptFirst.hide();
+                navItems.click(function (e)
+                {
+                    e.preventDefault();
+                    navListItems.removeClass('active');
+                    $(this).closest('li').addClass('active');
+
+                    allWells.hide();
+                    var target = $(this).attr('data-target-id');
+                    $('#' + target).show();
+                });
+            });
+        </script>
+        <div id="fb-root"></div>
+        <script>(function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
     </body>
 </html>

@@ -30,6 +30,9 @@ body{
         width: 1180px;
     }
 }
+.height100{
+    height: 100%;
+}
 .no-round{
     border-radius: 0;
     -moz-border-radius: 0;
@@ -42,6 +45,9 @@ body{
 }
 .marg30{
     margin-bottom: 30px;
+}
+.marg20{
+    margin-bottom: 20px;
 }
 .mar-top40{
     margin-top: 40px;
@@ -1486,5 +1492,370 @@ h1.title_page span:after{
 @media (max-width: 992px){
     .order_cart_item .col-md-6:first-child:after{
         display: none;
+    }
+}
+
+/* Tabs */
+.marg10{
+    margin-bottom: 10px;
+}
+#account .col-tab-menu{
+    width: 280px;
+    margin-right: 20px;
+    float: left;
+}
+#account .col-tab-menu .user-account .image{
+    float: left;
+    margin-right: 10px;
+}
+#account .col-tab-menu .image img{
+    width: 50px;
+    height: 50px;
+}
+#account .col-tab-menu .user-account span{
+    padding: 7px 0;
+    display: inline-block;
+}
+#account .col-tab-content{
+    width: 850px;
+    float: left;
+}
+#account ul.tab-menu{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 280px;
+}
+#account ul.tab-menu li a{
+    font-size: 13px;
+    color: #333;
+    width: 280px;
+    display: block;
+    border: 1px solid #fff;
+    margin-top: -1px;
+    padding: 10px 20px;
+    position: relative;
+    background: #f1f1f1;
+}
+#account ul.tab-menu li a i{
+    margin-right: 7px;
+}
+
+#account ul.tab-menu li a:hover,#account ul.tab-menu li.active a{
+    background: #ffd900;
+    text-decoration: none;
+    color: #fff;
+    border: 1px solid #ffd900;
+}
+#account ul.tab-menu li a:hover:before{
+    width: 0; 
+    height: 0; 
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 6px solid #ffd900;
+    content: "";
+    position: absolute;
+    left: calc(100% + 1px);
+    top: 0;
+    z-index: 9999;
+}
+
+#account .col-form-label{
+    padding-top: 6px;
+    padding-bottom: 5px;
+    margin-bottom: 0;
+    width: 95px;
+    float: left;
+}
+#account .col-form-input{
+    width: calc(100% - 95px);
+    float: left;
+}
+#account .btn span.glyphicon {    			
+	opacity: 0;				
+}
+#account .btn.active span.glyphicon {				
+	opacity: 1;				
+}
+#account table.table tr th{
+    background: #f1f1f1;
+    vertical-align: middle;
+}
+#account table.table tr th,#account table.table tr td{
+}
+#account table.table tr th:nth-child(1),#account table.table tr th:nth-child(2),#account table.table tr th:nth-child(5){
+    width: 120px;
+}
+#account .little-title{
+    color: #333;
+    font-size: 13px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+#account .well.wll{
+    padding: 10px;
+}
+#account .well table tr td{
+    vertical-align: middle;
+}
+#account .well table tr td:first-child,#account .well table tr td:nth-child(2){
+    width: 120px;
+    text-align: center;
+}
+#account .booked .image{
+    width: 100px;
+    margin-right: 10px;
+    float: left;
+}
+#account .booked .title{
+    float: left;
+    width: calc(100% - 110px);
+}
+#account .booked tr th:not(:first-child),#account .booked tbody tr td:not(:first-child){
+    text-align: center;
+}
+#account .booked tr td{
+    padding: 15px 8px;
+}
+#account .booked tr td:first-child{
+    width: 445px;
+}
+#account .booked tr td:first-child a.btn{
+    background: #666666;
+    color: #fff;
+    width: 100px;
+    display: block;
+    padding: 3px 10px 4px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+#account .booked tr td:first-child a.btn:hover{
+    background: #ffd900;
+}
+#account .booked tfoot tr td{
+    background: #f1f1f1;
+    color: #666;
+}
+#account .booked tfoot tr:last-child td:not(:first-child){
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 15px;
+    color: #333;
+}
+#account .box-acount-address{
+    border: 1px dashed #ffe533;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+}
+.box-acount-address table{
+    width: 100%;
+}
+.box-acount-address table tr td:first-child{
+    width: 520px;
+}
+.box-acount-address table tr td:nth-child(2){
+    width: 180px;
+    padding: 0 10px;
+}
+.box-acount-address table tr td:nth-child(3){
+    width: 100px;
+}
+.box-acount-address table tr td:nth-child(3) a{
+    color: #333;
+}
+#account .bg_star{
+    background: url(../img/khung-diem-tich-luy.png) left top no-repeat;
+    height: 230px;
+    padding-top: 45px;
+    position: relative;
+}
+#account .bg_star .flag{
+    position: absolute;
+    left: 15px;
+    top: -5px;
+}
+#account .bg_star p{
+    background: #fff;
+    width: 420px;
+    margin: 0 auto 10px;
+    padding: 12px 0;
+    text-align: center;
+    border-radius: 5px;
+}
+#account .bg_star a{
+    background: #666666;
+    color: #ffd900;
+    width: 420px;
+    margin: 0 auto;
+    padding: 12px 0;
+    display: block;
+    text-align: center;
+    border-radius: 5px;
+}
+@media (max-width: 1200px){
+    #account .col-tab-menu{
+        width: 240px;
+    }
+    #account ul.tab-menu{
+        width: 240px;
+    }
+    #account ul.tab-menu li a{
+        width: 240px;
+    }
+    #account .col-tab-content{
+        width: 670px;
+    }
+}
+@media (max-width: 992px){
+    #account .col-tab-menu{
+        width: 100%;
+        margin: 0;
+    }
+    #account ul.tab-menu{
+        width: 100%;
+    }
+    #account ul.tab-menu li{
+        float: left;
+        margin-bottom: 15px;
+    }
+    #account ul.tab-menu li a{
+        width: 180px;
+    }
+    #account .col-tab-content{
+        width: 100%;
+    }
+}
+@media (max-width: 768px){
+    #account ul.tab-menu li{
+        width: 33.333333%;
+    }
+    #account ul.tab-menu li a{
+        width: 100%;
+    }
+    
+}
+@media (max-width: 603px){
+    .box-acount-address table tr,.box-acount-address table tbody,.box-acount-address table tr td,.box-acount-address table{
+        display: block;
+        overflow: hidden;
+    }
+    .box-acount-address table tr td:first-child{
+        width: 100%;
+    }
+    .box-acount-address table tr td:nth-child(2){
+        width: 100%;
+        padding: 0 0 10px;
+    }
+    .box-acount-address table tr td:nth-child(3),.box-acount-address table tr td:nth-child(4){
+        width: 100px;
+        float: left;
+        text-align: left;
+    }
+    #account ul.tab-menu li{
+        width: 50%;
+    }
+    #account .bg_star p,#account .bg_star a{
+        width: 280px;
+    }
+    
+    #account .well table tr td:first-child, #account .well table tr td:nth-child(2){
+        width: 80px;
+        padding: 0 5px;
+    }
+    
+    
+    #account table.table.booked tbody,#account table.table.booked tfoot,
+    #account table.table.booked tr{
+        display: block;
+        clear: both;
+        overflow: hidden;
+    }
+    #account table.table.bill-booked{
+        border: 1px solid #ddd;
+        display: block;
+    }
+    #account table.table.bill-booked thead{
+        display: none;
+    }
+    #account table.table.bill-booked tr td{
+        display: block;
+        float: left;
+        border-top: none;
+    }
+    #account table.table.bill-booked tr td:nth-child(2){
+        color: #999;
+    }
+    #account table.table.bill-booked tr td:nth-child(3){
+        clear: both;
+    }
+    #account table.table.bill-booked tr td:nth-child(4){
+        clear: both;
+    }
+    #account table.table.bill-booked tr td:last-child{
+        width: 100%;
+        border-bottom: 1px solid #ddd;
+        text-align: left;
+    }
+    
+    #account table.table.booked{
+        border: 1px solid #ddd;
+        display: block;
+    }
+    #account table.table.booked thead{
+        display: none;
+    }
+    #account table.table.booked tbody tr td{
+        display: block;
+        border-top: none;
+    }
+    #account table.table.booked tbody tr td:first-child{
+        width: 100%;
+        overflow: hidden;
+        padding: 15px 8px 5px;
+        border-top: 1px solid #ddd;
+    }
+    #account table.table.booked tbody tr td:nth-child(2){
+        float: left;
+    }
+    #account table.table.booked tbody tr td:nth-child(2):before{
+        content: "Giá: ";
+    }
+    #account table.table.booked tbody tr td:nth-child(3){
+        float: left;
+    }
+    #account table.table.booked tbody tr td:nth-child(3):before{
+        content: "SL: ";
+    }
+    #account table.table.booked tbody tr td:nth-child(4){
+        float: left;
+    }
+    #account table.table.booked tbody tr td:nth-child(4):before{
+        content: "Coupon: ";
+    }
+    #account table.table.booked tbody tr td:last-child{
+        float: left;
+    }
+    #account table.table.booked tbody tr td:nth-child(5):before{
+        content: "Tạm tính: ";
+    }
+    #account table.table.booked tfoot{
+        background: #f1f1f1;
+    }
+    #account table.table.booked tfoot tr td{
+        display: block;
+        float: left;
+        width: 50%;
+    }
+    #account table.table.booked tfoot tr td:nth-child(2n+1){
+        display: none;
+    }
+}
+@media (max-width: 420px){
+    #account table.table.booked tbody tr td{
+        width: 100%;
+        text-align: left;
+        padding: 0 8px 10px;
     }
 }
