@@ -25,27 +25,27 @@ class Product extends Model  {
      */
     protected $fillable = [
                             'code',
-                            'title',
+                            'name',
                             'alias',
                             'slug', 
                             'description',
                             'parent_id', 
                             'cate_id', 
-                            'thong_so', 
-                            'thong_so_chi_tiet', 
-                            'tien_do', 
-                            'hoi_dap', 
-                            'content',
-                            'thumbnail_id',                        
-                            'video_url',                       
+                            'image_url', 
+                            'content', 
+                            'price', 
+                            'is_sale', 
+                            'price_sale',
+                            'sale_percent',                        
+                            'out_of_stock',                       
                             'status', 
                             'meta_id',                       
                             'is_hot',
+                            'amount_sold',
+                            'inventory',
                             'display_order',
                             'created_user',
-                            'updated_user',
-                            'layout',
-                            'is_slider'
+                            'updated_user'                            
                         ];
 
     public static function productTag( $id )
