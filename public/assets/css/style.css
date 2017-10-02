@@ -9,6 +9,12 @@
     transition: all 0.5s ease;
     overflow: hidden;
 }
+body {
+    position: relative;
+}
+.affix {
+    top: 20px;
+}
 img{
     max-width: 100%;
     height: auto;
@@ -526,9 +532,9 @@ footer .col-footer-4 p a{
     color: #fff;
 }
 .cf_chat{
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    right: 0;
+    right: 20px;
     line-height: 40px;
     color: #fff;
     width: 160px;
@@ -1008,6 +1014,7 @@ h1.title_page span:after{
     width: 280px;
     margin-right: 20px;
     float: left;
+    min-height: 1px;
 }
 #detail-product .col-tab-content{
     width: 550px;
@@ -1018,6 +1025,7 @@ h1.title_page span:after{
     padding: 0;
     list-style: none;
     width: 280px;
+    background: #fff;
 }
 #detail-product ul.tab-menu li a{
     font-size: 13px;
@@ -1243,6 +1251,9 @@ h1.title_page span:after{
     #detail-product .col-tab-menu{
         width: 180px;
         margin-right: 10px;
+    }
+    #detail-product .col-tab-menu ul{
+        width: 180px;
     }
     #detail-product .col-tab-content{
         width: 520px;
@@ -1572,10 +1583,10 @@ h1.title_page span:after{
     float: left;
 }
 #account .btn span.glyphicon {    			
-	opacity: 0;				
+    opacity: 0;				
 }
 #account .btn.active span.glyphicon {				
-	opacity: 1;				
+    opacity: 1;				
 }
 #account table.table tr th{
     background: #f1f1f1;
@@ -1734,7 +1745,7 @@ h1.title_page span:after{
     #account ul.tab-menu li a{
         width: 100%;
     }
-    
+
 }
 @media (max-width: 603px){
     .box-acount-address table tr,.box-acount-address table tbody,.box-acount-address table tr td,.box-acount-address table{
@@ -1759,13 +1770,13 @@ h1.title_page span:after{
     #account .bg_star p,#account .bg_star a{
         width: 280px;
     }
-    
+
     #account .well table tr td:first-child, #account .well table tr td:nth-child(2){
         width: 80px;
         padding: 0 5px;
     }
-    
-    
+
+
     #account table.table.booked tbody,#account table.table.booked tfoot,
     #account table.table.booked tr{
         display: block;
@@ -1798,7 +1809,7 @@ h1.title_page span:after{
         border-bottom: 1px solid #ddd;
         text-align: left;
     }
-    
+
     #account table.table.booked{
         border: 1px solid #ddd;
         display: block;

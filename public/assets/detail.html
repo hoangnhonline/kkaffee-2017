@@ -15,7 +15,7 @@ and open the template in the editor.
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
     </head>
-    <body>
+    <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
         <div class="wrapper">
             <header>
                 <div class="bg_black">
@@ -131,22 +131,47 @@ and open the template in the editor.
                     </div>
                     <div class="container">
                         <div class="tabs-custom">
-                            <div class="col-tab-menu">
+                            <div id="myScrollspy" class="col-tab-menu hidden-xs">
                                 <ul class="tab-menu">
-                                    <li class="active"><a href="#" data-target-id="all">SHOP KKAFFEE</a></li>
-                                    <li><a href="javascript:void(0)" data-target-id="tab01">Sản phẩm hot</a></li>
-                                    <li><a href="javascript:void(0)" data-target-id="tab02">Vietnamese Coffee</a></li>
-                                    <li><a href="javascript:void(0)" data-target-id="tab03">Coffee Frappy</a></li>
-                                    <li><a href="javascript:void(0)" data-target-id="tab04">Tea</a></li>
-                                    <li><a href="javascript:void(0)" data-target-id="tab05">Smoothies</a></li>
-                                    <li><a href="javascript:void(0)" data-target-id="tab06">Matcha</a></li>
+                                    <li><a href="#all">SHOP KKAFFEE</a></li>
+                                    <li><a href="#tab01" data-target-id="">Sản phẩm hot</a></li>
+                                    <li><a href="#tab02" data-target-id="">Vietnamese Coffee</a></li>
+                                    <li><a href="#tab03" data-target-id="">Coffee Frappy</a></li>
+                                    <li><a href="#tab04" data-target-id="">Tea</a></li>
+                                    <li><a href="#tab05" data-target-id="">Smoothies</a></li>
+                                    <li><a href="#tab06" data-target-id="">Matcha</a></li>
                                 </ul>
                             </div>
-                            <div class="col-tab-content admin-content" id="all">
+                            <div class="col-tab-content admin-content">
                                 <p class="blockquote-promotion">
                                     <span>Giảm giá 30%</span> cho tất cả các sản phẩm dưới đây
                                 </p>
-                                <div class="list-box-items">
+                                <div class="list-box-items"  id="all">
+                                    <div class="title-admin-content">SHOP KKAFFEE</div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp3.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp4.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-box-items"  id="tab01">
                                     <div class="title-admin-content">SẢN PHẨM HOT</div>
                                     <div class="box-item">
                                         <div class="image"><img src="img/sp13.png" alt=""/></div>
@@ -171,7 +196,7 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-box-items">
+                                <div class="list-box-items"  id="tab02">
                                     <div class="title-admin-content">VIETNAMESE COFFEE</div>
                                     <div class="box-item">
                                         <div class="image"><img src="img/sp3.png" alt=""/></div>
@@ -196,32 +221,106 @@ and open the template in the editor.
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-tab-content admin-content" id="tab01">
-                                <p>
-                                    Hello! This is a forked snippet.<br>
-                                    It is for users, which use one-page layouts.
-                                </p>
-                                <p>
-                                    Here's the original one from BhaumikPatel: <a href="http://bootsnipp.com/snippets/featured/vertical-admin-menu" target="_BLANK">Vertical Admin Menu</a>
-                                    <br><br>
-                                    <strong>Thank you Bhaumik!</strong>
-                                </p>
-                            </div>
-                            <div class="col-tab-content admin-content" id="tab02">
-                                Widgets
-                            </div>
-                            <div class="col-tab-content admin-content" id="tab03">
-                                Pages
-                            </div>
-                            <div class="col-tab-content admin-content" id="tab04">
-                                Charts
-                            </div>
-                            <div class="col-tab-content admin-content" id="tab05">
-                                Table
-                            </div>
-                            <div class="col-tab-content admin-content" id="tab06">
-                                Forms
+                                <div class="list-box-items"  id="tab03">
+                                    <div class="title-admin-content">Coffee Frappy</div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp3.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp4.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-box-items"  id="tab04">
+                                    <div class="title-admin-content">Tea</div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp3.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp4.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-box-items"  id="tab05">
+                                    <div class="title-admin-content">Smoothies</div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp3.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp4.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-box-items"  id="tab06">
+                                    <div class="title-admin-content">Matcha</div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp3.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="box-item">
+                                        <div class="image"><img src="img/sp4.png" alt=""/></div>
+                                        <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                                        <div class="box-price">
+                                            <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                            <div class="price">
+                                                325.000đ
+                                                <small>Giảm 10%</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div><!--End tab custom-->
                         <div class="cart-info cart-side">
@@ -365,9 +464,9 @@ and open the template in the editor.
                 </div>
             </footer>
             <div class="copyright">
-                <div class="container pos_rel">
+                <div class="container">
                     2017 Designed by iweb247.vn
-                    <div class="pos_rel hidden-sm hidden-xs">
+                    <div class="hidden-sm hidden-xs">
                         <div class="cf_chat">
                             <a href="javascript:void(0)"><i class="fa fa-weixin" aria-hidden="true"></i> Chat tư vấn</a>
                             <div class="fb-page" data-tabs="messages" data-href="https://www.facebook.com/Surimy-shop-705004346240684/" data-width="280" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">                               
@@ -394,26 +493,38 @@ and open the template in the editor.
             jQuery("a.gotop").click(function () {
                 $('html, body').animate({scrollTop: 0}, 'fast');
             });
-            $(document).ready(function ()
-            {
-                var navItems = $('.tab-menu li > a');
-                var navListItems = $('.tab-menu li');
-                var allWells = $('.admin-content');
-                var allWellsExceptFirst = $('.admin-content:not(:first)');
+            jQuery(document).ready(function () {
+                var voffset = jQuery("#myScrollspy").offset();
+                var vtop = voffset.top;
 
-                allWellsExceptFirst.hide();
-                navItems.click(function (e)
-                {
-                    e.preventDefault();
-                    navListItems.removeClass('active');
-                    $(this).closest('li').addClass('active');
+                jQuery("#myScrollspy ul").affix({
+                    offset: {
+                        top: vtop
+                    }
+                });
+                // Add smooth scrolling on all links inside the navbar
+                $("#myScrollspy a").on('click', function (event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
 
-                    allWells.hide();
-                    var target = $(this).attr('data-target-id');
-                    $('#' + target).show();
+                        // Store hash
+                        var hash = this.hash;
+
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 300, function () {
+
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    }  // End if
                 });
             });
-            jQuery(".cf_chat>a").click(function(){
+            jQuery(".cf_chat>a").click(function () {
                 if (jQuery(this).parent().hasClass("active"))
                 {
                     jQuery(this).parent().removeClass("active");
