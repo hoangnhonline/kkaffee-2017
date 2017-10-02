@@ -9,7 +9,7 @@
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <li><a href="{{ route('banner.index', ['object_id' => $object_id, 'object_type' => $object_type]) }}">banner</a></li>
-      <li class="active"><span class="glyphicon glyphicon-pencil"></span></li>
+      Cập nhật
     </ol>
   </section>
 

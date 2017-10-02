@@ -7,7 +7,7 @@
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <li><a href="{{ route('tag.index') }}">Tags</a></li>
-      <li class="active"><span class="glyphicon glyphicon-pencil"></span></li>
+      Cập nhật
     </ol>
   </section>
 
