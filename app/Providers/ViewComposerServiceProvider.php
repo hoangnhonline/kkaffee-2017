@@ -55,7 +55,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 	        $footerLink1 = CustomLink::where('block_id', 1)->orderBy('display_order', 'asc')->get();	        	        
         	$footerLink2 = CustomLink::where('block_id', 2)->orderBy('display_order', 'asc')->get();        	
 	       	$menuList = Menu::where('menu_id', 1)->orderBy('display_order', 'asc')->get();
-	       	$cateParentList = CateParent::orderBy('display_order')->get();
+	       	$cateParentList = CateParent::orderBy('display_order')->get();       	
 
 	       	$textList = Text::whereRaw('1')->lists('content', 'id');
 	        $routeName = \Request::route()->getName();	      

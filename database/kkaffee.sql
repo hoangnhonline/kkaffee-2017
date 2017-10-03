@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 02, 2017 at 01:03 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: localhost
+-- Generation Time: Oct 03, 2017 at 05:05 PM
+-- Server version: 5.5.57-0ubuntu0.14.04.1
+-- PHP Version: 7.0.24-1+ubuntu14.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -673,353 +675,25 @@ CREATE TABLE `meta_data` (
 --
 
 INSERT INTO `meta_data` (`id`, `title`, `description`, `keywords`, `custom_text`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
-(1, 'Bán nhà riêng tại TP.HCM giá rẻ | Thanh Phú Thịnh Land', 'Bán nhà riêng giá rẻ tại tp.hcm, củ chi và long an. Thanh Phú Thịnh Land chuyên mua bán nhà riêng chính chủ đứng tên sổ hồng, thủ tục sang tên nhanh gọn.', 'bán nhà riêng', '', 2, 2, '2017-07-09 08:52:06', '2017-07-12 08:49:20'),
-(2, 'Cách giải quyết tranh chấp đất đai theo luật hiện nay', '', '', '', 2, 2, '2017-07-09 11:01:51', '2017-07-09 11:01:51'),
-(3, 'Tranh chấp quyền sử dụng đất có sổ đỏ như thế nào', '', '', '', 2, 2, '2017-07-09 14:23:55', '2017-07-09 14:23:55'),
-(4, 'Chi phí sang tên sổ đỏ nhà đất và thủ tục như thế nào', '', '', '', 2, 2, '2017-07-09 14:53:42', '2017-07-09 14:53:42'),
-(5, 'Đất thổ cư có được phép đào ao hay không', '', '', '', 2, 2, '2017-07-09 15:24:31', '2017-07-09 15:24:31'),
-(6, 'Nếu quý vị là người quan tâm đến phong thủy, thì những linh vật được đặt trong nhà mang lại tài lộc, may mắn cho gia đình chắc hẵn quý vị không nên bỏ qua. Sau đây là bài viết chia sẻ về linh vật Thiềm Thừ, nó là linh vật gì, tác dụng và cách đặt như thế ', '', '', '', 2, 2, '2017-07-09 16:05:04', '2017-07-09 16:05:04'),
-(7, 'Cách chuyển đất trồng lâu năm thành đất thổ cư như thế nào', '', '', '', 2, 2, '2017-07-09 16:24:56', '2017-07-09 16:24:56'),
-(8, 'Thừa kế thế vị là gì? Quy định thừa kế như thế nào', '', '', '', 2, 2, '2017-07-09 16:55:30', '2017-07-09 16:55:30'),
-(9, 'những điều cấm kỵ trong phong thủy phòng ngủ', '', 'những điều cấm kỵ trong phong thủy phòng ngủ', '', 3, 3, '2017-07-10 08:37:51', '2017-07-10 08:37:51'),
-(10, 'Bán đất thổ cư Phan Văn Mảng Bến Lức Long An giá 300 triệu', '', '', '', 2, 2, '2017-07-10 08:42:25', '2017-07-10 13:46:46'),
-(11, 'Mẫu nhà phố 1 trệt 2 lầu có sân thượng', '', '', '', 2, 2, '2017-07-10 09:22:53', '2017-07-10 09:22:53'),
-(12, '', '', '', '', 2, 2, '2017-07-10 10:03:52', '2017-07-10 10:03:52'),
-(13, '', '', '', '', 2, 2, '2017-07-10 10:04:58', '2017-07-10 10:04:58'),
-(14, '', '', '', '', 2, 2, '2017-07-10 10:07:06', '2017-07-10 10:07:06'),
-(15, '', '', '', '', 2, 2, '2017-07-10 10:09:49', '2017-07-10 10:09:49'),
-(16, 'Những điều cấm kỵ trong phong thủy phòng ngủ', '', 'những điều cấm kỵ trong phong thủy phòng ngủ', '', 3, 2, '2017-07-10 13:26:54', '2017-07-14 09:02:15'),
-(17, 'Những điều kiêng kỵ trong phong thủy nhà ở', '', 'phong thủy nhà ở', '', 3, 2, '2017-07-10 14:03:01', '2017-07-14 09:01:56'),
-(18, 'Bán đất nền dự án Gia Long River Town Cần Đước Long An giá 350 triệu', '', '', '', 2, 2, '2017-07-10 14:12:56', '2017-07-10 14:12:56'),
-(19, 'Cách khắc phục hướng nhà không tốt', '', '', '', 3, 2, '2017-07-10 14:30:03', '2017-07-14 09:01:38'),
-(20, 'Bán đất thổ cư xã Mỹ Lộc Cần Giuộc Long An giá 400 triệu', '', '', '', 2, 2, '2017-07-10 14:36:40', '2017-07-10 14:36:40'),
-(21, 'Cách hóa giải hướng nhà xấu', '', 'cách hóa giải hướng nhà xấu', '', 3, 1, '2017-07-10 14:46:32', '2017-09-22 16:27:09'),
-(22, 'Bán đất mặt tiền xã Hòa Phú Châu Thành Long An giá 1 tỷ', '', '', '', 2, 2, '2017-07-10 14:57:16', '2017-07-10 14:57:16'),
-(23, 'Bán đất nền gần công viên Võ Văn Tần Đức Hòa Long An', '', '', '', 2, 2, '2017-07-10 15:16:34', '2017-07-10 15:16:34'),
-(24, 'Những loại cây không nên trồng trong nhà', '', 'những loại cây không nên trồng trong nhà', '', 3, 1, '2017-07-10 15:23:38', '2017-09-22 16:26:40'),
-(25, 'Thị trường giao dịch căn hộ tại TP.HCM vượt đỉnh', '', '', '', 2, 2, '2017-07-10 15:36:54', '2017-07-10 15:36:54'),
-(26, 'Sóng ngầm bất động sản siêu sang trên đất vàng Hồ Chí Minh', '', '', '', 2, 2, '2017-07-10 15:44:00', '2017-07-10 15:44:00'),
-(27, 'Bất động sản quận 8 đang dần trở thành điểm sáng nhờ hạ tầng', '', '', '', 2, 2, '2017-07-10 15:55:26', '2017-07-10 15:55:26'),
-(28, 'Những kiêng kỵ khi nhà có tang', '', 'những kiêng kỵ khi nhà có tang', '', 3, 3, '2017-07-10 16:15:26', '2017-07-10 16:32:51'),
-(29, 'Nghề môi giới bất động sản không hề dễ giàu', '', '', '', 2, 2, '2017-07-10 16:18:24', '2017-07-10 16:18:24'),
-(30, 'Đua nhau đặt mục tiêu lãi nghìn tỷ của các đại gia bất động sản', '', '', '', 2, 2, '2017-07-10 16:26:52', '2017-07-10 16:26:52'),
-(31, 'Bất động sản quận 8 phát triển mạnh nhờ quy hoạch', '', '', '', 2, 2, '2017-07-10 16:36:32', '2017-07-10 16:36:32'),
-(32, 'Những điều cấm kỵ khi xây nhà', '', 'những điều cấm kỵ khi xây nhà', '', 3, 1, '2017-07-10 16:53:18', '2017-09-22 16:26:06'),
-(33, 'Mẫu nhà 2 tầng đẹp theo phong cách Nhật Bản', '', '', '', 2, 2, '2017-07-10 17:03:03', '2017-07-10 17:03:03'),
-(34, 'Cách khai quang gương bát quái', '', 'cách khai quang gương bát quái', '', 3, 1, '2017-07-10 17:10:53', '2017-09-22 16:25:01'),
-(35, 'Bán biệt thự giá rẻ tại TP.HCM | Thanh Phú Thịnh Land', 'Bán biệt thự giá rẻ tại tp.hcm, huyện củ chi và long an. Thanh Phú Thịnh Land chuyên mua bán biệt thự cao cấp giấy tờ pháp lý rõ ràng, sang tên nhanh chóng.', 'bán biệt thự giá rẻ', '', 2, 2, '2017-07-12 08:51:13', '2017-07-12 08:51:13'),
-(36, 'Bán nhà mặt phố giá rẻ tại TP.HCM | Thanh Phú Thịnh Land', 'Bán nhà mặt phố giá rẻ tại tp.hcm và long an. Thanh Phú Thịnh Land chuyên mua bán nhà mặt phố giá rẻ, giấy tờ pháp lý rõ ràng, sang tên nhanh chóng.', 'bán nhà mặt phố', '', 2, 2, '2017-07-12 08:53:07', '2017-07-12 08:53:07'),
-(37, 'Bán đất nền giá rẻ tại TP.HCM và Long An | Thanh Phú Thịnh Land', 'Bán đất nền giá rẻ tại Tp.HCM và Long An. Thanh Phú Thịnh Land chuyên mua bán đất nền giá rẻ, giấy tờ rõ ràng, tách sổ sang tên nhanh chóng.', 'bán đất nền', '', 2, 2, '2017-07-12 08:56:45', '2017-07-12 08:56:45'),
-(38, 'Bán đất thổ cư giá rẻ tại TP.HCM | Thanh Phú Thịnh Land', 'Bán đất thổ cư giá rẻ tại Tp.HCM và Long An. Thanh Phú Thịnh Land chuyên mua bán đất thổ cư 100%, tách sổ riêng, sang tên nhanh chóng.', 'bán đất thổ cư', '', 2, 2, '2017-07-12 09:00:30', '2017-07-12 09:00:30'),
-(39, 'Bán đất nông nghiệp giá rẻ tại TP.HCM | Thanh Phú Thịnh Land', 'Bán đất nông nghiệp giá rẻ. Thanh Phú Thịnh Land chuyên mua bán đất nông nghiệp, đất sào, đất mẫu, bán đất lâm nghiệp, đất rẫy giá rẻ.', 'bán đất nông nghiệp', '', 2, 2, '2017-07-12 10:33:49', '2017-07-12 10:33:49'),
-(40, 'Cho thuê căn hộ chung cư giá rẻ tại TP.HCM | Thanh Phú Thịnh Land', 'Cho thuê căn hộ chung cư giá rẻ tại TP.HCM và Long An. Thanh Phú Thịnh Land chuyên cho thuê căn hộ chung cư cao cấp, họp đồng rõ ràng.', 'cho thuê căn hộ chung cư', '', 2, 2, '2017-07-12 10:49:30', '2017-07-12 10:49:30'),
-(41, 'Cho thuê nhà riêng giá rẻ tại TP.HCM | Thanh Phú Thịnh Land', 'Cho thuê nhà riêng giá rẻ tại TP.HCM và Long An. Thanh Phú Thịnh Land chuyên cho thuê nhà riêng với nhiều diện tích khác nhau, nhiều mẫu nhà riêng các loại.', 'cho thuê nhà riêng', '', 2, 2, '2017-07-12 10:53:19', '2017-07-12 10:53:19'),
-(42, 'Cho thuê nhà mặt phố giá rẻ tại TP.HCM | Thanh Phú Thịnh Land', 'Cho thuê nhà mặt phố giá rẻ tại TP.HCM và Long An. Thanh Phú Thịnh Land chuyên cho thuê nhà mặt phố nhiều diện tích và mẫu các loại khác nhau.', 'cho thuê nhà mặt phố', '', 2, 2, '2017-07-12 10:54:44', '2017-07-12 10:54:44'),
-(43, 'Cho thuê nhà trọ giá rẻ tại TP.HCM | Thanh Phú Thịnh Land', 'Cho thuê nhà trọ giá rẻ tại TP.HCM và Long An. Thanh Phú Thịnh Land chuyên cho thuê nhà trọ nhiều diện tích khác nhau.', 'cho thuê nhà trọ', '', 2, 2, '2017-07-12 10:57:18', '2017-07-12 10:57:18'),
-(44, 'Bán đất nông nghiệp giá rẻ tại Long An | Thanh Phú Thịnh Land', 'Bán đất nông nghiệp giá rẻ tại Long An. Thanh Phú Thịnh Land chuyên mua bán  đất sào, đất mẫu, bán đất lâm nghiệp, đất rẫy giá rẻ.', 'bán đất nông nghiệp', '', 2, 2, '2017-07-12 11:03:34', '2017-07-12 11:03:34'),
-(45, 'Bán đất huyện Đức Hòa giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Đức Hòa giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Đức Hòa Long An.\r\n', 'bán đất huyện đức hòa', '', 2, 2, '2017-07-12 11:25:06', '2017-07-12 11:25:06'),
-(46, 'Bán đất huyện Châu Thành giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Châu Thành giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Châu Thành Long An.', 'bán đất huyện châu thành', '', 2, 2, '2017-07-12 11:27:52', '2017-07-12 11:27:52'),
-(47, 'Bán đất huyện Bến Lức giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Bến Lức giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Bến Lức Long An.', 'bán đất huyện bến lức', '', 2, 2, '2017-07-12 13:17:59', '2017-07-12 13:17:59'),
-(48, 'Bán đất huyện Cần Đước giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Cần Đước giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Cần Đước Long An.', 'bán đất huyện cần đước', '', 2, 2, '2017-07-12 13:18:55', '2017-07-12 13:18:55'),
-(49, 'Bán đất huyện Cần Giuộc giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Cần Giuộc giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Cần Giuộc Long An.', 'bán đất huyện cần giuộc', '', 2, 2, '2017-07-12 13:19:34', '2017-07-12 13:19:34'),
-(50, 'Bán đất huyện Mộc Hóa giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Mộc Hóa giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Mộc Hóa Long An.', 'bán đất huyện mộc hóa', '', 2, 2, '2017-07-12 13:21:46', '2017-07-12 13:21:46'),
-(51, 'Bán đất huyện Vĩnh Hưng giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Vĩnh Hưng giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Vĩnh Hưng Long An.', 'bán đất huyện vĩnh hưng', '', 2, 2, '2017-07-12 13:24:42', '2017-07-12 13:24:42'),
-(52, 'Bán đất huyện Đức Huệ giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Đức Huệ giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Đức Huệ Long An.', 'bán đất huyện đức huệ', '', 2, 2, '2017-07-12 13:26:17', '2017-07-12 13:26:17'),
-(53, 'Bán đất huyện Tân trụ giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Tân Trụ giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Tân Trụ Long An.', 'bán đất huyện tân trụ', '', 2, 2, '2017-07-12 13:59:59', '2017-07-12 13:59:59'),
-(54, 'Bán đất huyện Tân Thanh giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Tân Thanh giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Tân Thanh Long An.', 'bán đất huyện tân thanh', '', 2, 2, '2017-07-12 14:02:02', '2017-07-12 14:02:02'),
-(55, 'Bán đất huyện Thạnh Hóa giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Thạnh Hóa giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Thạnh Hóa Long An.', 'bán đất huyện thạnh hóa', '', 2, 2, '2017-07-12 14:07:08', '2017-07-12 14:07:08'),
-(56, 'Bán đất huyện Thủ Thừa giá rẻ | Thanh Phú Thịnh Land', 'Bán đất huyện Thủ Thừa  giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại huyện Thủ Thừa Long An.', 'bán đất huyện thủ thừa', '', 2, 2, '2017-07-12 14:09:09', '2017-07-12 14:09:09'),
-(57, 'Bán đất thị xã Kiến Tường giá rẻ | Thanh Phú Thịnh Land', 'Bán đất thị xã Kiến Tường giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại thị xã Kiến Tường Long An.\r\n', 'bán đất thị xã kiến tường', '', 2, 2, '2017-07-12 14:12:04', '2017-07-12 14:12:04'),
-(58, 'Bán đất thành phố Tân An giá rẻ | Thanh Phú Thịnh Land', 'Bán đất thành phố Tân An giá rẻ, chuyên mua bán đất với nhiều diện tích, nhiều giá bán, nhiều địa điểm và giấy tờ minh bạch tại thành phố Tân An Long An.', 'bán đất thành phố tân an', '', 2, 2, '2017-07-12 14:22:53', '2017-07-12 14:22:53'),
-(59, 'Bán đất thổ cư 100% tại Long An | Thanh Phú Thịnh Land', 'Bán đất thổ cư 100% tại long an, chuyên mua bán đất thổ cư với nhiều diện tích, giá cả khác nhau.', 'bán đất thổ cư 100% tại long an', '', 2, 2, '2017-07-12 14:31:01', '2017-07-12 14:31:01'),
-(60, 'Mẫu nhà đẹp bên bờ biển ở Cape Cod', '', 'mẫu nhà đẹp', '', 2, 2, '2017-07-12 14:57:00', '2017-07-12 14:57:00'),
-(61, 'Mẫu nhà Residence Private Elegant mang phong cách hiện đại', '', '', '', 2, 2, '2017-07-12 15:13:42', '2017-07-12 15:13:42'),
-(62, 'Mẫu nhà Wategos Residence 2 tầng thiết kế mang phong cách hiện đại', '', '', '', 2, 2, '2017-07-12 15:38:48', '2017-07-12 15:38:48'),
-(63, 'Phân tích dự án khu đô thị Xuân Ngọc', '', 'khu đô thị xuân ngọc', '', 2, 2, '2017-07-12 16:23:55', '2017-07-12 16:23:55'),
-(64, 'Phân tích khu đô thị Waterpoint Huyện Bến Lức Long An', '', '', '', 2, 2, '2017-07-12 16:39:40', '2017-07-12 16:39:40'),
-(65, 'Phân tích khu dân cư Nam Long - Long An', '', '', '', 2, 2, '2017-07-12 16:54:05', '2017-07-12 16:54:05'),
-(66, 'Phân tích dự án khu dân cư Long Hậu - Long An', '', '', '', 2, 2, '2017-07-12 17:03:17', '2017-07-12 17:03:17'),
-(67, 'Phân tích dự án khu căn hộ Everluck Residence', '', '', '', 2, 2, '2017-07-12 17:10:45', '2017-07-12 17:10:45'),
-(68, 'Phân tích dự án khu dân cư Hồng Phát - Long An', '', '', '', 2, 1, '2017-07-12 17:18:28', '2017-07-14 08:39:07'),
-(69, 'Bán đất KDC Tân Đức - Đức Huệ - Long An giá 1,5 triệu/m2', '', '', '', 2, 2, '2017-07-13 08:58:38', '2017-07-13 08:58:38'),
-(70, 'Bán đất nền mặt tiền QL62 - Tân Lập - Mộc Hóa -Long An giá 1,5 tỷ', '', '', '', 2, 2, '2017-07-13 09:14:51', '2017-07-13 09:14:51'),
-(71, 'Bán đất nền huyện Tân Hưng - Long An giá 450 triệu', '', '', '', 2, 2, '2017-07-13 09:35:20', '2017-07-13 09:35:20'),
-(72, 'Bán đất mặt tiền tỉnh lộ 829, Tân Thạnh - Long An', '', '', '', 2, 2, '2017-07-13 10:04:10', '2017-07-13 10:04:10'),
-(73, 'Nghĩa vụ tài chính khi chuyển mục đích sử dụng đất như thế nào', '', '', '', 2, 2, '2017-07-13 13:15:06', '2017-07-13 13:15:06'),
-(74, 'Người nước ngoài có được nhận hoặc tặng nhà tại Việt Nam hay không', '', '', '', 2, 2, '2017-07-13 13:55:55', '2017-07-13 13:55:55'),
-(75, 'Tài sản đất chưa có sổ đỏ lập di chúc như thế nào', '', '', '', 2, 2, '2017-07-13 15:30:57', '2017-07-13 15:30:57'),
-(76, 'Thủ tục chuyển nhượng đất liền kề như thế nào', '', '', '', 2, 2, '2017-07-13 16:35:01', '2017-07-13 16:35:01'),
-(77, 'Chuyển đất từ sổ đỏ sang sổ hồng như thế nào', '', '', '', 2, 2, '2017-07-14 10:03:16', '2017-07-14 10:03:16'),
-(78, 'Thủ tục chuyển nhượng nhà chung cư chưa có sổ đỏ như thế nào', '', '', '', 2, 2, '2017-07-14 10:22:33', '2017-07-14 10:22:33'),
-(79, 'Quy định về thủ tục sang tên quyền sử dụng đất như thế nào', '', '', '', 2, 2, '2017-07-14 11:13:05', '2017-07-14 11:13:05'),
-(80, 'Thủ tục sang tên đổi chủ nhà đất như thế nào', '', '', '', 2, 2, '2017-07-14 11:21:32', '2017-07-14 11:21:32'),
-(81, 'Thủ tục sang tên quyền sử dụng đất từ cha mẹ cho con như thế nào', '', '', '', 2, 2, '2017-07-14 14:11:26', '2017-07-14 14:11:26'),
-(82, 'Thủ tục sang tên sổ đỏ đất thổ cư như thế nào', '', '', '', 2, 2, '2017-07-14 14:24:48', '2017-07-14 14:24:48'),
-(83, 'Thủ tục sang tên sổ đỏ nhà chung cư như thế nào', '', '', '', 2, 2, '2017-07-14 14:51:49', '2017-07-14 14:51:49'),
-(84, 'Thủ tục chuyển nhượng nhà chung cư chưa nhận bàn giao như thế nào', '', '', '', 2, 2, '2017-07-14 15:22:54', '2017-07-14 15:22:54'),
-(85, 'Cách lấy ánh sáng cho phòng khách nhà phố', '', '', '', 2, 2, '2017-07-15 09:49:06', '2017-07-15 09:49:06'),
-(86, 'Cách chọn giấy dán tường cho phòng khách', '', '', '', 2, 2, '2017-07-15 10:12:36', '2017-07-15 10:12:36'),
-(87, 'Thủ tục cấp lại giấy chứng nhận quyền sử dụng đất như thế nào', '', '', '', 2, 2, '2017-07-15 11:25:16', '2017-07-15 11:25:16'),
-(88, '', '', '', '', 1, 1, '2017-07-15 12:09:49', '2017-07-15 12:09:49'),
-(89, '', '', '', '', 1, 2, '2017-07-15 12:11:07', '2017-07-27 14:49:39'),
-(90, 'Những rủi ro khi bán nhà đất bằng giấy tờ viết tay cần biết', '', '', '', 2, 2, '2017-07-15 14:07:29', '2017-07-15 14:07:29'),
-(91, 'Vị Trí - Sơ Đồ Khu Dân Cư An Thắng - Rạch Kiến', '', '', '', 2, 12, '2017-07-15 14:54:50', '2017-07-19 14:32:34'),
-(92, 'Tiện ích Khu Dân Cư An Thắng - Rạch Kiến', '', '', '', 2, 12, '2017-07-15 16:24:46', '2017-07-19 14:25:29'),
-(93, 'Quy Mô Dự Án KDC An Thắng - Rạch Kiến', '', '', '', 2, 12, '2017-07-15 16:55:39', '2017-07-19 14:39:03'),
-(94, 'Phương Thức Thanh Toán Dự Án KDC An Thắng - Rạch Kiến', '', '', '', 2, 12, '2017-07-16 00:26:06', '2017-07-21 09:58:49'),
-(95, 'Bản đồ quy hoạch huyện cần giuộc mới nhất', '', '', '', 2, 12, '2017-07-16 17:05:53', '2017-07-22 12:06:41'),
-(96, 'Thủ tục cấp giấy phép xây dựng như thế nào', '', '', '', 2, 2, '2017-07-17 12:06:07', '2017-07-17 12:06:07'),
-(97, 'Những thủ tục cần thiết khi xây nhà mới cần nên biết', '', '', '', 2, 2, '2017-07-17 14:12:37', '2017-07-17 14:12:37'),
-(98, 'Những đối tượng được cấp giấy phép chứng nhận quyền sử dụng đất', '', '', '', 2, 2, '2017-07-17 15:15:21', '2017-07-17 15:15:21'),
-(99, 'Trình tự thủ tục và thời gian giải quyết tách thửa như thế nào', '', '', '', 2, 2, '2017-07-17 15:56:26', '2017-07-17 15:56:26'),
-(100, 'Tách thửa chia đất cho con như thế nào', '', '', '', 2, 2, '2017-07-17 16:10:47', '2017-07-17 16:10:47'),
-(101, 'Chia tài sản thừa kế cho con chung và con riêng như thế nào', '', '', '', 2, 2, '2017-07-17 17:08:43', '2017-07-17 17:08:43'),
-(102, 'Cách hóa giải hướng nhà tuyệt mệnh như thế nào', '', '', '', 2, 1, '2017-07-19 09:59:53', '2017-09-12 22:35:00'),
-(103, 'Đất nền Long An - Miếng mồi béo bỡ của giới đầu tư', '', '', '', 2, 2, '2017-07-19 10:25:02', '2017-07-19 10:25:02'),
-(104, 'Bản đồ quy hoạch huyện Cần Đước mới nhất', '', '', '', 2, 12, '2017-07-19 16:44:23', '2017-07-22 12:06:06'),
-(105, 'Mua bán nhà đất cần chuẩn bị những giấy tờ gì', '', '', '', 2, 2, '2017-07-19 21:13:12', '2017-07-19 21:13:12'),
-(106, 'Xin cấp sỏ đỏ chung cư cần những thủ tục gì', '', '', '', 2, 1, '2017-07-19 21:49:00', '2017-09-22 16:23:23'),
-(107, 'Bản đồ quy hoạch chung thành phố Tân An mới nhất', '', '', '', 2, 2, '2017-07-20 09:36:44', '2017-07-20 09:36:44'),
-(108, 'Bản đồ quy hoạch chung Kiến Tường Long An mới nhất', '', '', '', 2, 2, '2017-07-20 10:17:39', '2017-07-20 10:17:39'),
-(109, 'Bản đồ quy hoạch chung huyện Bến Lức - Long An mới nhất', '', '', '', 2, 2, '2017-07-20 10:46:19', '2017-07-20 10:46:19'),
-(110, 'Bản đồ quy hoạch chung huyện Thủ Thừa - Long An mới nhất', '', '', '', 2, 2, '2017-07-20 12:03:07', '2017-07-20 12:03:07'),
-(111, 'Danh sách các phòng ban đơn vị trực thuộc huyện thạnh hóa', '', '', '', 2, 2, '2017-07-20 14:14:08', '2017-07-20 14:14:08'),
-(112, 'Danh sách xã phường thị trấn tại Thạnh Hóa tỉnh Long An', '', '', '', 2, 2, '2017-07-20 15:12:34', '2017-07-20 15:12:34'),
-(113, 'Thủ tục đổi sổ hồng cũ sang sổ mới như thế nào', '', '', '', 2, 1, '2017-07-20 15:57:10', '2017-09-22 16:23:15'),
-(114, 'Thủ tục và giấy tờ hoàn công nhà như thế nào', '', '', '', 2, 1, '2017-07-20 16:06:52', '2017-09-22 16:23:09'),
-(115, 'Thủ tục làm sổ đỏ và lệ phí như thế nào', '', '', '', 2, 1, '2017-07-20 16:23:57', '2017-09-16 15:45:12'),
-(116, 'Diện tích bao nhiêu mới được cấp giấy phép xây dựng nhà ở', '', '', '', 2, 1, '2017-07-20 17:10:26', '2017-09-06 10:15:30'),
-(117, 'Bản đồ quy hoạch tổng thế phát triển kinh tế xã hội huyện Cần Đước', '', '', '', 2, 2, '2017-07-21 10:05:29', '2017-07-21 10:05:29'),
-(118, 'Thông tin chung về huyện Cần Đước, tỉnh Long An', '', '', '', 2, 2, '2017-07-21 17:42:08', '2017-07-21 17:42:08'),
-(119, 'Danh sách xã phường thị trấn tại Cần Đước tỉnh Long An mới nhất', '', '', '', 2, 2, '2017-07-22 10:32:16', '2017-07-22 10:32:16'),
-(120, 'Danh sách các phòng ban đơn vị trực thuộc huyện Cần Đước mới nhất', '', '', '', 2, 2, '2017-07-22 12:13:26', '2017-07-22 12:13:26'),
-(121, 'Thông tin chung về huyện Cần Giuộc, tỉnh Long An', '', '', '', 2, 2, '2017-07-22 14:05:41', '2017-07-22 14:05:41'),
-(122, 'Danh sách xã phường thị trấn tại Cần Giuộc tỉnh Long An', '', '', '', 2, 2, '2017-07-22 14:37:18', '2017-07-22 14:37:18'),
-(123, 'Danh sách các phòng ban đơn vị trực thuộc huyện Cần Giuộc', '', '', '', 2, 2, '2017-07-22 16:14:29', '2017-07-22 16:14:29'),
-(124, 'Bản đồ xây dựng quy hoạch đô thị huyện Cần Giuộc', '', '', '', 2, 2, '2017-07-22 16:46:36', '2017-07-22 16:46:36'),
-(125, 'Thông tin chung về Thành Phố Tân An mới nhất', '', '', '', 2, 2, '2017-07-22 17:10:38', '2017-07-22 17:10:38'),
-(126, 'Danh sách xã phường thị trấn tại thành phố Tân An tỉnh Long An', '', '', '', 2, 2, '2017-07-23 15:39:12', '2017-07-23 15:39:12'),
-(127, 'Danh sách các phòng ban đơn vị trực thuộc thành phố Tân An', '', '', '', 2, 2, '2017-07-23 16:43:04', '2017-07-23 16:43:04'),
-(128, 'Thông tin chung về huyện Bến Lức, tỉnh Long An', '', '', '', 2, 2, '2017-07-24 10:12:03', '2017-07-24 10:12:03'),
-(129, 'Danh sách xã phường thị trấn tại huyện Bến Lức tỉnh Long An', '', '', '', 2, 2, '2017-07-24 10:57:37', '2017-07-24 10:57:37'),
-(130, 'Danh sách các phòng ban đơn vị trực thuộc huyện Bến Lức, tỉnh Long An', '', '', '', 2, 2, '2017-07-24 14:39:28', '2017-07-24 14:39:28'),
-(131, 'Thông tin chung về huyện Thủ Thừa, tỉnh Long An', '', '', '', 2, 2, '2017-07-24 15:08:08', '2017-07-24 15:08:08'),
-(132, 'Danh sách các phòng ban đơn vị trực thuộc huyện Thủ Thừa, tỉnh Long An', '', '', '', 2, 2, '2017-07-24 15:45:52', '2017-07-24 15:45:52'),
-(133, 'Danh sách xã phường thị trấn tại huyện Thủ Thừa tỉnh Long An', '', '', '', 2, 2, '2017-07-24 16:15:54', '2017-07-24 16:15:54'),
-(134, 'Công chứng giấy tờ nhà đất huyện Cần Đước ở đâu', '', '', '', 2, 2, '2017-07-24 17:03:47', '2017-07-26 08:52:15'),
-(135, 'Phòng công chứng và Văn phòng công chứng khác nhau như thế nào', '', '', '', 2, 2, '2017-07-24 17:29:06', '2017-07-24 17:29:06'),
-(136, 'Công chứng giấy tờ nhà đất tại thành phố Tân An ở đâu', '', '', '', 2, 2, '2017-07-26 10:02:00', '2017-07-26 10:02:00'),
-(137, 'Danh sách phòng công chứng nhà nước và tư nhân tại Long An', '', '', '', 2, 2, '2017-07-26 10:22:54', '2017-07-26 10:22:54'),
-(138, 'Bán Đất Nền Thành Phố Tân An Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền thành phố Tân An giá rẻ, đất thổ cư 100%, pháp lý sổ hồng chính chủ. Dat nen thanh pho tan an thích hợp cho lướt sóng đầu tư, định cư lâu dài giá rẻ.', 'đất nền thành phố tân an', '', 2, 2, '2017-07-26 11:13:07', '2017-07-26 11:13:07'),
-(139, 'Bán Đất Nền Thị Xã Kiến Tường Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền thị xã Kiến Tường giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen thi xa kien tuong rất thích hợp cho đầu tư lướt sóng hoặc định cư lâu dài.', 'đất nền thị xã kiến tường', '', 2, 2, '2017-07-26 11:28:30', '2017-07-26 11:28:30'),
-(140, 'Bán Đất Nền Huyện Cần Đước Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Cần Đước giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen can duoc gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện cần đước', '', 2, 2, '2017-07-26 11:31:44', '2017-07-26 11:31:44'),
-(141, 'Bán Đất Nền Huyện Cần Giuộc Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Cần Giuộc giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen can giuoc gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện cần giuộc', '', 2, 2, '2017-07-26 11:34:57', '2017-07-26 11:34:57'),
-(142, 'Bán Đất Nền Huyện Bến Lức Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Bến Lức giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen ben luc gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện bến lức', '', 2, 2, '2017-07-26 11:35:45', '2017-07-26 14:57:20'),
-(143, 'Bán Đất Nền Huyện Thủ Thừa Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Thủ Thừa giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen thu thua gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện thủ thừa', '', 2, 2, '2017-07-26 11:36:25', '2017-07-26 11:36:25'),
-(144, 'Bán Đất Nền Huyện Châu Thành Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Châu Thành giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen chau thanh gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện châu thành', '', 2, 2, '2017-07-26 11:37:13', '2017-07-26 11:37:13'),
-(145, 'Bán Đất Nền Huyện Đức Hòa Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Đức Hòa giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen duc hoa gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện đức hòa', '', 2, 2, '2017-07-26 11:37:57', '2017-07-26 11:37:57'),
-(146, 'Bán Đất Nền Huyện Mộc Hóa Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Mộc Hóa giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen moc hoa gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện mộc hóa', '', 2, 2, '2017-07-26 11:38:35', '2017-07-26 11:38:35'),
-(147, 'Bán Đất Nền Huyện Thạnh Hóa Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Thạnh Hóa giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen thanh hoa gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện thạnh hóa', '', 2, 2, '2017-07-26 11:40:14', '2017-07-26 11:40:14'),
-(148, 'Bán Đất Nền Huyện Tân Hưng Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Tân Hưng giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen tan hung gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện tân hưng', '', 2, 2, '2017-07-26 11:41:02', '2017-07-26 11:41:02'),
-(149, 'Bán Đất Nền Huyện Tân Thạnh Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Tân Thạnh giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen tan thanh gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện tân thanh', '', 2, 2, '2017-07-26 11:41:47', '2017-07-27 14:45:02'),
-(150, 'Bán Đất Nền Huyện Tân Trụ Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Tân Trụ giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen tan tru gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện tân trụ', '', 2, 2, '2017-07-26 11:42:37', '2017-07-26 11:42:37'),
-(151, 'Bán Đất Nền Huyện Vĩnh Hưng Giá Rẻ | Thanh Phú Thịnh Land', 'Bán đất nền huyện Vĩnh Hưng giá rẻ, đất thổ cư 100%, sổ hồng chính chủ. Dat nen vinh hung gia re thích hợp cho lướt sóng đầu tư, định cư lâu dài.', 'đất nền huyện vĩnh hưng', '', 2, 2, '2017-07-26 11:43:27', '2017-07-26 11:43:27'),
-(152, 'Mua bán nhà đất Long An, đất nền dự án, đất thổ cư 100% giá rẻ', 'Mua bán nhà đất long an giá rẻ, chuyên bán đất nền dự án, đất thổ cư 100%,  giấy tờ chính chủ, pháp lý rõ ràng. Dat Long An gia re đầu tư sinh lời cao.', 'nhà đất long an', 'Mua bán nhà đất long an giá rẻ, chuyên bán đất nền dự án, đất thổ cư 100%,  giấy tờ chính chủ, pháp lý rõ ràng. Dat Long An gia re đầu tư sinh lời cao.', 2, 1, '2017-07-26 11:51:37', '2017-07-26 15:57:46'),
-(153, 'Bán đất nền đường Nguyễn Hữu Trí, Xã An Thạnh, Huyện Bến Lức, Tỉnh Long An', '', '', '', 2, 2, '2017-07-26 14:52:45', '2017-07-26 14:52:45'),
-(154, 'Bán đất nền đường tỉnh lộ 826, Xã Long Trạch, Huyện Cần Đước', '', 'đất nền đường tỉnh lộ 826', '', 2, 2, '2017-07-26 15:52:29', '2017-07-26 15:52:29'),
-(155, 'Bán đất thổ cư gần ngã 3 Tân Kim, Huyện Cần Giuộc', '', '', '', 2, 2, '2017-07-26 16:10:58', '2017-07-26 16:10:58'),
-(156, 'Bán đất nền đường tỉnh 827B, Bình Quới, Huyện Châu Thành', '', '', '', 2, 2, '2017-07-26 16:26:06', '2017-07-26 16:26:06'),
-(157, 'Bán đất đường tỉnh lộ 10 gần KCN Tân Đức, Huyện Đức Hòa', '', '', '', 2, 2, '2017-07-26 17:09:27', '2017-07-26 17:09:27'),
-(158, 'Bán đất thổ cư xã Mỹ Thạnh Tây, Huyện Cần Đước, tỉnh Long An', '', '', '', 2, 2, '2017-07-27 10:43:20', '2017-07-27 10:43:20'),
-(159, 'Bán đất nền đường quốc lộ 62, xã Bình Thạnh, Huyện Mộc Hóa', '', '', '', 2, 2, '2017-07-27 11:01:36', '2017-07-27 11:01:36'),
-(160, 'Bán đất nền mặt tiền xã Bình Thạnh, Huyện Tân Hưng giá rẻ', '', '', '', 2, 2, '2017-07-27 11:36:04', '2017-07-27 11:36:04'),
-(161, 'Chuyện lạ có thật đất Long An đắt hơn đất Sài Gòn', '', '', '', 2, 2, '2017-07-27 11:56:37', '2017-07-27 11:56:37'),
-(162, 'Bán đất nền đường tỉnh 819 xã Tân Lập, Huyện Tân Thạnh', '', '', '', 2, 2, '2017-07-27 14:44:25', '2017-07-27 14:44:25'),
-(163, 'Công chứng giấy tờ nhà đất tại huyện Cần Giuộc ở đâu', '', '', '', 2, 2, '2017-07-27 15:43:32', '2017-07-27 15:43:32'),
-(164, 'Công chứng giấy tờ nhà đất tại huyện Mộc Hóa ở đâu', '', '', '', 2, 2, '2017-07-27 15:55:27', '2017-07-27 15:55:27'),
-(165, 'Công chứng giấy tờ nhà đất tại huyện Đức Hòa ở đâu', '', '', '', 2, 2, '2017-07-27 16:30:35', '2017-07-27 16:30:35'),
-(166, 'Văn phòng công chứng giấy tờ nhà đất huyện Thủ Thừa ở đâu', '', '', '', 2, 2, '2017-07-27 17:32:09', '2017-07-27 17:32:09'),
-(167, 'Văn phòng công chứng giấy tờ nhà đất huyện Bến Lức ở đâu', '', '', '', 2, 2, '2017-07-28 13:54:43', '2017-07-28 13:54:43'),
-(168, 'Văn phòng công chứng giấy tờ nhà đất huyện Đức Hòa ở đâu', '', '', '', 2, 2, '2017-07-28 14:09:49', '2017-07-28 14:09:49'),
-(169, 'Diện tích tối thiểu để tách thửa đối với đất ở và đất nông nghiệp tại Long An', '', '', '', 2, 2, '2017-07-28 16:21:42', '2017-07-28 16:21:42'),
-(170, 'Bán đất nền đường tỉnh 833 xã Mỹ Bình, Huyện Tân Trụ', '', '', '', 2, 2, '2017-07-31 09:23:11', '2017-07-31 09:23:11'),
-(171, 'Bán đất mặt tiền quốc lộ 62 tại thị trấn Thạnh Hóa', '', '', '', 2, 2, '2017-08-02 10:42:01', '2017-08-02 10:42:01'),
-(172, 'Bán đất xã Tân Thành, Huyện Thủ Thừa giá 380 triệu', '', '', '', 2, 2, '2017-08-03 09:06:57', '2017-08-03 09:06:57'),
-(173, 'Bán đất nền tại 12 xã Vĩnh Bình huyện Vĩnh Hưng', '', '', '', 2, 2, '2017-08-04 10:54:24', '2017-08-04 10:54:24'),
-(174, 'Bán đất hẻm 386, phường 7 thành phố Tân An, Long An', '', '', '', 2, 2, '2017-08-09 09:37:25', '2017-08-09 09:37:25'),
-(175, 'dfsgsdf', 'dfhds', 'fhsdh', 'dfhds', 1, 1, '2017-08-23 21:48:25', '2017-08-23 21:48:25'),
-(176, '', '', '', '', 1, 1, '2017-08-23 23:07:19', '2017-08-23 23:07:19'),
-(177, 'dsfas', 'dsgasd', 'gsgasd', 'gsdgds', 1, 1, '2017-08-23 23:09:17', '2017-08-23 23:09:29'),
-(178, '', '', '', '', 1, 1, '2017-08-28 15:07:03', '2017-08-28 15:07:03'),
-(179, '', '', '', '', 1, 1, '2017-08-28 15:10:14', '2017-08-28 15:10:14'),
-(180, '', '', '', '', 1, 1, '2017-08-28 15:10:23', '2017-08-28 15:10:23'),
-(181, '', '', '', '', 1, 1, '2017-08-28 15:10:51', '2017-08-28 15:10:51'),
-(182, '', '', '', '', 1, 1, '2017-08-28 15:12:25', '2017-08-28 15:12:25'),
-(183, '', '', '', '', 1, 1, '2017-08-28 15:13:18', '2017-08-28 15:13:18'),
-(184, '', '', '', '', 1, 1, '2017-08-28 15:13:27', '2017-08-28 15:13:27'),
-(185, '', '', '', '', 1, 1, '2017-08-28 15:13:44', '2017-08-28 15:13:44'),
-(186, '', '', '', '', 1, 1, '2017-08-28 15:20:46', '2017-08-28 15:20:46'),
-(187, '', '', '', '', 1, 1, '2017-08-28 15:22:19', '2017-08-28 15:22:19'),
-(188, '', '', '', '', 1, 1, '2017-08-28 15:22:29', '2017-08-28 15:22:29'),
-(189, '', '', '', '', 1, 1, '2017-08-28 15:22:38', '2017-08-28 15:22:38'),
-(190, '', '', '', '', 1, 1, '2017-08-28 15:22:47', '2017-08-28 15:22:47'),
-(191, '', '', '', '', 1, 1, '2017-08-28 15:22:57', '2017-08-28 15:22:57'),
-(192, '', '', '', '', 1, 1, '2017-08-28 15:23:10', '2017-08-28 15:23:10'),
-(193, '', '', '', '', 1, 1, '2017-08-28 15:31:39', '2017-08-28 15:31:39'),
-(194, '', '', '', '', 1, 1, '2017-08-28 15:31:57', '2017-08-28 15:31:57'),
-(195, '', '', '', '', 1, 1, '2017-08-29 09:47:17', '2017-08-29 09:47:17'),
-(196, '', '', '', '', 1, 1, '2017-08-29 09:48:03', '2017-08-29 09:48:03'),
-(197, '', '', '', '', 1, 1, '2017-08-29 09:48:17', '2017-08-29 09:48:17'),
-(198, '', '', '', '', 1, 1, '2017-08-29 09:48:29', '2017-08-29 09:48:29'),
-(199, '', '', '', '', 1, 1, '2017-08-29 09:48:42', '2017-08-29 09:48:42'),
-(200, '', '', '', '', 1, 1, '2017-08-29 09:48:56', '2017-08-29 09:48:56'),
-(201, '', '', '', '', 1, 1, '2017-08-29 09:49:06', '2017-08-29 09:49:06'),
-(202, '', '', '', '', 1, 1, '2017-08-29 09:49:19', '2017-08-29 09:49:19'),
-(203, '', '', '', '', 1, 1, '2017-08-29 09:49:32', '2017-08-29 09:49:32'),
-(204, '', '', '', '', 1, 1, '2017-09-07 08:50:58', '2017-09-07 08:50:58'),
-(205, '', '', '', '', 1, 1, '2017-09-07 08:51:46', '2017-09-07 08:51:46'),
-(206, '', '', '', '', 1, 1, '2017-09-07 08:52:49', '2017-09-07 08:52:49'),
-(207, 'Thiết kế kiến trúc', 'Thiết kế kiến trúc', '', '', 1, 1, '2017-09-09 12:18:08', '2017-09-09 12:18:08'),
-(208, 'Thi công xây dựng', '', '', '', 1, 1, '2017-09-09 12:18:55', '2017-09-09 12:18:55'),
-(209, 'Thiết kế nội thất', '', '', '', 1, 1, '2017-09-09 12:19:03', '2017-09-09 12:19:03'),
-(210, 'Kho nhà mẫu', '', '', '', 1, 1, '2017-09-09 12:19:14', '2017-09-09 12:19:14'),
-(211, 'Thiết kế biệt thự cổ điển', '', '', '', 1, 1, '2017-09-09 12:21:00', '2017-09-09 12:21:00'),
-(212, 'Thiết kế biệt thự hiện đại', '', '', '', 1, 1, '2017-09-09 12:22:22', '2017-09-09 12:22:22'),
-(213, 'Thiết kế biệt thự phố', '', '', '', 1, 1, '2017-09-09 12:22:30', '2017-09-09 12:22:30'),
-(214, 'Thiết kế biệt thự vườn', '', '', '', 1, 1, '2017-09-09 12:22:38', '2017-09-09 12:22:38'),
-(215, 'Thiết kế nhà phố', '', '', '', 1, 1, '2017-09-09 12:22:46', '2017-09-09 12:22:46'),
-(216, 'Thiết kế nhà hàng - Khách sạn', '', '', '', 1, 1, '2017-09-09 12:23:59', '2017-09-09 12:23:59'),
-(217, 'Thiết kế resort - Khu nghĩ dưỡng', '', '', '', 1, 1, '2017-09-09 12:24:13', '2017-09-09 12:24:13'),
-(218, 'Thiết kế chung cư mini', '', '', '', 1, 1, '2017-09-09 12:24:20', '2017-09-09 12:24:20'),
-(219, 'Thiết kế cao ốc - Văn Phòng', '', '', '', 1, 1, '2017-09-09 12:24:28', '2017-09-09 12:24:28'),
-(220, 'Thiết kế showroom', '', '', '', 1, 1, '2017-09-09 12:24:36', '2017-09-09 12:24:36'),
-(221, 'Thiết kế Cafe - Khu du lịch - Homestay', '', '', '', 1, 1, '2017-09-09 12:24:44', '2017-09-09 12:24:44'),
-(222, 'Thi Công Biệt thự', '', '', '', 1, 1, '2017-09-09 12:24:54', '2017-09-27 21:07:48'),
-(223, 'Nhà phố', '', '', '', 1, 1, '2017-09-09 12:25:01', '2017-09-09 12:25:01'),
-(224, 'Thi Công Resort', '', '', '', 1, 1, '2017-09-09 12:25:07', '2017-09-27 14:19:35'),
-(225, 'Thi Công Văn phòng', '', '', '', 1, 1, '2017-09-09 12:25:14', '2017-09-27 21:11:17'),
-(226, 'Thi Công Chung cư', '', '', '', 1, 1, '2017-09-09 12:25:21', '2017-09-27 21:11:35'),
-(227, 'Thi Công Nhà hàng - khách sạn', '', '', '', 1, 1, '2017-09-09 12:25:32', '2017-09-27 21:11:59'),
-(228, 'Nội thất biệt thự', '', '', '', 1, 1, '2017-09-09 12:25:45', '2017-09-09 12:25:45'),
-(229, 'Nội thất nhà phố', '', '', '', 1, 1, '2017-09-09 12:25:53', '2017-09-09 12:25:53'),
-(230, 'Nội thất văn phòng', '', '', '', 1, 1, '2017-09-09 12:26:00', '2017-09-09 12:26:00'),
-(231, 'Biệt thự cổ điển', '', '', '', 1, 1, '2017-09-09 12:26:10', '2017-09-09 12:26:10'),
-(232, 'Biệt thự hiện đại', '', '', '', 1, 1, '2017-09-09 12:26:23', '2017-09-09 12:26:23'),
-(233, 'Biệt thự phố', '', '', '', 1, 1, '2017-09-09 12:26:29', '2017-09-09 12:26:29'),
-(234, 'Biệt thự vườn', '', '', '', 1, 1, '2017-09-09 12:26:37', '2017-09-09 12:26:37'),
-(235, 'Mẫu showroom', '', '', '', 1, 1, '2017-09-09 12:26:44', '2017-09-09 12:26:44'),
-(236, 'Mẫu resort đẹp', '', '', '', 1, 1, '2017-09-09 12:26:53', '2017-09-09 12:26:53'),
-(237, '', '', '', '', 1, 1, '2017-09-09 13:10:29', '2017-09-09 13:10:29'),
-(238, '', '', '', '', 1, 1, '2017-09-09 14:04:15', '2017-09-09 14:04:15'),
-(239, '', '', '', '', 1, 1, '2017-09-09 14:04:36', '2017-09-09 14:04:36'),
-(240, '', '', '', '', 1, 1, '2017-09-09 14:04:56', '2017-09-09 14:04:56'),
-(241, '', '', '', '', 1, 1, '2017-09-09 14:05:13', '2017-09-09 14:05:13'),
-(242, '', '', '', '', 1, 1, '2017-09-09 14:05:34', '2017-09-09 14:05:34'),
-(243, '', '', '', '', 1, 1, '2017-09-09 14:16:14', '2017-09-09 14:16:14'),
-(244, '', '', '', '', 1, 1, '2017-09-09 14:24:29', '2017-09-09 14:24:29'),
-(245, '', '', '', '', 1, 1, '2017-09-09 14:24:57', '2017-09-09 14:24:57'),
-(246, '', '', '', '', 1, 1, '2017-09-09 14:25:16', '2017-09-09 14:25:16'),
-(247, '', '', '', '', 1, 1, '2017-09-12 21:07:12', '2017-09-12 21:07:12'),
-(248, '', '', '', '', 1, 1, '2017-09-12 21:07:58', '2017-09-12 21:07:58'),
-(249, '', '', '', '', 1, 1, '2017-09-12 21:26:31', '2017-09-12 21:26:31'),
-(250, '', '', '', '', 1, 1, '2017-09-12 22:14:23', '2017-09-12 22:14:23'),
-(251, '', '', '', '', 1, 1, '2017-09-12 22:14:33', '2017-09-12 22:14:33'),
-(252, '', '', '', '', 1, 1, '2017-09-12 22:14:41', '2017-09-12 22:14:41'),
-(253, '', '', '', '', 1, 1, '2017-09-12 22:34:44', '2017-09-12 22:34:44'),
-(254, '', '', '', '', 1, 1, '2017-09-13 07:12:03', '2017-09-13 07:12:03'),
-(255, '', '', '', '', 1, 1, '2017-09-13 07:12:49', '2017-09-13 07:12:49'),
-(256, '', '', '', '', 1, 1, '2017-09-15 09:18:46', '2017-09-15 09:18:46'),
-(257, '', '', '', '', 1, 1, '2017-09-15 10:09:45', '2017-09-15 10:09:45'),
-(258, '', '', '', '', 1, 1, '2017-09-15 11:58:30', '2017-09-15 11:58:30'),
-(259, '', '', '', '', 1, 1, '2017-09-15 13:50:23', '2017-09-15 13:50:23'),
-(260, '', '', '', '', 1, 1, '2017-09-15 16:46:49', '2017-09-15 16:46:49'),
-(261, '', '', '', '', 1, 1, '2017-09-15 17:10:01', '2017-09-15 17:10:01'),
-(262, '', '', '', '', 1, 1, '2017-09-15 19:06:30', '2017-09-15 19:06:30'),
-(263, '', '', '', '', 1, 1, '2017-09-15 19:18:20', '2017-09-15 19:18:20'),
-(264, '', '', '', '', 1, 1, '2017-09-15 19:38:11', '2017-09-15 19:38:11'),
-(265, '', '', '', '', 1, 1, '2017-09-15 19:41:16', '2017-09-15 19:41:16'),
-(266, '', '', '', '', 1, 1, '2017-09-16 09:22:58', '2017-09-16 09:22:58'),
-(267, '', '', '', '', 1, 1, '2017-09-16 09:46:50', '2017-09-16 09:46:50'),
-(268, '', '', '', '', 1, 1, '2017-09-16 09:53:55', '2017-09-16 09:53:55'),
-(269, '', '', '', '', 1, 1, '2017-09-16 13:48:24', '2017-09-16 13:48:24'),
-(270, '', '', '', '', 1, 1, '2017-09-18 09:08:50', '2017-09-18 09:08:50'),
-(271, '', '', '', '', 1, 1, '2017-09-18 09:13:01', '2017-09-18 09:13:01'),
-(272, '', '', '', '', 1, 1, '2017-09-18 11:05:40', '2017-09-18 11:05:40'),
-(273, '', '', '', '', 1, 1, '2017-09-22 10:34:47', '2017-09-22 10:34:47'),
-(274, 'Xu hướng thiết kế biệt thự phố độc đáo', 'Xu hướng thiết kế biệt thự phố mới nhất đang được nhiều người tìm kiếm với mong muốn có được những căn nhà độc đáo, mới nhất, thu người và đặc biệt, tạo được ấn tượng và đảm bảo tính thẩm mỹ, công năng cho ngôi nhà', 'Xu hướng thiết kế biệt thự phố', '', 1, 1, '2017-09-22 11:52:18', '2017-09-27 13:26:15'),
-(275, '', '', '', '', 1, 1, '2017-09-22 14:43:24', '2017-09-22 14:43:24'),
-(276, '', '', '', '', 1, 1, '2017-09-22 16:32:25', '2017-09-22 16:32:25'),
-(277, '', '', '', '', 1, 1, '2017-09-23 07:36:56', '2017-09-23 07:36:56'),
-(278, 'test 1', 'test 2', 'test 3', 'test 4', 1, 1, '2017-09-23 07:37:51', '2017-09-23 07:38:20'),
-(279, '', '', '', '', 1, 1, '2017-09-23 11:12:59', '2017-09-23 11:12:59'),
-(280, '', '', '', '', 1, 1, '2017-09-23 11:13:33', '2017-09-23 11:13:33'),
-(281, '', '', '', '', 1, 1, '2017-09-23 11:14:22', '2017-09-23 11:14:22'),
-(282, '', '', '', '', 1, 1, '2017-09-23 11:14:53', '2017-09-23 11:14:53'),
-(283, 'Biệt thự hiện đại 3 tầng đẹp sang trọng 110m2 nhà anh Nguyên ở Phú Quốc ', 'Biệt thự hiện đại 3 tầng đẹp sang trọng 110m2 nhà anh Nguyên ở Phú Quốc. Tại Việt Nam, những ngày vừa qua Chuck II đã tạo nên một cơn sốt sục sôi trong cộng đồng các bạn trẻ. Dạo một vòng quanh Instagram và Facebook, không khó để bắt gặp những bức ảnh kho', 'Biệt thự hiện đại 3 tầng đẹp sang trọng 110m2 nhà anh Nguyên ở Phú Quốc ', '', 1, 1, '2017-09-24 21:33:11', '2017-09-27 10:30:47'),
-(284, '', '', '', '', 1, 1, '2017-09-25 13:35:29', '2017-09-25 13:35:29'),
-(285, '', '', '', '', 1, 1, '2017-09-25 21:28:24', '2017-09-27 14:22:41'),
-(286, '', '', '', '', 1, 1, '2017-09-26 07:11:59', '2017-09-26 07:11:59'),
-(287, '', '', '', '', 3, 1, '2017-09-26 09:11:07', '2017-09-27 07:19:54'),
-(288, '', '', '', '', 1, 1, '2017-09-26 16:42:10', '2017-09-26 16:42:10'),
-(289, '', '', '', '', 1, 1, '2017-09-26 16:43:28', '2017-09-26 16:43:28'),
-(290, '', '', '', '', 1, 1, '2017-09-26 16:47:17', '2017-09-26 16:47:17'),
-(291, '', '', '', '', 1, 1, '2017-09-26 16:58:37', '2017-09-26 16:58:37'),
-(292, '', '', '', '', 1, 1, '2017-09-27 06:05:01', '2017-09-27 06:05:01'),
-(293, 'dfsa', 'fdasfas', 'fsadf', 'dsfa', 1, 1, '2017-09-27 07:07:02', '2017-09-27 07:07:02'),
-(294, '', '', '', '', 1, 1, '2017-09-27 07:08:00', '2017-09-27 07:08:00'),
-(295, '', '', '', '', 1, 1, '2017-09-27 07:09:04', '2017-09-27 07:09:04'),
-(296, '', '', '', '', 1, 1, '2017-09-27 07:31:43', '2017-09-27 07:31:43'),
-(297, '', '', '', '', 1, 1, '2017-09-27 07:31:57', '2017-09-27 07:31:57'),
-(298, '', '', '', '', 5, 5, '2017-09-27 09:40:24', '2017-09-27 09:40:24'),
-(299, '', '', '', '', 6, 6, '2017-09-27 09:44:29', '2017-09-27 09:44:29'),
-(300, 'Thiết kế biệt thự cổ điển pháp 3 tầng đẹp sang trọng 110m2 nhà anh Nguyên ở Phú Quốc ', 'Dự án thiết kế biệt thự cổ điển pháp 3 tầng nhà anh Nguyễn Hoàng Gia ở Quận 7, Tp. Hồ Chí Minh với diện tích 13x22m (diện tích 286m2) với 3 tầng do công ty Houseland thiết kế và xây dựng. Căn biệt thự với thiết kế sang trọng, đẳng cấp, thể hiện được bề th', 'thiết kế biệt thự cổ điển pháp 3 tầng', '', 1, 1, '2017-09-27 10:44:06', '2017-09-27 10:44:06'),
-(301, '', '', '', '', 1, 1, '2017-09-27 12:15:30', '2017-09-27 12:15:30'),
-(302, '', '', '', '', 1, 1, '2017-09-27 12:15:56', '2017-09-27 12:15:56'),
-(303, '', '', '', '', 1, 1, '2017-09-27 12:16:40', '2017-09-27 12:16:40'),
-(304, '', '', '', '', 1, 1, '2017-09-27 12:21:13', '2017-09-27 12:21:13'),
-(305, '', '', '', '', 1, 1, '2017-09-28 09:32:36', '2017-09-28 09:32:36'),
-(306, '', '', '', '', 1, 1, '2017-09-28 09:33:37', '2017-09-28 09:33:37'),
-(307, '', '', '', '', 1, 1, '2017-09-28 09:34:12', '2017-09-28 09:34:12'),
-(308, '', '', '', '', 1, 1, '2017-09-28 09:36:27', '2017-09-28 09:36:27'),
-(309, '', '', '', '', 1, 1, '2017-09-28 09:41:52', '2017-09-28 09:41:52'),
-(310, '', '', '', '', 1, 1, '2017-09-28 09:45:22', '2017-09-28 09:45:22'),
-(311, '', '', '', '', 1, 1, '2017-09-28 09:47:28', '2017-09-28 09:47:28'),
-(312, '', '', '', '', 1, 1, '2017-09-28 09:50:50', '2017-09-28 09:50:50'),
-(313, '', '', '', '', 1, 1, '2017-09-28 09:54:58', '2017-09-28 09:54:58'),
-(314, 'Thiết kế biệt thự cổ điển quận 1', 'Chuyên thiết kế biệt thự cổ điển, bán cổ điển, tân cổ điển, biệt thự cổ điển pháp giá rẻ nhất hiện  nay trên thị trường cùng với đội ngũ KTS giàu kinh ngiệm sẽ làm cho quý khách hàng hài lòng.', 'Thiết kế biệt thự cổ điển quận 1, Thiết kế biệt thự cổ điển tại quận 1, Thiết kế biệt thự cổ điển ở quận 1, Thiết kế biệt thự cổ điển', '', 1, 1, '2017-09-28 10:59:10', '2017-09-28 10:59:10'),
-(315, '', '', '', '', 1, 1, '2017-09-28 11:27:01', '2017-09-28 11:27:01'),
-(316, '', '', '', '', 1, 1, '2017-09-28 11:28:02', '2017-09-28 11:28:02'),
-(317, '', '', '', '', 1, 1, '2017-09-28 11:29:11', '2017-09-28 11:29:11'),
-(318, '', '', '', '', 1, 1, '2017-09-28 11:30:20', '2017-09-28 11:30:20'),
-(319, '', '', '', '', 1, 1, '2017-09-28 11:30:54', '2017-09-28 11:30:54'),
-(320, '', '', '', '', 1, 1, '2017-09-28 11:31:19', '2017-09-28 11:31:19'),
-(321, '', '', '', '', 1, 1, '2017-09-28 11:31:45', '2017-09-28 11:31:45'),
-(322, '', '', '', '', 1, 1, '2017-09-28 11:32:30', '2017-09-28 11:32:30'),
-(323, '', '', '', '', 1, 1, '2017-09-28 11:33:03', '2017-09-28 11:33:03'),
-(324, '', '', '', '', 1, 1, '2017-09-28 11:33:42', '2017-09-28 11:33:42'),
-(325, '', '', '', '', 1, 1, '2017-09-28 11:34:27', '2017-09-28 11:34:27'),
-(326, '', '', '', '', 1, 1, '2017-09-28 11:35:24', '2017-09-28 11:35:24'),
-(327, '', '', '', '', 1, 1, '2017-09-28 11:35:55', '2017-09-28 11:35:55'),
-(328, '', '', '', '', 1, 1, '2017-09-28 11:45:18', '2017-09-28 11:45:18'),
-(329, '', '', '', '', 1, 1, '2017-09-28 11:59:18', '2017-09-28 11:59:18'),
-(330, '', '', '', '', 1, 1, '2017-09-28 12:00:13', '2017-09-28 12:00:13'),
-(331, '', '', '', '', 1, 1, '2017-09-28 12:01:02', '2017-09-28 12:01:02'),
-(332, '', '', '', '', 1, 1, '2017-09-28 13:58:49', '2017-09-28 13:58:49'),
-(333, 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', 'Chia sẻ một số kinh nghiệm, Những Điều Bạn Cần biết Khi Xây dựng Nhà giúp gia chủ làm ăn tiền vô như nước, phát tài phát lộc.', 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', '', 1, 1, '2017-09-28 16:04:21', '2017-09-28 16:04:21'),
-(334, 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', 'Chia sẻ một số kiến thức Phong Thủy Trong thiết kế thi công xây dựng nhà được các KTS và Kỹ Sư houseland đúc kết lại hôm nay chia sẻ cho quý khách hàng.', 'Phong Thủy Trong thiết kế thi công xây dựng nhà', '', 1, 1, '2017-09-28 16:22:05', '2017-09-28 16:22:05'),
-(335, 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', '', 1, 1, '2017-09-28 16:25:26', '2017-09-28 16:25:26'),
-(336, 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', '', 1, 1, '2017-09-28 16:26:21', '2017-09-28 16:26:21'),
-(337, 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', 'Những Điều Bạn Cần biết Khi Xây dựng Nhà', '', 1, 1, '2017-09-28 16:27:19', '2017-09-28 16:27:19'),
-(338, 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', '', 1, 1, '2017-09-28 16:31:56', '2017-09-28 16:31:56'),
-(339, 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', '', 1, 1, '2017-09-28 16:33:51', '2017-09-28 16:33:51'),
-(340, 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', 'Phong Thủy Trong thiết kế thi công xây dựng nhà bạn nên biết', '', 1, 1, '2017-09-28 16:36:04', '2017-09-28 16:36:04'),
-(341, 'COFFEE', 'COFFEE', 'COFFEE', '', 1, 1, '2017-10-02 15:49:07', '2017-10-02 15:49:07'),
-(342, 'SHOP 24H', '', '', '', 1, 1, '2017-10-02 15:49:22', '2017-10-02 15:49:22'),
-(343, 'Vietnamese Coffee', '', '', '', 1, 1, '2017-10-02 15:52:28', '2017-10-02 15:52:28'),
-(344, 'Coffee Frappy', '', '', '', 1, 1, '2017-10-02 15:52:44', '2017-10-02 15:52:44'),
-(345, 'Tea', '', '', '', 1, 1, '2017-10-02 15:52:55', '2017-10-02 15:52:55'),
-(346, 'Smoothies', 'Smoothies', '', '', 1, 1, '2017-10-02 15:53:06', '2017-10-02 15:53:06'),
-(347, 'Matcha', '', '', '', 1, 1, '2017-10-02 15:53:17', '2017-10-02 15:53:17');
+(1, '', '', '', '', 1, 1, '2017-10-03 13:06:41', '2017-10-03 13:06:41'),
+(2, '', '', '', '', 1, 1, '2017-10-03 13:09:17', '2017-10-03 13:09:17'),
+(3, '', '', '', '', 1, 1, '2017-10-03 13:09:38', '2017-10-03 13:09:38'),
+(4, '', '', '', '', 1, 1, '2017-10-03 13:10:04', '2017-10-03 13:10:04'),
+(5, '', '', '', '', 1, 1, '2017-10-03 13:10:41', '2017-10-03 13:10:41'),
+(6, '', '', '', '', 1, 1, '2017-10-03 13:11:04', '2017-10-03 13:11:04'),
+(7, '', '', '', '', 1, 1, '2017-10-03 13:11:40', '2017-10-03 13:11:40'),
+(8, '', '', '', '', 1, 1, '2017-10-03 13:20:17', '2017-10-03 13:20:17'),
+(9, '', '', '', '', 1, 1, '2017-10-03 13:20:42', '2017-10-03 13:20:42'),
+(10, '', '', '', '', 1, 1, '2017-10-03 13:21:13', '2017-10-03 13:21:13'),
+(11, '', '', '', '', 1, 1, '2017-10-03 13:21:37', '2017-10-03 13:21:37'),
+(12, '', '', '', '', 1, 1, '2017-10-03 13:22:05', '2017-10-03 13:22:05'),
+(13, '', '', '', '', 1, 1, '2017-10-03 13:22:26', '2017-10-03 13:22:26'),
+(14, 'Sản phẩm 014', 'Sản phẩm 014', '', '', 1, 1, '2017-10-03 13:22:52', '2017-10-03 13:38:55'),
+(15, '', '', '', '', 1, 1, '2017-10-03 13:23:28', '2017-10-03 13:23:28'),
+(16, '', '', '', '', 1, 1, '2017-10-03 13:23:47', '2017-10-03 13:23:47'),
+(17, '', '', '', '', 1, 1, '2017-10-03 13:24:20', '2017-10-03 13:24:20'),
+(18, '', '', '', '', 1, 1, '2017-10-03 13:24:47', '2017-10-03 13:24:47'),
+(19, '', '', '', '', 1, 1, '2017-10-03 13:25:12', '2017-10-03 13:25:12');
 
 -- --------------------------------------------------------
 
@@ -1067,9 +741,7 @@ CREATE TABLE `pages` (
 --
 
 INSERT INTO `pages` (`id`, `title`, `alias`, `description`, `content`, `image_url`, `slug`, `status`, `meta_title`, `meta_description`, `meta_keywords`, `custom_text`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
-(8, 'Giới thiệu', 'Gioi thieu', 'Giới thiệu', '<strong>C&ocirc;ng ty Cổ phần Thiết kế X&acirc;y dựng v&agrave; Tư vấn Đầu tư Nguyễn Gia Ph&aacute;t (Houseland)&nbsp;</strong>l&agrave; một C&ocirc;ng ty chuy&ecirc;n về thiết kế, thi c&ocirc;ng x&acirc;y mới, sửa chữa, cải tạo n&acirc;ng cấp Nh&agrave; phố v&agrave; Biệt thự cao cấp. Trụ sở c&ocirc;ng ty đặt tại T&ograve;a nh&agrave; văn ph&ograve;ng số 166 đường Nguyễn Ho&agrave;ng, phường An Ph&uacute;, quận 2,Th&agrave;nh phố Hồ Ch&iacute; Minh.<br />\r\n<br />\r\nNg&agrave;y nay, c&ugrave;ng với sự ph&aacute;t triển của th&agrave;nh phố đ&ocirc; thị, nhu cầu x&acirc;y dựng mới Nh&agrave; ở của nh&acirc;n d&acirc;n ng&agrave;y c&agrave;ng tăng. Tuy nhi&ecirc;n, lĩnh vực&nbsp;Sửa chữa, Cải tạo n&acirc;ng cấp, Sơn bả ma t&iacute;t trang tr&iacute;&nbsp;c&aacute;c Nh&agrave;, Khu nh&agrave;, Khu chung cư cũng l&agrave; một nhu cầu hết sức bức thiết.<br />\r\n<br />\r\nC&ocirc;ng việc Sửa chữa, n&acirc;ng cấp cải tạo đ&ograve;i hỏi ngo&agrave;i chuy&ecirc;n m&ocirc;n, người kiến tr&uacute;c sư, kỹ sư c&ograve;n cần phải c&oacute; nhiều kinh nghiệm thực tế, sự tinh tế sắc sảo trong đ&aacute;nh gi&aacute;, đưa ra phương &aacute;n thiết kế xử l&yacute; tối ưu.Người thợ l&agrave;m c&ocirc;ng t&aacute;c Sửa chữa cần kỹ năng nghề nghiệp cao, sự chuy&ecirc;n nghiệp, l&agrave;nh nghề c&ograve;n cao hơn c&ocirc;ng t&aacute;c x&acirc;y mới. Nhận thức đ&uacute;ng đắn được điều đ&oacute;, C&ocirc;ng ty Cổ phần Thiết kế X&acirc;y dựng v&agrave; Tư vấn Đầu tư Nguyễn Gia Ph&aacute;t với đội ngũ c&aacute;n bộ l&agrave; những kiến tr&uacute;c sư, kỹ sư giỏi, c&oacute; kinh nghiệm l&acirc;u năm trong nghề v&agrave; đội ngũ thợ l&agrave;nh nghề, chuy&ecirc;n nghiệp sẽ đ&aacute;p ứng được những đ&ograve;i hỏi cao của Qu&yacute; kh&aacute;ch h&agrave;ng, kể cả những kh&aacute;ch h&agrave;ng kh&oacute; t&iacute;nh nhất.<br />\r\n<br />\r\nCh&uacute;ng t&ocirc;i: Kiến tr&uacute;c sư L&ecirc; Xu&acirc;n Nguy&ecirc;n &ndash; Gi&aacute;m đốc điều h&agrave;nh; Kỹ sư x&acirc;y dựng Nguyễn Xu&acirc;n Sắc &ndash; Ph&oacute; gi&aacute;m đốc kỹ thuật c&ugrave;ng với đội ngũ gần 20 kiến tr&uacute;c sư, kỹ sư x&acirc;y dựng, kỹ sư điện, cấp tho&aacute;t nước v&agrave; hơn 80 c&ocirc;ng nh&acirc;n l&agrave;nh nghề xin trung thực, nhiệt t&igrave;nh, t&acirc;m huyết phục vụ Qu&yacute; kh&aacute;ch h&agrave;ng khu vực th&agrave;nh phố Hồ Ch&iacute; Minh.<br />\r\nNội dung giới thiệu HOUSELAND', '', 'gioi-thieu', 1, 'Giới thiệu', 'Giới thiệu', 'Giới thiệu', '', 1, 1, '2017-08-29 00:00:00', '2017-09-27 07:47:13'),
-(10, 'Lịch Sử Hình Thành', 'Lich Su Hinh Thanh', '', '', '', 'lich-su-hinh-thanh', 1, 'Lịch Sử Hình Thành', '', 'Lịch Sử Hình Thành', '', 1, 1, '2017-09-28 21:40:36', '2017-09-28 21:46:12'),
-(11, 'Lĩnh Vực Hoạt Động', 'Linh Vuc Hoat Dong', '', '', '', 'linh-vuc-hoat-dong', 1, 'Lĩnh Vực Hoạt Động', '', 'Lĩnh Vực Hoạt Động', '', 1, 1, '2017-09-28 21:43:29', '2017-09-28 21:43:29');
+(8, 'Giới thiệu', 'Gioi thieu', 'Giới thiệu', '<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br />\r\n<br />\r\n<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br />\r\n<br />\r\n<strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.<br />\r\n<br />\r\n&nbsp;', '/public/uploads/images/sp1-1507001972.png', 'gioi-thieu', 1, 'Giới thiệu', 'Giới thiệu', 'Giới thiệu', '', 1, 1, '2017-08-29 00:00:00', '2017-10-03 13:57:21');
 
 -- --------------------------------------------------------
 
@@ -1079,31 +751,56 @@ INSERT INTO `pages` (`id`, `title`, `alias`, `description`, `content`, `image_ur
 
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `alias` varchar(255) DEFAULT NULL,
-  `slug` varchar(255) DEFAULT NULL,
-  `description` text NOT NULL,
-  `code` varchar(100) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  `cate_id` int(11) DEFAULT NULL,
-  `thong_so` text,
-  `thong_so_chi_tiet` text,
-  `tien_do` text,
-  `hoi_dap` text,
+  `code` char(20) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `alias` varchar(255) NOT NULL,
+  `slug` varchar(255) NOT NULL,
+  `parent_id` tinyint(4) NOT NULL,
+  `cate_id` tinyint(4) NOT NULL,
+  `description` text,
+  `image_url` varchar(255) DEFAULT NULL,
+  `price` int(11) NOT NULL,
+  `is_sale` tinyint(1) NOT NULL,
+  `price_sale` int(11) DEFAULT NULL,
+  `sale_percent` tinyint(1) DEFAULT NULL,
   `content` text,
-  `thumbnail_id` bigint(20) NOT NULL,
-  `is_slider` tinyint(1) NOT NULL DEFAULT '1',
-  `video_url` int(11) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
-  `is_hot` tinyint(1) NOT NULL DEFAULT '0',
-  `layout` tinyint(1) NOT NULL DEFAULT '1',
-  `display_order` int(11) NOT NULL DEFAULT '1' COMMENT 'danh cho bds hot',
-  `meta_id` bigint(20) NOT NULL,
-  `created_user` int(11) DEFAULT NULL,
-  `updated_user` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `is_hot` tinyint(1) NOT NULL,
+  `out_of_stock` tinyint(1) NOT NULL DEFAULT '0',
+  `display_order` tinyint(4) NOT NULL COMMENT 'danh cho sp hot',
+  `inventory` int(11) NOT NULL DEFAULT '0',
+  `amount_sold` int(11) NOT NULL DEFAULT '0',
+  `status` tinyint(1) NOT NULL,
+  `meta_id` bigint(20) DEFAULT NULL,
+  `created_user` tinyint(4) NOT NULL,
+  `updated_user` tinyint(4) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`id`, `code`, `name`, `alias`, `slug`, `parent_id`, `cate_id`, `description`, `image_url`, `price`, `is_sale`, `price_sale`, `sale_percent`, `content`, `is_hot`, `out_of_stock`, `display_order`, `inventory`, `amount_sold`, `status`, `meta_id`, `created_user`, `updated_user`, `created_at`, `updated_at`) VALUES
+(1, 'SP001', 'Sản phẩm 001', 'San pham 001', 'san-pham-001', 1, 5, '', '/public/uploads/images/sp1-1507001972.png', 40000, 0, 0, 0, '', 0, 0, 0, 4, 0, 1, 1, 1, 1, '2017-10-03 13:06:41', '2017-10-03 13:06:41'),
+(2, 'SP002', 'Sản phẩm 002', 'San pham 002', 'san-pham-002', 1, 5, '', '/public/uploads/images/sp10-1507009981.png', 45000, 0, 0, 0, '', 0, 0, 0, 5, 0, 1, 2, 1, 1, '2017-10-03 13:09:17', '2017-10-03 13:09:17'),
+(3, 'SP003', 'Sản phẩm 003', 'San pham 003', 'san-pham-003', 1, 5, '', '/public/uploads/images/sp11-1507009981.png', 35000, 0, 0, 0, '', 0, 0, 0, 5, 0, 1, 3, 1, 1, '2017-10-03 13:09:38', '2017-10-03 13:09:38'),
+(4, 'SP004', 'Sản phẩm 004', 'San pham 004', 'san-pham-004', 1, 5, '', '/public/uploads/images/sp12-1507009981.png', 27000, 0, 0, 0, '', 0, 0, 0, 25, 0, 1, 4, 1, 1, '2017-10-03 13:10:04', '2017-10-03 13:10:04'),
+(5, 'SP005', 'Sản phẩm 005', 'San pham 005', 'san-pham-005', 1, 5, '', '/public/uploads/images/sp13-1507009981.png', 26000, 0, 0, 0, '', 0, 0, 0, 5, 0, 1, 5, 1, 1, '2017-10-03 13:10:41', '2017-10-03 13:10:41'),
+(6, 'SP006', 'Sản phẩm 006', 'San pham 006', 'san-pham-006', 1, 5, '', '/public/uploads/images/sp14-1507009981.png', 56000, 0, 0, 0, '', 0, 0, 0, 56, 0, 1, 6, 1, 1, '2017-10-03 13:11:04', '2017-10-03 13:11:04'),
+(7, 'SP007', 'Sản phẩm 007', 'San pham 007', 'san-pham-007', 1, 5, '', '/public/uploads/images/sp15-1507009981.png', 52000, 0, 0, 0, '', 0, 0, 0, 23, 0, 1, 7, 1, 1, '2017-10-03 13:11:40', '2017-10-03 13:11:41'),
+(8, 'SP008', 'Sản phẩm 008', 'San pham 008', 'san-pham-008', 1, 4, '', '/public/uploads/images/sp16-1507009980.png', 56000, 0, 0, 0, '', 0, 0, 0, 15, 0, 1, 8, 1, 1, '2017-10-03 13:20:17', '2017-10-03 13:20:17'),
+(9, 'SP009', 'Sản phẩm 009', 'San pham 009', 'san-pham-009', 1, 4, '', '/public/uploads/images/sp17-1507009980.png', 12000, 0, 0, 0, '', 0, 0, 0, 25, 0, 1, 9, 1, 1, '2017-10-03 13:20:41', '2017-10-03 13:20:42'),
+(10, 'SP010', 'Sản phẩm 010', 'San pham 010', 'san-pham-010', 1, 4, '', '/public/uploads/images/sp18-1507009980.png', 27000, 0, 0, 0, '', 0, 0, 0, 36, 0, 1, 10, 1, 1, '2017-10-03 13:21:13', '2017-10-03 13:21:13'),
+(11, 'SP011', 'Sản phẩm 011', 'San pham 011', 'san-pham-011', 1, 4, '', '/public/uploads/images/sp19-1507009980.png', 29000, 0, 0, 0, '', 0, 0, 0, 36, 0, 1, 11, 1, 1, '2017-10-03 13:21:36', '2017-10-03 13:21:37'),
+(12, 'SP012', 'Sản phẩm 012', 'San pham 012', 'san-pham-012', 1, 3, '', '/public/uploads/images/sp2-1507009973.png', 57000, 0, 0, 0, '', 0, 0, 0, 36, 0, 1, 12, 1, 1, '2017-10-03 13:22:05', '2017-10-03 13:22:05'),
+(13, 'SP013', 'Sản phẩm 013', 'San pham 013', 'san-pham-013', 1, 3, '', '/public/uploads/images/sp3-1507009981.png', 25000, 0, 0, 0, '', 0, 0, 0, 36, 0, 1, 13, 1, 1, '2017-10-03 13:22:26', '2017-10-03 13:22:26'),
+(14, 'SP014', 'Sản phẩm 014', 'San pham 014', 'san-pham-014', 1, 3, '', '/public/uploads/images/sp3-1507009981.png', 52000, 0, 0, 0, '', 0, 0, 0, 23, 0, 1, 14, 1, 1, '2017-10-03 13:22:52', '2017-10-03 13:37:53'),
+(15, 'SP015', 'Sản phẩm 015', 'San pham 015', 'san-pham-015', 1, 3, '', '/public/uploads/images/sp5-1507009981.png', 21000, 0, 0, 0, '', 0, 0, 0, 32, 0, 1, 15, 1, 1, '2017-10-03 13:23:28', '2017-10-03 13:23:28'),
+(16, 'SP016', 'Sản phẩm 016', 'San pham 016', 'san-pham-016', 1, 3, '', '/public/uploads/images/sp6-1507009981.png', 50000, 0, 0, 0, '', 0, 0, 0, 2, 0, 1, 16, 1, 1, '2017-10-03 13:23:47', '2017-10-03 13:23:47'),
+(17, 'SP017', 'Sản phẩm 017', 'San pham 017', 'san-pham-017', 1, 3, '', '/public/uploads/images/sp7-1507009981.png', 25000, 0, 0, 0, '', 0, 0, 0, 3, 0, 1, 17, 1, 1, '2017-10-03 13:24:20', '2017-10-03 13:24:20'),
+(18, 'SP018', 'Sản phẩm 018', 'San pham 018', 'san-pham-018', 1, 3, '', '/public/uploads/images/sp8-1507009981.png', 24000, 0, 0, 0, '', 0, 0, 0, 2, 0, 1, 18, 1, 1, '2017-10-03 13:24:47', '2017-10-03 13:24:47'),
+(19, 'SP019', 'Sản phẩm 019', 'San pham 019', 'san-pham-019', 1, 2, '', '/public/uploads/images/sp9-1507009981.png', 28000, 0, 0, 0, '', 0, 0, 0, 3, 0, 1, 19, 1, 1, '2017-10-03 13:25:12', '2017-10-03 13:25:12');
 
 -- --------------------------------------------------------
 
@@ -1131,6 +828,107 @@ CREATE TABLE `rating` (
   `object_id` int(11) NOT NULL,
   `object_type` tinyint(4) NOT NULL COMMENT '1 : product 2 : articles'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `rating`
+--
+
+INSERT INTO `rating` (`id`, `score`, `amount`, `object_id`, `object_type`) VALUES
+(1, 1, 0, 1, 1),
+(2, 2, 0, 1, 1),
+(3, 3, 0, 1, 1),
+(4, 4, 0, 1, 1),
+(5, 5, 1, 1, 1),
+(6, 1, 0, 2, 1),
+(7, 2, 0, 2, 1),
+(8, 3, 0, 2, 1),
+(9, 4, 0, 2, 1),
+(10, 5, 1, 2, 1),
+(11, 1, 0, 3, 1),
+(12, 2, 0, 3, 1),
+(13, 3, 0, 3, 1),
+(14, 4, 0, 3, 1),
+(15, 5, 1, 3, 1),
+(16, 1, 0, 4, 1),
+(17, 2, 0, 4, 1),
+(18, 3, 0, 4, 1),
+(19, 4, 0, 4, 1),
+(20, 5, 1, 4, 1),
+(21, 1, 0, 5, 1),
+(22, 2, 0, 5, 1),
+(23, 3, 0, 5, 1),
+(24, 4, 0, 5, 1),
+(25, 5, 1, 5, 1),
+(26, 1, 0, 6, 1),
+(27, 2, 0, 6, 1),
+(28, 3, 0, 6, 1),
+(29, 4, 0, 6, 1),
+(30, 5, 1, 6, 1),
+(31, 1, 0, 7, 1),
+(32, 2, 0, 7, 1),
+(33, 3, 0, 7, 1),
+(34, 4, 0, 7, 1),
+(35, 5, 1, 7, 1),
+(36, 1, 0, 8, 1),
+(37, 2, 0, 8, 1),
+(38, 3, 0, 8, 1),
+(39, 4, 0, 8, 1),
+(40, 5, 1, 8, 1),
+(41, 1, 0, 9, 1),
+(42, 2, 0, 9, 1),
+(43, 3, 0, 9, 1),
+(44, 4, 0, 9, 1),
+(45, 5, 1, 9, 1),
+(46, 1, 0, 10, 1),
+(47, 2, 0, 10, 1),
+(48, 3, 0, 10, 1),
+(49, 4, 0, 10, 1),
+(50, 5, 1, 10, 1),
+(51, 1, 0, 11, 1),
+(52, 2, 0, 11, 1),
+(53, 3, 0, 11, 1),
+(54, 4, 0, 11, 1),
+(55, 5, 1, 11, 1),
+(56, 1, 0, 12, 1),
+(57, 2, 0, 12, 1),
+(58, 3, 0, 12, 1),
+(59, 4, 0, 12, 1),
+(60, 5, 1, 12, 1),
+(61, 1, 0, 13, 1),
+(62, 2, 0, 13, 1),
+(63, 3, 0, 13, 1),
+(64, 4, 0, 13, 1),
+(65, 5, 1, 13, 1),
+(66, 1, 0, 14, 1),
+(67, 2, 0, 14, 1),
+(68, 3, 0, 14, 1),
+(69, 4, 0, 14, 1),
+(70, 5, 1, 14, 1),
+(71, 1, 0, 15, 1),
+(72, 2, 0, 15, 1),
+(73, 3, 0, 15, 1),
+(74, 4, 0, 15, 1),
+(75, 5, 1, 15, 1),
+(76, 1, 0, 16, 1),
+(77, 2, 0, 16, 1),
+(78, 3, 0, 16, 1),
+(79, 4, 0, 16, 1),
+(80, 5, 1, 16, 1),
+(81, 1, 0, 17, 1),
+(82, 2, 0, 17, 1),
+(83, 3, 0, 17, 1),
+(84, 4, 0, 17, 1),
+(85, 5, 1, 17, 1),
+(86, 1, 0, 18, 1),
+(87, 2, 0, 18, 1),
+(88, 3, 0, 18, 1),
+(89, 4, 0, 18, 1),
+(90, 5, 1, 18, 1),
+(91, 1, 0, 19, 1),
+(92, 2, 0, 19, 1),
+(93, 3, 0, 19, 1),
+(94, 4, 0, 19, 1),
+(95, 5, 1, 19, 1);
 
 -- --------------------------------------------------------
 
@@ -1476,111 +1274,134 @@ ALTER TABLE `users`
 --
 ALTER TABLE `album`
   MODIFY `album_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `articles_cate`
 --
 ALTER TABLE `articles_cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
 --
 -- AUTO_INCREMENT for table `cate`
 --
 ALTER TABLE `cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `cate_parent`
 --
 ALTER TABLE `cate_parent`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT for table `counter_values`
 --
 ALTER TABLE `counter_values`
   MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
+
 --
 -- AUTO_INCREMENT for table `custom_link`
 --
 ALTER TABLE `custom_link`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `hot_cate`
 --
 ALTER TABLE `hot_cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `info_seo`
 --
 ALTER TABLE `info_seo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `meta_data`
 --
 ALTER TABLE `meta_data`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=348;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- AUTO_INCREMENT for table `product_img`
 --
 ALTER TABLE `product_img`
   MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `text`
 --
 ALTER TABLE `text`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

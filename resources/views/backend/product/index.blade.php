@@ -26,54 +26,46 @@
           <h3 class="panel-title">Bộ lọc</h3>
         </div>
         <div class="panel-body">
-          <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('product.index') }}">           
-              
-            <div class="form-group">              
-              <select class="form-control" name="parent_id" id="parent_id">
-                <option value="">--Danh mục cha--</option>                  
-                  @foreach( $cateParentList as $value )
-                    <option value="{{ $value->id }}"
-                    {{ $arrSearch['parent_id'] == $value->id ? "selected" : "" }}                        
-
-                    >{{ $value->name }}</option>
-                    @endforeach
-              </select>
-            </div>
-            <div class="form-group">              
-              <select class="form-control" name="cate_id" id="cate_id">
-                <option value="">--Danh mục con--</option>
-                  <?php 
-                  if($arrSearch['parent_id']){
-                    $cateList = App\Models\Cate::where('parent_id', $arrSearch['parent_id'])->get();
-                  }
-                  ?>
-                  @foreach( $cateList as $value )
-                    <option value="{{ $value->id }}"
-                    {{ $arrSearch['cate_id'] == $value->id ? "selected" : "" }}                        
-
-                    >{{ $value->name }}</option>
-                    @endforeach
-              </select>
-            </div>          
-            <div class="form-group">              
-              <input type="text" placeholder="Tên sản phẩm" class="form-control" name="title" value="{{ $arrSearch['title'] }}" >
-            </div>
-            <div class="form-group">              
-              <input type="text" placeholder="Mã sản phẩm" class="form-control" name="code" value="{{ $arrSearch['code'] }}" >
-            </div>           
+          <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('product.index') }}">
+           
+          
+            
             <div class="form-group">
-                <div class="checkbox">
-                  <label style="color:red; font-weight:bold">
-                    <input type="checkbox" name="is_hot" id="is_hot" value="1" {{ $arrSearch['is_hot'] == 1 ? "checked" : "" }}>
-                     HOT
-                  </label>
-                </div>               
-              </div>
-            <button type="submit" class="btn btn-primary btn-sm">Lọc</button>
+              <label for="email">Danh mục cha</label>
+              <select class="form-control" name="parent_id" id="parent_id">
+                <option value="">--Tất cả--</option>
+                @foreach( $cateParentList as $value )
+                <option value="{{ $value->id }}" {{ $value->id == $arrSearch['parent_id'] ? "selected" : "" }}>{{ $value->name }}</option>
+                @endforeach
+              </select>
+            </div>
+              <div class="form-group">
+              <label for="email">Danh mục con</label>
+
+              <select class="form-control" name="cate_id" id="cate_id">
+                <option value="">--Tất cả--</option>
+                @foreach( $cateList as $value )
+                <option value="{{ $value->id }}" {{ $value->id == $arrSearch['cate_id'] ? "selected" : "" }}>{{ $value->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="email">Tên</label>
+              <input type="text" class="form-control" name="name" value="{{ $arrSearch['name'] }}">
+            </div>            
+            <div class="form-group">
+              <label><input type="checkbox" name="is_hot" value="1" {{ $arrSearch['is_hot'] == 1 ? "checked" : "" }}> HOT</label>              
+            </div>
+            <div class="form-group">
+              <label><input type="checkbox" name="is_sale" value="1" {{ $arrSearch['is_sale'] == 1 ? "checked" : "" }}> SALE</label>              
+            </div>
+            <div class="form-group">
+              <label><input type="checkbox" name="out_of_stock" value="1" {{ $arrSearch['out_of_stock'] == 1 ? "checked" : "" }}> Hết hàng</label>              
+            </div>                       
+            <button type="submit" style="margin-top:-5px" class="btn btn-primary btn-sm">Lọc</button>
           </form>         
         </div>
       </div>
-      
       <div class="box">
 
         <div class="box-header with-border">
@@ -85,99 +77,71 @@
           <div style="text-align:center">
            {{ $items->appends( $arrSearch )->links() }}
           </div>  
-          @if($arrSearch['is_hot'] == 1)
-          <form method="post" action={{ route('product.save-order-hot')}} >
-            {{ csrf_field() }}
-            @if($items->count() > 0)
-            <button type="submit" class="btn btn-warning btn-sm">Save thứ tự</button>
-            @endif
-            <input type="hidden" name="parent_id" value="{{ $arrSearch['parent_id']}}">
-            <input type="hidden" name="is_hot" value="1">
-          @endif
+          <table class="table table-bordered" id="table-list-data">
+            <tr>
+              <th style="width: 1%">#</th>
+              @if($arrSearch['is_hot'] == 1 && $arrSearch['parent_id'] > 0 )
+              <th style="width: 1%;white-space:nowrap">Thứ tự</th>
+              @endif
+              <th width="210px">Hình ảnh</th>
+              <th style="text-align:center">Thông tin sản phẩm</th>                              
+              <th width="1%;white-space:nowrap">Thao tác</th>
+            </tr>
+            <tbody>
+            @if( $items->count() > 0 )
+              <?php $i = 0; ?>
+              @foreach( $items as $item )
+                <?php $i ++; 
 
-            <table class="table table-bordered" id="table-list-data">
-              <tr>
-                <th style="width: 1%">#</th>
-                <th style="width: 1%;white-space:nowrap">Mã tin</th>
-                @if($arrSearch['is_hot'] == 1)
-                <td width="120px">
-                  Thứ tự
+                ?>
+              <tr id="row-{{ $item->id }}">
+                <td><span class="order">{{ $i }}</span></td>
+                @if($arrSearch['is_hot'] == 1 && $arrSearch['parent_id'] > 0 )
+                <td style="vertical-align:middle;text-align:center">
+                  <img src="{{ URL::asset('backend/dist/img/move.png')}}" class="move img-thumbnail" alt="Cập nhật thứ tự"/>
                 </td>
                 @endif
-                <th width="100px">Hình ảnh</th>
-                <th>Thông tin sản phẩm</th>                                          
-                <th width="1%;white-space:nowrap">Thao tác</th>
-              </tr>
-              <tbody>
-              @if( $items->count() > 0 )
-                <?php $i = 0; ?>
-                @foreach( $items as $item )
-                  <?php $i ++; 
+                <td>
+                  <img class="img-thumbnail lazy" width="206" data-original="{{ $item->image_url ? Helper::showImage($item->image_url) : URL::asset('backend/dist/img/no-image.jpg') }}" alt="{{ $item->name }}" title="{{ $item->name }}" />
+                </td>
+                <td>                  
+                  <a style="color:#333;font-weight:bold" href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a> &nbsp; @if( $item->is_hot == 1 )
+                  <label class="label label-danger">HOT</label>>
+                  @endif<br />
+                  <strong style="color:#337ab7;font-style:italic"> {{ $item->cate_parent_name }} / {{ $item->cate_name }}</strong>
+                 <p style="margin-top:10px">
+                    @if( $item->is_sale == 1)
+                   <b style="color:red">                  
+                    {{ number_format($item->price_sale) }}
+                   </b>
+                   <span style="text-decoration: line-through">
+                    {{ number_format($item->price) }}  
+                    </span>
+                    @else
+                    <b style="color:red">                  
+                    {{ number_format($item->price) }}
+                   </b>
+                    @endif 
+                  </p>
+                  
+                </td>
+                <td style="white-space:nowrap; text-align:right">
+                  <a class="btn btn-default btn-sm" href="{{ route('product', [ $item->slug, $item->product_id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
+                  <a href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm">Chỉnh sửa</a>                 
 
-                  ?>
-                <tr id="row-{{ $item->id }}">
-                  <td><span class="order">{{ $i }}</span></td>
-                  <td style="text-align:center">{{ $item->code }}</td>
-                  @if($arrSearch['is_hot'] == 1)
-                  <td>
-                    <input type="text" value="{{ $item->display_order }}" name="display_order[{{$item->id}}]" style="width:80px" class="form-control" />
-                  </td>
-                  @endif
-                  <td>
-                    <img class="img-thumbnail lazy" width="80" data-original="{{ $item->image_urls ? Helper::showImage($item->image_urls) : URL::asset('public/admin/dist/img/no-image.jpg') }}" alt="Nổi bật" title="Nổi bật" />
-                  </td>
-                  <td>                  
-                    <a style="color:#444;font-weight:bold;font-size:16px" href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}">{{ $item->title }}</a> 
-                    @if( $item->is_hot == 1 )
-                    <label class="label label-danger">HOT</label>
-                    @endif
-                    
-                  <br>
-                  <p style="color:#00acd6;font-weight:bold;margin-top:10px">{{ $item->cateParent->name }} / {{ $item->cate->name }}</p>
-                    <div class="block-author">
-                      <ul>
-                        <li>
-                          <span>Tác giả:</span>
-                          <span class="name">{!! $item->createdUser->display_name !!}</span>
-                        </li>
-                        <li>
-                            <span>Ngày tạo:</span>
-                          <span class="name">{!! date('d/m/Y H:i', strtotime($item->created_at)) !!}</span>
-                          
-                        </li>
-                         <li>
-                            <span>Cập nhật:</span>
-                          <span class="name">{!! $item->updatedUser->display_name !!} ( {!! date('d/m/Y H:i', strtotime($item->updated_at)) !!} )</span>          
-                        </li>  
-                        <li>
-                          {!! Helper::view($item->id, 1) !!} lượt xem
-                        </li>
-                      </ul>
-                    </div>
-                  </td>
-                 
-                  <td style="white-space:nowrap; text-align:right">
-                    <a class="btn btn-default btn-sm" href="{{ route('product', [$item->slug, $item->id] ) }}" target="_blank" title="Xem"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
-                    <a href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm" title="Chỉnh sửa"><span class="glyphicon glyphicon-pencil"></span></a>                 
+                  <a onclick="return callDelete('{{ $item->name }}','{{ route( 'product.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm">Xóa</a>
 
-                    <a onclick="return callDelete('{{ $item->title }}','{{ route( 'product.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm" title="Xóa">
-                      <span class="glyphicon glyphicon-trash"></span>
-                      </a>
+                </td>
+              </tr> 
+              @endforeach
+            @else
+            <tr>
+              <td colspan="9">Không có dữ liệu.</td>
+            </tr>
+            @endif
 
-                  </td>
-                </tr> 
-                @endforeach
-              @else
-              <tr>
-                <td colspan="9">Không có dữ liệu.</td>
-              </tr>
-              @endif
-
-            </tbody>
-            </table>
-          @if($arrSearch['is_hot'] == 1)
-          </form>
-          @endif
+          </tbody>
+          </table>
           <div style="text-align:center">
            {{ $items->appends( $arrSearch )->links() }}
           </div>  
@@ -198,9 +162,9 @@
 @stop
 @section('javascript_page')
 <script type="text/javascript">
-function callDelete(title, url){  
+function callDelete(name, url){  
   swal({
-    title: 'Bạn muốn xóa "' + title +'"?',
+    title: 'Bạn muốn xóa "' + name +'"?',
     text: "Dữ liệu sẽ không thể phục hồi.",
     type: 'warning',
     showCancelButton: true,
@@ -223,10 +187,11 @@ $(document).ready(function(){
     obj.parent().parent().parent().submit(); 
   });
   
-  $('#parent_id, #type, #cate_id').change(function(){    
+  $('#parent_id').change(function(){
+    $('#cate_id').val('');
     $('#searchForm').submit();
-  });  
-  $('#is_hot').change(function(){
+  });
+  $('#cate_id').change(function(){
     $('#searchForm').submit();
   });
   $('#table-list-data tbody').sortable({

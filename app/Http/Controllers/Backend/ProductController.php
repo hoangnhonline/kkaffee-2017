@@ -28,50 +28,52 @@ class ProductController extends Controller
     */
     public function index(Request $request)
     {   
-        $arrSearch['status'] = $status = isset($request->status) ? $request->status : 1; 
-        $arrSearch['is_hot'] = $is_hot = isset($request->is_hot) ? $request->is_hot : null;                   
         $arrSearch['parent_id'] = $parent_id = isset($request->parent_id) ? $request->parent_id : null;
-        $arrSearch['cate_id'] = $cate_id = isset($request->cate_id) ? $request->cate_id : null;
-
-        $arrSearch['title'] = $title = isset($request->title) && trim($request->title) != '' ? trim($request->title) : '';
+        $arrSearch['cate_id'] = $cate_id = isset($request->cate_id) ? $request->cate_id : null;        
         $arrSearch['code'] = $code = isset($request->code) && trim($request->code) != '' ? trim($request->code) : '';
-
-        $query = Product::where('product.status', $status);        
-        $cateParentList = CateParent::orderBy('display_order')->get();        
-        $cateList = Cate::whereRaw('1=2');
+        $arrSearch['status'] = $status = isset($request->status) ? $request->status : 1;
+        $arrSearch['is_hot'] = $is_hot = isset($request->is_hot) ? $request->is_hot : null;
+        $arrSearch['is_sale'] = $is_sale = isset($request->is_sale) ? $request->is_sale : null;
+        $arrSearch['out_of_stock'] = $out_of_stock = isset($request->out_of_stock) ? $request->out_of_stock : null;
+        $arrSearch['name'] = $name = isset($request->name) && trim($request->name) != '' ? trim($request->name) : '';
+        
+        $query = Product::where('product.status', $status);
+        if( $is_hot ){
+            $query->where('product.is_hot', $is_hot);
+        }
+        if( $is_sale ){
+            $query->where('product.is_sale', $is_sale);
+        }
         if( $parent_id ){
             $query->where('product.parent_id', $parent_id);
-            $cateList = Cate::where('parent_id', $parent_id)->get();
-        }        
+        }
         if( $cate_id ){
             $query->where('product.cate_id', $cate_id);
         }
-        if( $is_hot ){
-            $query->where('product.is_hot', $is_hot);
+        if( $out_of_stock ){
+            $query->where('product.out_of_stock', $out_of_stock);
         }        
-        if(Auth::user()->role == 1){
-            $query->where('product.created_user', Auth::user()->id);
-        }
-        if( $title != ''){
-            $query->where('product.title', 'LIKE', '%'.$title.'%');            
+        if( $name != ''){
+            $query->where('product.alias', 'LIKE', '%'.$name.'%');           
         }
         if( $code != ''){
-            $query->where('product.code', $code);            
+            $query->where('product.code', 'LIKE', '%'.$code.'%');           
         }
-        //$query->join('users', 'users.id', '=', 'product.created_user');        
-        $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id');         
+        $query->join('users', 'users.id', '=', 'product.created_user');
         $query->join('cate_parent', 'cate_parent.id', '=', 'product.parent_id');
-        $query->leftJoin('cate', 'cate.id', '=', 'product.cate_id');        
-        if($is_hot == 1){
-            $query->orderBy('product.display_order', 'asc'); 
-        }        
-        $query->orderBy('product.is_hot', 'desc');
-        $query->orderBy('product.id', 'desc');   
-        $items = $query->select(['product_img.image_url as image_urls','product.*'])->paginate(50);
+        $query->join('cate', 'cate.id', '=', 'product.cate_id');        
+        $query->orderBy('product.is_hot', 'desc')->orderBy('product.id', 'desc');
+        $items = $query->select(['product.*','product.id as product_id', 'display_name' , 'product.created_at as time_created', 'cate_parent.name as cate_parent_name', 'cate.name as cate_name'])
+        ->paginate(50);   
+        
+        if( $parent_id ){
+            $cateList = Cate::where('parent_id', $parent_id)->orderBy('display_order', 'desc')->get();
+        }else{
+            $cateList = (object) [];
+        }
 
-        return view('backend.product.index', compact( 'items', 'arrSearch', 'cateParentList', 'cateList'));        
+        return view('backend.product.index', compact( 'items', 'arrSearch', 'cateList'));        
     }
-
    
     public function ajaxGetTienIch(Request $request){
         $district_id = $request->district_id;
@@ -127,16 +129,19 @@ class ProductController extends Controller
     */
     public function create(Request $request)
     {
-        $tagList = Tag::where('type', 1)->get();        
+        $tagList = Tag::where('type', 1)->get();
         
         $cateList = Cate::whereRaw('1=2')->get();
         $parent_id = $request->parent_id ? $request->parent_id : null;
-        $cateParentList = CateParent::select('id', 'name')
-                        ->orderBy('display_order', 'asc')
-                        ->get();                        
+        $cate_id = $request->cate_id ? $request->cate_id : null;
         
-        $thongsoList = ThongSo::orderBy('display_order')->get();
-        return view('backend.product.create', compact('cateTypeList', 'cateParentList', 'tagList', 'cateList', 'thongsoList', 'parent_id'));
+        if( $parent_id ){
+            $cateList = Cate::where('parent_id', $parent_id)->orderBy('display_order', 'desc')->get();
+        }else{
+            $cateList = (object) [];
+        }        
+        
+        return view('backend.product.create', compact('cateList', 'parent_id', 'cate_id', 'tagList'));
     }
 
     /**
@@ -153,42 +158,34 @@ class ProductController extends Controller
             'parent_id' => 'required',
             'cate_id' => 'required',   
             'code' => 'required',              
-            'title' => 'required',
-            'slug' => 'required'     
+            'name' => 'required',
+            'slug' => 'required',            
+            'price' => 'required',
+            'inventory' => 'required'           
         ],
         [   
             'parent_id.required' => 'Bạn chưa chọn danh mục cha',
             'cate_id.required' => 'Bạn chưa chọn danh mục con',
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
-            'title.required' => 'Bạn chưa nhập tên sản phẩm',
-            'slug.required' => 'Bạn chưa nhập slug'           
+            'name.required' => 'Bạn chưa nhập tên sản phẩm',
+            'slug.required' => 'Bạn chưa nhập slug',
+            'price.required' => 'Bạn chưa nhập giá',
+            'inventory.required' => 'Bạn chưa nhập số lượng tồn'
         ]);
            
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);
         $dataArr['slug'] = str_replace("(", "-", $dataArr['slug']);
         $dataArr['slug'] = str_replace(")", "", $dataArr['slug']);
-        $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);
-        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0; 
-        $dataArr['is_slider'] = isset($dataArr['is_slider']) ? 1 : 0;  
+        $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);
+        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;         
+        $dataArr['out_of_stock'] = isset($dataArr['out_of_stock']) ? 1 : 0;
         $dataArr['status'] = 1;
         $dataArr['created_user'] = Auth::user()->id;
         $dataArr['updated_user'] = Auth::user()->id;              
-        $is_have = 0;
-        foreach($dataArr['thong_so_chi_tiet'] as $a){
-            if($a != ''){
-                $is_have = 1;
-            }
-        }      
-        if($is_have == 1){
-            $dataArr['thong_so_chi_tiet'] = json_encode($dataArr['thong_so_chi_tiet']);
-        }else{
-            $dataArr['thong_so_chi_tiet'] = '';
-        }
 
         $rs = Product::create($dataArr);
         $product_id = $rs->id;       
-
-        $this->storeImage( $product_id, $dataArr);
+        
         $this->storeMeta($product_id, 0, $dataArr);
         $this->processRelation($dataArr, $product_id);
 
@@ -219,11 +216,9 @@ class ProductController extends Controller
        
         $arrData = ['title' => $dataArr['meta_title'], 'description' => $dataArr['meta_description'], 'keywords'=> $dataArr['meta_keywords'], 'custom_text' => $dataArr['custom_text'], 'updated_user' => Auth::user()->id];
         if( $meta_id == 0){
-            $arrData['created_user'] = Auth::user()->id;
-            //var_dump(MetaData::create( $arrData ));die;
+            $arrData['created_user'] = Auth::user()->id;            
             $rs = MetaData::create( $arrData );
-            $meta_id = $rs->id;
-            //var_dump($meta_id);die;
+            $meta_id = $rs->id;            
             $modelSp = Product::find( $id );
             $modelSp->meta_id = $meta_id;
             $modelSp->save();
@@ -231,90 +226,8 @@ class ProductController extends Controller
             $model = MetaData::find($meta_id);           
             $model->update( $arrData );
         }              
-    }
-    public function storeThuocTinh($id, $dataArr){
-        
-        SpThuocTinh::where('product_id', $id)->delete();
-
-        if( !empty($dataArr['thuoc_tinh'])){
-            foreach( $dataArr['thuoc_tinh'] as $k => $value){
-                if( $value == ""){
-                    unset( $dataArr['thuoc_tinh'][$k]);
-                }
-            }
-            
-            SpThuocTinh::create(['product_id' => $id, 'thuoc_tinh' => json_encode($dataArr['thuoc_tinh'])]);
-        }
-    }
-
-    public function storeImage($id, $dataArr){        
-        //process old image
-        $imageIdArr = isset($dataArr['image_id']) ? $dataArr['image_id'] : [];
-        $hinhXoaArr = ProductImg::where('product_id', $id)->whereNotIn('id', $imageIdArr)->lists('id');
-        if( $hinhXoaArr )
-        {
-            foreach ($hinhXoaArr as $image_id_xoa) {
-                $model = ProductImg::find($image_id_xoa);
-                $urlXoa = config('houseland.upload_path')."/".$model->image_url;
-                if(is_file($urlXoa)){
-                    unlink($urlXoa);
-                }
-                $model->delete();
-            }
-        }       
-
-        //process new image
-        if( isset( $dataArr['thumbnail_id'])){
-            $thumbnail_id = $dataArr['thumbnail_id'];
-
-            $imageArr = []; 
-
-            if( !empty( $dataArr['image_tmp_url'] )){
-
-                foreach ($dataArr['image_tmp_url'] as $k => $image_url) {
-                    
-                    $origin_img = base_path().$image_url;
-                    if( $image_url ){
-
-                        $imageArr['is_thumbnail'][] = $is_thumbnail = $dataArr['thumbnail_id'] == $image_url  ? 1 : 0;
-
-                        $img = Image::make($origin_img);
-                        $w_img = $img->width();
-                        $h_img = $img->height();
-                        $tile1 = 354/236;        
-                        //dd('b', $origin_img);                  
-                        $new_img = str_replace('/uploads/images/', '/uploads/images/thumbs/', $origin_img);
-                       
-                        if($w_img/$h_img <= $tile1){
-
-                            Image::make($origin_img)->resize(354, null, function ($constraint) {
-                                    $constraint->aspectRatio();
-                            })->crop(354, 236)->save($new_img, 100);
-                        }else{
-                            Image::make($origin_img)->resize(null, 236, function ($constraint) {
-                                    $constraint->aspectRatio();
-                            })->crop(354, 236)->save($new_img, 100);
-                        }                                        
-
-                        $imageArr['name'][] = $image_url;
-                        
-                    }
-                }
-            }
-            if( !empty($imageArr['name']) ){
-                foreach ($imageArr['name'] as $key => $name) {
-                    $rs = ProductImg::create(['product_id' => $id, 'image_url' => $name, 'display_order' => 1]);                
-                    $image_id = $rs->id;
-                    if( $imageArr['is_thumbnail'][$key] == 1){
-                        $thumbnail_id = $image_id;
-                    }
-                }
-            }
-            $model = Product::find( $id );
-            $model->thumbnail_id = $thumbnail_id;
-            $model->save();
-        }
-    }
+    }   
+    
 
     /**
     * Display the specified resource.
@@ -337,10 +250,8 @@ class ProductController extends Controller
     {        
         $tagList = Tag::where('type', 1)->get();
         $hinhArr = (object) [];
-        $detail = Product::find($id);
-       
-        $hinhArr = ProductImg::where('product_id', $id)->lists('image_url', 'id');             
-        $cateParentList = CateParent::orderBy('display_order')->get();
+        $detail = Product::find($id);  
+        
         $cateList = Cate::where('parent_id', $detail->parent_id)->get();
 
         $meta = (object) [];
@@ -349,12 +260,8 @@ class ProductController extends Controller
         }               
         
         $tagSelected = Product::productTag($id);
-        
-        $thongsoList = ThongSo::orderBy('display_order')->get();
 
-        $arrThongSo = json_decode($detail->thong_so_chi_tiet, true);
-
-        return view('backend.product.edit', compact( 'detail', 'hinhArr',  'meta', 'cateParentList', 'cateList', 'tagList', 'tagSelected', 'thongsoList', 'arrThongSo'));
+        return view('backend.product.edit', compact( 'detail', 'meta', 'cateList', 'tagList', 'tagSelected'));
     }
     public function ajaxDetail(Request $request)
     {       
@@ -377,44 +284,36 @@ class ProductController extends Controller
             'parent_id' => 'required',
             'cate_id' => 'required',   
             'code' => 'required',              
-            'title' => 'required',
-            'slug' => 'required'     
+            'name' => 'required',
+            'slug' => 'required',            
+            'price' => 'required',
+            'inventory' => 'required'           
         ],
         [   
             'parent_id.required' => 'Bạn chưa chọn danh mục cha',
             'cate_id.required' => 'Bạn chưa chọn danh mục con',
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
-            'title.required' => 'Bạn chưa nhập tên sản phẩm',
-            'slug.required' => 'Bạn chưa nhập slug'           
+            'name.required' => 'Bạn chưa nhập tên sản phẩm',
+            'slug.required' => 'Bạn chưa nhập slug',
+            'price.required' => 'Bạn chưa nhập giá',
+            'inventory.required' => 'Bạn chưa nhập số lượng tồn'
         ]);
            
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);
         $dataArr['slug'] = str_replace("(", "-", $dataArr['slug']);
         $dataArr['slug'] = str_replace(")", "", $dataArr['slug']);
-        $dataArr['alias'] = Helper::stripUnicode($dataArr['title']);
+        $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;     
-        $dataArr['is_slider'] = isset($dataArr['is_slider']) ? 1 : 0;             
+        $dataArr['out_of_stock'] = isset($dataArr['out_of_stock']) ? 1 : 0;             
         $dataArr['updated_user'] = Auth::user()->id;        
-        $is_have = 0;
-        foreach($dataArr['thong_so_chi_tiet'] as $a){
-            if($a != ''){
-                $is_have = 1;
-            }
-        }      
-        if($is_have == 1){
-            $dataArr['thong_so_chi_tiet'] = json_encode($dataArr['thong_so_chi_tiet']);
-        }else{
-            $dataArr['thong_so_chi_tiet'] = '';
-        }
-
+        
         $model = Product::find($dataArr['id']);
 
         $model->update($dataArr);
         
         $product_id = $dataArr['id'];
         
-        $this->storeMeta( $product_id, $dataArr['meta_id'], $dataArr);
-        $this->storeImage( $product_id, $dataArr);
+        $this->storeMeta( $product_id, $dataArr['meta_id'], $dataArr);       
         $this->processRelation($dataArr, $product_id, 'edit');
 
         Session::flash('message', 'Cập nhật thành công');

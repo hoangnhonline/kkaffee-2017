@@ -58,7 +58,11 @@ class ArticlesCateController extends Controller
         $dataArr['created_user'] = Auth::user()->id;
 
         $dataArr['updated_user'] = Auth::user()->id;
+        
         $dataArr['type'] = 1;
+        
+        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
+
         ArticlesCate::create($dataArr);
 
         Session::flash('message', 'Tạo mới danh mục thành công');
@@ -112,7 +116,11 @@ class ArticlesCateController extends Controller
         ]);       
        
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);
+        
         $dataArr['type'] = 1;
+
+        $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;  
+        
         $model = ArticlesCate::find($dataArr['id']);
         
         $dataArr['updated_user'] = Auth::user()->id;
