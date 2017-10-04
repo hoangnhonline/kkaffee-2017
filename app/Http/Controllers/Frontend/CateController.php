@@ -38,39 +38,37 @@ class CateController extends Controller
         $cateList = (object) [];
         
         $slugCateParent = $request->slugCateParent;
+        
         if(!$slugCateParent){
             return redirect()->route('home');       
         }
+
         $parentDetail = CateParent::where('slug', $slugCateParent)->first();
 
         if($parentDetail){
             $parent_id = $parentDetail->id;
-            $cateList = Cate::where('parent_id', $parent_id)->orderBy('display_order')->get();
+            $cateList = Cate::getList($parent_id);
+            
             if($cateList){
                 foreach($cateList as $cate){
-                    $productArr[$cate->id] = Product::where('cate_id', $cate->id)
-                                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                                    ->select('product_img.image_url', 'product.*')                                                   
-                                    ->orderBy('product.is_hot', 'desc')
-                                    ->orderBy('product.id', 'desc')
-                                    ->limit(15)->get();
+                    $productArr[$cate->id] = Product::getList( ['cate_id' => $cate->id, 'limit' => 10] );
                 }
-            }
-        if( $parentDetail->meta_id > 0){
-           $seo = MetaData::find( $parentDetail->meta_id )->toArray();
-        }else{
-            $seo['title'] = $seo['description'] = $seo['keywords'] = $parentDetail->name;
-        }  
+            }       
+            if( $parentDetail->meta_id > 0){
+               $seo = MetaData::find( $parentDetail->meta_id )->toArray();
+            }else{
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $parentDetail->name;
+            }  
         
             return view('frontend.cate.parent', compact('parent_id', 'parentDetail', 'cateList', 'productArr', 'seo'));
+
         }else{
             return redirect()->route('home');       
         }
         
     }
     public function cateChild(Request $request){
-        $productArr = [];
-        $cateList = (object) [];
+       
         $slugCateChild = $request->slugCateChild;
         
         if(!$slugCateChild){
@@ -79,13 +77,10 @@ class CateController extends Controller
         $cateDetail = Cate::where('slug', $slugCateChild)->first();
         if($cateDetail){
             $cate_id = $cateDetail->id;
-            $settingArr = Settings::whereRaw('1')->lists('value', 'name');
-            $productList = Product::where('cate_id', $cate_id)
-                                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                                    ->select('product_img.image_url', 'product.*')   
-                                    ->orderBy('product.is_hot', 'desc')     
-                                    ->orderBy('product.id', 'desc')
-                                    ->paginate($settingArr['product_per_page']);
+            
+            $settingArr = Helper::setting();
+            
+            $productList = Product::getList( ['cate_id' => $cate_id, 'pagination' => $settingArr['product_per_page']] );
 			
             if( $cateDetail->meta_id > 0){
                $seo = MetaData::find( $cateDetail->meta_id )->toArray();

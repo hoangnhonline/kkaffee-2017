@@ -6,6 +6,7 @@ use App\Models\Price;
 use App\Models\Area;
 use App\Models\CounterValues;
 use App\Models\CounterIps;
+use App\Models\Settings;
 use DB, Image, Auth;
 
 class Helper
@@ -32,6 +33,9 @@ class Helper
                 echo "<option value=".$data->id.">".$data->name."</option>";
             }
         }
+    }
+    public static function setting(){
+        return Settings::whereRaw('1')->lists('value', 'name');
     }
     public static function view($object_id, $object_type){
         $rs = CounterValues::where(['object_id' => $object_id, 'object_type' => $object_type])->first();

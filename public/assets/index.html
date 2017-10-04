@@ -10,7 +10,6 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="lib/owlcarousel/dist/assets/owl.carousel.min.css">
-        <link rel="stylesheet" href="lib/owlcarousel/dist/assets/owl.theme.default.min.css">
         <link rel="stylesheet" type="text/css" href="lib/fontawesome/css/font-awesome.min.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="css/style.css" media="screen"/>
@@ -93,8 +92,12 @@ and open the template in the editor.
                 </div>
             </header>
             <article>
-                <section class="block-image marg40">
-                    <img src="img/banner.png" alt=""/>
+                <section class="block-slide marg40">
+                    <div class="owl-carousel owl-theme">
+                        <div class="item"><img src="img/banner.png" alt=""/></div>
+                        <div class="item"><img src="img/banner.png" alt=""/></div>
+                        <div class="item"><img src="img/banner.png" alt=""/></div>
+                    </div>
                 </section>
                 <section id="welcome" class="marg40">
                     <div class="container">
@@ -198,6 +201,7 @@ and open the template in the editor.
         </div>
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="lib/owlcarousel/dist/owl.carousel.min.js"></script>
         <script type="text/javascript">
             jQuery("a.nav-button-mobi").click(function () {
                 if (jQuery("body").hasClass("active-menu"))
@@ -212,7 +216,7 @@ and open the template in the editor.
             jQuery("a.gotop").click(function () {
                 $('html, body').animate({scrollTop: 0}, 'fast');
             });
-            jQuery(".cf_chat>a").click(function(){
+            jQuery(".cf_chat>a").click(function () {
                 if (jQuery(this).parent().hasClass("active"))
                 {
                     jQuery(this).parent().removeClass("active");
@@ -222,16 +226,22 @@ and open the template in the editor.
                     jQuery(this).parent().addClass("active");
                 }
             });
+            jQuery('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: true,
+                items: 1
+            });
         </script>
         <div id="fb-root"></div>
         <script>(function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id))
-                    return;
-                js = d.createElement(s);
-                js.id = id;
-                js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, 'script', 'facebook-jssdk'));</script>
+                        var js, fjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id))
+                            return;
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }(document, 'script', 'facebook-jssdk'));</script>
     </body>
 </html>

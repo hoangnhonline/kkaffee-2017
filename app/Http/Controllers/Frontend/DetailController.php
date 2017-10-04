@@ -48,8 +48,6 @@ class DetailController extends Controller
         if(!$detail){
             return redirect()->route('home');
         }
-        $hinhArr = ProductImg::where('product_id', $detail->id)->get()->toArray();
-
       
         if( $detail->meta_id > 0){
            $meta = MetaData::find( $detail->meta_id )->toArray();
@@ -63,45 +61,20 @@ class DetailController extends Controller
         if($detail->thumbnail_id > 0){
             $socialImage = ProductImg::find($detail->thumbnail_id)->image_url;
         }
-        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+        $settingArr = Helper::setting();
 
         $otherList = Product::where('product.slug', '<>', '')
-                    ->where('product.cate_id', $detail->cate_id)                    
-                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url as image_url', 'product.*')                    
+                    ->where('product.cate_id', $detail->cate_id)
                     ->where('product.id', '<>', $detail->id)  
                     ->orderBy('product.id', 'desc')
                     ->limit($settingArr['product_related'])
-                    ->get();        
+                    ->get();   
+        
+        $cateList = Cate::getList($detail->parent_id);
 
-        //widget
-        $widgetProduct = (object) [];
-        $wParent = CateParent::where('is_widget', 1)->first();
-        if($wParent){
-
-            $widgetProduct = Product::where('product.slug', '<>', '')
-                    ->where('product.parent_id', $wParent->id)                    
-                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-            
-        }else{
-            $wCate = Cate::where('is_widget', 1)->first();
-            $widgetProduct = Product::where('product.slug', '<>', '')
-                    ->where('product.cate_id', $wCate->id)                    
-                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-        }
-        $tagSelected = Product::getListTag($detail->id);
-         $thongsoList = ThongSo::orderBy('display_order')->get();
-
-            $arrThongSo = json_decode($detail->thong_so_chi_tiet, true);
         Helper::counter($detail->id, 1);
-        if($detail->layout == 2){
-           
-            return view('frontend.detail.index-thong-so-rieng', compact('detail', 'hinhArr', 'seo', 'socialImage', 'otherList', 'tagSelected', 'thongsoList', 'arrThongSo', 'widgetProduct'));
-        }else{
-            return view('frontend.detail.index', compact('detail', 'hinhArr', 'seo', 'socialImage', 'otherList', 'tagSelected', 'widgetProduct', 'arrThongSo', 'thongsoList'));    
-        }
+        
+        return view('frontend.detail.index', compact('detail', 'seo', 'socialImage', 'otherList', 'cateList'));
         
     }
     public function tagDetail(Request $request){
@@ -111,7 +84,7 @@ class DetailController extends Controller
         if(!$detail){
             return redirect()->route('home');
         }
-        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+        $settingArr = Helper::setting();
         if($detail->type == 1 || $detail->type == 3){        
             $productList = (object)[];
             $listId = [];

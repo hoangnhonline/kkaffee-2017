@@ -8,7 +8,7 @@ use App\Models\ArticlesCate;
 use App\Models\Articles;
 use App\Models\District;
 use App\Models\CustomLink;
-use App\Models\Member;
+use App\Models\Services;
 use App\Models\Menu;
 use App\Models\CateParent;
 use App\Models\Text;
@@ -61,7 +61,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 	        $routeName = \Request::route()->getName();	      
 	        
 	        $isEdit = Auth::check();	        
-
+	        $servicesList = Services::getList();
 			$view->with( [
 					'settingArr' => $settingArr, 
 					'articleCate' => $articleCate, 
@@ -72,7 +72,8 @@ class ViewComposerServiceProvider extends ServiceProvider
 					'cateParentList' => $cateParentList,
 					'routeName' => $routeName,
 					'textList' => $textList,
-					'isEdit' => $isEdit
+					'isEdit' => $isEdit,
+					'servicesList' => $servicesList
 			] );
 			
 		});

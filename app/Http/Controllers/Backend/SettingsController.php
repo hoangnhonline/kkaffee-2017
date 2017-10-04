@@ -21,7 +21,7 @@ class SettingsController  extends Controller
         if(Auth::user()->role < 3){
             return redirect()->route('product.index');
         }
-        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+        $settingArr = Helper::setting();
 
         return view('backend.settings.index', compact( 'settingArr'));
     }
@@ -37,7 +37,7 @@ class SettingsController  extends Controller
         if(Auth::user()->role < 3){
             return redirect()->route('product.index');
         }   
-        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+        $settingArr = Helper::setting();
 
         return view('backend.settings.noti', compact( 'settingArr'));
     }
@@ -46,7 +46,7 @@ class SettingsController  extends Controller
         if(Auth::user()->role < 3){
             return redirect()->route('product.index');
         }
-        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+        $settingArr = Helper::setting();
         $query = Product::where('product.status', 2);
         
         //$query->join('users', 'users.id', '=', 'product.created_user');

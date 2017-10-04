@@ -32,4 +32,11 @@ class Cate extends Model  {
     {
         return $this->belongsTo('App\Models\CateParent', 'parent_id');
     }
+    public static function getList($parent_id = null){
+        $query =  self::where('status', 1);
+        if( $parent_id ){
+            $query->where('parent_id', $parent_id);
+        } 
+        return $query->orderBy('is_hot', 'desc')->orderBy('display_order')->get();
+    }
 }

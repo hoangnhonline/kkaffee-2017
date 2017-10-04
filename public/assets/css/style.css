@@ -2,7 +2,6 @@
     max-width: 1349px;
     width: 100%;
     margin: 0 auto;
-    margin-right: 0;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
     -ms-transition: all 0.5s ease;
@@ -1870,3 +1869,75 @@ h1.title_page span:after{
         padding: 0 8px 10px;
     }
 }
+/* owl slider */
+.block-slide .owl-nav{
+    position: absolute;
+    top: calc(50% - 15px);
+    width: 100%;
+}
+.block-slide .owl-nav .owl-prev{
+    position: absolute;
+    left: 10px;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff url(../img/arrow.png) left 5px top 5px no-repeat;
+    text-indent: -9999px;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.block-slide .owl-nav .owl-prev:hover{
+    background: #fff url(../img/arrow.png) left 5px top -35px no-repeat;
+}
+.block-slide .owl-nav .owl-next{
+    position: absolute;
+    right: 10px;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    background: #fff url(../img/arrow.png) right 3px top 5px no-repeat;
+    text-indent: -9999px;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+.block-slide .owl-nav .owl-next:hover{
+    background: #fff url(../img/arrow.png) right 3px top -35px no-repeat;
+}
+/* end */
+/* UPDATE CSS mr.Hoang */ 
+.edit {  
+    position: relative;
+    border: 1px dashed transparent;
+    min-height: 20px;
+}
+.edit:hover {
+    border: 1px dashed #c70f19;
+}
+.edit:hover:before {
+    content: "\f040";
+    font-family: "FontAwesome";
+    font-size: 13px;
+    color: #ffffff;
+    width: 20px;
+    height: 20px;
+    display: block;
+    background: #c70f19;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.block-share .share-item {
+    display: inline-block;
+    vertical-align: top;
+    line-height: initial;
+}
+/* end */

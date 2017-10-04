@@ -26,7 +26,7 @@ class NewsController extends Controller
         $cateDetail = ArticlesCate::where('slug' , $slug)->first();
 
         $title = trim($cateDetail->meta_title) ? $cateDetail->meta_title : $cateDetail->name;
-        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+        $settingArr = Helper::setting();
         $articlesArr = Articles::where('cate_id', $cateDetail->id)->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->paginate($settingArr['articles_per_page']);
 
         $hotArr = Articles::where( ['cate_id' => $cateDetail->id, 'is_hot' => 1] )->orderBy('id', 'desc')->limit(5)->get();
@@ -63,7 +63,7 @@ class NewsController extends Controller
         if( $detail ){           
 
             $title = trim($detail->meta_title) ? $detail->meta_title : $detail->title;
-            $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+            $settingArr = Helper::setting();
             $otherList = Articles::where( ['cate_id' => $detail->cate_id] )->where('id', '<>', $id)->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['article_related'])->get();            
             $seo['title'] = $detail->meta_title ? $detail->meta_title : $detail->title;
             $seo['description'] = $detail->meta_description ? $detail->meta_description : $detail->title;
@@ -75,7 +75,7 @@ class NewsController extends Controller
             Helper::counter($id, 2);
             if($detail->type == 1){
                  $widgetProduct = (object) [];
-                    $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+                    $settingArr = Helper::setting();
                     $wParent = CateParent::where('is_widget', 1)->first();
                     if($wParent){
 

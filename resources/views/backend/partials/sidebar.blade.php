@@ -63,7 +63,12 @@
         <li {{ in_array(\Request::route()->getName(), ['articles-cate.create', 'articles-cate.index', 'articles-cate.edit']) ? "class=active" : "" }} ><a href="{{ route('articles-cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục bài viết</a></li>      
         @endif    
         </ul>
-       
+       <li {{ in_array(\Request::route()->getName(), ['services.edit', 'services.index', 'services.create']) ? "class=active" : "" }}>
+          <a href="{{ route('services.index') }}">
+            <i class="fa fa-pencil-square-o"></i> 
+            <span>Dịch vụ</span>          
+          </a>       
+        </li>
       </li> 
         <li {{ in_array(\Request::route()->getName(), ['tag.edit', 'tag.index']) ? "class=active" : "" }}>
           <a href="{{ route('tag.index') }}">
