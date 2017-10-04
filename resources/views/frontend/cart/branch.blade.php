@@ -2,8 +2,8 @@
 @foreach($branchList as $branch)
 <div>
   <label class="checkbox-inline">
-  	<input type="radio" value="" name="branch_id">
-  	<b>{!! $branch->name !!}</b>: {!! $branch->address !!}, phường 4, quận Tân bình, thành phố Hồ Chí Minh
+  	<input type="radio" value="{!! $branch->id !!}" name="branch_id" class="reqBranchId">
+  	<b>{!! $branch->name !!}</b>: {!! $branch->address !!}, {!! $branch->ward->name !!}, {!! $branch->district->name !!}, {!! $branch->city->name !!}
   </label>
 </div>
 @endforeach

@@ -42,10 +42,12 @@
                   </div>
               </div>
               <div class="body-box">
-                  <p><i class="fa fa-circle cl_ea0000" aria-hidden="true"></i> Chọn địa chỉ chi nhánh</p>
+                <form id="dataForm">
+                {{ csrf_field() }}
+                  <p><i class="fa fa-circle cl_ea0000" aria-hidden="true"></i> Chọn chi nhánh</p>
                   <div class="row div-parent" id="branch-info" >
                       <div class="col-md-6">
-                           <select name="branch_city_id" class="form-control city_id" id="branch_city_id" data-bv-field="branch_city_id">
+                           <select name="branch_city_id" class="form-control city_id req" id="branch_city_id" data-bv-field="branch_city_id">
                               <option value="">Tỉnh/TP</option>
                               @foreach($cityList as $city)
                                 <option value="{{$city->id}}"
@@ -57,7 +59,7 @@
                             </select>
                       </div>
                       <div class="col-md-6">
-                          <select class="form-group form-control district_id" id="branch_district_id" name="branch_district_id">
+                          <select class="form-group form-control district_id req" id="branch_district_id" name="branch_district_id">
                               <option value="">Quận/Huyện</option>
                           </select>
                       </div>
@@ -66,12 +68,13 @@
                                         
                   </div>
                   <p><i class="fa fa-circle text-success" aria-hidden="true"></i> Địa chỉ nhận hàng</p>
+                  @if($addressList->count() == 0)
                   <div class="row">
                       <div class="form-group col-md-4">
-                        <input type="text" class="form-control no-round" id="fullname" name="fullname" placeholder="Họ tên" value="{{ old('fullname') }}">
+                        <input type="text" class="form-control no-round req" id="fullname" name="fullname" placeholder="Họ tên" value="{{ old('fullname') }}">
                       </div>
                       <div class="form-group col-md-4">
-                        <input type="text" class="form-control no-round" id="phone" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
+                        <input type="text" class="form-control no-round req" id="phone" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
                       </div>
                       <div class="form-group col-md-4">
                         <input type="email" class="form-control no-round" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
@@ -79,9 +82,10 @@
                   </div>
                   
                   <div class="div-parent" id="primary_address">
+                    
                     <div class="row">
                         <div class="col-md-4">
-                            <select class="form-group form-control no-round city_id" name="city_id" id="city_id">
+                            <select class="form-group form-control no-round city_id req" name="city_id" id="city_id">
                                 <option>Tỉnh/TP</option>
                                 @foreach($cityList as $city)
                                   <option value="{{$city->id}}"
@@ -93,27 +97,27 @@
                             </select>
                         </div>
                         <div class="col-md-4">
-                            <select class="form-group form-control no-round district_id" name="district_id" id="district_id">
+                            <select class="form-group form-control no-round district_id req" name="district_id" id="district_id">
                                 <option>Quận/Huyện</option>                              
                             </select>
                         </div>
                         <div class="form-group col-md-4">
-                            <select class="form-control no-round ward_id" name="ward_id" id="ward_id">
+                            <select class="form-control no-round ward_id req" name="ward_id" id="ward_id">
                                 <option>Phường/Xã</option>
                             </select>
                         </div>
                     </div>                    
                   </div>
                   <div class="form-group row">
-                      <div class="col-md-12"><input type="text" class="form-control no-round" id="address" name="address" placeholder="Địa chỉ người đặt hàng" value="{{ old('address') }}"></div>
+                      <div class="col-md-12"><input type="text" class="form-control no-round req" id="address" name="address" placeholder="Địa chỉ người đặt hàng" value="{{ old('address') }}"></div>
                   </div>
-                  <div class="form-group">
+                  @endif
+                  <div class="form-group" id="addressList">
+                      @foreach($addressList as $address)
                       <div>
-                          <label class="checkbox-inline"><input type="radio" value=""><b>Địa chỉ chi nhánh Tân Bình 1</b>: 216 Hoàng Văn Thụ, phường 4, quận Tân bình, thành phố Hồ Chí Minh</label>
+                          <label class="checkbox-inline"><input class="reqAddressId req" type="radio" name="address_id" value="{{ $address->id }}"> <b>{!! $address->fullname !!}</b>,  {!! $address->address !!}, {!! $address->ward->name !!}, {!! $address->district->name !!}, {!! $address->city->name !!}</label>
                       </div>
-                      <div>
-                          <label class="checkbox-inline"><input type="radio" value=""><b>Địa chỉ chi nhánh Tân Bình 2</b>: 216 Hoàng Văn Thụ, phường 4, quận Tân bình, thành phố Hồ Chí Minh</label>
-                      </div>
+                      @endforeach                    
                   </div>
                   
                   <div class="form-group">
@@ -167,18 +171,71 @@
                       <textarea class="form-control no-round" rows="7" placeholder="Nhập thông tin ghi chú của bạn"></textarea>
                   </div>
                   <div class="form-group clearfix checkout-action">
-                      <div class="pull-right"><a href="#" class="btn btn-yellow btn-flat">Tiếp theo</a></div>
+                      <div class="pull-right"><a href="javascript:;" id="btnSave" class="btn btn-yellow btn-flat">Tiếp theo</a></div>
                       <div class="pull-right"><a href="#" class="btn btn-grey btn-flat">Hủy bỏ</a></div>
                   </div>
+                  </form>
               </div>
           </div>
       </div>
   </section>
 </article>
+<style type="text/css">
+  .error{
+    border : 1px solid red;
+  }
+</style>
 @stop
 @section('js')
    <script type="text/javascript">
-   $(document).ready(function(){      
+   $(document).ready(function(){   
+      $('#btnSave').click(function(){
+        var errReq = 0;
+        $('#dataForm .req').each(function(){
+          var obj = $(this);
+          console.log(obj.val());
+          if(obj.val() == '' || obj.val() == '0' || obj.val() == 'Tỉnh/TP' || obj.val() == 'Quận/Huyện' || obj.val() == 'Phường/Xã'){
+            errReq++;
+            obj.addClass('error');
+          }else{
+            obj.removeClass('error');
+          }
+        });
+        if(errReq > 0){          
+         $('html, body').animate({
+              scrollTop: $("#branch-info").offset().top
+          }, 500);
+          return false;
+        }        
+
+      });
+      $('#branch_city_id').val(294);   
+       $.ajax({
+            url : '{{ route('get-child') }}',
+            data : {
+              mod : 'district',
+              col : 'city_id',
+              id : 294
+            },
+            type : 'POST',
+            dataType : 'html',
+            success : function(data){
+              $('#branch_district_id').html(data); 
+              $('#branch_district_id').val(485);
+              $.ajax({
+                url : '{{ route('get-branch') }}',
+                data : {                
+                  district_id : 485
+                },
+                type : 'GET',
+                dataType : 'html',
+                success : function(data){
+                  $('#branch_div').html(data);
+                  $('input[name="branch_id"]').eq(0).prop('checked', true);
+                }
+              })                               
+            }
+          });
       $('.city_id').change(function(){         
         var obj = $(this);
             $.ajax({
@@ -191,17 +248,22 @@
               type : 'POST',
               dataType : 'html',
               success : function(data){
-                obj.parents('.div-parent').find('.district_id').html(data);                                
+                obj.parents('.div-parent').find('.district_id').html(data);      
+                $('#branch_div').html('');                          
               }
-            })
+            });
           
         });
       jQuery(".other-address").hide();
         jQuery(".action-other-address").click(function () {
             if (jQuery(this).is(":checked")) {
                 jQuery(".other-address").show(300);
+                $('.other-address input, .other-address select').addClass('req');
+                $('#addressList input.reqAddressId, #other_email').removeClass('req');
             } else {
                 jQuery(".other-address").hide(200);
+                $('.other-address input, .other-address select').removeClass('req');
+                $('#addressList input.reqAddressId').addClass('req');
             }
         });
       $('#primary_address .district_id').change(function(){         
@@ -233,7 +295,7 @@
               success : function(data){
                 $('#branch_div').html(data);
               }
-            })
+            });
           
         });
     });

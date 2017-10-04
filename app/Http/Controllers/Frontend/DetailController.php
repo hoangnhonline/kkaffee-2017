@@ -81,8 +81,8 @@ class DetailController extends Controller
         }
 
         Helper::counter($detail->id, 1);
-        
-        return view('frontend.detail.index', compact('detail', 'seo', 'socialImage', 'otherList', 'cateList', 'parentDetail', 'productArr'));
+        $hotProductList = Product::getList(['is_hot' => 1, 'parent_id' => $detail->parent_id, 'limit' => 5]);
+        return view('frontend.detail.index', compact('detail', 'seo', 'socialImage', 'otherList', 'cateList', 'parentDetail', 'productArr', 'hotProductList'));
         
     }
     public function tagDetail(Request $request){

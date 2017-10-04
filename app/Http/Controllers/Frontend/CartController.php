@@ -49,8 +49,7 @@ class CartController extends Controller
         
         $listProductId = array_keys($getlistProduct);
     
-        $arrProductInfo = Product::whereIn('product.id', $listProductId)->get();
-        
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)->get();        
         
         $seo['title'] = $seo['description'] = $seo['keywords'] = "Giỏ hàng";
         return view('frontend.cart.index', compact('arrProductInfo', 'getlistProduct', 'seo'));
@@ -76,7 +75,9 @@ class CartController extends Controller
         $userId = Session::get('userId');
         $customer = Customer::find($userId);
 
-        return view('frontend.cart.address-info', compact('arrProductInfo', 'getlistProduct', 'seo', 'cityList', 'customer'));
+        $addressList = $customer->customerAddress;
+
+        return view('frontend.cart.address-info', compact('arrProductInfo', 'getlistProduct', 'seo', 'cityList', 'customer', 'addressList'));
     }
     public function getBranch(Request $request){
         $district_id = $request->district_id;        

@@ -52,7 +52,7 @@
                         {!! $detail->description !!}
                     </p>
                     @endif
-                    <a href="javascript:;" data-id="{{ $detail->id }}" class="btn btn-yellow btn-lg btn-flat btn-order">ĐẶT HÀNG</a>
+                    <a href="javascript:;" data-id="{{ $detail->id }}" class="btn btn-yellow btn-lg btn-flat @if(Session::has('login')) btn-order @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif>ĐẶT HÀNG</a>
                 </div>
             </div>
         </div>
@@ -78,29 +78,28 @@
                         <span>Giảm giá 30%</span> cho tất cả các sản phẩm dưới đây
                     </p>                    
                     <div class="list-box-items" id="tab01">
-                        <div class="title-admin-content">SẢN PHẨM HOT</div>
+                        <div class="title-admin-content">SẢN PHẨM HOT</div>                        
+                        @foreach($hotProductList as $product)
                         <div class="box-item">
-                            <div class="image"><img src="img/sp13.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                            <div class="image">
+                                <img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->name !!}">
+                            </div>
+                            <p class="title-box-item">
+                                <a class="title-box-item" href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">{!! $product->name !!}</a>
+                                </p>
                             <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                <a href="javascript:;" class="btn-order" data-id="{{ $product->id }}"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
                                 <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
+                                    @if($product->is_sale == 1 && $product->price_sale > 0)
+                                        {{ number_format($product->price_sale) }}đ
+                                    @else
+                                        {{ number_format($product->price) }}đ
+                                    @endif
+                                    <!--<small>Giảm 10%</small>-->
                                 </div>
                             </div>
                         </div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp2.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     @if($cateList)
                     @foreach($cateList as $cate)

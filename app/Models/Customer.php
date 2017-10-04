@@ -50,8 +50,8 @@ class Customer extends Model  {
     {
         return $this->hasOne('App\Models\Ward', 'id', 'ward_id');
     }
-    public function address()
+    public function customerAddress()
     {
-        return $this->hasOne('App\Models\CustomerAddress', 'id', 'customer_id');
+        return $this->hasMany('App\Models\CustomerAddress', 'customer_id');
     }
 }
