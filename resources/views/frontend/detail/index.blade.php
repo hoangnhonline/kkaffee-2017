@@ -53,7 +53,7 @@
                         {!! $detail->description !!}
                     </p>
                     @endif
-                    <a href="#" class="btn btn-yellow btn-lg btn-flat btn-order">ĐẶT HÀNG</a>
+                    <a href="javascript:;" data-id="{{ $detail->id }}" class="btn btn-yellow btn-lg btn-flat btn-order">ĐẶT HÀNG</a>
                 </div>
             </div>
         </div>
@@ -258,92 +258,47 @@
             <div class="cart-info cart-side">
                 <div class="title-cart-info">THÔNG TIN GIỎ HÀNG</div>
                 <div class="content-cart-info">
-                    <div class="list-items-cart">
+                    @if(!empty(Session::get('products')))
+                    <div class="list-items-cart">                        
+                        <?php $total = 0; ?>
+                        @if( $arrProductInfo->count() > 0)
+                            <?php $i = 0; ?>
+                          @foreach($arrProductInfo as $product)
+                          <?php 
+                          $i++;
+                          $price = $product->is_sale ? $product->price_sale : $product->price; 
+
+                          $total += $total_per_product = ($getlistProduct[$product->id]*$price);
+                          
+                          ?>
                         <div class="item-cart">
                             <div class="info-qty">
-                                <a class="qty-up" href="javascript:;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <input step="1" name="quantity" value="1" class="qty-val">
-                                <a class="qty-down" href="javascript:;"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
+                                <a class="qty-up" data-id="{{ $product->id }}" href="javascript:;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                <input step="1" name="quantity" value="{{ $getlistProduct[$product->id] }}" class="qty-val">
+                                <a class="qty-down" data-id="{{ $product->id }}" href="javascript:;"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
                             </div>
-                            <p class="title-item">Tiêu đề món ăn có trong giỏ hàng</p>
-                            <div class="price clearfix">
-                                <p class="pull-left">Ghi chú</p>
-                                <p class="pull-right">50.000đ</p>
+                            <p class="title-item">{!! $product->name !!}</p>
+                            <div class="price clearfix" style="font-size:14px">   
+                                <p class="pull-left" >{{ $getlistProduct[$product->id] }}x{{ number_format($price) }}</p>                             
+                                <p class="pull-right">{!! number_format($total_per_product) !!}đ</p>
                             </div>
-                        </div>
-                        <div class="item-cart">
-                            <div class="info-qty">
-                                <a class="qty-up" href="javascript:;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <input step="1" name="quantity" value="1" class="qty-val">
-                                <a class="qty-down" href="javascript:;"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
-                            </div>
-                            <p class="title-item">Tiêu đề món ăn có trong giỏ hàng</p>
-                            <div class="price clearfix">
-                                <p class="pull-left">Ghi chú</p>
-                                <p class="pull-right">50.000đ</p>
-                            </div>
-                        </div>
-                        <div class="item-cart">
-                            <div class="info-qty">
-                                <a class="qty-up" href="javascript:;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <input step="1" name="quantity" value="1" class="qty-val">
-                                <a class="qty-down" href="javascript:;"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
-                            </div>
-                            <p class="title-item">Tiêu đề món ăn có trong giỏ hàng</p>
-                            <div class="price clearfix">
-                                <p class="pull-left">Ghi chú</p>
-                                <p class="pull-right">50.000đ</p>
-                            </div>
-                        </div>
-                        <div class="item-cart">
-                            <div class="info-qty">
-                                <a class="qty-up" href="javascript:;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <input step="1" name="quantity" value="1" class="qty-val">
-                                <a class="qty-down" href="javascript:;"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
-                            </div>
-                            <p class="title-item">Tiêu đề món ăn có trong giỏ hàng</p>
-                            <div class="price clearfix">
-                                <p class="pull-left">Ghi chú</p>
-                                <p class="pull-right">50.000đ</p>
-                            </div>
-                        </div>
-                        <div class="item-cart">
-                            <div class="info-qty">
-                                <a class="qty-up" href="javascript:;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <input step="1" name="quantity" value="1" class="qty-val">
-                                <a class="qty-down" href="javascript:;"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
-                            </div>
-                            <p class="title-item">Tiêu đề món ăn có trong giỏ hàng</p>
-                            <div class="price clearfix">
-                                <p class="pull-left">Ghi chú</p>
-                                <p class="pull-right">50.000đ</p>
-                            </div>
-                        </div>
-                        <div class="item-cart">
-                            <div class="info-qty">
-                                <a class="qty-up" href="javascript:;"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <input step="1" name="quantity" value="1" class="qty-val">
-                                <a class="qty-down" href="javascript:;"><i class="fa fa-minus-square" aria-hidden="true"></i></a>
-                            </div>
-                            <p class="title-item">Tiêu đề món ăn có trong giỏ hàng</p>
-                            <div class="price clearfix">
-                                <p class="pull-left">Ghi chú</p>
-                                <p class="pull-right">50.000đ</p>
-                            </div>
-                        </div>
+                        </div>   
+                        
+                        @endforeach
+                        @endif                     
                     </div>
                     <ul class="">
                         <li>
                             <span class="pull-left cl_666">Cộng</span>
-                            <span class="pull-right cl_333">200.000đ</span>
+                            <span class="pull-right cl_333">{!! number_format($total) !!}đ</span>
                         </li>
-                        <li>
+                        <!--<li>
                             <span class="pull-left cl_ea0000">Giảm 30% tổng bill</span>
                             <span class="pull-right cl_ea0000">66.000đ</span>
-                        </li>
+                        </li>-->
                         <li>
                             <span class="pull-left cl_666">Phí phục vụ<br><small>(10% trên tổng đơn hàng)</small></span>
-                            <span class="pull-right cl_333">20.000đ</span>
+                            <span class="pull-right cl_333">{{ number_format($total*10/100) }}đ</span>
                         </li>
                         <li>
                             <span class="pull-left cl_666">Tạm tính<br><small>(Giá chưa bao gồm COD)</small></span>
@@ -351,10 +306,13 @@
                             <div class="clearfix"></div>
                             <div class="action-cart">
                                 <a href="#" class="btn btn-yellow">Đặt hàng</a>
-                                <a href="#" class="btn btn-defaultyellow">Xoá</a>
+                                <a href="{{ route('empty-cart') }}" onclick="return confirm('Quý khách có chắc chắn bỏ hết hàng ra khỏi giỏ?'); " class="btn btn-defaultyellow">Xoá</a>
                             </div>
                         </li>
                     </ul>
+                    @else
+                    <p class="cart-empty">Chưa có sản phẩm nào.</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -384,6 +342,84 @@
 	            }
 	        }
    		});
-	});		
+
+        $(document).ready(function($){  
+          $('a.btn-order').click(function() {
+                var product_id = $(this).data('id');
+                addToCart(product_id);
+                
+              });
+        });
+        $(document).on('change', '.change_quantity', function() {
+            var quantity = $(this).val();
+            var id = $(this).data('id');
+            updateQuantity(id, quantity, 'ajax');
+        });
+        $(document).on('click', '.qty-up', function(){
+            var obj = $(this);
+            var quantityObj = obj.parents('.item-cart').find('.qty-val');            
+            quantityObj.val(parseInt(quantityObj.val()) + 1);
+            updateQuantity(obj.data('id'), parseInt(quantityObj.val()) + 1, 'normal');
+        });
+        $(document).on('click', '.qty-down', function(){
+            var obj = $(this);
+            var quantityObj = obj.parents('.item-cart').find('.qty-val');   
+            var currQuantity = parseInt(quantityObj.val());         
+            if( currQuantity > 1){
+                quantityObj.val(currQuantity - 1);
+            }else if(currQuantity == 1){
+                obj.parents('.item-cart').remove();
+            }
+            updateQuantity(obj.data('id'), (currQuantity - 1), 'normal');
+        });
+        
+	});	
+function addToCart(product_id) {
+  $.ajax({
+    url: $('#route-add-to-cart').val(),
+    method: "GET",
+    data : {
+      id: product_id
+    },
+    success : function(data){
+       window.location.reload();
+    }
+  });
+}	
+function calTotalProduct() {
+    var total = 0;
+    $('.change_quantity ').each(function() {
+        total += parseInt($(this).val());
+    });
+    $('.order_total_quantity').html(total);
+}
+
+function updateQuantity(id, quantity, type) {
+    $.ajax({
+        url: $('#route-update-product').val(),
+        method: "POST",
+        data: {
+            id: id,
+            quantity: quantity
+        },
+        success: function(data) {
+            /*
+            $.ajax({
+                url: $('#route-short-cart').val(),
+                method: "GET",
+
+                success: function(data) {
+                    if (type == 'ajax') {
+                        $('#short-cart-content').html(data);
+                        calTotalProduct();
+                    } else {
+                        window.location.reload();
+                    }
+                }
+            });
+            */
+        }
+    });
+}
 </script>
 @stop

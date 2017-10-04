@@ -40,107 +40,94 @@
                   </div>
                 @endif
                 <div>
+                    <div class="form-group col-md-6 none-padding">
+                      <label for="email">Danh mục cha<span class="red-star">*</span></label>
+                      <select class="form-control req" name="parent_id" id="parent_id">
+                        <option value="">--Chọn--</option>
+                        @foreach( $cateParentList as $value )
+                        <option value="{{ $value->id }}" {{ $value->id == old('parent_id') || $value->id == $parent_id ? "selected" : "" }}>{{ $value->name }}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                      <div class="form-group col-md-6 none-padding pleft-5">
+                      <label for="email">Danh mục con<span class="red-star">*</span></label>
+                      <?php 
+                      $parent_id = old('parent_id');
+                      if($parent_id > 0){
+                        $cateList = DB::table('cate')->where('parent_id', $parent_id)->orderBy('display_order')->get();
+                      }
+                      ?>
+                      <select class="form-control req" name="cate_id" id="cate_id">
+                        <option value="">--Chọn--</option>
+                        @foreach( $cateList as $value )
+                        <option value="{{ $value->id }}" {{ $value->id == old('cate_id') || $value->id == $cate_id ? "selected" : "" }}>{{ $value->name }}</option>
+                        @endforeach
+                      </select>
+                    </div> 
+                     <div class="form-group" >                  
+                      <label>Mã sản phẩm <span class="red-star">*</span></label>
+                      <input type="text" class="form-control req" name="code" id="code" value="{{ old('code') }}">
+                    </div>
+                    <div class="form-group" >                  
+                      <label>Tên <span class="red-star">*</span></label>
+                      <input type="text" class="form-control req" name="name" id="name" value="{{ old('name') }}">
+                    </div>
+                    <div class="form-group">                  
+                      <label>Slug <span class="red-star">*</span></label>                  
+                      <input type="text" class="form-control req" readonly="readonly" name="slug" id="slug" value="{{ old('slug') }}">
+                    </div> 
+                    <div class="col-md-4 none-padding">
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="is_hot" value="1" {{ old('is_hot') == 1 ? "checked" : "" }}> HOT </label>
+                      </div>                          
+                    </div>
+                    <div class="col-md-4 none-padding">
+                      <div class="checkbox">
+                          <label><input type="checkbox" name="is_sale" value="1" {{ old('is_sale') == 1 ? "checked" : "" }} id="is_sale">  SALE </label>
+                      </div>                          
+                    </div>                        
+                    <div class="clearfix"></div>
+                    <div class="form-group col-md-6 none-padding" >                  
+                        <label>Giá<span class="red-star">*</span></label>
+                        <input type="text" class="form-control req number" name="price" id="price" value="{{ old('price') }}">
+                    </div>
+                                       
+                     <div class="col-md-6">
+                      <label>Số lượng tồn</label>                  
+                      <input type="text" class="form-control number" name="inventory" id="inventory" value="{{ old('inventory') }}">                        
+                    </div>
+                    <div class="clearfix"></div>
+                     <div class="form-group col-md-6 none-padding" >
+                        <label>Giá SALE</label>
+                        <input type="text" class="form-control number" name="price_sale" id="price_sale" value="{{ old('price_sale') }}">
+                    </div>    
+                    <div class="form-group col-md-6 " >
+                        <label>Phần trăm (%) SALE</label>
+                        <input type="text" class="form-control number" name="sale_percent" id="sale_percent" value="{{ old('sale_percent') }}">
+                    </div>    
 
-                  <!-- Nav tabs -->
-                  <ul class="nav nav-tabs" role="tablist">
-                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Thông tin chi tiết</a></li>      
-                  </ul>
-
-                  <!-- Tab panes -->
-                  <div class="tab-content">
-                   
-                    <div role="tabpanel" class="tab-pane active" id="home">
-                        <div class="form-group col-md-6 none-padding">
-                          <label for="email">Danh mục cha<span class="red-star">*</span></label>
-                          <select class="form-control req" name="parent_id" id="parent_id">
-                            <option value="">--Chọn--</option>
-                            @foreach( $cateParentList as $value )
-                            <option value="{{ $value->id }}" {{ $value->id == old('parent_id') || $value->id == $parent_id ? "selected" : "" }}>{{ $value->name }}</option>
-                            @endforeach
-                          </select>
-                        </div>
-                          <div class="form-group col-md-6 none-padding pleft-5">
-                          <label for="email">Danh mục con<span class="red-star">*</span></label>
-                          <?php 
-                          $parent_id = old('parent_id');
-                          if($parent_id > 0){
-                            $cateList = DB::table('cate')->where('parent_id', $parent_id)->orderBy('display_order')->get();
-                          }
-                          ?>
-                          <select class="form-control req" name="cate_id" id="cate_id">
-                            <option value="">--Chọn--</option>
-                            @foreach( $cateList as $value )
-                            <option value="{{ $value->id }}" {{ $value->id == old('cate_id') || $value->id == $cate_id ? "selected" : "" }}>{{ $value->name }}</option>
-                            @endforeach
-                          </select>
-                        </div> 
-                         <div class="form-group" >                  
-                          <label>Mã sản phẩm <span class="red-star">*</span></label>
-                          <input type="text" class="form-control req" name="code" id="code" value="{{ old('code') }}">
-                        </div>
-                        <div class="form-group" >                  
-                          <label>Tên <span class="red-star">*</span></label>
-                          <input type="text" class="form-control req" name="name" id="name" value="{{ old('name') }}">
-                        </div>
-                        <div class="form-group">                  
-                          <label>Slug <span class="red-star">*</span></label>                  
-                          <input type="text" class="form-control req" readonly="readonly" name="slug" id="slug" value="{{ old('slug') }}">
-                        </div> 
-                        <div class="col-md-4 none-padding">
-                          <div class="checkbox">
-                              <label><input type="checkbox" name="is_hot" value="1" {{ old('is_hot') == 1 ? "checked" : "" }}> HOT </label>
-                          </div>                          
-                        </div>
-                        <div class="col-md-4 none-padding">
-                          <div class="checkbox">
-                              <label><input type="checkbox" name="is_sale" value="1" {{ old('is_sale') == 1 ? "checked" : "" }} id="is_sale">  SALE </label>
-                          </div>                          
-                        </div>                        
-                        <div class="clearfix"></div>
-                        <div class="form-group col-md-6 none-padding" >                  
-                            <label>Giá<span class="red-star">*</span></label>
-                            <input type="text" class="form-control req number" name="price" id="price" value="{{ old('price') }}">
-                        </div>
-                                           
-                         <div class="col-md-6">
-                          <label>Số lượng tồn<span class="red-star">*</span></label>                  
-                          <input type="text" class="form-control req number" name="inventory" id="inventory" value="{{ old('inventory') }}">                        
-                        </div>
-                        <div class="clearfix"></div>
-                         <div class="form-group col-md-6 none-padding" >
-                            <label>Giá SALE</label>
-                            <input type="text" class="form-control number" name="price_sale" id="price_sale" value="{{ old('price_sale') }}">
-                        </div>    
-                        <div class="form-group col-md-6 " >
-                            <label>Phần trăm (%) SALE</label>
-                            <input type="text" class="form-control number" name="sale_percent" id="sale_percent" value="{{ old('sale_percent') }}">
-                        </div>    
-
-                        <div class="clearfix"></div>
-                        <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
-                          <label class="col-md-3 row">Thumbnail ( 560x316 px)</label>    
-                          <div class="col-md-9">
-                            <img id="thumbnail_image" src="{{ old('image_url') ? Helper::showImage(old('image_url')) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="206" height="116">
-                            
-                            <input type="file" id="file-image" style="display:none" />                    
-                            <button class="btn btn-default btn-sm" id="btnUploadImage" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                            <input type="hidden" name="image_url" id="image_url" value="{{ old('image_url') }}"/>
-                          </div>
-                          <div style="clear:both"></div>
-                        </div>
-                        <div class="form-group">
-                          <label>Mô tả</label>
-                          <textarea class="form-control" rows="4" name="description" id="description">{{ old('description') }}</textarea>
-                        </div>  
-                        <div class="form-group">
-                          <label>Chi tiết</label>
-                          <textarea class="form-control" rows="4" name="content" id="content">{{ old('content') }}</textarea>
-                        </div>                                               
+                    <div class="clearfix"></div>
+                    <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
+                      <label class="col-md-3 row">Thumbnail ( 560x316 px)</label>    
+                      <div class="col-md-9">
+                        <img id="thumbnail_image" src="{{ old('image_url') ? Helper::showImage(old('image_url')) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="206" height="116">
                         
-                        <div class="clearfix"></div>
-                    </div><!--end thong tin co ban-->                    
-                  </div>
-
+                        <input type="file" id="file-image" style="display:none" />                    
+                        <button class="btn btn-default btn-sm" id="btnUploadImage" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                        <input type="hidden" name="image_url" id="image_url" value="{{ old('image_url') }}"/>
+                      </div>
+                      <div style="clear:both"></div>
+                    </div>
+                    <div class="form-group">
+                      <label>Mô tả</label>
+                      <textarea class="form-control" rows="4" name="description" id="description">{{ old('description') }}</textarea>
+                    </div>  
+                    <div class="form-group">
+                      <label>Chi tiết</label>
+                      <textarea class="form-control" rows="4" name="content" id="content">{{ old('content') }}</textarea>
+                    </div>                                               
+                    
+                    <div class="clearfix"></div>                    
                 </div>
                   
             </div>

@@ -5002,3 +5002,6 @@ img.move{
 .block-author ul li:first-child:before {
   display: none;
 }
+.form-group{
+  margin-bottom: 5px !important;
+}

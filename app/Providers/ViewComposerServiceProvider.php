@@ -12,7 +12,8 @@ use App\Models\Services;
 use App\Models\Menu;
 use App\Models\CateParent;
 use App\Models\Text;
-use Auth;
+use App\Models\Product;
+use Auth, Session;
 class ViewComposerServiceProvider extends ServiceProvider
 {
 	/**
@@ -61,7 +62,16 @@ class ViewComposerServiceProvider extends ServiceProvider
 	        $routeName = \Request::route()->getName();	      
 	        
 	        $isEdit = Auth::check();	        
-	        $servicesList = Services::getList();
+	        $servicesList = Services::getList();	        
+
+	        // cart
+	        $getlistProduct = $listProductId = [];
+	        $arrProductInfo = (object) [];
+	        if(Session::has('products') && !empty(Session::get('products'))){	            
+	        	$getlistProduct = Session::get('products');
+	        	$listProductId = array_keys($getlistProduct);
+	        	$arrProductInfo = Product::whereIn('product.id', $listProductId)->get();
+	        }
 			$view->with( [
 					'settingArr' => $settingArr, 
 					'articleCate' => $articleCate, 
@@ -73,7 +83,10 @@ class ViewComposerServiceProvider extends ServiceProvider
 					'routeName' => $routeName,
 					'textList' => $textList,
 					'isEdit' => $isEdit,
-					'servicesList' => $servicesList
+					'servicesList' => $servicesList,
+					'getlistProduct' => $getlistProduct,
+					'arrProductInfo' => $arrProductInfo,
+					'listProductId' => $listProductId
 			] );
 			
 		});

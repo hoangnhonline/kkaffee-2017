@@ -222,6 +222,12 @@
 
   </div>
 </div>
+<input type="hidden" id="route-register-customer-ajax" value="{{ route('register-customer-ajax') }}">
+<input type="hidden" id="route-register-newsletter" value="{{ route('register.newsletter') }}">
+<input type="hidden" id="route-add-to-cart" value="{{ route('add-product') }}" />
+<input type="hidden" id="route-payment" value="{{ route('payment') }}" />
+<input type="hidden" id="route-short-cart" value="{{ route('short-cart') }}" />
+<input type="hidden" id="route-update-product" value="{{ route('update-product') }}" />
         <script src="{{ URL::asset('public/assets/js/jquery.min.js') }}"></script>
         <script src="{{ URL::asset('public/assets/js/bootstrap.min.js') }}"></script>
         @if($routeName == "product")
@@ -340,5 +346,11 @@
    </div>
 </div>
 @endif
+<style type="text/css">
+    .cart-empty{
+        margin-top: 15px;
+        text-align: center;
+    }
+</style>
 </body>
 </html>

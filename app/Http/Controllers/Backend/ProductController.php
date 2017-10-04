@@ -160,8 +160,7 @@ class ProductController extends Controller
             'code' => 'required',              
             'name' => 'required',
             'slug' => 'required',            
-            'price' => 'required',
-            'inventory' => 'required'           
+            'price' => 'required'                      
         ],
         [   
             'parent_id.required' => 'Bạn chưa chọn danh mục cha',
@@ -169,8 +168,7 @@ class ProductController extends Controller
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
             'slug.required' => 'Bạn chưa nhập slug',
-            'price.required' => 'Bạn chưa nhập giá',
-            'inventory.required' => 'Bạn chưa nhập số lượng tồn'
+            'price.required' => 'Bạn chưa nhập giá'           
         ]);
            
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);
@@ -286,8 +284,7 @@ class ProductController extends Controller
             'code' => 'required',              
             'name' => 'required',
             'slug' => 'required',            
-            'price' => 'required',
-            'inventory' => 'required'           
+            'price' => 'required'
         ],
         [   
             'parent_id.required' => 'Bạn chưa chọn danh mục cha',
@@ -295,8 +292,7 @@ class ProductController extends Controller
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
             'slug.required' => 'Bạn chưa nhập slug',
-            'price.required' => 'Bạn chưa nhập giá',
-            'inventory.required' => 'Bạn chưa nhập số lượng tồn'
+            'price.required' => 'Bạn chưa nhập giá'
         ]);
            
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);
@@ -350,13 +346,11 @@ class ProductController extends Controller
         // delete
         $model = Product::find($id);        
         $model->delete();
-        ProductImg::where('product_id', $id)->delete();
-        TagObjects::deleteTags( $id, 1);
-        TagObjects::deleteTags( $id, 3);
+        Rating::where('object_id', $id)->where('object_type', 1)->delete();
         // redirect
         Session::flash('message', 'Xóa thành công');
         
-        return redirect(URL::previous());//->route('product.short');
+        return redirect(URL::previous());
         
     }
 }

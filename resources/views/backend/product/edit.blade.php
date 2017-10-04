@@ -106,8 +106,8 @@
                         </div>
                                            
                          <div class="col-md-6">
-                          <label>Số lượng tồn<span class="red-star">*</span></label>                  
-                          <input type="text" class="form-control req number" name="inventory" id="inventory" value="{{ old('inventory', $detail->inventory) }}">                        
+                          <label>Số lượng tồn</label>                  
+                          <input type="text" class="form-control number" name="inventory" id="inventory" value="{{ old('inventory', $detail->inventory) }}">                        
                         </div>
                         <div class="clearfix"></div>
                          <div class="form-group col-md-6 none-padding" >
@@ -283,46 +283,6 @@ $(document).on('click', '.remove-image', function(){
       $('#btnUploadImage').click(function(){        
         openKCFinder_singleFile();
       }); 
-     
-      var files = "";
-      $('#file-image').change(function(e){
-         files = e.target.files;
-         
-         if(files != ''){
-           var dataForm = new FormData();        
-          $.each(files, function(key, value) {
-             dataForm.append('file[]', value);
-          });   
-          
-          dataForm.append('date_dir', 0);
-          dataForm.append('folder', 'tmp');
-
-          $.ajax({
-            url: $('#route_upload_tmp_image_multiple').val(),
-            type: "POST",
-            async: false,      
-            data: dataForm,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                $('#div-image').append(response);
-                if( $('input.thumb:checked').length == 0){
-                  $('input.thumb').eq(0).prop('checked', true);
-                }
-            },
-            error: function(response){                             
-                var errors = response.responseJSON;
-                for (var key in errors) {
-                  
-                }
-                //$('#btnLoading').hide();
-                //$('#btnSave').show();
-            }
-          });
-        }
-      });
-     
-
       $('#name').change(function(){
          var name = $.trim( $(this).val() );
          if( name != ''){
@@ -337,14 +297,6 @@ $(document).on('click', '.remove-image', function(){
                 if( response.str ){                  
                   $('#slug').val( response.str );
                 }                
-              },
-              error: function(response){                             
-                  var errors = response.responseJSON;
-                  for (var key in errors) {
-                    
-                  }
-                  //$('#btnLoading').hide();
-                  //$('#btnSave').show();
               }
             });
          }
