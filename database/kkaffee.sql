@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Oct 05, 2017 at 04:25 PM
--- Server version: 5.5.57-0ubuntu0.14.04.1
--- PHP Version: 7.0.24-1+ubuntu14.04.1+deb.sury.org+1
+-- Host: 127.0.0.1
+-- Generation Time: Oct 05, 2017 at 01:24 AM
+-- Server version: 10.1.21-MariaDB
+-- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -584,15 +582,16 @@ INSERT INTO `counter_ips` (`ip`, `object_id`, `object_type`, `visit`) VALUES
 ('116.109.246.17', 121, 2, 1506612673),
 ('116.109.246.17', 37, 1, 1506609205),
 ('13.76.241.210', 99, 2, 1506610520),
-('127.0.0.1', 6, 1, 1507091302),
+('127.0.0.1', 6, 1, 1507156373),
 ('127.0.0.1', 7, 1, 1507094110),
 ('127.0.0.1', 19, 1, 1507186769),
 ('127.0.0.1', 10, 1, 1507109065),
 ('127.0.0.1', 15, 1, 1507110726),
 ('127.0.0.1', 2, 1, 1507173523),
-('127.0.0.1', 13, 1, 1507192342),
-('127.0.0.1', 17, 1, 1507177458),
-('127.0.0.1', 18, 1, 1507187871);
+('127.0.0.1', 13, 1, 1507159100),
+('127.0.0.1', 17, 1, 1507156378),
+('127.0.0.1', 18, 1, 1507187871),
+('127.0.0.1', 1, 1, 1507159141);
 
 -- --------------------------------------------------------
 
@@ -622,7 +621,7 @@ INSERT INTO `counter_values` (`id`, `object_id`, `object_type`, `day_id`, `day_v
 (6, 15, 1, 276, 2, 6),
 (7, 16, 1, 269, 2, 5),
 (8, 10, 1, 276, 7, 11),
-(9, 17, 1, 277, 1, 7),
+(9, 17, 1, 277, 3, 9),
 (10, 9, 1, 268, 2, 2),
 (11, 8, 1, 269, 2, 3),
 (12, 35, 2, 268, 1, 1),
@@ -655,7 +654,7 @@ INSERT INTO `counter_values` (`id`, `object_id`, `object_type`, `day_id`, `day_v
 (39, 14, 2, 269, 1, 1),
 (40, 13, 2, 269, 1, 1),
 (41, 7, 1, 276, 1, 2),
-(42, 6, 1, 276, 1, 2),
+(42, 6, 1, 277, 1, 3),
 (43, 4, 1, 269, 1, 1),
 (44, 105, 2, 269, 1, 1),
 (45, 106, 2, 269, 1, 1),
@@ -685,7 +684,8 @@ INSERT INTO `counter_values` (`id`, `object_id`, `object_type`, `day_id`, `day_v
 (69, 42, 1, 270, 1, 1),
 (70, 45, 1, 270, 1, 1),
 (71, 43, 1, 270, 1, 1),
-(72, 18, 1, 277, 2, 2);
+(72, 18, 1, 277, 2, 2),
+(73, 1, 1, 277, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -983,32 +983,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `full_name`, `email`, `address`, `phone`, `hand_phone`, `company`, `tax_no`, `username`, `password`, `type`, `created_at`, `updated_at`, `last_login`, `status`, `country_id`, `district_id`, `city_id`, `ward_id`, `facebook_id`, `address_type`, `image_url`, `key_reset`) VALUES
-(1, 'Út Hoàng', 'hoangnhonline@gmail.com', '123 abc def', '0917492306', '', '', '', '', '', 0, '2017-01-22 09:43:24', '2017-02-15 12:23:43', '0000-00-00 00:00:00', 1, 136, 494, 294, 10407, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/15965080_967312746734055_3281840452703207358_n.jpg?oh=5dcbd27c200cca42c2ac588a39df05fe&oe=590948E0', NULL),
-(2, 'Huy Hoang', 'hoangnhonline1@gmail.com', '', '', '', '', '', '', '$2y$10$74MBHLvR4LunmfpNmRqhH.h4.BMPEIAu9YunqoyAuqr.heoy.TOwm', 0, '2017-01-22 10:30:16', '2017-01-22 10:30:16', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(3, 'sang', 'admin@shop.com', '216 Hoang Van Thu Street Ward Tan Binh TPHCM', '09090912', '', '', '', '', '$2y$10$2U3UMaH82xLnYrRm2A1tpuU80LQFWmnMWmyV6KI4PsoezM5GcYWhe', 0, '2017-02-02 06:06:00', '2017-04-17 15:39:09', '0000-00-00 00:00:00', 1, 235, 133, 288, 1735, NULL, 0, NULL, NULL),
-(4, 'sang tu', 'sangtn@gmail.com', 'tphcm', '909585749', '', '', '', '', '$2y$10$GYecfZ7y80b0NHq.ReGwluMCWKe0B.kyW2A3MD1pvG2bjL1mvVe/u', 0, '2017-02-06 09:15:00', '2017-02-06 09:17:16', '0000-00-00 00:00:00', 1, 0, 499, 294, 10597, NULL, 1, NULL, NULL),
-(5, 'dsfa', 'dsfadsaf@shop.com', '', '', '', '', '', '', '$2y$10$bDebF3FSLAohu.v19fSife8otgZDTinwXHIKtiqTZIvmqBBP5utS6', 0, '2017-02-08 11:19:02', '2017-02-08 11:19:02', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(6, 'Tran Thi Thu Ha', 'thuha03081989@gmail.com', '', '', '', '', '', '', '', 0, '2017-02-14 10:07:11', '2017-02-14 10:07:11', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/c106.23.287.287/s200x200/248058_104855426271925_5815827_n.jpg?oh=94e717e9dfeb39c73f91e893f4f01238&oe=5905410D', NULL),
-(7, 'Mộng Tuyền', 'heocon_111291@yahoo.com', '', '', '', '', '', '', '', 0, '2017-02-14 10:07:40', '2017-02-14 10:07:40', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/16114532_1071217529657175_371981670551766428_n.jpg?oh=b09830e2fb64ed2c8dfca9cfd699b19d&oe=5904A5A5', NULL),
-(8, 'ABC DBA', 'darkfeindsss@yahoo.com', '52 Tran Hung Dao', '0984204920', '', '', '', '', '', 0, '2017-02-15 10:23:02', '2017-02-15 10:24:47', '0000-00-00 00:00:00', 1, 235, 489, 294, 10490, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/15284155_1443120519038956_2204875356834630277_n.jpg?oh=bc1da1af7533cec15b2f68f3298fdc38&oe=59058857', NULL),
-(9, 'Nong Dinh Nguyen', 'nguyendinhnong@gmail.com', '23 Nguyễn Kiệm ', '0912771778', '', '', '', '', '', 0, '2017-02-15 11:43:06', '2017-02-15 11:44:29', '0000-00-00 00:00:00', 1, 235, 498, 294, 10578, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/16194954_1402148916476134_7961897318720618983_n.jpg?oh=89ed1ee5596603cb15620577b659bd89&oe=594A5DDA', NULL),
-(10, 'le thi minh thu', 'minhthu@gmail.com', '78 le van viet', '0909568967', '', '', '', '', '$2y$10$kiFpMKDJEmLj4pY8vD0EhO8MAXoTZC7enCmMdSwftwbaT1.qN/PvW', 0, '2017-02-16 16:52:36', '2017-02-16 16:53:09', '0000-00-00 00:00:00', 1, 235, 492, 294, 10533, NULL, 0, NULL, NULL),
-(11, 'Lee Din Wang', 'xxx5669@gmail.com', 'Tầng 17 - 83B Lý Thường Kiêt', '0989315559', '', '', '', '', '', 0, '2017-02-21 09:14:31', '2017-02-21 09:15:23', '0000-00-00 00:00:00', 1, 235, 10, 297, 3670, 2147483647, 1, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/15673041_10154609248278673_6329134020302686308_n.jpg?oh=f6a433ba8c576658f9e194b6c1996c01&oe=5933765C', NULL),
-(12, 'Sang Từ', 'vtran1483@gmail.com', '213123dfa', '21312321312', '', '', '', '', '', 0, '2017-03-23 10:57:50', '2017-03-24 13:58:55', '0000-00-00 00:00:00', 1, 1, 0, 0, 0, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/15241271_10154653666213796_9125602897574408272_n.jpg?oh=889ccc514d645531abdfacddcb4481de&oe=59610329', NULL),
-(13, 'Bin Kute', 'mrhoang1989@gmail.com', 'sầsdgsdagasdg', '0917492302', '', '', '', '', '', 0, '2017-04-11 13:02:05', '2017-04-11 13:02:23', '0000-00-00 00:00:00', 1, 231, 0, 0, 0, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/c60.0.200.200/p200x200/1959777_628282433908639_1604725911_n.jpg?oh=13d0291049bb819af0bc7ab085238e47&oe=59910F69', NULL),
-(14, 'Vu Lan anh', 'lananhvt@napas.com.vn', '83 ltk', '0904123182', '', '', '', '', '$2y$10$BXUx0ZXmqiKV4Tb4YLPGHumIwCpewZzm6ntznf18Jyvds18wZ62XK', 0, '2017-04-21 17:05:36', '2017-04-21 17:07:06', '0000-00-00 00:00:00', 1, 235, 10, 297, 3672, NULL, 1, NULL, NULL),
-(15, 'Bi', 'miumiu.nguyenthi@gmail.com', '', '', '', '', '', '', '$2y$10$Uac6M5JSpC.Xts4.y1TAdORhBO8uu4E3TqgMwbn9R78WRpAZZZBCW', 0, '2017-05-05 22:18:15', '2017-05-05 22:18:15', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(16, 'Nguyễn Đình Nông', 'nguyendinhnong1@gmail.com', '23 Nguyễn Kiệm', '0912771778', '', '', '', '', '$2y$10$YkCHMbitmSlcuf7JgIsZJ.ovacJQwuntBjYPLaoBt3jBk/N1FE8Oi', 0, '2017-05-15 14:10:47', '2017-05-15 14:14:22', '0000-00-00 00:00:00', 1, 235, 498, 294, 10578, NULL, 1, NULL, NULL),
-(17, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', 'chung cư masteri ', '0966121388', '', '', '', '', '', 0, '2017-05-22 13:53:50', '2017-05-22 13:54:36', '0000-00-00 00:00:00', 1, 235, 485, 294, 10440, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/17884507_407111176326430_2462422981045980706_n.jpg?oh=e2b9d6a271434b26daca2f7e5247daef&oe=59AF66D1', NULL),
-(18, 'Phuong Le', 'lvphuong1215@gmail.com', '', '', '', '', '', '', '', 0, '2017-05-30 20:06:15', '2017-05-30 20:06:15', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/15940437_580565825467823_1353332994829736560_n.jpg?oh=8d37a3618dfcec9f3551cfdbe6ec11a0&oe=59B06B8D', NULL),
-(19, 'Thảo', 'nuvana.suong@gmail.com', 'lô t3 cc masteri ', '0966121388', '', '', '', '', '$2y$10$Jx/ed5EZM6gfG/HcoRG36uk.YHzTy3.WiwZC2Tq7MTIyWV5ndpHUi', 0, '2017-06-01 15:36:27', '2017-06-01 15:37:04', '0000-00-00 00:00:00', 1, 235, 485, 294, 10440, NULL, 0, NULL, NULL),
-(20, 'Nguyen Thanh Ha', 'bluedragon@yahoo.com', '05 Tran Huy Lieu', '0943402101', '', '', '', '', '$2y$10$.zXfwQXc8INTrrKCNMEaz.enzk6BmmQmrgCuGkMUmLVeIdA6O6RhW', 0, '2017-06-01 16:14:09', '2017-06-01 16:14:58', '0000-00-00 00:00:00', 1, 235, 499, 294, 10597, NULL, 0, NULL, NULL),
-(21, 'nguyen dinh nghe', 'nghe1211@gmail.com', '370/37/2', '0908056989', '', '', '', '', '$2y$10$psJAEXr9s4FeUNagKcunkOT9Y6.an6sqkND1LVnnitDTrXYUCP6Km', 0, '2017-06-11 22:18:03', '2017-06-11 22:19:39', '0000-00-00 00:00:00', 1, 235, 501, 294, 10622, NULL, 0, NULL, NULL),
-(22, 'Nam', 'nam.pham851989@gmail.com', '52 Tran Hung Dao', '943402101', '', '', '', '', '', 0, '2017-06-13 10:07:01', '2017-06-13 10:11:38', '0000-00-00 00:00:00', 1, 235, 491, 294, 10512, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/14956545_106621839815966_6534535005297593064_n.jpg?oh=2a641af9457db0ee27fe45349e8923fb&oe=59D715CD', NULL),
-(23, 'Nguyễn Hoàng', 'abc@yahoo.com', '', '', '', '', '', '', '$2y$10$mkgIf/4s98E9ycRfSMiXFOcUz.GvQloY6UZi8yXlYn.YWuJ9OS22i', 0, '2017-08-23 11:21:37', '2017-08-23 11:21:37', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(24, 'Tiến', 'thmtien@yahoo.com', 'adfads', '0949098118', '', '', '', '', '$2y$10$5ZxzY00hNu.XvraR9zbWbOZw4aGlJebCEb0l6L3nYIf8ZOL7kB3rO', 0, '2017-09-06 10:30:34', '2017-09-06 10:38:03', '0000-00-00 00:00:00', 1, 235, 484, 294, 10380, NULL, 0, NULL, NULL),
-(25, 'Chris Lai', 'chrislai020495@gmail.com', '', '', '', '', '', '', '$2y$10$zOvHQd0fB76/L3G7Jmy5VO662RaFBQWGcChnwh6myiT5gUifVeG7G', 0, '2017-10-03 14:35:04', '2017-10-03 14:35:04', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, NULL, 0, NULL, NULL),
-(26, 'sdgasdgsdg', 'admin@kkaffee.com', '', '', '', '', '', '', '$2y$10$jTKtg8ZpWA0h6tGq831Z4eaXFdOf0Ym88ujp1/jGffdn83/fHZ3h2', 0, '2017-10-05 10:17:06', '2017-10-05 10:17:06', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, NULL, 0, NULL, NULL);
+(1, 'Út Hoàng', 'hoangnhonline@gmail.com', '', '', '', '', '', '', '', 0, '2017-10-04 21:52:58', '2017-10-04 21:52:58', '0000-00-00 00:00:00', 1, 0, NULL, NULL, 0, 2147483647, 0, 'https://scontent.xx.fbcdn.net/v/t1.0-1/p200x200/19598946_1079663028832359_7932678815044683219_n.jpg?oh=fa20a83fefe26eebecd386eb60a19ce7&oe=5A778774', NULL);
 
 -- --------------------------------------------------------
 
@@ -1029,6 +1004,16 @@ CREATE TABLE `customer_address` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `customer_address`
+--
+
+INSERT INTO `customer_address` (`id`, `customer_id`, `city_id`, `district_id`, `ward_id`, `address`, `phone`, `is_primary`, `fullname`, `created_at`, `updated_at`) VALUES
+(1, 1, 294, 484, 10384, '9 Đinh Tiên Hoàng', '0917492306', 1, 'Út Hoàng', '2017-10-05 05:31:35', '2017-10-05 05:31:35'),
+(2, 1, 294, 484, 10380, '1 Nam Kì Khởi Nghĩa', '0987678934', 0, 'Mong Tuyen', '2017-10-05 05:31:35', '2017-10-05 05:31:35'),
+(3, 1, 294, 490, 10508, '205/51 Huỳnh Tấn Phát', '09135253554', 0, 'Huy Hoangf', '2017-10-05 05:36:19', '2017-10-05 05:36:19'),
+(4, 1, 297, 13, 3591, '9 Đinh Tiên Hoàng, Đa Kao , Quận 1', '0917293406', 0, 'acbv', '2017-10-05 06:18:42', '2017-10-05 06:18:42');
 
 -- --------------------------------------------------------
 
@@ -1926,19 +1911,12 @@ CREATE TABLE `orders` (
   `coupon_id` int(11) NOT NULL,
   `giam_gia` int(11) NOT NULL,
   `tien_thanh_toan` int(11) NOT NULL,
-  `ngay_giao_du_kien` varchar(255) DEFAULT NULL,
-  `ngay_giao_thuc` datetime DEFAULT NULL,
   `full_name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `phone` varchar(50) DEFAULT NULL,
-  `country_id` int(11) NOT NULL,
-  `district_id` int(11) DEFAULT NULL,
-  `city_id` int(11) DEFAULT NULL,
-  `ward_id` int(11) NOT NULL,
-  `address` varchar(255) DEFAULT NULL,
   `phi_giao_hang` int(11) DEFAULT '0',
+  `address_id` int(11) DEFAULT NULL,
   `phi_cod` int(11) NOT NULL DEFAULT '0',
   `da_thanh_toan` tinyint(1) NOT NULL DEFAULT '0',
+  `notes` varchar(500) DEFAULT NULL,
   `updated_user` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -1948,62 +1926,15 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `customer_id`, `tong_tien`, `tong_sp`, `status`, `method_id`, `coupon_id`, `giam_gia`, `tien_thanh_toan`, `ngay_giao_du_kien`, `ngay_giao_thuc`, `full_name`, `email`, `phone`, `country_id`, `district_id`, `city_id`, `ward_id`, `address`, `phi_giao_hang`, `phi_cod`, `da_thanh_toan`, `updated_user`, `created_at`, `updated_at`) VALUES
-(1, 13, 1150, 1, 0, 3, 0, 0, 1150, ' từ 7 đến 10 ngày làm việc ', NULL, 'Bin Kute', 'mrhoang1989@gmail.com', '0917492302', 0, 0, 0, 0, 'sầsdgsdagasdg', 0, 0, 0, 0, '2017-04-11 13:02:29', '2017-04-11 13:02:29'),
-(3, 13, 0, 1, 0, 3, 0, 0, 0, ' từ 7 đến 10 ngày làm việc ', NULL, 'Bin Kute', 'mrhoang1989@gmail.com', '0917492302', 0, 0, 0, 0, 'sầsdgsdagasdg', 0, 0, 0, 0, '2017-04-17 15:36:26', '2017-04-17 15:36:26'),
-(4, 3, 45, 1, 0, 3, 0, 0, 45, ' từ 3 đến 5 ngày làm việc ', NULL, 'sang', 'admin@shop.com', '09090912', 0, 133, 288, 1735, '216 Hoang Van Thu Street Ward Tan Binh TPHCM', 0, 0, 0, 0, '2017-04-17 15:39:24', '2017-04-17 15:39:24'),
-(5, 1, 19, 1, 0, 3, 0, 0, 19, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-04-20 14:38:08', '2017-04-20 14:38:08'),
-(7, 14, 19, 1, 0, 2, 0, 0, 19, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 0, 0, '2017-04-21 17:52:48', '2017-04-21 17:52:48'),
-(8, 14, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 1, 0, '2017-04-24 08:36:14', '2017-04-24 08:36:14'),
-(9, 1, 35, 1, 0, 2, 0, 0, 35, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-04-28 08:24:43', '2017-04-28 08:24:43'),
-(10, 14, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 0, 0, '2017-05-08 11:45:47', '2017-05-08 11:45:47'),
-(11, 13, 35, 1, 0, 3, 0, 0, 35, ' từ 7 đến 10 ngày làm việc ', NULL, 'Bin Kute', 'mrhoang1989@gmail.com', '0917492302', 0, 0, 0, 0, 'sầsdgsdagasdg', 0, 0, 0, 0, '2017-05-08 20:32:40', '2017-05-08 20:32:40'),
-(15, 14, 19, 1, 0, 3, 0, 0, 19, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 0, 0, '2017-05-09 10:32:36', '2017-05-09 10:32:36'),
-(16, 14, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 0, 0, '2017-05-09 10:59:34', '2017-05-09 10:59:34'),
-(18, 14, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 1, 0, '2017-05-09 14:13:26', '2017-05-09 14:18:41'),
-(26, 1, 35, 1, 0, 3, 0, 0, 35, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-05-15 17:07:15', '2017-05-15 17:07:15'),
-(27, 9, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nong Dinh Nguyen', 'nguyendinhnong@gmail.com', '0912771778', 0, 498, 294, 10578, '23 Nguyễn Kiệm ', 0, 0, 0, 0, '2017-05-15 17:08:04', '2017-05-15 17:08:04'),
-(29, 9, 0, 2, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nong Dinh Nguyen', 'nguyendinhnong@gmail.com', '0912771778', 0, 498, 294, 10578, '23 Nguyễn Kiệm ', 0, 0, 0, 0, '2017-05-15 17:26:24', '2017-05-15 17:26:24'),
-(33, 17, 3500, 1, 0, 2, 0, 0, 3500, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 0, 0, '2017-05-22 17:00:28', '2017-05-22 17:00:28'),
-(36, 17, 167, 1, 0, 3, 0, 0, 167, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 0, 0, '2017-05-22 17:20:36', '2017-05-22 17:20:36'),
-(37, 17, 202, 1, 0, 3, 0, 0, 202, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 0, 0, '2017-05-23 09:32:01', '2017-05-23 09:32:01'),
-(38, 17, 167, 1, 0, 3, 0, 0, 167, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 1, 0, '2017-05-23 15:21:40', '2017-05-23 15:23:37'),
-(39, 14, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 0, 0, '2017-05-23 17:23:01', '2017-05-23 17:23:01'),
-(40, 17, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 0, 0, '2017-05-24 10:08:47', '2017-05-24 10:08:47'),
-(41, 17, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 1, 0, '2017-05-24 10:12:06', '2017-05-24 10:14:31'),
-(42, 17, 2230, 1, 0, 3, 0, 0, 2230, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 1, 0, '2017-05-24 10:17:38', '2017-05-24 10:19:18'),
-(43, 17, 221, 2, 0, 3, 0, 0, 221, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 0, 0, '2017-05-30 20:07:46', '2017-05-30 20:07:46'),
-(44, 17, 221, 2, 0, 3, 0, 0, 221, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tuyết Sương', 'suongnguyen91sg@gmail.com', '0966121388', 0, 485, 294, 10440, 'chung cư masteri ', 0, 0, 0, 0, '2017-05-30 20:08:21', '2017-05-30 20:08:21'),
-(45, 19, 221, 2, 0, 3, 0, 0, 221, ' từ 3 đến 5 ngày làm việc ', NULL, 'Thảo', 'nuvana.suong@gmail.com', '0966121388', 0, 485, 294, 10440, 'lô t3 cc masteri ', 0, 0, 0, 0, '2017-06-01 15:37:13', '2017-06-01 15:37:13'),
-(46, 20, 35, 1, 0, 3, 0, 0, 35, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nguyen Thanh Ha', 'bluedragon@yahoo.com', '0943402101', 0, 499, 294, 10597, '05 Tran Huy Lieu', 0, 0, 0, 0, '2017-06-01 16:15:25', '2017-06-01 16:15:25'),
-(47, 20, 35, 1, 0, 2, 0, 0, 35, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nguyen Thanh Ha', 'bluedragon@yahoo.com', '0943402101', 0, 499, 294, 10597, '05 Tran Huy Lieu', 0, 0, 0, 0, '2017-06-01 16:16:06', '2017-06-01 16:16:06'),
-(48, 20, 130, 1, 0, 3, 0, 0, 130, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nguyen Thanh Ha', 'bluedragon@yahoo.com', '0943402101', 0, 499, 294, 10597, '05 Tran Huy Lieu', 0, 0, 0, 0, '2017-06-01 16:16:52', '2017-06-01 16:16:52'),
-(49, 20, 130, 1, 0, 3, 0, 0, 130, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nguyen Thanh Ha', 'bluedragon@yahoo.com', '0943402101', 0, 499, 294, 10597, '05 Tran Huy Lieu', 0, 0, 0, 0, '2017-06-01 16:17:39', '2017-06-01 16:17:39'),
-(50, 20, 130, 1, 0, 3, 0, 0, 130, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nguyen Thanh Ha', 'bluedragon@yahoo.com', '0943402101', 0, 499, 294, 10597, '05 Tran Huy Lieu', 0, 0, 0, 0, '2017-06-01 16:18:21', '2017-06-01 16:18:21'),
-(51, 1, 35, 1, 0, 2, 0, 0, 35, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-06-02 14:14:35', '2017-06-02 14:14:35'),
-(52, 1, 130, 1, 0, 2, 0, 0, 130, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-06-02 14:17:04', '2017-06-02 14:17:04'),
-(53, 1, 0, 1, 0, 3, 0, 0, 0, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-06-10 15:50:21', '2017-06-10 15:50:21'),
-(54, 19, 221, 2, 0, 3, 0, 0, 221, ' từ 3 đến 5 ngày làm việc ', NULL, 'Thảo', 'nuvana.suong@gmail.com', '0966121388', 0, 485, 294, 10440, 'lô t3 cc masteri ', 0, 0, 0, 0, '2017-06-11 22:18:40', '2017-06-11 22:18:40'),
-(55, 21, 138, 1, 0, 2, 0, 0, 138, ' từ 3 đến 5 ngày làm việc ', NULL, 'nguyen dinh nghe', 'nghe1211@gmail.com', '0908056989', 0, 501, 294, 10622, '370/37/2', 0, 0, 0, 0, '2017-06-11 22:20:53', '2017-06-11 22:20:53'),
-(56, 21, 19, 1, 0, 2, 0, 0, 19, ' từ 3 đến 5 ngày làm việc ', NULL, 'nguyen dinh nghe', 'nghe1211@gmail.com', '0908056989', 0, 501, 294, 10622, '370/37/2', 0, 0, 0, 0, '2017-06-11 22:25:08', '2017-06-11 22:25:08'),
-(57, 14, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 0, 0, '2017-06-12 09:12:20', '2017-06-12 09:12:20'),
-(58, 14, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 0, 0, '2017-06-12 09:12:36', '2017-06-12 09:12:36'),
-(59, 14, 0, 1, 0, 3, 0, 0, 0, ' từ 3 đến 5 ngày làm việc ', NULL, 'Vu Lan anh', 'lananhvt@napas.com.vn', '0904123182', 0, 10, 297, 3672, '83 ltk', 0, 0, 0, 0, '2017-06-12 09:54:13', '2017-06-12 09:54:13'),
-(60, 1, 0, 1, 0, 3, 0, 0, 0, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-06-13 09:18:53', '2017-06-13 09:18:53'),
-(62, 3, 1070, 1, 0, 3, 0, 0, 1070, ' từ 3 đến 5 ngày làm việc ', NULL, 'sang', 'admin@shop.com', '09090912', 0, 133, 288, 1735, '216 Hoang Van Thu Street Ward Tan Binh TPHCM', 0, 0, 0, 0, '2017-06-13 09:46:01', '2017-06-13 09:46:01'),
-(63, 22, 35, 1, 0, 3, 0, 0, 35, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nam', 'nam.pham851989@gmail.com', '943402101', 0, 491, 294, 10512, '52 Tran Hung Dao', 0, 0, 0, 0, '2017-06-13 10:12:50', '2017-06-13 10:12:50'),
-(64, 22, 35, 1, 0, 3, 0, 0, 35, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nam', 'nam.pham851989@gmail.com', '943402101', 0, 491, 294, 10512, '52 Tran Hung Dao', 0, 0, 0, 0, '2017-06-13 10:13:33', '2017-06-13 10:13:33'),
-(65, 3, 35, 1, 0, 3, 0, 0, 35, ' từ 3 đến 5 ngày làm việc ', NULL, 'sang', 'admin@shop.com', '09090912', 0, 133, 288, 1735, '216 Hoang Van Thu Street Ward Tan Binh TPHCM', 0, 0, 0, 0, '2017-06-23 09:57:15', '2017-06-23 09:57:15'),
-(66, 12, 19, 1, 0, 3, 0, 0, 19, ' từ 7 đến 10 ngày làm việc ', NULL, 'Sang Từ', 'vtran1483@gmail.com', '21312321312', 0, 0, 0, 0, '213123dfa', 0, 0, 0, 0, '2017-08-01 21:20:43', '2017-08-01 21:20:43'),
-(67, 12, 19, 1, 0, 3, 0, 0, 19, ' từ 7 đến 10 ngày làm việc ', NULL, 'Sang Từ', 'vtran1483@gmail.com', '21312321312', 0, 0, 0, 0, '213123dfa', 0, 0, 0, 0, '2017-08-01 21:20:58', '2017-08-01 21:20:58'),
-(68, 3, 90, 2, 0, 3, 0, 0, 90, ' từ 3 đến 5 ngày làm việc ', NULL, 'sang', 'admin@shop.com', '09090912', 0, 133, 288, 1735, '216 Hoang Van Thu Street Ward Tan Binh TPHCM', 0, 0, 0, 0, '2017-08-04 08:48:48', '2017-08-04 08:48:48'),
-(69, 24, 125, 2, 4, 2, 0, 0, 125, ' từ 3 đến 5 ngày làm việc ', NULL, 'Tiến', 'thmtien@yahoo.com', '0949098118', 0, 484, 294, 10380, 'adfads', 0, 0, 0, 0, '2017-09-06 10:43:12', '2017-09-06 10:44:06'),
-(70, 3, 45, 1, 0, 3, 0, 0, 45, ' từ 3 đến 5 ngày làm việc ', NULL, 'sang', 'admin@shop.com', '09090912', 0, 133, 288, 1735, '216 Hoang Van Thu Street Ward Tan Binh TPHCM', 0, 0, 0, 0, '2017-09-07 14:38:19', '2017-09-07 14:38:19'),
-(71, 3, 45, 1, 0, 3, 0, 0, 45, ' từ 3 đến 5 ngày làm việc ', NULL, 'sang', 'admin@shop.com', '09090912', 0, 133, 288, 1735, '216 Hoang Van Thu Street Ward Tan Binh TPHCM', 0, 0, 0, 0, '2017-09-07 14:39:17', '2017-09-07 14:39:17'),
-(72, 1, 45, 1, 0, 3, 0, 0, 45, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-09-15 10:53:26', '2017-09-15 10:53:26'),
-(73, 1, 90, 2, 0, 3, 0, 0, 90, ' từ 7 đến 10 ngày làm việc ', NULL, 'Út Hoàng', 'hoangnhonline@gmail.com', '0917492306', 0, 494, 294, 10407, '123 abc def', 0, 0, 0, 0, '2017-09-15 10:55:38', '2017-09-15 10:55:38'),
-(74, 9, 35, 1, 0, 2, 0, 0, 35, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nong Dinh Nguyen', 'nguyendinhnong@gmail.com', '0912771778', 0, 498, 294, 10578, '23 Nguyễn Kiệm ', 0, 0, 0, 0, '2017-09-20 16:30:32', '2017-09-20 16:30:32'),
-(75, 9, 80, 1, 0, 3, 0, 0, 80, ' từ 3 đến 5 ngày làm việc ', NULL, 'Nong Dinh Nguyen', 'nguyendinhnong@gmail.com', '0912771778', 0, 498, 294, 10578, '23 Nguyễn Kiệm ', 0, 0, 0, 0, '2017-09-20 16:44:00', '2017-09-20 16:44:00');
+INSERT INTO `orders` (`id`, `customer_id`, `tong_tien`, `tong_sp`, `status`, `method_id`, `coupon_id`, `giam_gia`, `tien_thanh_toan`, `full_name`, `phi_giao_hang`, `address_id`, `phi_cod`, `da_thanh_toan`, `notes`, `updated_user`, `created_at`, `updated_at`) VALUES
+(1, 1, 231000, 8, 0, 1, 0, 0, 231000, NULL, 0, NULL, 0, 0, NULL, 0, '2017-10-05 06:11:32', '2017-10-05 06:11:32'),
+(2, 1, 231000, 8, 0, 1, 0, 0, 231000, NULL, 0, NULL, 0, 0, NULL, 0, '2017-10-05 06:15:48', '2017-10-05 06:15:48'),
+(3, 1, 231000, 8, 0, 1, 0, 0, 231000, NULL, 0, NULL, 0, 0, NULL, 0, '2017-10-05 06:16:30', '2017-10-05 06:16:30'),
+(4, 1, 231000, 8, 0, 1, 0, 0, 231000, NULL, 0, NULL, 0, 0, NULL, 0, '2017-10-05 06:16:56', '2017-10-05 06:16:56'),
+(5, 1, 25000, 1, 0, 1, 0, 0, 25000, NULL, 0, NULL, 0, 0, NULL, 0, '2017-10-05 06:18:44', '2017-10-05 06:18:44'),
+(6, 1, 40000, 1, 0, 1, 0, 0, 40000, NULL, 0, NULL, 0, 0, NULL, 0, '2017-10-05 06:19:10', '2017-10-05 06:19:10'),
+(7, 1, 40000, 1, 0, 1, 0, 0, 40000, NULL, 0, NULL, 0, 0, NULL, 0, '2017-10-05 06:19:20', '2017-10-05 06:19:20'),
+(8, 1, 40000, 1, 0, 1, 0, 0, 40000, NULL, 0, NULL, 0, 0, NULL, 0, '2017-10-05 06:20:07', '2017-10-05 06:20:07');
 
 -- --------------------------------------------------------
 
@@ -2017,79 +1948,30 @@ CREATE TABLE `order_detail` (
   `sp_id` bigint(20) NOT NULL,
   `so_luong` tinyint(4) NOT NULL,
   `don_gia` int(11) NOT NULL,
-  `don_gia_vnd` int(11) DEFAULT NULL,
-  `tong_tien_vnd` int(11) DEFAULT NULL,
-  `tong_tien` int(11) NOT NULL,
-  `so_dich_vu` tinyint(4) NOT NULL DEFAULT '0',
-  `don_gia_dich_vu` int(11) NOT NULL DEFAULT '0',
-  `tong_dich_vu` int(11) NOT NULL DEFAULT '0'
+  `tong_tien` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `order_detail`
 --
 
-INSERT INTO `order_detail` (`id`, `order_id`, `sp_id`, `so_luong`, `don_gia`, `don_gia_vnd`, `tong_tien_vnd`, `tong_tien`, `so_dich_vu`, `don_gia_dich_vu`, `tong_dich_vu`) VALUES
-(1, 1, 233, 1, 1150, 2620000, 2620000, 1150, 0, 0, 0),
-(3, 3, 163, 1, 0, 250000, 250000, 0, 0, 0, 0),
-(4, 4, 246, 1, 45, 1000000, 1000000, 45, 0, 0, 0),
-(5, 5, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(7, 7, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(8, 8, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(9, 9, 244, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(10, 10, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(11, 11, 245, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(15, 15, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(16, 16, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(18, 18, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(26, 26, 245, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(27, 27, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(29, 29, 164, 2, 0, 199000, 398000, 0, 0, 0, 0),
-(33, 33, 224, 1, 3500, 7976000, 7976000, 3500, 0, 0, 0),
-(38, 36, 254, 1, 167, 3795000, 3795000, 167, 0, 0, 0),
-(39, 37, 256, 1, 202, 4580000, 4580000, 202, 0, 0, 0),
-(40, 38, 254, 1, 167, 3795000, 3795000, 167, 0, 0, 0),
-(41, 39, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(42, 40, 149, 1, 0, 3080000, 3080000, 0, 0, 0, 0),
-(43, 41, 149, 1, 0, 3080000, 3080000, 0, 0, 0, 0),
-(44, 42, 207, 1, 2230, 5082000, 5082000, 2230, 0, 0, 0),
-(45, 43, 256, 1, 202, 4580000, 4580000, 202, 0, 0, 0),
-(46, 43, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(47, 44, 256, 1, 202, 4580000, 4580000, 202, 0, 0, 0),
-(48, 44, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(49, 45, 256, 1, 202, 4580000, 4580000, 202, 0, 0, 0),
-(50, 45, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(51, 46, 244, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(52, 47, 244, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(53, 48, 243, 1, 130, 2950000, 2950000, 130, 0, 0, 0),
-(54, 49, 243, 1, 130, 2950000, 2950000, 130, 0, 0, 0),
-(55, 50, 243, 1, 130, 2950000, 2950000, 130, 0, 0, 0),
-(56, 51, 245, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(57, 52, 243, 1, 130, 2950000, 2950000, 130, 0, 0, 0),
-(58, 53, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(59, 54, 256, 1, 202, 4580000, 4580000, 202, 0, 0, 0),
-(60, 54, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(61, 55, 253, 1, 138, 3150000, 3150000, 138, 0, 0, 0),
-(62, 56, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(63, 57, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(64, 58, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(65, 59, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(66, 60, 164, 1, 0, 199000, 199000, 0, 0, 0, 0),
-(68, 62, 232, 1, 1070, 5193000, 5193000, 1070, 0, 0, 0),
-(69, 63, 245, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(70, 64, 245, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(71, 65, 245, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(72, 66, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(73, 67, 258, 1, 19, 400000, 400000, 19, 0, 0, 0),
-(74, 68, 246, 2, 45, 1000000, 2000000, 90, 0, 0, 0),
-(75, 69, 246, 1, 45, 1000000, 1000000, 45, 0, 0, 0),
-(76, 69, 262, 1, 80, 1750000, 1750000, 80, 0, 0, 0),
-(77, 70, 246, 1, 45, 1000000, 1000000, 45, 0, 0, 0),
-(78, 71, 246, 1, 45, 1000000, 1000000, 45, 0, 0, 0),
-(79, 72, 246, 1, 45, 1000000, 1000000, 45, 0, 0, 0),
-(80, 73, 246, 2, 45, 1000000, 2000000, 90, 0, 0, 0),
-(81, 74, 245, 1, 35, 800000, 800000, 35, 0, 0, 0),
-(82, 75, 262, 1, 80, 1750000, 1750000, 80, 0, 0, 0);
+INSERT INTO `order_detail` (`id`, `order_id`, `sp_id`, `so_luong`, `don_gia`, `tong_tien`) VALUES
+(1, 1, 6, 1, 56000, 56000),
+(2, 1, 13, 2, 25000, 50000),
+(3, 1, 17, 5, 25000, 125000),
+(4, 2, 6, 1, 56000, 56000),
+(5, 2, 13, 2, 25000, 50000),
+(6, 2, 17, 5, 25000, 125000),
+(7, 3, 6, 1, 56000, 56000),
+(8, 3, 13, 2, 25000, 50000),
+(9, 3, 17, 5, 25000, 125000),
+(10, 4, 6, 1, 56000, 56000),
+(11, 4, 13, 2, 25000, 50000),
+(12, 4, 17, 5, 25000, 125000),
+(13, 5, 13, 1, 25000, 25000),
+(14, 6, 1, 1, 40000, 40000),
+(15, 7, 1, 1, 40000, 40000),
+(16, 8, 1, 1, 40000, 40000);
 
 -- --------------------------------------------------------
 
@@ -13956,194 +13838,161 @@ ALTER TABLE `ward`
 --
 ALTER TABLE `album`
   MODIFY `album_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `articles`
 --
 ALTER TABLE `articles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `articles_cate`
 --
 ALTER TABLE `articles_cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
-
 --
 -- AUTO_INCREMENT for table `branch`
 --
 ALTER TABLE `branch`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `cate`
 --
 ALTER TABLE `cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `cate_parent`
 --
 ALTER TABLE `cate_parent`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT for table `city`
 --
 ALTER TABLE `city`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=342;
-
 --
 -- AUTO_INCREMENT for table `contact`
 --
 ALTER TABLE `contact`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `counter_values`
 --
 ALTER TABLE `counter_values`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
-
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 --
 -- AUTO_INCREMENT for table `country`
 --
 ALTER TABLE `country`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=242;
-
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `customer_address`
 --
 ALTER TABLE `customer_address`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `custom_link`
 --
 ALTER TABLE `custom_link`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
 --
 -- AUTO_INCREMENT for table `district`
 --
 ALTER TABLE `district`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=734;
-
 --
 -- AUTO_INCREMENT for table `hot_cate`
 --
 ALTER TABLE `hot_cate`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `info_seo`
 --
 ALTER TABLE `info_seo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `meta_data`
 --
 ALTER TABLE `meta_data`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `newsletter`
 --
 ALTER TABLE `newsletter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
-
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `pages`
 --
 ALTER TABLE `pages`
   MODIFY `id` int(111) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
-
 --
 -- AUTO_INCREMENT for table `product_img`
 --
 ALTER TABLE `product_img`
   MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
-
 --
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
-
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `text`
 --
 ALTER TABLE `text`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
 --
 -- AUTO_INCREMENT for table `ward`
 --
 ALTER TABLE `ward`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11605;
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
