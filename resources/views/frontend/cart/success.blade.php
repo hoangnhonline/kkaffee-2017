@@ -1,57 +1,59 @@
 @extends('frontend.layout')
 @include('frontend.partials.meta')
 @section('content')
-<div class="columns-container">
-    <div class="container" id="columns">
-                    
-        <div class="page-content" style="margin-top:50px">
-          <!-- row -->
-          <div class="shipping-address-page">
-              
-                <div class="row row-style-5">
-                  <div class="col-lg-8">
-                    <div class="panel panel-default success">
-                      <div class="panel-body">
-                        <div class="row row-style-6">
-                          <div class="col-lg-4 col-md-3 visible-lg-block visible-md-block"> 
-                          <img src="{{ URL::asset('assets/images/thanh-cong.png') }}" class="img-responsive" alt="Image" height="178" width="195"></div>
-                          <div class="col-lg-8 col-md-9">
-                            <h3>Cảm ơn bạn đã mua hàng tại DN</h3>
-                            
-                            <!-- BEGIN ORDER INFO -->
-                            <p>Mã số đơn hàng của bạn: </p>
-                            <div class="well well-sm"> {{ $order_id }} </div>                            
-                            <p>Bạn có thể xem lại <a href="{{ route('order-history') }}">đơn hàng của tôi</a></p>
-                            <p> <img src="{{ URL::asset('assets/images/info.png') }}" alt="thong tin" width="30"> Thời gian dự kiến giao hàng : {{ $arrDate[0] }} </p><br>
-                            @if((isset($customer) && $customer->email != ''))
-                            <p> Thông tin chi tiết về đơn hàng đã được gửi đến địa chỉ mail <span>{{ $customer->email }}</span>. Nếu
-                              không tìm thấy vui lòng kiểm tra trong hộp thư <strong>Spam</strong> hoặc <strong>Junk Folder</strong>. </p>
-                              @endif
-                              <br>                                                         
-                          </div>
-                        </div>
+<article class="mar-top40">
+  <div class="container">
+      <div class="breadcrumbs">
+          <ul>
+              <li><a href="/">Trang chủ</a></li>
+              <li>Thông tin đặt hàng</li>
+          </ul>
+      </div>
+  </div>
+  <section id="checkout-page">
+      <div class="container">
+          <div class="title-section">
+              THÔNG TIN ĐẶT HÀNG
+          </div>
+      </div>
+      <div class="container">
+          <div class="box-checkout marg40">
+              <div class="header-box">
+                  <div class="row bs-wizard" style="border-bottom:0;">
+                      <div class="col-xs-4 bs-wizard-step complete">
+                          <div class="progress"><div class="progress-bar"></div></div>
+                          <a href="#" class="bs-wizard-dot">1</a>
+                          <div class="bs-wizard-info text-center">Thời gian & địa chỉ nhận hàng</div>
                       </div>
-                    </div>
-                  </div>
-                  <div class="col-lg-4 visible-lg-block">
-                    <h3 class="news"></h3>
-                    <div class="popover bottom newsletter">
-                      <div class="arrow"></div>
-                      <div class="popover-content">
-                        <h6>Nhập địa chỉ email của bạn</h6>
-                        
-                          <input type="email" id="reg_success" class="form-control" value="" required="required" type="text">
-                          <button type="button" class="btn btn-primary btn-block" id="btnRegTin">Đăng ký nhận tin khuyến mãi</button>
-                        
+
+                      <div class="col-xs-4 bs-wizard-step complete"><!-- complete -->
+                          <div class="progress"><div class="progress-bar"></div></div>
+                          <a href="#" class="bs-wizard-dot">2</a>
+                          <div class="bs-wizard-info text-center">Thông tin đơn hàng</div>
                       </div>
-                    </div>
-                    <div class="facebook-page"> </div>
+
+                      <div class="col-xs-4 bs-wizard-step active"><!-- complete -->
+                          <div class="progress"><div class="progress-bar"></div></div>
+                          <a href="#" class="bs-wizard-dot">3</a>
+                          <div class="bs-wizard-info text-center">Hoàn tất</div>
+                      </div>
                   </div>
-                </div>
-                
-           </div><!-- /.shipping-address-page -->   
-                           
-        </div><!-- /.page-content -->
-    </div>
-</div>
-@endsection
+              </div>
+              <div class="body-box">
+                  <p class="marg30"><b>Cảm ơn quý khách đã mua hàng</b></p>
+                  <p><b>Đơn hàng của bạn đã được đặt thành công! </b>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+              </div>
+          </div>
+      </div>
+  </section>
+</article>
+@stop
+@section('js')
+<script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function(){
+      location.href="{{ route('cate-parent', 'coffee') }}";
+    }, 3000);
+  });
+</script>
+@stop

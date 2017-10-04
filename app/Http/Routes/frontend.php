@@ -55,14 +55,16 @@ Route::group(['namespace' => 'Frontend'], function()
         Route::get('thong-tin-don-hang', ['as' => 'order-info', 'uses' => 'CartController@orderInfo']);
         Route::get('empty-cart', ['as' => 'empty-cart', 'uses' => 'CartController@deleteAll']);
         Route::get('get-branch', ['as' => 'get-branch', 'uses' => 'CartController@getBranch']);
+        Route::get('phuong-thuc-thanh-toan', ['as' => 'payment-method', 'uses' => 'CartController@paymentInfo']);
+        Route::post('store-address', ['as' => 'store-address', 'uses' => 'CartController@storeAddress']);
         Route::get('short-cart', ['as' => 'short-cart', 'uses' => 'CartController@shortCart']);
         Route::any('shipping-step-1', ['as' => 'shipping-step-1', 'uses' => 'CartController@shippingStep1']);
         Route::get('shipping-step-2', ['as' => 'shipping-step-2', 'uses' => 'CartController@shippingStep2']);
         Route::get('shipping-step-3', ['as' => 'shipping-step-3', 'uses' => 'CartController@shippingStep3']);
         Route::post('update-product', ['as' => 'update-product', 'uses' => 'CartController@update']);
         Route::get('add-product', ['as' => 'add-product', 'uses' => 'CartController@addProduct']);
-        Route::get('success', ['as' => 'success', 'uses' => 'CartController@success']);
-        Route::post('save-order', ['as' => 'save-order', 'uses' => 'CartController@saveOrder']);        
+        Route::get('mua-hang-thanh-cong', ['as' => 'success', 'uses' => 'CartController@success']);
+        Route::post('save-order', ['as' => 'payment', 'uses' => 'CartController@saveOrder']);        
     });
     Route::group(['prefix' => 'tai-khoan'], function () {
         Route::get('don-hang-cua-toi', ['as' => 'order-history', 'uses' => 'OrderController@history']);

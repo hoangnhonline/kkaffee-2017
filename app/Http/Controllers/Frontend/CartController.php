@@ -13,6 +13,7 @@ use App\Models\Orders;
 use App\Models\OrderDetail;
 use App\Models\Customer;
 use App\Models\Branch;
+use App\Models\CustomerAddress;
 use Helper, File, Session, Auth;
 use Mail;
 
@@ -59,7 +60,7 @@ class CartController extends Controller
         if(!Session::has('products')) {
             return redirect()->route('home');
         }
-
+        //dd(Session::get('address_info'));
         $getlistProduct = Session::get('products');
         
         $listProductId = array_keys($getlistProduct);
@@ -78,6 +79,64 @@ class CartController extends Controller
         $addressList = $customer->customerAddress;
 
         return view('frontend.cart.address-info', compact('arrProductInfo', 'getlistProduct', 'seo', 'cityList', 'customer', 'addressList'));
+    }
+
+    public function storeAddress(Request $request){
+        $dataArr = $request->all();
+        //dd($dataArr);
+        Session::put('address_info', $dataArr);
+        if(!isset($dataArr['address_id'])){
+            $rs = CustomerAddress::create(
+                [
+                    'customer_id' => Session::get('userId'),
+                    'city_id' => $dataArr['city_id'],
+                    'district_id' => $dataArr['district_id'],
+                    'ward_id' => $dataArr['ward_id'],
+                    'email' => $dataArr['email'],
+                    'phone' => $dataArr['phone'],
+                    'address' => $dataArr['address'],
+                    'fullname' => $dataArr['fullname'],
+                    'is_primary' => 1                
+                ]
+            );
+            $address_id = $rs->id;
+        }
+        if(isset($dataArr['choose_other'])){
+            $rs = CustomerAddress::create(
+                [
+                    'customer_id' => Session::get('userId'),
+                    'city_id' => $dataArr['other_city_id'],
+                    'district_id' => $dataArr['other_district_id'],
+                    'ward_id' => $dataArr['other_ward_id'],
+                    'email' => $dataArr['other_email'],
+                    'phone' => $dataArr['other_phone'],
+                    'fullname' => $dataArr['other_fullname'],
+                    'address' => $dataArr['other_address'],
+                    'is_primary' => 0                
+                ]
+            );
+            $address_id = $rs->id;
+        }else{
+            $address_id = $dataArr['address_id'];
+        }
+       
+        Session::put('address_id', $address_id);
+
+        return redirect()->route('payment-method');
+    }
+    public function paymentInfo(Request $request){     
+        
+        $addressInfo = Session::get('address_info');
+        $detailPrimary = CustomerAddress::find($addressInfo['address_id']);
+        $getlistProduct = Session::get('products');
+        
+        $listProductId = array_keys($getlistProduct);
+    
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)->get();        
+        
+        $seo['title'] = $seo['description'] = $seo['keywords'] = "Phương thức thanh toán";
+
+        return view('frontend.cart.payment-method', compact('getlistProduct', 'listProductId','arrProductInfo', 'seo', 'detailPrimary'));
     }
     public function getBranch(Request $request){
         $district_id = $request->district_id;        
@@ -295,44 +354,29 @@ class CartController extends Controller
         return view('frontend.cart.shipping-step-3', compact('arrProductInfo', 'getlistProduct', 'customer', 'phi_giao_hang', 'seo', 'is_vanglai', 'phi_cod', 'totalAmount'));
     }
 
-    public function order(Request $request)
+    public function saveOrder(Request $request)
     {
         
         $getlistProduct = Session::get('products');
         $listProductId = array_keys($getlistProduct);
         $customer_id = Session::get('userId');
         $customer = Customer::find($customer_id);
-        $is_vanglai = Session::get('is_vanglai') ? Session::get('is_vanglai') : 0;
-        if($is_vanglai == 0){
-            if(empty($listProductId) || !Session::get('login') || Session::has('new-register')) {
-                return redirect()->route('home');
-            }
-        }
-
-        $vangLaiArr = Session::get('vanglai');
+        
         $arrProductInfo = Product::whereIn('product.id', $listProductId)
-                            ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
-                            ->select('sp_hinh.image_url', 'product.*')->get();
+                            ->get();
         $order['tong_tien'] = 0;
         $order['tong_sp'] = array_sum($getlistProduct);
         $order['giam_gia'] = 0;
         $order['tien_thanh_toan'] = 0;
-        $order['customer_id'] = Session::get('userId') ?  Session::get('userId') : 0;
+        $order['customer_id'] = Session::get('userId');
         $order['status'] = 0;
         $order['coupon_id'] = 0;
-        $order['district_id'] = isset($vangLaiArr['district_id']) ? $vangLaiArr['district_id'] : $customer->district_id;
-        $order['city_id']  = isset($vangLaiArr['city_id']) ? $vangLaiArr['city_id'] : $customer->city_id;
-        $order['ward_id']  = isset($vangLaiArr['ward_id']) ? $vangLaiArr['ward_id'] : $customer->ward_id;
-        $order['address']  = isset($vangLaiArr['address']) ? $vangLaiArr['address'] : $customer->address;        
-        $order['full_name']  = isset($vangLaiArr['full_name']) ? $vangLaiArr['full_name'] : $customer->full_name;
-        $order['email']  = isset($vangLaiArr['email']) ? $vangLaiArr['email'] : $customer->email;
-        $order['phone']  = isset($vangLaiArr['phone']) ? $vangLaiArr['phone'] : $customer->phone;
-        $order['address_type']  = isset($vangLaiArr['address_type']) ? $vangLaiArr['address_type'] : $customer->address_type;
-        $order['method_id'] = isset($vangLaiArr['payment_method']) ? $vangLaiArr['payment_method'] : $request->payment_method;
+        $order['method_id'] = $request->method_id;
+        $order['address_id'] = Session::get('address_id');
 
         // check if ho chi minh free else 150k
-        $order['phi_giao_hang'] = (int) $request->phi_giao_hang;
-        $order['phi_cod'] = (int) $request->phi_cod;
+        $order['phi_giao_hang'] = 0;
+        $order['phi_cod'] = 0;
         
         $order['service_fee'] = 0;
         foreach ($arrProductInfo as $product) {
@@ -341,12 +385,7 @@ class CartController extends Controller
         }
 
         $order['tong_tien'] = $order['tien_thanh_toan'] = $order['tong_tien'] + $order['phi_giao_hang'] + $order['service_fee'] + $order['phi_cod'];
-        $city_id = isset($vangLaiArr['city_id']) ? $vangLaiArr['city_id'] :  $customer->city_id;
-        $arrDate = Helper::calDayDelivery( $city_id );
-        
-        $order['ngay_giao_du_kien'] = implode(" - ", $arrDate);
-
-
+       
         $getOrder = Orders::create($order);
 
         $order_id = $getOrder->id;
@@ -360,81 +399,58 @@ class CartController extends Controller
             $orderDetail['sp_id']        = $product->id;
             $orderDetail['so_luong']     = $getlistProduct[$product->id];
             $orderDetail['don_gia']      = $product->price;
-            $orderDetail['tong_tien']    = $getlistProduct[$product->id]*$product->price;            
-            $orderDetail['so_dich_vu']    =  0;            
-            $orderDetail['don_gia_dich_vu']    = 0;            
-            $orderDetail['tong_dich_vu']    = 0;
+            $orderDetail['tong_tien']    = $getlistProduct[$product->id]*$product->price;                       
             OrderDetail::create($orderDetail); 
         }
 
         $customer_id = Session::get('userId');
         $customer = Customer::find($customer_id);
+        
+        $addressInfo = CustomerAddress::find($customer_id);
 
-        $email = isset($vangLaiArr['email']) ? $vangLaiArr['email'] :  $customer->email;
+        $email = $addressInfo->email ? $address_info->email :  "";
         if($email != ''){
-            $emailArr = array_merge([$email], ['tundq.ipl@gmail.com', 'tundq@icare.center', 'hiepvv.ipl@gmail.com', 'lamhuong77@gmail.com', 'chamsoc@houseland.vn', 'hoangnhonline@gmail.com']);
+            $emailArr = array_merge([$email], ['hoangnhonline@gmail.com']);
         }else{
-            $emailArr = ['tundq.ipl@gmail.com', 'tundq@icare.center', 'hiepvv.ipl@gmail.com', 'lamhuong77@gmail.com', 'chamsoc@houseland.vn', 'hoangnhonline@gmail.com'];
+            $emailArr = ['hoangnhonline@gmail.com'];
         }
         // send email
         $order_id =str_pad($order_id, 6, "0", STR_PAD_LEFT);
-        $emailArr = [];
+        
         if(!empty($emailArr)){
-            Mail::send('frontend.email.cart',
+            Mail::send('frontend.cart.email',
                 [
                     'customer'          => $customer,
-                    'order'             => $getOrder,
+                    'orderDetail'             => $getOrder,
+                    'addressInfo' => $addressInfo,
                     'arrProductInfo'    => $arrProductInfo,
                     'getlistProduct'    => $getlistProduct,
-                    'arrDate' => $arrDate,
-                    'phi_giao_hang' => $order['phi_giao_hang'],
                     'method_id' => $order['method_id'],
-                    'order_id' => $order_id,
-                    'is_vanglai' => $is_vanglai
+                    'order_id' => $order_id                    
                 ],
                 function($message) use ($emailArr, $order_id) {
                     $message->subject('Xác nhận đơn hàng hàng #'.$order_id);
                     $message->to($emailArr);
-                    $message->from('houseland.vn@gmail.com', 'NhaDat');
-                    $message->sender('houseland.vn@gmail.com', 'NhaDat');
+                    $message->from('kkaffee.vn@gmail.com', 'KKAFFEE');
+                    $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
             });
         }
         
-        return 'success';
+        return redirect()->route('success');
 
     }
 
     public function success(Request $request){
-
-        $getlistProduct = Session::get('products');
-        $is_vanglai = Session::get('is_vanglai') ? Session::get('is_vanglai') : 0;
-        $vangLaiArr = Session::get('vanglai');
-        if(empty($getlistProduct)) {
-            return redirect()->route('home');
-        }
-        $customer_id = Session::get('userId');
-
-        $customer = Customer::find($customer_id);
-        $vangLaiArr = Session::get('vanglai');
-        $city_id = $is_vanglai == 1 && isset($vangLaiArr['city_id']) ? $vangLaiArr['city_id'] : $customer->city_id;
-        $arrDate = Helper::calDayDelivery( $city_id );
-
-        $order_id = Session::get('order_id');
-
-        $order_id =str_pad($order_id, 6, "0", STR_PAD_LEFT);
+       
         Session::put('products', []);
         Session::put('order_id', '');
-        Session::forget('is_vanglai');
-        Session::forget('vanglai');
-        //Session::forget('service_fee');
-        //Session::forget('totalServiceFee');
-        Session::forget('event_id');
-        Session::forget('order_id');
+        Session::forget('address_id');
+        Session::forget('address_info');
 
 
         $seo = Helper::seo();
 
-        return view('frontend.cart.success', compact('order_id', 'customer', 'arrDate', 'seo', 'is_vanglai', 'vangLaiArr'));
+        return view('frontend.cart.success', compact('seo'));
     }
 
     public function deleteAll(){

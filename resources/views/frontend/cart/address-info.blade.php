@@ -42,7 +42,7 @@
                   </div>
               </div>
               <div class="body-box">
-                <form id="dataForm">
+                <form id="dataForm" action="{{ route('store-address') }}" method="POST">
                 {{ csrf_field() }}
                   <p><i class="fa fa-circle cl_ea0000" aria-hidden="true"></i> Chọn chi nhánh</p>
                   <div class="row div-parent" id="branch-info" >
@@ -71,13 +71,13 @@
                   @if($addressList->count() == 0)
                   <div class="row">
                       <div class="form-group col-md-4">
-                        <input type="text" class="form-control no-round req" id="fullname" name="fullname" placeholder="Họ tên" value="{{ old('fullname') }}">
+                        <input type="text" class="form-control no-round req" id="fullname" name="fullname" placeholder="Họ tên" value="{{ old('fullname', $customer->full_name) }}">
                       </div>
                       <div class="form-group col-md-4">
                         <input type="text" class="form-control no-round req" id="phone" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
                       </div>
                       <div class="form-group col-md-4">
-                        <input type="email" class="form-control no-round" id="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                        <input type="email" class="form-control no-round" @if($customer->email) readonly="readonly" @endif id="email" name="email" placeholder="Email" value="{{ old('email', $customer->email) }}">
                       </div>
                   </div>
                   
@@ -92,7 +92,7 @@
                                   @if(old('branch_city_id') == $city->id)
                                   selected
                                   @endif
-                                  >{{$city->name}}</option>
+                                  >{{ $city->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -115,13 +115,13 @@
                   <div class="form-group" id="addressList">
                       @foreach($addressList as $address)
                       <div>
-                          <label class="checkbox-inline"><input class="reqAddressId req" type="radio" name="address_id" value="{{ $address->id }}"> <b>{!! $address->fullname !!}</b>,  {!! $address->address !!}, {!! $address->ward->name !!}, {!! $address->district->name !!}, {!! $address->city->name !!}</label>
+                          <label class="checkbox-inline"><input @if($address->is_primary == 1) checked @endif class="reqAddressId req" type="radio" name="address_id" value="{{ $address->id }}"> <b>{!! $address->fullname !!}</b>,  {!! $address->address !!}, {!! $address->ward->name !!}, {!! $address->district->name !!}, {!! $address->city->name !!}</label>
                       </div>
                       @endforeach                    
                   </div>
                   
                   <div class="form-group">
-                      <label class="checkbox-inline"><input class="action-other-address" type="checkbox" value=""><b>Giao đến địa chỉ khác</b></label>
+                      <label class="checkbox-inline"><input class="action-other-address" name="choose_other" type="checkbox" value="1"><b>Giao đến địa chỉ khác</b></label>
                   </div>
                   <div class="other-address">
                       <div class="row">
@@ -168,7 +168,7 @@
                   </div>
                   <p><i class="fa fa-circle text-primary" aria-hidden="true"></i> Ghi chú cho đơn hàng</p>
                   <div class="form-group">
-                      <textarea class="form-control no-round" rows="7" placeholder="Nhập thông tin ghi chú của bạn"></textarea>
+                      <textarea class="form-control no-round" name="notes" id="notes" rows="7" placeholder="Nhập thông tin ghi chú của bạn"></textarea>
                   </div>
                   <div class="form-group clearfix checkout-action">
                       <div class="pull-right"><a href="javascript:;" id="btnSave" class="btn btn-yellow btn-flat">Tiếp theo</a></div>
@@ -189,11 +189,17 @@
 @section('js')
    <script type="text/javascript">
    $(document).ready(function(){   
+    $('#dataForm .req').blur(function(){    
+        if($(this).val() != ''){
+          $(this).removeClass('error');
+        }else{
+          $(this).addClass('error');
+        }
+      });
       $('#btnSave').click(function(){
         var errReq = 0;
         $('#dataForm .req').each(function(){
-          var obj = $(this);
-          console.log(obj.val());
+          var obj = $(this);      
           if(obj.val() == '' || obj.val() == '0' || obj.val() == 'Tỉnh/TP' || obj.val() == 'Quận/Huyện' || obj.val() == 'Phường/Xã'){
             errReq++;
             obj.addClass('error');
@@ -207,7 +213,7 @@
           }, 500);
           return false;
         }        
-
+        $('#dataForm').submit();
       });
       $('#branch_city_id').val(294);   
        $.ajax({

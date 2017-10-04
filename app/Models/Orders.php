@@ -5,14 +5,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Orders extends Model  {
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'orders';
+  /**
+   * The database table used by the model.
+   *
+   * @var string
+   */
+  protected $table = 'orders';
 
-	 /**
+   /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
@@ -26,28 +26,16 @@ class Orders extends Model  {
     protected $fillable = [
       'id',
       'customer_id',
-      'tong_tien',
-      'tong_tien_vnd',
+      'tong_tien',      
       'tong_sp',
       'status',
       'method_id',
       'coupon_id',
       'giam_gia',
       'tien_thanh_toan',
-      'phi_giao_hang',
-      'country_id',
-      'district_id',
-      'city_id',
-      'ward_id',
-      'address',
-      'address_type',
-      'service_fee',
-      'ngay_giao_du_kien',
-      'ngay_giao_thuc',
+      'phi_giao_hang',      
       'phi_cod',
-      'full_name',
-      'email',
-      'phone',
+      'full_name',      
       'da_thanh_toan'
     ];
 
