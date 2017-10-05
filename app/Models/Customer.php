@@ -27,21 +27,12 @@ class Customer extends Model  {
       'id',
       'full_name',
       'email',
-      'address',
-      'phone',
-      'hand_phone',
-      'company',
-      'tax_no',
       'username',
       'password',
       'type',
       'last_login',
-      'status',
-      'city_id',
-      'district_id',
-      'ward_id',
+      'status',     
       'facebook_id',
-      'address_type',
       'image_url',
       'key_reset'
     ];
@@ -58,5 +49,9 @@ class Customer extends Model  {
     public function xa()
     {
         return $this->hasOne('App\Models\Ward', 'id', 'ward_id');
+    }
+    public function address()
+    {
+        return $this->hasOne('App\Models\CustomerAddress', 'id', 'customer_id');
     }
 }

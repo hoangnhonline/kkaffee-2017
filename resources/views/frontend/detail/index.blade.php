@@ -1,8 +1,7 @@
 @extends('frontend.layout')
-
 @include('frontend.partials.meta')
 @section('content')
-<article class="mar-top40">
+<article class="mar-top20">
 	<div class="container">
 		<div class="breadcrumbs">
 	        <ul>
@@ -67,42 +66,17 @@
             <div class="tabs-custom">
                 <div id="myScrollspy" class="col-tab-menu hidden-xs">
                     <ul class="tab-menu affix-top">
-                        <li><a href="#all">{!! $detail->cateParent->name !!}</a></li>
+                        <li><a href="{{ route('cate-parent', $detail->cateParent->name ) }}">{!! $detail->cateParent->name !!}</a></li>
                         <li><a href="#tab01" data-target-id="">Sản phẩm hot</a></li>
                         @foreach($cateList as $cate)
-                        <li><a href="#tab02" data-target-id="">{!! $cate->name !!}</a></li>
+                        <li><a href="#{{ $cate->slug }}" data-target-id="">{!! $cate->name !!}</a></li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="col-tab-content admin-content">
                     <p class="blockquote-promotion">
                         <span>Giảm giá 30%</span> cho tất cả các sản phẩm dưới đây
-                    </p>
-                    <div class="list-box-items" id="all">
-                        <div class="title-admin-content">SHOP KKAFFEE</div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp3.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp4.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </p>                    
                     <div class="list-box-items" id="tab01">
                         <div class="title-admin-content">SẢN PHẨM HOT</div>
                         <div class="box-item">
@@ -128,131 +102,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="list-box-items" id="tab02">
-                        <div class="title-admin-content">VIETNAMESE COFFEE</div>
+                    @if($cateList)
+                    @foreach($cateList as $cate)
+                    @if(isset($productArr[$cate->id]) && count($productArr[$cate->id]) > 0 )
+                    <div class="list-box-items" id="{{ $cate->slug }}">
+                        
+                        <div class="title-admin-content">{!! $cate->name !!}</div>
+                        @foreach($productArr[$cate->id] as $product)
                         <div class="box-item">
-                            <div class="image"><img src="img/sp3.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
+                            <div class="image">
+                                <a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">
+                                <img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->name !!}"/></a>
+                            </div>
+                            <p class="title-box-item">
+                                <a class="title-box-item" href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">{!! $product->name !!}</a>
+                            </p>
                             <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                <a href="javascript:;" class="btn-order" data-id="{{ $product->id }}"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
                                 <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
+                                    @if($product->is_sale == 1 && $product->price_sale > 0)
+                                        {{ number_format($product->price_sale) }}đ
+                                    @else
+                                        {{ number_format($product->price) }}đ
+                                    @endif   
+                                    <!--<small>Giảm 10%</small>-->
                                 </div>
                             </div>
                         </div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp4.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
-                    <div class="list-box-items" id="tab03">
-                        <div class="title-admin-content">Coffee Frappy</div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp3.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp4.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-box-items" id="tab04">
-                        <div class="title-admin-content">Tea</div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp3.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp4.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-box-items" id="tab05">
-                        <div class="title-admin-content">Smoothies</div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp3.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp4.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="list-box-items" id="tab06">
-                        <div class="title-admin-content">Matcha</div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp3.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="box-item">
-                            <div class="image"><img src="img/sp4.png" alt=""></div>
-                            <p class="title-box-item">Tên sản phẩm tiêu biểu số 01 trong danh mục được đăng trên website</p>
-                            <div class="box-price">
-                                <a href="#"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
-                                <div class="price">
-                                    325.000đ
-                                    <small>Giảm 10%</small>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endif
+                    @endforeach
+                    @endif
                 </div>
             </div><!--End tab custom-->
             <div class="cart-info cart-side">
@@ -300,12 +181,12 @@
                             <span class="pull-left cl_666">Phí phục vụ<br><small>(10% trên tổng đơn hàng)</small></span>
                             <span class="pull-right cl_333">{{ number_format($total*10/100) }}đ</span>
                         </li>
-                        <li>
+                        <li class="bg_fffdee">
                             <span class="pull-left cl_666">Tạm tính<br><small>(Giá chưa bao gồm COD)</small></span>
-                            <span class="pull-right cl_ea0000">154.000đ</span>
+                            <span class="pull-right cl_ea0000">{!! number_format($total + $total*10/100) !!}đ</span>
                             <div class="clearfix"></div>
-                            <div class="action-cart">
-                                <a href="#" class="btn btn-yellow">Đặt hàng</a>
+                            <div class="action-cart ">
+                                <a href="{{ route('address-info') }}" class="btn btn-yellow">Đặt hàng</a>
                                 <a href="{{ route('empty-cart') }}" onclick="return confirm('Quý khách có chắc chắn bỏ hết hàng ra khỏi giỏ?'); " class="btn btn-defaultyellow">Xoá</a>
                             </div>
                         </li>
@@ -359,7 +240,7 @@
             var obj = $(this);
             var quantityObj = obj.parents('.item-cart').find('.qty-val');            
             quantityObj.val(parseInt(quantityObj.val()) + 1);
-            updateQuantity(obj.data('id'), parseInt(quantityObj.val()) + 1, 'normal');
+            updateQuantity(obj.data('id'), parseInt(quantityObj.val()), 'normal');
         });
         $(document).on('click', '.qty-down', function(){
             var obj = $(this);
@@ -372,7 +253,38 @@
             }
             updateQuantity(obj.data('id'), (currQuantity - 1), 'normal');
         });
-        
+        jQuery(document).ready(function () {
+                var voffset = jQuery("#myScrollspy").offset();
+                var vtop = voffset.top;
+
+                jQuery("#myScrollspy ul").affix({
+                    offset: {
+                        top: vtop
+                    }
+                });
+                // Add smooth scrolling on all links inside the navbar
+                $("#myScrollspy a").on('click', function (event) {
+                    // Make sure this.hash has a value before overriding default behavior
+                    if (this.hash !== "") {
+                        // Prevent default anchor click behavior
+                        event.preventDefault();
+
+                        // Store hash
+                        var hash = this.hash;
+
+                        // Using jQuery's animate() method to add smooth page scroll
+                        // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+                        $('html, body').animate({
+                            scrollTop: $(hash).offset().top
+                        }, 300, function () {
+
+                            // Add hash (#) to URL when done scrolling (default click behavior)
+                            window.location.hash = hash;
+                        });
+                    }  // End if
+                });
+            });
+
 	});	
 function addToCart(product_id) {
   $.ajax({
@@ -403,6 +315,7 @@ function updateQuantity(id, quantity, type) {
             quantity: quantity
         },
         success: function(data) {
+            location.reload();
             /*
             $.ajax({
                 url: $('#route-short-cart').val(),

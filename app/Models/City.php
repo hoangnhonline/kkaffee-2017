@@ -3,14 +3,14 @@
 use Illuminate\Database\Eloquent\Model;
 
 
-class Ward extends Model  {
+class City extends Model  {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'ward';	
+	protected $table = 'city';	
 
 	/**
      * Indicates if the model should be timestamped.
@@ -23,5 +23,9 @@ class Ward extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['name', 'alias', 'city_id', 'district_id', 'display_order'];
+    protected $fillable = ['name', 'alias', 'display_order'];
+
+    public function district(){
+        return $this->hasMany('App\Models\District', 'city_id');
+    }
 }

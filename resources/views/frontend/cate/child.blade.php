@@ -40,7 +40,7 @@
 				                        	{{ number_format($product->price_sale) }}đ
 				                        @else
 				                        	{{ number_format($product->price) }}đ
-				                        @endifđ
+				                        @endif
 				                    </span>
 	                            </div>
 	                        </div>

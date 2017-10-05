@@ -61,8 +61,21 @@ and open the template in the editor.
                         </div>
                         <div class="pull-right logined">
                             <div class="block-login">
-                                <a href="#" class="btn btn-yellow">Đăng ký</a>
-                                <a href="#" class="btn btn-grey">Đăng nhập</a>
+                                <div class="cart-header">
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                    <a href="#">
+                                        Giỏ hàng<br/>
+                                        <span><b>0</b> sản phẩm</span>
+                                    </a>
+                                </div>
+                                <div class="pull-right dropdown">
+                                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                                    <div class="dropdown-menu-header">
+                                        <a id="btn_login" href="#" class="btn btn-success text-center"><i class="fa fa-sign-in" aria-hidden="true"></i> Đăng nhập</a>
+                                        <a href="#" class="btn btn-primary text-center"><i class="fa fa-facebook-square" aria-hidden="true"></i> Đăng nhập bằng facebook</a>
+                                        <a id="btn_register" href="#" class="btn btn-danger text-center"><i class="fa fa-user" aria-hidden="true"></i> Đăng ký</a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="block-logined">
                                 <div class="cart-header">
@@ -83,6 +96,7 @@ and open the template in the editor.
                                         <li><a href="#">Quản lý đơn hàng</a></li>
                                         <li><a href="#">Sổ địa chỉ</a></li>
                                         <li><a href="#">Điểm tích luỹ</a></li>
+                                        <li><a id="btn_logout" href="#">Đăng xuất</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -199,10 +213,146 @@ and open the template in the editor.
             </div>
             <a href="javascript:void(0)" class="gotop"><img src="img/back-to-top.png" alt=""/></a>
         </div>
+        <!-- Modal -->
+        <div class="modal fade" id="login-form" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Đăng nhập</b></h4>
+                        <div>Bạn chưa có tài khoản? <a href="#">Đăng ký ngay</a></div>
+                    </div>
+                    <div class="modal-body">
+                        <form accept-charset="UTF-8" role="form">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input class="form-control" placeholder="Nhập email" id="email" name="email" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input class="form-control" placeholder="Nhập password" id="password" name="password" type="password" value="">
+                                </div>
+                                <p>Quên mật khẩu? Nhấn vào <a href="#">đây</a></p>
+                                <input class="btn btn-success btn-block" type="submit" value="Đăng nhập">
+                                <a href="#" class="btn btn-primary btn-block text-center"><i class="fa fa-facebook-square" aria-hidden="true"></i> Đăng nhập bằng facebook</a>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="register-form" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><b>Đăng ký</b></h4>
+                        <div>Bạn đã có tài khoản? <a href="#">Đăng nhập</a></div>
+                    </div>
+                    <div class="modal-body">
+                        <form accept-charset="UTF-8" role="form">
+                            <div class="clearfix">
+                                <div class="col-md-6">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="regisemail">Email</label>
+                                            <input class="form-control" placeholder="Nhập email" id="regisemail" name="regisemail" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="regispassword">Password</label>
+                                            <input class="form-control" placeholder="Nhập password" id="regispassword" name="regispassword" type="password" value="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="regisname">Họ tên</label>
+                                            <input class="form-control" placeholder="Nhập họ tên" id="regisname" name="regisname" type="text">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="regisphone">Số điện thoại</label>
+                                            <input class="form-control" placeholder="Nhập số điện thoại" id="regisphone" name="regisphone" type="password" value="">
+                                        </div>
+                                        <div class="checkbox">
+                                            <label><input type="checkbox">Nhận các thông tin ưu đãi của chúng tôi qua email</label>
+                                        </div>
+                                        <input id="action_register" class="btn btn-success btn-block" type="submit" value="Đăng ký">
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-6">
+                                    <p>Đăng nhập vào web bằng facebook</p>
+                                    <a href="#" class="btn btn-primary btn-block text-center"><i class="fa fa-facebook-square" aria-hidden="true"></i> Đăng nhập bằng facebook</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="success-form" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h3 class="text-primary">Hoàn thành đăng ký</h3>
+                        <p>Chúc mừng bạn đăng ký tài khoản thành công! chào mừng bạn đến với website chúng tôi</p>
+                        <a class="btn btn-success btn-block">Vào trang web</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="logout-form" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p><b>Đăng xuất</b></p>
+                        <p>Bạn có muốn đăng xuất</p>
+                        <div class="clearfix">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <a class="btn btn-success btn-block" href="#">Đăng xuât</a>
+                                </div>
+                                <div class="col-xs-6">
+                                    <a class="btn btn-danger btn-block" href="#">Ở lại</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="lib/owlcarousel/dist/owl.carousel.min.js"></script>
         <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery("#btn_login").click(function () {
+                    jQuery("#login-form").modal();
+                });
+                jQuery("#btn_logout").click(function () {
+                    jQuery("#logout-form").modal();
+                });
+                jQuery("#btn_register").click(function () {
+                    jQuery("#register-form").modal();
+                });
+                jQuery("#action_register").click(function () {
+                    $("#register-form").modal("toggle");
+                    $("#register-form").on("hidden.bs.modal", function () {
+                        jQuery("#success-form").modal();
+                    });
+                });
+            });
             jQuery("a.nav-button-mobi").click(function () {
                 if (jQuery("body").hasClass("active-menu"))
                 {
@@ -235,13 +385,13 @@ and open the template in the editor.
         </script>
         <div id="fb-root"></div>
         <script>(function (d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id))
-                            return;
-                        js = d.createElement(s);
-                        js.id = id;
-                        js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));</script>
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.10";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
     </body>
 </html>

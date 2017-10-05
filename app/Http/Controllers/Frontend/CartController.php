@@ -5,20 +5,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\EstateType;
 use App\Models\Cate;
-use App\Models\SanPham;
-use App\Models\SpThuocTinh;
-use App\Models\SpHinh;
-use App\Models\ThuocTinh;
+use App\Models\Product;
 use App\Models\City;
-use App\Models\LoaiThuocTinh;
 use App\Models\Banner;
 use App\Models\Orders;
 use App\Models\OrderDetail;
 use App\Models\Customer;
-use App\Models\Events;
-use App\Models\ProductEvent;
+use App\Models\Branch;
 use Helper, File, Session, Auth;
 use Mail;
 
@@ -52,14 +46,45 @@ class CartController extends Controller
         }
 
         $getlistProduct = Session::get('products');
+        
         $listProductId = array_keys($getlistProduct);
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
-                            ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
-                            ->select('sp_hinh.image_url', 'product.*')->get();
+    
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)->get();
+        
+        
         $seo['title'] = $seo['description'] = $seo['keywords'] = "Giỏ hàng";
         return view('frontend.cart.index', compact('arrProductInfo', 'getlistProduct', 'seo'));
     }
 
+    public function addressInfo(Request $request){
+        if(!Session::has('products')) {
+            return redirect()->route('home');
+        }
+
+        $getlistProduct = Session::get('products');
+        
+        $listProductId = array_keys($getlistProduct);
+    
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)->get();
+        
+        
+        $seo['title'] = $seo['description'] = $seo['keywords'] = "Thời gian & địa chỉ nhận hàng";
+        
+
+        $cityList = City::orderBy('display_order')->get();
+
+        $userId = Session::get('userId');
+        $customer = Customer::find($userId);
+
+        return view('frontend.cart.address-info', compact('arrProductInfo', 'getlistProduct', 'seo', 'cityList', 'customer'));
+    }
+    public function getBranch(Request $request){
+        $district_id = $request->district_id;        
+
+        $branchList = Branch::where('district_id', $district_id)->orderBy('display_order')->get();
+
+        return view('frontend.cart.branch', compact('branchList'));
+    }
     public function update(Request $request)
     {
         $listProduct = Session::get('products');
@@ -137,7 +162,7 @@ class CartController extends Controller
             }
         }
         */
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
 
@@ -157,7 +182,7 @@ class CartController extends Controller
         }
 
         $listProductId = $getlistProduct ? array_keys($getlistProduct) : [];
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
         $listCity = City::orderBy('display_order')->get();
@@ -239,7 +264,7 @@ class CartController extends Controller
 
         $listProductId = array_keys($getlistProduct);
 
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
         $totalCanNang = 0;
@@ -282,11 +307,9 @@ class CartController extends Controller
                 return redirect()->route('home');
             }
         }
-        
-        
 
         $vangLaiArr = Session::get('vanglai');
-        $arrProductInfo = SanPham::whereIn('product.id', $listProductId)
+        $arrProductInfo = Product::whereIn('product.id', $listProductId)
                             ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
                             ->select('sp_hinh.image_url', 'product.*')->get();
         $order['tong_tien'] = 0;
@@ -307,10 +330,9 @@ class CartController extends Controller
         $order['method_id'] = isset($vangLaiArr['payment_method']) ? $vangLaiArr['payment_method'] : $request->payment_method;
 
         // check if ho chi minh free else 150k
-
         $order['phi_giao_hang'] = (int) $request->phi_giao_hang;
         $order['phi_cod'] = (int) $request->phi_cod;
-        //$order['service_fee'] = Session::get('totalServiceFee') ? Session::get('totalServiceFee') : 0;
+        
         $order['service_fee'] = 0;
         foreach ($arrProductInfo as $product) {
             $price = $product->is_sale ? $product->price_sale : $product->price;        
@@ -331,44 +353,17 @@ class CartController extends Controller
         Session::put('order_id', $order_id);
 
         $orderDetail['order_id'] = $order_id;
-        //$service_fee = Session::get('service_fee');
        
         foreach ($arrProductInfo as $product) {            
             # code...
             $orderDetail['sp_id']        = $product->id;
             $orderDetail['so_luong']     = $getlistProduct[$product->id];
             $orderDetail['don_gia']      = $product->price;
-            $orderDetail['tong_tien']    = $getlistProduct[$product->id]*$product->price;
-            //$orderDetail['so_dich_vu']    = isset($service_fee[$product->id]) ? $service_fee[$product->id]['so_luong'] : 0;
-            $orderDetail['so_dich_vu']    =  0;
-            //$orderDetail['don_gia_dich_vu']    = isset($service_fee[$product->id]) ? $service_fee[$product->id]['don_gia_dich_vu'] : 0;
-            $orderDetail['don_gia_dich_vu']    = 0;
-            //$orderDetail['tong_dich_vu']    = isset($service_fee[$product->id]) ? $service_fee[$product->id]['fee'] : 0;
+            $orderDetail['tong_tien']    = $getlistProduct[$product->id]*$product->price;            
+            $orderDetail['so_dich_vu']    =  0;            
+            $orderDetail['don_gia_dich_vu']    = 0;            
             $orderDetail['tong_dich_vu']    = 0;
             OrderDetail::create($orderDetail); 
-
-            //  check so luong
-            if($product->is_event == 1){ // san pham event
-                $event_id = Session::get('event_id') ? Session::get('event_id') : 0;
-                if($event_id == 0){
-                    $dt = Carbon::now()->format('Y-m-d H:i:s');
-                    $tmpEvent = Events::where('from_date', '<=', $dt)->where('to_date', '>=', $dt)->where('status', 1)->join('product_event', 'sp_id', '=', 'events.id')->select('event_id')->first();
-                    if($tmpEvent){
-                        $event_id = $tmpEvent->event_id;
-                    }
-                }
-
-                $tmpPE = ProductEvent::where('sp_id', $product->id)->where('event_id', $event_id)->first();
-                if($tmpPE){                    
-                    $tmpSL = $tmpPE->so_luong_tam > 0 ? $tmpPE->so_luong_tam - 1 : 0;
-                    $tmpPE->update(['so_luong_tam' => $tmpSL]);
-                }                
-
-            }else{
-                $tmpModelProduct = SanPham::find($product->id);
-                $tmpSL = $tmpModelProduct->so_luong_tam > 0 ? $tmpModelProduct->so_luong_tam - 1 : 0;
-                $tmpModelProduct->update(['so_luong_tam' => $tmpSL]);
-            }
         }
 
         $customer_id = Session::get('userId');
@@ -443,7 +438,7 @@ class CartController extends Controller
 
     public function deleteAll(){
         Session::put('products', []);
-        return redirect()->route('gio-hang');
+        return redirect()->route('cart');
     }
 }
 

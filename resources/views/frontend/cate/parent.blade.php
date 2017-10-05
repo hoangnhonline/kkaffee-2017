@@ -1,51 +1,113 @@
 @extends('frontend.layout')
 @include('frontend.partials.meta')
 @section('content')
-
-<div class="block2 block-breadcrumb">
-	<div class="container">
-		<ul class="breadcrumb">
-			<li><a href="{{ route('home') }}">Trang chủ</a></li>		
-			<li class="active">{!! $parentDetail->name !!}</li>
-		</ul>
-	</div>
-</div><!-- /block-breadcrumb -->
-<div class="block block_big-title" style="margin-bottom:0px">
-	<div class="container">
-		<h1>{!! $parentDetail->name !!}</h1>
-		<p class="desc">{!! $parentDetail->description !!}</p>
-	</div>
-</div><!-- /block_big-title -->
-@if($cateList)
-@foreach($cateList as $cate)
-@if(isset($productArr[$cate->id]) && count($productArr[$cate->id]) > 0 )
-<div class="block2 block-btn-slide block-ct-pro block-title-commom">
-	<div class="container">
-		<div class="block2 block-title">
-			<h2>
-				<i class="fa fa-home"></i>
-				<a href="{{ route('cate', [$parentDetail->slug, $cate->slug]) }}" title="{!! $cate->name !!}">{!! $cate->name !!}</a>
-			</h2>	
-		</div>
-		<div class="block-content">
-		
-			  	@foreach($productArr[$cate->id] as $product)
-			  	<div class="item">
-			  		<div class="thumb">
-			  			<a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}">
-			  				<img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->title !!}">
-			  			</a>
-			  		</div>
-			  		<div class="des">
-		                <p class="code"><span>Mã sản phẩm: </span>{!! $product->code !!}</p>
-		                <a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->title !!}">{!! $product->name !!}</a>                
-		              </div>
-		  		</div>
-		  		@endforeach	  		
-		
-	</div>
-</div><!-- /block-product -->	
-@endif
-@endforeach
-@endif
-@endsection
+<article class="mar-top20">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ul>
+               	<li><a href="{{ route('home') }}">Trang chủ</a></li>		
+				<li>{!! $parentDetail->name !!}</li>
+            </ul>
+        </div>
+    </div>
+    <section id="product" class="marg40">
+        <div class="container">
+            <div class="title-section">
+                SẢN PHẨM HOT
+            </div>
+            <div class="list-products marg20 clearfix">
+                <div class="owl-carousel">
+                    @foreach($hotProductList as $product)
+                    <div class="box-product item">
+                        <div class="item-product">
+                            <div class="image"><a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">
+                                <img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->name !!}"/></a>
+                            </div>
+                            <div class="info-product">
+                                <h3><a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">{!! $product->name !!}</a></h3>
+                                <p>{!! $product->description !!}</p>
+                                <div class="price">
+                                    Giá: 
+                                    <span>
+                                        @if($product->is_sale == 1 && $product->price_sale > 0)
+                                            {{ number_format($product->price_sale) }}đ
+                                        @else
+                                            {{ number_format($product->price) }}đ
+                                        @endif                                  
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                    
+                </div>
+                <!--<div class="viewmore-product"><a href="javascript:void(0)">Xem chi tiết</a></div>-->
+            </div>
+            @if($cateList)
+			@foreach($cateList as $cate)
+			@if(isset($productArr[$cate->id]) && count($productArr[$cate->id]) > 0 )
+            <div class="title-section">
+                {!! $cate->name !!}
+            </div>
+            <div class="list-products marg20 clearfix">
+                <div class="owl-carousel">
+		  			@foreach($productArr[$cate->id] as $product)
+                    <div class="box-product item">
+                        <div class="item-product">
+                            <div class="image"><a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">
+                            	<img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->name !!}"/></a>
+                            </div>
+                            <div class="info-product">
+                                <h3><a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">{!! $product->name !!}</a></h3>
+                                <p>{!! $product->description !!}</p>
+                                <div class="price">
+                                    Giá: 
+                                    <span>
+                                    	@if($product->is_sale == 1 && $product->price_sale > 0)
+				                        	{{ number_format($product->price_sale) }}đ
+				                        @else
+				                        	{{ number_format($product->price) }}đ
+				                        @endif                                	
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                <div class="viewmore-product"><a href="{{ route('cate', [ $parentDetail->slug, $cate->slug ]) }}">Xem tất cả</a></div>
+            </div>
+            @endif
+			@endforeach
+			@endif
+        </div>
+    </section><!-- End product -->
+</article>
+@stop
+@section('js')
+<script src="{{ URL::asset('public/assets/lib/owlcarousel/dist/owl.carousel.min.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		jQuery('.owl-carousel').owlCarousel({
+            loop: false,
+            margin: 0,
+            nav: true,
+            responsive: {
+                0:{
+                    items: 2
+                },
+                603:{
+                    items: 3
+                },
+                992: {
+                    items: 4
+                },
+                1200: {
+                    items: 5
+                }
+            }
+        });
+	});
+</script>
+@stop

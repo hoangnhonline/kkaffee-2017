@@ -45,8 +45,9 @@ class CateController extends Controller
             }else{
                 $seo['title'] = $seo['description'] = $seo['keywords'] = $parentDetail->name;
             }  
-        
-            return view('frontend.cate.parent', compact('parent_id', 'parentDetail', 'cateList', 'productArr', 'seo'));
+            
+            $hotProductList = Product::getList(['is_hot' => 1, 'parent_id' => $parent_id, 'limit' => 10]);
+            return view('frontend.cate.parent', compact('parent_id', 'parentDetail', 'cateList', 'productArr', 'seo', 'hotProductList'));
 
         }else{
             return redirect()->route('home');       
@@ -74,8 +75,9 @@ class CateController extends Controller
             }else{
                 $seo['title'] = $seo['description'] = $seo['keywords'] = $cateDetail->name;
             }  
-            $page = $request->page ? $request->page : 1;        
-            return view('frontend.cate.child', compact('parent_id', 'cateDetail', 'productList', 'seo', 'page'));
+            $page = $request->page ? $request->page : 1;    
+            $hotProductList = Product::getList(['is_hot' => 1, 'cate_id' => $cate_id, 'limit' => 10]);    
+            return view('frontend.cate.child', compact('parent_id', 'cateDetail', 'productList', 'seo', 'page', 'hotProductList'));
             
         }else{
             return redirect()->route('home');   

@@ -35,9 +35,9 @@ class AuthenticationController extends Controller
 
         $customer = Customer::where('email', $request->email)->first();
         if(is_null($customer) || !password_verify($request->password, $customer->password) ) {
-        	Session::flash('error', 'Email hoặc mật khẩu không đúng.');
+            Session::flash('error', 'Email hoặc mật khẩu không đúng.');
         } else {
-        	Session::put('login', true);
+            Session::put('login', true);
             Session::put('userId', $customer->id);
             Session::put('facebook_id', $customer->facebook_id);
             Session::put('username', $customer->full_name);

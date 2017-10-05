@@ -116,30 +116,50 @@
                         </ul>
                     </div>
                 </div>
-                <div class="pull-right logined">
-                    <div class="block-login">
-                        <a href="#" class="btn btn-yellow">Đăng ký</a>
-                        <a href="#" class="btn btn-grey">Đăng nhập</a>
+                <div class="pull-right @if(Session::get('login')) logined @endif">
+                    <div class="block-login ">
+                        <div class="cart-header">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <a href="{{ route('cart') }}">
+                                Giỏ hàng<br/>
+                                <span><b>{{ Session::get('products') ? array_sum(Session::get('products')) : 0 }}</b> sản phẩm</span>
+                            </a>
+                        </div>
+                        <div class="pull-right dropdown">
+                            <a href="javascript:void(0)" class="dropdown-toggle login-link" data-toggle="dropdown">
+                                Đăng nhập/Đăng ký
+                                <i class="fa fa-caret-down" aria-hidden="true"></i></a>
+                            <div class="dropdown-menu-header">
+                                <a class="btn btn-success text-center" title="Đăng Nhập" href="javascript:(void);" data-dismiss="modal" data-toggle="modal" data-target="#login-form"><i class="fa fa-sign-in"></i> Đăng nhập</a>
+
+
+                                <a href="javascript:;" class="btn btn-primary text-center login-by-facebook-popup"><i class="fa fa-facebook-square " aria-hidden="true"></i> Đăng nhập bằng facebook</a>
+                                <a id="btn_register" href="javascript:;" class="btn btn-danger text-center" data-dismiss="modal" data-toggle="modal" data-target="#register-form"><i class="fa fa-user" aria-hidden="true"></i> Đăng ký</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="block-logined">
                         <div class="cart-header">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <a href="#">
+                            <a href="{{ route('cart') }}">
                                 Giỏ hàng<br/>
-                                <span><b>0</b> sản phẩm</span>
+                                <span><b>{{ Session::get('products') ? array_sum(Session::get('products')) : 0 }}</b> sản phẩm</span>
                             </a>
                         </div>
                         <div class="account-header dropdown">
-                            <img src="{{ URL::asset('public/assets/img/icon.png') }}" alt="">
+                            <img src="{{ URL::asset('public/assets/img/icon.png') }}" alt="avatar">
                             <a class="dropdown-toggle" data-toggle="dropdown">
-                                Chào <b>CHRIS</b><br/>
-                                <span>Tài khoản</span>
+                                Chào, <b>{{ Session::get('username') }}</b><br/>
+                                <span class="txt-account">Tài khoản</span>
                             </a>
                             <ul class="dropdown-menu-header">
-                                <li><a href="#">Thông tin tài khoản</a></li>
-                                <li><a href="#">Quản lý đơn hàng</a></li>
-                                <li><a href="#">Sổ địa chỉ</a></li>
-                                <li><a href="#">Điểm tích luỹ</a></li>
+                                <li> <a href="{{ route('account-info') }}" title="{{ trans('text.thong-tin-tai-khoan') }}"><i class="fa fa-user"></i> Thông tin tài khoản </a> </li>
+                                <li> <a href="{{ route('order-history') }}" title="{{ trans('text.don-hang-cua-toi') }}"><i class="fa fa-heart-o"></i> Quản lý đơn hàng </a> </li>                  
+                                @if(Session::get('facebook_id') == null)
+                                <li> <a href="{{ route('change-password') }}" title="{{ trans('text.doi-mat-khau') }}"><i class="fa fa-unlock-alt"></i> Đổi mật khẩu</a> </li>
+                                @endif
+                                <li> <a href="{{route('user-logout')}}" title="{{ trans('text.thoat-tai-khoan') }}"><i class="fa fa-sign-in"></i> Thoát tài khoản </a> </li>                                    
+                                <!--<li><a href="#">Sổ địa chỉ</a></li>-->
                             </ul>
                         </div>
                     </div>
@@ -198,6 +218,127 @@
     </div>
     <a href="javascript:void(0)" class="gotop"><img src="{{ URL::asset('public/assets/img/back-to-top.png') }}" alt="Back to Top"/></a>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="login-form" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><b>Đăng nhập</b></h4>
+                <div>Bạn chưa có tài khoản? <a href="javascript:;" data-dismiss="modal" data-toggle="modal" data-target="#register-form">Đăng ký ngay</a></div>
+            </div>
+            <div class="modal-body">
+                <form accept-charset="UTF-8" role="form">
+                    <fieldset>
+                        <div class="form-group">
+                            <input data-bv-field="email" id="popup-login-email" class="form-control login" name="email" placeholder="Nhập Email" type="text">
+                            <small data-bv-result="NOT_VALIDATED" data-bv-for="email" data-bv-validator="notEmpty" class="help-block" style="display: none;">Vui lòng nhập Email hợp lệ</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input data-bv-field="password" id="popup-login-password" class="form-control login" name="password" placeholder="Nhập mật khẩu" autocomplete="off" type="password">
+                            <small data-bv-result="NOT_VALIDATED" data-bv-for="password" data-bv-validator="notEmpty" class="help-block" style="display: none;">Vui lòng nhập Mật khẩu</small>
+                        </div>
+                        <div class="form-group" id="error_captcha" style="margin-bottom: 15px;color:red;font-style:italic"> <span class="help-block ajax-message"></span> </div>
+                      <!-- <p>Quên mật khẩu? Nhấn vào <a href="#">đây</a></p>-->
+                        <input class="btn btn-success btn-block" id="login_popup_submit" type="button" value="Đăng nhập">
+                        <a href="javascript:;" class="btn btn-primary btn-block text-center login-by-facebook-popup"><i class="fa fa-facebook-square" aria-hidden="true"></i> Đăng nhập bằng facebook</a>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="register-form" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><b>Đăng ký</b></h4>
+                <div>Bạn đã có tài khoản? <a href="javascript:;" data-dismiss="modal" data-toggle="modal" data-target="#login-form">Đăng nhập</a></div>
+            </div>
+            <div class="modal-body">
+                <form accept-charset="UTF-8" role="form">
+                    <div class="clearfix">
+                        <div class="col-md-6">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="regisemail">Email</label>
+                                    <input data-bv-field="email" class="form-control register register-email-input" name="email" id="popup-register-email" placeholder="Nhập Email" type="text">
+                                    <small data-bv-result="NOT_VALIDATED" data-bv-for="email" er="notEmpty" class="help-block" style="display: none;">Vui lòng nhập Email</small>
+                                    <small er="NOT_VALIDATED" data-bv-for="email" data-bv-validator="remote" class="help-block" style="display: none;">Email đã tồn tại</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="regispassword">Password</label>
+                                    <input data-bv-field="password" class="form-control register" name="password" id="popup-register-password" placeholder="Mật khẩu từ 6 đến 32 ký tự" autocomplete="off" type="password">
+                                    <small data-bv-result="NOT_VALIDATED" data-bv-for="password" data-bv-validator="notEmpty" class="help-block" style="display: none;">Vui lòng nhập Mật khẩu</small>
+                                    <small data-bv-result="NOT_VALIDATED" data-bv-for="password" data-bv-validator="stringLength" class="help-block" style="display: none;">Mật khẩu phải dài từ 6 đến 32 ký tự</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="regisname">Họ tên</label>
+                                    <input class="form-control register" name="full_name" id="popup-register-name" placeholder="Nhập họ tên" data-bv-field="full_name" type="text">
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="full_name" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập Họ tên</small>
+                                </div>                                
+                                <div class="checkbox">
+                                    <label><input type="checkbox">Nhận các thông tin ưu đãi của chúng tôi qua email</label>
+                                </div>
+                                <input id="register_popup_submit" class="btn btn-success btn-block" type="button" value="Đăng ký">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Đăng nhập vào web bằng facebook</p>
+                            <a href="javascript:;" class="btn btn-primary btn-block text-center login-by-facebook-popup"><i class="fa fa-facebook-square" aria-hidden="true"></i> Đăng nhập bằng facebook</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="success-form" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-primary">Hoàn thành đăng ký</h3>
+                <p>Chúc mừng bạn đăng ký tài khoản thành công! chào mừng bạn đến với website chúng tôi</p>
+                <a class="btn btn-success btn-block">Vào trang web</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="logout-form" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <p><b>Đăng xuất</b></p>
+                <p>Bạn có muốn đăng xuất</p>
+                <div class="clearfix">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a class="btn btn-success btn-block" href="#">Đăng xuât</a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a class="btn btn-danger btn-block" href="#">Ở lại</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div id="editContentModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
@@ -225,15 +366,24 @@
 <input type="hidden" id="route-register-customer-ajax" value="{{ route('register-customer-ajax') }}">
 <input type="hidden" id="route-register-newsletter" value="{{ route('register.newsletter') }}">
 <input type="hidden" id="route-add-to-cart" value="{{ route('add-product') }}" />
-<input type="hidden" id="route-payment" value="{{ route('payment') }}" />
 <input type="hidden" id="route-short-cart" value="{{ route('short-cart') }}" />
 <input type="hidden" id="route-update-product" value="{{ route('update-product') }}" />
-        <script src="{{ URL::asset('public/assets/js/jquery.min.js') }}"></script>
-        <script src="{{ URL::asset('public/assets/js/bootstrap.min.js') }}"></script>
+<input type="hidden" id="route-ajax-login-fb" value="{{route('ajax-login-by-fb')}}">
+<input type="hidden" id="fb-app-id" value="{{ env('FACEBOOK_APP_ID') }}">
+<input type="hidden" id="route-cart" value="{{ route('cart') }}" />
+<input type="hidden" id="route-auth-login-ajax" value="{{ route('auth-login-ajax') }}">
+<script src="{{ URL::asset('public/assets/js/jquery.min.js') }}"></script>
+<script src="{{ URL::asset('public/assets/js/bootstrap.min.js') }}"></script>
+<script src="{{ URL::asset('public/assets/js/home.js') }}"></script>
         @if($routeName == "product")
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         @endif
         <script type="text/javascript">
+            jQuery(document).ready(function () {                
+                jQuery("#btn_logout").click(function () {
+                    jQuery("#logout-form").modal();
+                });                
+            });
             jQuery("a.nav-button-mobi").click(function () {
                 if (jQuery("body").hasClass("active-menu"))
                 {
@@ -265,46 +415,16 @@
 	<script type="text/javascript">	
 	
 	$(document).on('keypress', '.txtSearch', function(e) {
-		    var obj = $(this);
-		    if (e.which == 13) {
-		        if ($.trim(obj.val()) == '') {
-		            return false;
-		        }
-		    }
-		});
-		$(document).on('keypress', '#txtNewsletter', function(e){
-		if(e.keyCode==13){
-		    $('#btnNewsletter').click();
-		}
-	});
-		
-	$('#btnNewsletter').click(function() {
-	    var email = $.trim($('#txtNewsletter').val());        
-	    if(validateEmail(email)) {
-	        $.ajax({
-	          url: $('#route-newsletter').val(),
-	          method: "POST",
-	          data : {
-	            email: email,
-	          },
-	          success : function(data){
-	            if(+data){
-	              swal('', 'Đăng ký nhận bản tin thành công.', 'success');
-	            }
-	            else {
-	              swal('', 'Địa chỉ email đã được đăng ký trước đó.', 'error');
-	            }
-	            $('#txtNewsletter').val("");
-	          }
-	        });
-	    } else {
-	        swal({ title: '', text: 'Vui lòng nhập địa chỉ email hợp lệ.', type: 'error' });
+	    var obj = $(this);
+	    if (e.which == 13) {
+	        if ($.trim(obj.val()) == '') {
+	            return false;
+	        }
 	    }
 	});
-	function validateEmail(email) {
-		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-		return re.test(email);
-	}
+	
+		
+	
 	</script>
 	@include('frontend.partials.custom-css')
 	@yield('js')
@@ -347,10 +467,7 @@
 </div>
 @endif
 <style type="text/css">
-    .cart-empty{
-        margin-top: 15px;
-        text-align: center;
-    }
+    
 </style>
 </body>
 </html>

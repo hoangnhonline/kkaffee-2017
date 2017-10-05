@@ -3,16 +3,16 @@
 use Illuminate\Database\Eloquent\Model;
 
 
-class Ward extends Model  {
+class Country extends Model  {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'ward';	
+	protected $table = 'country';	
 
-	/**
+	 /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
@@ -23,5 +23,8 @@ class Ward extends Model  {
      *
      * @var array
      */
-    protected $fillable = ['name', 'alias', 'city_id', 'district_id', 'display_order'];
+    protected $fillable = [
+        'code',
+        'name'
+    ];
 }

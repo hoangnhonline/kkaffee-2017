@@ -25,7 +25,7 @@ class Helper
     public static function getChild($table, $column, $parent_id){
         $listData = DB::table($table)->where($column, $parent_id)->get();
         
-            echo '<option value="">--chọn--</option>';
+            echo '<option value="">--Chọn--</option>';
         
         if(!empty(  (array) $listData  )){
             

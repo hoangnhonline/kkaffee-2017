@@ -69,12 +69,20 @@ class DetailController extends Controller
                     ->orderBy('product.id', 'desc')
                     ->limit($settingArr['product_related'])
                     ->get();   
-        
-        $cateList = Cate::getList($detail->parent_id);
+        //
+        $parentDetail = CateParent::find($detail->parent_id);
+        if($parentDetail){            
+            $cateList = Cate::getList($detail->parent_id);            
+            if($cateList){
+                foreach($cateList as $cate){
+                    $productArr[$cate->id] = Product::getList( ['cate_id' => $cate->id, 'limit' => 5] );
+                }
+            }                     
+        }
 
         Helper::counter($detail->id, 1);
         
-        return view('frontend.detail.index', compact('detail', 'seo', 'socialImage', 'otherList', 'cateList'));
+        return view('frontend.detail.index', compact('detail', 'seo', 'socialImage', 'otherList', 'cateList', 'parentDetail', 'productArr'));
         
     }
     public function tagDetail(Request $request){
