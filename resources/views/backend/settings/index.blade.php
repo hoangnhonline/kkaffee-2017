@@ -166,6 +166,7 @@
               </div>
             
         </div>
+        </div>
         <!-- /.box -->     
 
       </div>
@@ -212,25 +213,7 @@ function openKCFinder_singleFile(obj_str) {
             $('#menu_border').val($('#default_menu_border').val());
           }
       });
-      var editor = CKEDITOR.replace( 'chi_nhanh_phia_bac',{
-          language : 'vi',       
-          height : 200,
-          toolbarGroups : [            
-            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },          
-            { name: 'links', groups: [ 'links' ] },           
-            '/',            
-          ]
-      });
-      $('.mau').colorpicker();
-      var editor2 = CKEDITOR.replace( 'chi_nhanh_phia_nam',{
-          language : 'vi',     
-          height : 200,
-          toolbarGroups : [            
-            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },          
-            { name: 'links', groups: [ 'links' ] },           
-            '/',            
-          ]
-      });
+      
       $('.btnUpload').click(function(){
         openKCFinder_singleFile($(this).data('value'));
         //$(this).parents('.div-upload').find('.click-choose-file').click();
