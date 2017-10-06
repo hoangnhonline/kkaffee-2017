@@ -103,7 +103,7 @@
                     </div>
                     @if($cateList)
                     @foreach($cateList as $cate)
-                    @if(isset($productArr[$cate->id]))
+                    @if(isset($productArr[$cate->id]) )
                     <div class="list-box-items" id="{{ $cate->slug }}">
                         
                         <div class="title-admin-content">{!! $cate->name !!}</div>
@@ -117,7 +117,7 @@
                                 <a class="title-box-item" href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">{!! $product->name !!}</a>
                             </p>
                             <div class="box-price">
-                                <a href="javascript:;" class="@if(Session::has('login')) btn-order @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" data-id="{{ $product->id }}"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
+                                <a href="javascript:;" class="@if(Session::has('login')) btn-order @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif data-id="{{ $product->id }}"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
                                 <div class="price">
                                     @if($product->is_sale == 1 && $product->price_sale > 0)
                                         {{ number_format($product->price_sale) }}đ
