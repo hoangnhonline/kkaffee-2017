@@ -76,7 +76,7 @@ class CartController extends Controller
 
         $userId = Session::get('userId');
         $customer = Customer::find($userId);
-
+        
         $addressList = $customer->customerAddress;
 
         return view('frontend.cart.address-info', compact('arrProductInfo', 'getlistProduct', 'seo', 'cityList', 'customer', 'addressList'));
