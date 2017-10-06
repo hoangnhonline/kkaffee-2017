@@ -129,7 +129,7 @@
    <script type="text/javascript">
    $(document).ready(function(){   
     $('#btnPayment').click(function(){
-      //$(this).html('<i class="fa fa-spin fa-spinner"></i>').attr('disabled', 'disabled');
+      $(this).html('<i class="fa fa-spin fa-spinner"></i>').attr('disabled', 'disabled');
       $('#paymentForm').submit();
     });
   });

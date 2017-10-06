@@ -21,8 +21,7 @@
                           quý khách {{ $addressInfo->fullname }}
                           đã đặt hàng tại <strong>KKAFFEE</strong>,</h1>                    
                         <p style="margin:4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"> <strong>KKAFFEE</strong> rất vui thông báo đơn hàng #{{ $order_id }} của quý khách đã
-                          được tiếp nhận và đang trong quá trình xử lý. <strong>KKAFFEE</strong> sẽ thông báo đến quý khách
-                          ngay khi hàng chuẩn bị được giao. </p>
+                          được tiếp nhận và đang trong quá trình xử lý. <strong>KKAFFEE</strong> sẽ thông báo đến quý khách ngay khi hàng chuẩn bị được giao. </p>
                         </td>
                     </tr>
                     <tr>
@@ -51,7 +50,7 @@
                              <td valign="top" style="padding:7px 9px 0px 9px;border-top:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444" colspan="2"><p style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"> <strong>Phương thức thanh toán: </strong> 
                             <?php 
                             if($method_id == 1) {
-                              echo "COD - Nhận hàng trả tiền";
+                              echo "COD";
                             }elseif( $method_id == 2){
                               echo "Thanh toán bằng thẻ của K KAFFEE";
                             }
@@ -63,15 +62,15 @@
                     </tr>
                     
                     <tr>
-                      <td><h2 style="text-align:left;margin:10px 0;border-bottom:1px solid #ddd;padding-bottom:5px;font-size:13px;color:#ec1c24"> CHI TIẾT ĐƠN HÀNG</h2>
+                      <td><h2 style="text-align:left;margin:10px 0;border-bottom:1px solid #ddd;padding-bottom:5px;font-size:13px;color:#ffde00"> CHI TIẾT ĐƠN HÀNG</h2>
                         <table cellspacing="0" cellpadding="0" border="0" width="100%" style="background:#f5f5f5">
                           <thead>
                             <tr>
-                              <th align="left" bgcolor="#ec1c24" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Sản phẩm</th>
-                              <th align="left" bgcolor="#ec1c24" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px"> Đơn giá</th>
-                              <th align="left" bgcolor="#ec1c24" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Số lượng</th>
-                              <th align="left" bgcolor="#ec1c24" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Giảm giá</th>
-                              <th align="right" bgcolor="#ec1c24" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Tổng tạm</th>
+                              <th align="left" bgcolor="#ffde00" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Sản phẩm</th>
+                              <th align="left" bgcolor="#ffde00" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px"> Đơn giá</th>
+                              <th align="left" bgcolor="#ffde00" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Số lượng</th>
+                              <th align="left" bgcolor="#ffde00" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Giảm giá</th>
+                              <th align="right" bgcolor="#ffde00" style="padding:6px 9px;color:#fff;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:14px">Tổng tạm</th>
                             </tr>
                           </thead>
                           <tbody bgcolor="#eee" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px">

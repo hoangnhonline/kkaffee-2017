@@ -118,7 +118,7 @@ class CartController extends Controller
             );
             $address_id = $rs->id;
         }else{
-            $address_id = isset($dataArr['address_id']) ? $dataArr['address_id'] : null;
+            $address_id = isset($dataArr['address_id']) ? $dataArr['address_id'] : $address_id;
         }
        
         Session::put('address_id', $address_id);
@@ -128,7 +128,10 @@ class CartController extends Controller
     public function paymentInfo(Request $request){     
         
         $addressInfo = Session::get('address_info');
-        $detailPrimary = CustomerAddress::find($addressInfo['address_id']);
+      //  dd($addressInfo);
+        //dd(Session::get('address_id'));
+        $detailPrimary = CustomerAddress::find(Session::get('address_id'));
+        //dd($detailPrimary);
         $getlistProduct = Session::get('products');
         
         $listProductId = array_keys($getlistProduct);
