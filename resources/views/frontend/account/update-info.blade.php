@@ -19,14 +19,14 @@
                             <div class="form-group row">
                               <label for="full_name" class="col-lg-3 control-label visible-lg-block">Họ tên </label>
                               <div class="col-lg-9 input-wrap has-feedback">
-                                  <input type="text" name="full_name" class="form-control address" id="full_name" value="{{$customer->full_name}}" placeholder="{{ trans('text.nhap-ho-ten') }}" data-bv-field="full_name">
+                                  <input type="text" name="full_name" class="form-control address" id="full_name" value="{{$customer->full_name}}" placeholder="Nhập họ tên" data-bv-field="full_name">
                                   <small class="help-block" data-bv-validator="notEmpty" data-bv-for="telephone" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập họ tên</small>
                              </div>
                             </div>
                             <div class="form-group row">
                               <label for="telephone" class="col-lg-3 control-label visible-lg-block">Điện thoại</label>
                               <div class="col-lg-9 input-wrap has-feedback">
-                                <input type="tel" name="telephone" class="form-control address" id="telephone" value="{{$customer->phone}}" placeholder="{{ trans('text.nhap-so-dien-thoai') }}" data-bv-field="telephone">
+                                <input type="tel" name="telephone" class="form-control address" id="telephone" value="{{ $customer->phone }}" placeholder="Nhập số điện thoại" data-bv-field="telephone">
                                 <small class="help-block" data-bv-validator="notEmpty" data-bv-for="telephone" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập số điện thoại</small></div>
                             </div>
                             <input type="hidden" name="country_id" value="235">
@@ -154,7 +154,7 @@
 
         if(!city_id) {
           $('#district_id').empty();
-          $('#district_id').append('<option value="0">{{ trans('text.chon') }} {{ trans('text.quan-huyen') }}</option>');
+          $('#district_id').append('<option value="">--Chọn--</option>');
           return;
         }
 
@@ -166,7 +166,7 @@
           },
           success : function(list_ward){
             $('#district_id').empty();
-            $('#district_id').append('<option value="0">{{ trans('text.chon') }} {{ trans('text.quan-huyen') }}</option>');
+            $('#district_id').append('<option value="">--Chọn--</option>');
 
             for(i in list_ward) {
               $('#district_id').append('<option value="'+list_ward[i].id+'">'+list_ward[i].name+'</option>');
@@ -182,7 +182,7 @@
       function getWard(district_id) {
 
         if(!district_id) {
-          $('#ward_id').html('<option value="0">{{ trans('text.chon') }} {{ trans('text.phuong-xa') }}</option>');
+          $('#ward_id').html('<option value="">--Chọn--</option>');
           return;
         }
 
@@ -194,7 +194,7 @@
           },
           success : function(list_ward){
             $('#ward_id').empty();
-            $('#ward_id').append('<option value="0">{{ trans('text.chon') }} {{ trans('text.phuong-xa') }}</option>');
+            $('#ward_id').append('<option value="">--Chọn--</option>');
 
             for(i in list_ward) {
               $('#ward_id').append('<option value="'+list_ward[i].id+'">'+list_ward[i].name+'</option>');
@@ -281,7 +281,7 @@
             },
             success : function(data){
                $('#btn-address').removeAttr('disabled');
-              swal({ title: '', text: '{{ trans('text.cap-nhat-thong-tin-thanh-cong') }}', type: 'success' });
+              swal({ title: '', text: 'Cập nhật thông tin thành công.', type: 'success' });
             }
           });
         }
