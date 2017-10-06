@@ -7,7 +7,7 @@
             <div class="col-md-9 col-sm-8 col-xs-12 main-content">
                 <div class="main-content-shop">                 
                      <h1 class="page-heading">
-                    <span class="page-heading-title2">{{ trans('text.thong-tin-tai-khoan') }}</span>
+                    <span class="page-heading-title2">Thông tin tài khoản</span>
                 </h1>
                 <div class="shipping-address-page">              
                   <div class="row row-style-2">
@@ -17,38 +17,24 @@
                         <div class="panel-body">
                           <form class="form-horizontal bv-form" role="form" id="address-info" novalidate>
                             <div class="form-group row">
-                              <label for="full_name" class="col-lg-3 control-label visible-lg-block">{{ trans('text.ho-ten') }} </label>
+                              <label for="full_name" class="col-lg-3 control-label visible-lg-block">Họ tên </label>
                               <div class="col-lg-9 input-wrap has-feedback">
                                   <input type="text" name="full_name" class="form-control address" id="full_name" value="{{$customer->full_name}}" placeholder="{{ trans('text.nhap-ho-ten') }}" data-bv-field="full_name">
-                                  <small class="help-block" data-bv-validator="notEmpty" data-bv-for="telephone" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-nhap') }} {{ trans('text.ho-ten') }}</small>
+                                  <small class="help-block" data-bv-validator="notEmpty" data-bv-for="telephone" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập họ tên</small>
                              </div>
                             </div>
                             <div class="form-group row">
-                              <label for="telephone" class="col-lg-3 control-label visible-lg-block">{{ trans('text.dien-thoai') }}</label>
+                              <label for="telephone" class="col-lg-3 control-label visible-lg-block">Điện thoại</label>
                               <div class="col-lg-9 input-wrap has-feedback">
                                 <input type="tel" name="telephone" class="form-control address" id="telephone" value="{{$customer->phone}}" placeholder="{{ trans('text.nhap-so-dien-thoai') }}" data-bv-field="telephone">
-                                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="telephone" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-nhap') }} {{ trans('text.dien-thoai') }}</small></div>
+                                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="telephone" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập số điện thoại</small></div>
                             </div>
-                            <div class="form-group row">
-                              <label for="country_id" class="col-lg-3 control-label visible-lg-block">{{ trans('text.quoc-gia') }}</label>
-                              <div class="col-lg-9 input-wrap has-feedback">
-                                <select name="country_id" class="form-control address" id="country_id" data-bv-field="country_id">
-                                  <option value="">{{ trans('text.chon') }} {{ trans('text.quoc-gia') }}</option>
-                                  @foreach($listCountry as $country)
-                                    <option value="{{$country->id}}"
-                                    @if($customer->country_id == $country->id)
-                                    selected
-                                    @endif
-                                    >{{$country->name}}</option>
-                                  @endforeach
-                                </select>
-                                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="country_id" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-chon') }} {{ trans('text.quoc-gia') }}</small></div>
-                            </div>
+                            <input type="hidden" name="country_id" value="235">
                             <div class="form-group row viet">
-                              <label for="city_id" class="col-lg-3 control-label visible-lg-block">{{ trans('text.tinh-thanh-pho') }}</label>
+                              <label for="city_id" class="col-lg-3 control-label visible-lg-block">Tỉnh/TP</label>
                               <div class="col-lg-9 input-wrap has-feedback">
                                 <select name="city_id" class="form-control address" id="city_id" data-bv-field="city_id">
-                                  <option value="">{{ trans('text.chon') }} {{ trans('text.tinh-thanh-pho') }}</option>
+                                  <option value="">--Chọn--</option>
                                   @foreach($listCity as $city)
                                     <option value="{{$city->id}}"
                                     @if($customer->city_id == $city->id)
@@ -57,56 +43,35 @@
                                     >{{$city->name}}</option>
                                   @endforeach
                                 </select>
-                                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="city_id" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-chon') }} {{ trans('text.tinh-thanh-pho') }}</small></div>
+                                <small class="help-block" data-bv-validator="notEmpty" data-bv-for="city_id" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng chọn tỉnh/TP</small></div>
                             </div>
                             <div class="form-group row viet">
-                              <label for="district_id" class="col-lg-3 control-label visible-lg-block">{{ trans('text.quan-huyen') }}</label>
+                              <label for="district_id" class="col-lg-3 control-label visible-lg-block">Quận/Huyện</label>
                               <div class="col-lg-9 input-wrap has-feedback">
                                 <select name="district_id" class="form-control address" id="district_id">
-                                  <option value="0">{{ trans('text.chon') }} {{ trans('text.quan-huyen') }}</option>                              
+                                  <option value="">--Chọn--</option>                              
                                 </select>
-                                 <small class="help-block" data-bv-validator="notEmpty" data-bv-for="district_id" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-chon') }} {{ trans('text.quan-huyen') }}</small></div>
+                                 <small class="help-block" data-bv-validator="notEmpty" data-bv-for="district_id" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng chọn quận/huyện</small></div>
                             </div>
                             <div class="form-group row viet">
-                              <label for="ward_id" class="col-lg-3 control-label visible-lg-block">{{ trans('text.phuong-xa') }}</label>
+                              <label for="ward_id" class="col-lg-3 control-label visible-lg-block">Phường/xã</label>
                               <div class="col-lg-9 input-wrap has-feedback">
                                 <select name="ward_id" class="form-control address" id="ward_id">
-                                  <option value="0">{{ trans('text.chon') }} {{ trans('text.phuong-xa') }}</option>
+                                  <option value="">--Chọn--</option>
                                 </select>
-                                 <small class="help-block" data-bv-validator="notEmpty" data-bv-for="ward_id" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-chon') }} {{ trans('text.phuong-xa') }}</small></div>
+                                 <small class="help-block" data-bv-validator="notEmpty" data-bv-for="ward_id" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng chọn phường/xã</small></div>
                             </div>
                             <div class="form-group row">
-                              <label for="street" class="col-lg-3 control-label visible-lg-block">{{ trans('text.dia-chi') }}</label>
+                              <label for="street" class="col-lg-3 control-label visible-lg-block">Địa chỉ</label>
                               <div class="col-lg-9 input-wrap has-feedback">
                                 <textarea name="street" class="form-control address" id="street" placeholder="Ví dụ: 52, đường Trần Hưng Đạo" data-bv-field="street" style="height:100px">{{ $customer->address }}</textarea>
-                                 <span class="help-block"></span> <small class="help-block" data-bv-validator="notEmpty" data-bv-for="street" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-nhap') }} {{ trans('text.dia-chi') }}</small></div>
+                                 <span class="help-block"></span> <small class="help-block" data-bv-validator="notEmpty" data-bv-for="street" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập địa chỉ</small></div>
                             </div>                         
-                            <div class="form-group row form-group-radio group-radio-k-address">
-                              <label class="col-lg-3 control-label visible-lg-block">{{ trans('text.loai-dia-chi') }}</label>
-                              <div class="col-lg-9 input-wrap has-feedback">
-                                  <label class="checkbox-inline">
-                                    <input type="radio" name="delivery_address_type" value="0" data-bv-field="delivery_address_type"
-                                    @if($customer->address_type == 0)
-                                    checked
-                                    @endif
-                                    >
-                                     {{ trans('text.nha-rieng-chung-cu') }}
-                                  </label>
-
-                                  <label class="checkbox-inline">
-                                    <input type="radio" name="delivery_address_type" value="1" data-bv-field="delivery_address_type"
-                                    @if($customer->address_type == 1)
-                                    checked
-                                    @endif
-                                    >
-                                     {{ trans('text.co-quan-cong-ty') }}
-                                  </label>
-                              </div>
-                            </div>
+                            
                             <div class="form-group row end">
                               <div class="col-lg-3"></div>
                               <div class="col-lg-9">
-                                <div id="btn-address" class="btn btn-primary btn-custom3" value="update" style="width:120px">{{ trans('text.cap-nhat') }}</div>
+                                <div id="btn-address" class="btn btn-primary btn-custom3" value="update" style="width:120px">Cập nhật</div>
                               </div>
                             </div>
                           </form>

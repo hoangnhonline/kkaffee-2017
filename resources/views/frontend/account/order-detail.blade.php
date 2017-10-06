@@ -69,7 +69,7 @@
                         <table class="table table-bordered dashboard-order">
                           <thead>
                             <tr class="default">
-                              <th class="text-nowrap"> <span class="hidden-xs hidden-sm hidden-md">{{ trans('text.ten-san-pham') }}</span> <span class="hidden-lg">Tên sản phẩm</span> </th>                           
+                              <th class="text-nowrap"> <span class="hidden-xs hidden-sm hidden-md">Tên sản phẩm</span> <span class="hidden-lg">Tên sản phẩm</span> </th>                           
                               <th class="text-nowrap">Giá</th>
                               <th class="text-nowrap">Số lượng</th>                          
                               <th class="text-nowrap">Tổng cộng</th>
@@ -80,10 +80,10 @@
                             <tr>
                               <td><a href="#" target="_blank" class="link">{{ Helper::getName($rowOrder->sp_id, "product" ) }}</a> </td>
                              
-                              <td><strong class="hidden-lg hidden-md">{{ trans('text.gia') }}: </strong>{{ number_format($rowOrder->don_gia_vnd) }}</td>
-                              <td><strong class="hidden-lg hidden-md">{{ trans('text.so-luong') }}: </strong>{{ $rowOrder['so_luong'] }} </td>
+                              <td><strong class="hidden-lg hidden-md">Giá: </strong>{{ number_format($rowOrder->don_gia_vnd) }}</td>
+                              <td><strong class="hidden-lg hidden-md">Số lượng: </strong>{{ $rowOrder['so_luong'] }} </td>
                              
-                              <td><strong class="hidden-lg hidden-md">{{ trans('text.tong-cong') }}: </strong>{{ number_format($rowOrder->tong_tien_vnd) }}</td>
+                              <td><strong class="hidden-lg hidden-md">Tổng cộng: </strong>{{ number_format($rowOrder->tong_tien_vnd) }}</td>
                             </tr>
                             @endforeach                         
                           </tbody>
@@ -115,7 +115,7 @@
     $(document).ready(function() {
       $('#btnHuy').click(function(){ 
         var obj = $(this);       
-        if(confirm('{{ trans('text.chac-chan-huy-don-hang') }}?')){
+        if(confirm('Chắc chắn hủy đơn hàng?')){
           $.ajax({
             url : '{{ route('order-cancel') }}',
             type  : 'POST',
@@ -123,7 +123,7 @@
               id : {{ $order->id }}
             },
             success : function(){
-              swal({ title: '', text: '{{ trans('text.da-huy-don-hang') }} #{{ $str_order_id }}', type: 'success' });
+              swal({ title: '', text: 'Hủy đơn hàng #{{ $str_order_id }}', type: 'success' });
               obj.remove();
             }
           });
