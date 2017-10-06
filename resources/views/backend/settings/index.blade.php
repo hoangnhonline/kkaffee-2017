@@ -165,10 +165,10 @@
                 <textarea class="form-control" rows="4" name="custom_text" id="custom_text">{{ $settingArr['custom_text'] }}</textarea>
               </div>
             
-        </div>
+        </div><!--box-body-->
         </div>
         <!-- /.box -->     
-
+        </div>
       </div>
       
       <!--/.col (left) -->      
