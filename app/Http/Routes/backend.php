@@ -37,6 +37,12 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
          Route::get('load-create',   ['as' => 'branch.load-create', 'uses' => 'BranchController@loadCreate']);       
         Route::get('{id}/destroy', ['as' => 'branch.destroy', 'uses' => 'BranchController@destroy']);
     });
+    Route::group(['prefix' => 'order'], function () {
+        Route::get('/', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
+        Route::post('/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);
+        Route::get('/{order_id}/chi-tiet', ['as' => 'order.detail', 'uses' => 'OrderController@orderDetail']);
+        Route::post('/delete-order-detail', ['as' => 'order.detail.delete', 'uses' => 'OrderController@orderDetailDelete']);
+    });
     Route::group(['prefix' => 'hot-cate'], function () {
         Route::get('/', ['as' => 'hot-cate.index', 'uses' => 'HotCateController@index']);
         Route::get('/create', ['as' => 'hot-cate.create', 'uses' => 'HotCateController@create']);

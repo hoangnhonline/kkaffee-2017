@@ -33,7 +33,18 @@
           
         </ul>
       </li>            
-      
+      <li class="treeview {{ \Request::route()->getName() == "orders.index" ? "active" : "" }}">
+        <a href="#">
+          <i class="fa fa-reorder"></i> 
+          <span>Đơn hàng</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li {{ \Request::route()->getName() == "orders.index" ? "class=active" : "" }}><a href="{{ route('orders.index') }}"><i class="fa fa-circle-o"></i> Đơn hàng</a></li>          
+        </ul>
+      </li>
       <li class="treeview {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
@@ -63,12 +74,7 @@
         <li {{ in_array(\Request::route()->getName(), ['articles-cate.create', 'articles-cate.index', 'articles-cate.edit']) ? "class=active" : "" }} ><a href="{{ route('articles-cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục bài viết</a></li>      
         @endif    
         </ul>
-       <li {{ in_array(\Request::route()->getName(), ['services.edit', 'services.index', 'services.create']) ? "class=active" : "" }}>
-          <a href="{{ route('services.index') }}">
-            <i class="fa fa-pencil-square-o"></i> 
-            <span>Dịch vụ</span>          
-          </a>       
-        </li>
+     
       </li> 
         <li {{ in_array(\Request::route()->getName(), ['tag.edit', 'tag.index']) ? "class=active" : "" }}>
           <a href="{{ route('tag.index') }}">
