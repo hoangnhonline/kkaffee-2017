@@ -118,7 +118,7 @@ class CartController extends Controller
             );
             $address_id = $rs->id;
         }else{
-            $address_id = $dataArr['address_id'];
+            $address_id = isset($dataArr['address_id']) ? $dataArr['address_id'] : null;
         }
        
         Session::put('address_id', $address_id);
