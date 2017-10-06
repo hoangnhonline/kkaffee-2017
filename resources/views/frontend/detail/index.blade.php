@@ -103,7 +103,7 @@
                     </div>
                     @if($cateList)
                     @foreach($cateList as $cate)
-                    @if(isset($productArr[$cate->id]) && count($productArr[$cate->id]) > 0 )
+                    @if(isset($productArr[$cate->id]))
                     <div class="list-box-items" id="{{ $cate->slug }}">
                         
                         <div class="title-admin-content">{!! $cate->name !!}</div>
