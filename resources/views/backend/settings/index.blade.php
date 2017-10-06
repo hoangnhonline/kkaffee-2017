@@ -57,6 +57,10 @@
                 </div>
                 
                 <div class="form-group col-md-6">
+                  <label>Số công trình <span class="red-star">*</span></label>
+                  <input type="text" class="form-control" name="so_cong_trinh" id="so_cong_trinh" value="{{ $settingArr['so_cong_trinh'] }}">
+                </div>
+                <div class="form-group col-md-6">
                   <label>Số bài viết 1 trang</label>
                   <input type="text" class="form-control" name="articles_per_page" id="articles_per_page" value="{{ $settingArr['articles_per_page'] }}">
                 </div>
@@ -72,7 +76,19 @@
                   <label>Số sản phẩm liên quan </label>
                   <input type="text" class="form-control" name="product_related" id="product_related" value="{{ $settingArr['product_related'] }}">
                 </div>
-                         
+                <div class="form-group col-md-6">
+                  <label>Số tin liên quan </label>
+                  <input type="text" class="form-control" name="article_related" id="article_related" value="{{ $settingArr['article_related'] }}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Số sản phẩm widget </label>
+                  <input type="text" class="form-control" name="product_widget" id="product_widget" value="{{ $settingArr['product_widget'] }}">
+                </div>
+                <div class="form-group col-md-6">
+                  <label>Số bài viết liên quan</label>
+                  <input type="text" class="form-control" name="so_tin_lien_quan" id="so_tin_lien_quan" value="{{ $settingArr['so_tin_lien_quan'] }}">
+                </div>
+                       
                 <div class="clearfix"></div>      
                 <div class="form-group col-md-6">
                   <label>Facebook</label>
@@ -90,11 +106,8 @@
                   <label>Twitter</label>
                   <input type="text" class="form-control" name="twitter_fanpage" id="twitter_fanpage" value="{{ $settingArr['twitter_fanpage'] }}">
                 </div>                
-                            
-                <div class="form-group col-md-6">
-                  <label>Code google analystic </label>
-                  <textarea name="google_analystic" id="google_analystic" rows="3" class="form-control">{{ $settingArr['google_analystic'] }}</textarea>
-                </div>   
+               
+                  
                 <div class="clearfix"></div>
                                   
                 <div class="clearfix"></div>
@@ -126,7 +139,18 @@
                 <div style="clear:both"></div> 
                 
 
-                </div>
+                <div style="clear:both"></div> 
+               
+                <div style="clear:both"></div> 
+                
+
+                <div style="clear:both"></div> 
+             
+
+                <div style="clear:both"></div> 
+                
+                <div class="clearfix"></div>
+               
                 <div class="clearfix"></div>
             </div>                        
             <div class="box-footer">
@@ -165,10 +189,9 @@
                 <textarea class="form-control" rows="4" name="custom_text" id="custom_text">{{ $settingArr['custom_text'] }}</textarea>
               </div>
             
-        </div><!--box-body-->
         </div>
         <!-- /.box -->     
-        </div>
+
       </div>
       
       <!--/.col (left) -->      
