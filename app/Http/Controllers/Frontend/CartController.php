@@ -56,7 +56,7 @@ class CartController extends Controller
         return view('frontend.cart.index', compact('arrProductInfo', 'getlistProduct', 'seo'));
     }
 
-    public function addressInfo(Request $request){
+    public function addressInfo(Request $request){        
         if(!Session::has('products')) {
             return redirect()->route('home');
         }
