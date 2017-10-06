@@ -14,6 +14,7 @@ use App\Models\OrderDetail;
 use App\Models\Customer;
 use App\Models\Branch;
 use App\Models\CustomerAddress;
+use App\Models\Settings;
 use Helper, File, Session, Auth;
 use Mail;
 
