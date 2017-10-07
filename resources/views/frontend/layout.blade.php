@@ -149,7 +149,7 @@
                         <div class="account-header dropdown">
                             <img src="{{ URL::asset('public/assets/img/icon.png') }}" alt="avatar">
                             <a class="dropdown-toggle" data-toggle="dropdown">
-                                Chào, <b>{{ Session::get('username') }}</b><br/>
+                                Chào, <b>{{ Session::get('fullname') }}</b><br/>
                                 <span class="txt-account">Tài khoản</span>
                             </a>
                             <ul class="dropdown-menu-header">
