@@ -35,7 +35,7 @@ class Orders extends Model  {
       'tien_thanh_toan',
       'phi_giao_hang',      
       'phi_cod',
-      'full_name',      
+      'fullname',      
       'da_thanh_toan'
     ];
 

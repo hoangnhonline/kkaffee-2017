@@ -112,7 +112,7 @@ class ProductController extends Controller
         $query->join('cate', 'cate.id', '=', 'product.cate_id');
         $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id');        
         $query->orderBy('product.id', 'desc');
-        $items = $query->select(['product_img.image_url','product.*','product.id as product_id', 'full_name' , 'product.created_at as time_created', 'users.full_name', 'estate_type.name as ten_loai', 'cate.name as ten_cate'])
+        $items = $query->select(['product_img.image_url','product.*','product.id as product_id', 'fullname' , 'product.created_at as time_created', 'users.fullname', 'estate_type.name as ten_loai', 'cate.name as ten_cate'])
         ->paginate(1000);
 
         $estateTypeArr = CateParent::all();  

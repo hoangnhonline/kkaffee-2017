@@ -71,6 +71,7 @@ Route::group(['namespace' => 'Frontend'], function()
         Route::get('thong-bao-cua-toi', ['as' => 'notification', 'uses' => 'CustomerController@notification']);
         Route::get('thong-tin-tai-khoan', ['as' => 'account-info', 'uses' => 'CustomerController@accountInfo']);
         Route::get('doi-mat-khau', ['as' => 'change-password', 'uses' => 'CustomerController@changePassword']);
+        Route::post('cap-nhat', ['as' => 'update-customer', 'uses' => 'CustomerController@update']);
         Route::post('save-new-password', ['as' => 'save-new-password', 'uses' => 'CustomerController@saveNewPassword']);
         Route::get('/chi-tiet-don-hang/{order_id}', ['as' => 'order-detail', 'uses' => 'OrderController@detail']);
         Route::post('/huy-don-hang', ['as' => 'order-cancel', 'uses' => 'OrderController@huy']);
@@ -100,7 +101,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('/cap-nhat-thong-tin', ['as' => 'cap-nhat-thong-tin', 'uses' => 'CartController@updateUserInformation']);
     Route::post('/get-district', ['as' => 'get-district', 'uses' => 'DistrictController@getDistrict']);
     Route::post('/get-ward', ['as' => 'get-ward', 'uses' => 'WardController@getWard']);
-    Route::post('/customer/update', ['as' => 'update-customer', 'uses' => 'CustomerController@update']);
+    
     Route::post('/customer/register', ['as' => 'register-customer', 'uses' => 'CustomerController@register']);
     Route::post('/customer/register-ajax', ['as' => 'register-customer-ajax', 'uses' => 'CustomerController@registerAjax']);
     Route::post('/customer/checkemail', ['as' => 'checkemail-customer', 'uses' => 'CustomerController@isEmailExist']);  

@@ -252,9 +252,9 @@
        // $('#login-form').hide();
        // $('#radioIsNotUserIcho').iCheck('check');
         $('#email').hide();
-        // $('#full_name').val();
+        // $('#fullname').val();
         @if(Session::has('fb_name'))
-            $('#full_name').val(' {{Session::get('fb_name') }}');
+            $('#fullname').val(' {{Session::get('fb_name') }}');
         @endif
 
         @if(Session::has('fb_email'))
@@ -269,10 +269,10 @@
 
       $('#register_popup_submit_1').click(function () {
         var error = [];
-        var list_check = ['email_register_1', 'password_register_1', 'full_name_register_1'];
+        var list_check = ['email_register_1', 'password_register_1', 'fullname_register_1'];
         var email = $('#email_register_1').val();
         var password = $('#password_register_1').val();
-        var full_name = $('#full_name_register_1').val();
+        var fullname = $('#fullname_register_1').val();
 
         if(!email || !validateEmail(email)) {
           error.push('email_register_1');
@@ -282,8 +282,8 @@
           error.push('password_register_1');
         }
 
-        if(!full_name) {
-          error.push('full_name_register_1');
+        if(!fullname) {
+          error.push('fullname_register_1');
         }
 
         for(i in list_check) {
@@ -303,7 +303,7 @@
             data : {
               email: email,
               password: password,
-              full_name: full_name
+              fullname: fullname
             },
             success : function(data){
               if(+data){

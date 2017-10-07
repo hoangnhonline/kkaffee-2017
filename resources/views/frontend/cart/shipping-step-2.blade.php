@@ -49,7 +49,7 @@
                               <div class="panel panel-default address-item is-default">
                                 <div class="panel-body">
                                 
-                                  <p class="name">{{ $customer->full_name }}</p>
+                                  <p class="name">{{ $customer->fullname }}</p>
                                   <p class="address">
                                     @if($customer->country_id == 235)
                                       @if( isset( $customer->tinh->name ))
@@ -86,9 +86,9 @@
                       <div class="panel-body">
                         <form class="form-horizontal bv-form" role="form" id="address-info" novalidate>                         
                           <div class="form-group row">
-                            <label for="full_name" class="col-lg-4 control-label visible-lg-block">{{ trans('text.ho-ten') }} </label>
+                            <label for="fullname" class="col-lg-4 control-label visible-lg-block">{{ trans('text.ho-ten') }} </label>
                             <div class="col-lg-8 input-wrap has-feedback">
-                                <input type="text" name="full_name" class="form-control address" id="full_name" value="{{ $customer->full_name }}" placeholder="Nhập họ tên" data-bv-field="full_name">
+                                <input type="text" name="fullname" class="form-control address" id="fullname" value="{{ $customer->fullname }}" placeholder="Nhập họ tên" data-bv-field="fullname">
                                 <small class="help-block" data-bv-validator="notEmpty" data-bv-for="telephone" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-nhap') }} {{ trans('text.ho-ten') }}</small>
                            </div>
                           </div>
@@ -215,7 +215,7 @@
    
 
       @if(Session::has('new-register') || Session::has('register') ||
-         !$customer->full_name ||
+         !$customer->fullname ||
          !$customer->email ||
          !$customer->address ||
          !$customer->phone ||
@@ -235,7 +235,7 @@
       function validateData() {
         var error = [];
 
-        var full_name = $('#full_name').val();
+        var fullname = $('#fullname').val();
         var city_id   = $('#city_id').val();
         var country_id   = $('#country_id').val();
         var district_id   = +$('#district_id').val();
@@ -244,9 +244,9 @@
         var telephone = $('#telephone').val();
         var email = $('#email_form').val();
 
-        if(!full_name.length)
+        if(!fullname.length)
         {
-          error.push('full_name');
+          error.push('fullname');
         }
         if(!country_id)
         {
@@ -286,7 +286,7 @@
         }
 
 
-        var list = ['full_name', 'city_id', 'district_id', 'ward_id', 'street', 'telephone' ];
+        var list = ['fullname', 'city_id', 'district_id', 'ward_id', 'street', 'telephone' ];
 
         for( i in list ) {
             $('#' + list[i]).next().hide();
@@ -305,7 +305,7 @@
             url: "{{ route('update-customer') }}",
             method: "POST",
             data : {
-              full_name : full_name,
+              fullname : fullname,
               city_id : city_id,
               district_id : district_id,
               country_id : country_id,

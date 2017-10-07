@@ -18,7 +18,7 @@
                         
                         <div class="address-1">
                           <h4 class="mb20"> Địa chỉ </h4>
-                          <p style="font-weight:bold">{{ $customer->full_name }}</p>
+                          <p style="font-weight:bold">{{ $customer->fullname }}</p>
                           <p>{{ $customer->address }}, 
                           @if(isset($customer->xa->name))
                             {{$customer->xa->name}}

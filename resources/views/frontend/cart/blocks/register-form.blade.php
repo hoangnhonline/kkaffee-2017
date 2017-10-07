@@ -22,10 +22,10 @@
         <small class="help-block" data-bv-validator="notEmpty" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-nhap') }} {{ trans('text.mat-khau') }}</small><small class="help-block" data-bv-validator="stringLength" data-bv-for="password" data-bv-result="NOT_VALIDATED" style="display: none;">Mật khẩu phải dài từ 6 đến 32 ký tự</small></div>
     </div>
     <div class="form-group" id="register_name">
-      <label class="control-label" for="full_name"><strong>{{ trans('text.ho-ten') }}</strong></label>
+      <label class="control-label" for="fullname"><strong>{{ trans('text.ho-ten') }}</strong></label>
       <div class="input-wrap has-feedback">
-        <input type="text" class="form-control register" name="full_name" id="full_name_register_1" placeholder="Nhập họ tên" data-bv-field="full_name">
-        <small class="help-block" data-bv-validator="notEmpty" data-bv-for="full_name" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-nhap') }} {{ trans('text.ho-ten') }}</small></div>
+        <input type="text" class="form-control register" name="fullname" id="fullname_register_1" placeholder="Nhập họ tên" data-bv-field="fullname">
+        <small class="help-block" data-bv-validator="notEmpty" data-bv-for="fullname" data-bv-result="NOT_VALIDATED" style="display: none;">{{ trans('text.vui-long-nhap') }} {{ trans('text.ho-ten') }}</small></div>
     </div>
     <div class="form-group policy-group">
       <div class="input-wrap">

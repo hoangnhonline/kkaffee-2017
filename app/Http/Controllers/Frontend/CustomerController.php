@@ -19,7 +19,7 @@ class CustomerController extends Controller
     public function update(Request $request)
     {
         $data = $request->all();
-
+        
         $customer_id = Session::get('userId');
         
         $customer = Customer::find($customer_id)->update($data);       
@@ -40,7 +40,9 @@ class CustomerController extends Controller
           Session::forget('fb_id');
         }
 
-        return 'sucess';
+        Session::flash('message', 'Cập nhật thành công.');
+
+        return redirect()->route('account-info');
     }
 
     public function register(Request $request)
@@ -50,7 +52,7 @@ class CustomerController extends Controller
         $email = $request->email;
 
         $customer = Customer::where('email', $email)->first();
-        $full_name = $request->full_name;
+        $fullname = $request->fullname;
         $password = $request->password;
 
         if(!is_null($customer)) {
@@ -65,7 +67,7 @@ class CustomerController extends Controller
         //set Session user for login here
         Session::put('login', true);
         Session::put('userId', $customer->id);
-        Session::put('username', $customer->full_name);
+        Session::put('username', $customer->fullname);
         Session::put('new-register', true);
         return "1";
     }
@@ -123,7 +125,7 @@ class CustomerController extends Controller
         Session::put('login', true);
         Session::put('userId', $customer->id);
         Session::put('new-register', true);
-        Session::put('username', $customer->full_name);
+        Session::put('username', $customer->fullname);
         return response()->json(['error' => 0]);
     }
 
@@ -154,9 +156,8 @@ class CustomerController extends Controller
         $customer_id = Session::get('userId');
         $customer = Customer::find($customer_id);
         $listCity = City::orderBy('display_order')->get();
-        $listCountry = Country::orderBy('id')->get();
-        $lang = Session::get('locale') ? Session::get('locale') : 'vi';
-        return view('frontend.account.update-info', compact('seo', 'customer', 'listCity', 'lang', 'listCountry'));
+        $listCountry = Country::orderBy('id')->get();        
+        return view('frontend.account.update-info', compact('seo', 'customer', 'listCity', 'listCountry'));
     }
     public function changePassword(Request $request){
         if(!Session::get('userId')){

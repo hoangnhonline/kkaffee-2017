@@ -71,7 +71,7 @@
                   @if($addressList->count() == 0)
                   <div class="row">
                       <div class="form-group col-md-4">
-                        <input type="text" class="form-control no-round req" id="fullname" name="fullname" placeholder="Họ tên" value="{{ old('fullname', $customer->full_name) }}">
+                        <input type="text" class="form-control no-round req" id="fullname" name="fullname" placeholder="Họ tên" value="{{ old('fullname', $customer->fullname) }}">
                       </div>
                       <div class="form-group col-md-4">
                         <input type="text" class="form-control no-round req" id="phone" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">

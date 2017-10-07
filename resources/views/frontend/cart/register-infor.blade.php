@@ -40,9 +40,9 @@
                         <form class="form-horizontal bv-form" role="form" id="address-info" novalidate>
                           <button type="submit" class="bv-hidden-submit" style="width: 0px; height: 0px;"></button>
                           <div class="form-group row">
-                            <label for="full_name" class="col-lg-4 control-label visible-lg-block">Họ tên </label>
+                            <label for="fullname" class="col-lg-4 control-label visible-lg-block">Họ tên </label>
                             <div class="col-lg-8 input-wrap has-feedback">
-                                <input type="text" name="full_name" class="form-control address" id="full_name" value="{{$customer->full_name}}" placeholder="Nhập họ tên" data-bv-field="full_name">
+                                <input type="text" name="fullname" class="form-control address" id="fullname" value="{{$customer->fullname}}" placeholder="Nhập họ tên" data-bv-field="fullname">
                                 <small class="help-block" data-bv-validator="notEmpty" data-bv-for="telephone" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập Họ và tên</small>
                            </div>
                           </div>
@@ -181,7 +181,7 @@
       function validateData() {
         var error = [];
 
-        var full_name = $('#full_name').val();
+        var fullname = $('#fullname').val();
         var city_id   = $('#city_id').val();
         var country_id   = $('#country_id').val();
         var district_id   = +$('#district_id').val();
@@ -190,9 +190,9 @@
         var telephone = $('#telephone').val();
         var email = $('#email_form').val();
 
-        if(!full_name.length)
+        if(!fullname.length)
         {
-          error.push('full_name');
+          error.push('fullname');
         }
         if(!country_id)
         {
@@ -224,7 +224,7 @@
           error.push('telephone');
         }
 
-        var list = ['full_name', 'city_id', 'district_id', 'ward_id', 'street', 'telephone'];
+        var list = ['fullname', 'city_id', 'district_id', 'ward_id', 'street', 'telephone'];
 
         for( i in list ) {
             $('#' + list[i]).next().hide();
@@ -243,7 +243,7 @@
             url: "{{ route('update-customer') }}",
             method: "POST",
             data : {
-              full_name : full_name,
+              fullname : fullname,
               city_id : city_id,
               district_id : district_id,
               ward_id : ward_id,

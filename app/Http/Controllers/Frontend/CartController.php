@@ -255,7 +255,7 @@ class CartController extends Controller
         $customer = Customer::find($userId);
 
         // check info
-        // if(!$customer->full_name ||
+        // if(!$customer->fullname ||
         //    !$customer->email ||
         //    !$customer->address ||
         //    !$customer->phone ||
@@ -312,7 +312,7 @@ class CartController extends Controller
                 return redirect()->route('home');
             }
             // check info
-            if(!$customer->full_name ||
+            if(!$customer->fullname ||
                !$customer->email ||
                !$customer->address ||
                !$customer->phone ||

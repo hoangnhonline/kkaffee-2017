@@ -118,7 +118,7 @@
                         <div class="order"> <span class="title"> {{ trans('text.dia-chi-giao-hang') }} </span> <a href="{{route('shipping-step-2')}}" class="btn btn-default btn-custom1">{{ trans('text.sua') }}</a> </div>
                         <div class="information">
                           
-                          <h6>{{ $customer->full_name }}</h6>
+                          <h6>{{ $customer->fullname }}</h6>
                           <p class="end">
                             @if($customer->country_id == 235)
                               @if( isset( $customer->tinh->name ))

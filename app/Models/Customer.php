@@ -25,7 +25,7 @@ class Customer extends Model  {
      */
     protected $fillable = [
       'id',
-      'full_name',
+      'fullname',
       'email',
       'username',
       'password',
@@ -34,7 +34,9 @@ class Customer extends Model  {
       'status',     
       'facebook_id',
       'image_url',
-      'key_reset'
+      'key_reset',
+      'gender',
+      'phone'
     ];
 
     public function tinh()

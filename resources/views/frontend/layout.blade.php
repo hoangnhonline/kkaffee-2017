@@ -280,8 +280,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="regisname">Họ tên</label>
-                                    <input class="form-control register" name="full_name" id="popup-register-name" placeholder="Nhập họ tên" data-bv-field="full_name" type="text">
-                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="full_name" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập Họ tên</small>
+                                    <input class="form-control register" name="fullname" id="popup-register-name" placeholder="Nhập họ tên" data-bv-field="fullname" type="text">
+                                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="fullname" data-bv-result="NOT_VALIDATED" style="display: none;">Vui lòng nhập Họ tên</small>
                                 </div>                                
                                 <div class="checkbox">
                                     <label><input type="checkbox">Nhận các thông tin ưu đãi của chúng tôi qua email</label>
