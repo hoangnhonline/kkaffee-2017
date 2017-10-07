@@ -3,9 +3,6 @@
 
 @section('content')
 <article>
-  <section class="block-image marg40">
-      <img src="img/banner.png" alt=""/>
-  </section>
   <div class="container">
       <div class="breadcrumbs">
           <ul>
@@ -52,21 +49,27 @@
                               <div class="little-title">ĐỊA CHỈ NGƯỜI NHẬN</div>
                               <div class="well wll">
                                   <p>
-                                      Tên người nhận: <b>Chris Lai</b>
+                                      Tên người nhận: <b>{{ $order->address->fullname }}</b>
                                   </p>
                                   <p>
-                                      Địa chỉ: <b>Nhà số 216 Hoàng Văn Thụ, phường 4, quận Tân Bình, thành phố Hồ Chí Minh, Việt Nam.</b>
+                                      Địa chỉ: <b>{{ $order->address->address }}, {{ $order->address->ward->name }}, {{ $order->address->district->name }}, {{ $order->address->city->name }}</b>
                                   </p>
                                   <p>
-                                      Điện thoại: <b>0909 58 57 49</b>
+                                      Điện thoại: <b>{{ $order->address->phone }}</b>
                                   </p>
-                                  Email: <b>tungocsang88@gmail.com</b>
+                                  @if($order->address->email)
+                                  Email: <b>{{ $order->address->email }}</b>
+                                  @endif
                               </div>
                           </div>
                           <div class="col-md-6">
                               <div class="little-title">HÌNH THỨC THANH TOÁN</div>
                               <div class="well wll">
-                                  hanh toán tiền mặt khi nhận hàng
+                                  @if($order->method_id == 1)
+                                    COD
+                                  @elseif($order->method_id == 2)
+                                    Thanh toán bằng thẻ của K KAFFEE
+                                  @endif
                               </div>
                           </div>
                       </div>
@@ -84,7 +87,13 @@
                               </tr>
                           </thead>
                           <tbody>
+                            <?php 
+                              $totalTamTinh = 0;
+                            ?>
                               @foreach($orderDetail as $rowOrder)
+                              <?php 
+                                $totalTamTinh += $rowOrder->tong_tien;
+                              ?>
                               <tr>
                                   <td>
                                       <div class="image"><img src="{{ Helper::showImage($rowOrder->product->image_url) }}" alt="{!! $rowOrder->product->name !!}"/></div>
@@ -108,28 +117,28 @@
                                   <td></td>
                                   <td colspan="2" class="text-left"><b>Tổng phụ</b></td>
                                   <td></td>
-                                  <td class="text-right"><b>1.539.000đ</b></td>
+                                  <td class="text-right"><b>{!! number_format($totalTamTinh) !!}đ</b></td>
                               </tr>
                               <tr>
                                   <td></td>
-                                  <td colspan="2" class="text-left"><b>Phí vận chuyển <span class="cl_ea0000">4,6km</span></b></td>
+                                  <td colspan="2" class="text-left"><b>Phí vận chuyển</span></b></td>
                                   
                                   <td></td>
-                                  <td class="text-right"><b>23.000đ</b></td>
+                                  <td class="text-right"><b>{{ number_format($order->phi_van_chuyen) }}đ</b></td>
                               </tr>
                               <tr>
                                   <td></td>
                                   <td colspan="2" class="text-left"><b>Phí phục vụ</b><br/><small>(<span class="cl_ea0000">10%</span> trên tổng đơn hàng)</small></td>
                                   
                                   <td></td>
-                                  <td class="text-right"><b>153.900đ</b></td>
+                                  <td class="text-right"><b>{{ number_format($totalTamTinh*10/100) }}đ</b></td>
                               </tr>
                               <tr>
                                   <td></td>
                                   <td colspan="2" class="text-left"><b>Tổng cộng</b></td>
                                   
                                   <td></td>
-                                  <td class="text-right"><b class="cl_ea0000">1.562.000đ</b></td>
+                                  <td class="text-right"><b class="cl_ea0000">{{ number_format($order->tien_thanh_toan) }}đ</b></td>
                               </tr>
                           </tfoot>
                       </table>
