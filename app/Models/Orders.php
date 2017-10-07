@@ -33,10 +33,12 @@ class Orders extends Model  {
       'coupon_id',
       'giam_gia',
       'tien_thanh_toan',
-      'phi_giao_hang',      
+      'phi_van_chuyen',      
       'phi_cod',
       'fullname',      
-      'da_thanh_toan'
+      'da_thanh_toan',
+      'address_id',
+      'branch_id'
     ];
 
     public function order_detail()
@@ -47,5 +49,15 @@ class Orders extends Model  {
     public function customer()
     {
         return $this->hasOne('App\Models\Customer', 'id', 'customer_id');
+    }
+
+    public function branch()
+    {
+        return $this->hasOne('App\Models\Branch', 'id', 'branch_id');
+    }
+
+    public function address()
+    {
+        return $this->hasOne('App\Models\CustomerAddress', 'id', 'address_id');
     }
 }

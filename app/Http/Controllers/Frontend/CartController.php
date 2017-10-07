@@ -122,6 +122,7 @@ class CartController extends Controller
         }
         //
         $branch_id = $dataArr['k_branch_id'];
+        Session::put('branch_id', $branch_id);
         $branchDetail = Branch::find($branch_id);
         
         $branchAddress = $branchDetail->address.", ".$branchDetail->ward->name.", ".$branchDetail->district->name.", ".$branchDetail->city->name.", Việt Nam";
@@ -241,9 +242,10 @@ class CartController extends Controller
         $order['coupon_id'] = 0;
         $order['method_id'] = $request->method_id;
         $order['address_id'] = Session::get('address_id');
+        $order['branch_id'] = Session::get('branch_id');
 
         // check if ho chi minh free else 150k
-        $order['phi_giao_hang'] = 0;
+        $order['phi_van_chuyen'] = Session::get('phi_van_chuyen')['phi'];
         $order['phi_cod'] = 0;
         
         $order['service_fee'] = 0;
@@ -252,7 +254,7 @@ class CartController extends Controller
             $order['tong_tien'] += $price * $getlistProduct[$product->id];
         }
 
-        $order['tong_tien'] = $order['tien_thanh_toan'] = $order['tong_tien'] + $order['phi_giao_hang'] + $order['service_fee'] + $order['phi_cod'];
+        $order['tong_tien'] = $order['tien_thanh_toan'] = $order['tong_tien'] + $order['phi_van_chuyen'] + $order['service_fee'] + $order['phi_cod'];
        
         $getOrder = Orders::create($order);
 
@@ -317,8 +319,9 @@ class CartController extends Controller
         Session::put('order_id', '');
         Session::forget('address_id');
         Session::forget('address_info');
-
-
+        Session::forget('phi_van_chuyen');
+        Session::forget('branch_id');
+        
         $seo = Helper::seo();
 
         return view('frontend.cart.success', compact('seo'));
