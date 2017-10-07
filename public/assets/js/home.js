@@ -264,7 +264,7 @@ $(document).ready(function () {
         var list_check = ['popup-register-email', 'popup-register-password', 'popup-register-name'];
         var email = $('#popup-register-email').val();
         var password = $('#popup-register-password').val();
-        var full_name = $('#popup-register-name').val();
+        var fullname = $('#popup-register-name').val();
 
         if(!email) {
           error.push('popup-register-email');
@@ -274,7 +274,7 @@ $(document).ready(function () {
           error.push('popup-register-password');
         }
 
-        if(!full_name) {
+        if(!fullname) {
           error.push('popup-register-name');
         }
 
@@ -299,7 +299,7 @@ $(document).ready(function () {
               data : {
                 email: email,
                 password: password,
-                full_name: full_name
+                fullname: fullname
               },
               success : function(data){
                 if(data.error == 'email')

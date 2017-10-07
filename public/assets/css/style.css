@@ -1590,11 +1590,11 @@ h1.title_page span:after{
     padding-top: 6px;
     padding-bottom: 5px;
     margin-bottom: 0;
-    width: 95px;
+    width: 140px;
     float: left;
 }
 #account .col-form-input{
-    width: calc(100% - 95px);
+    width: calc(100% - 140px);
     float: left;
 }
 #account .btn span.glyphicon {    			
