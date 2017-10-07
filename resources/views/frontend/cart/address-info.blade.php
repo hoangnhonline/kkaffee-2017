@@ -170,6 +170,7 @@
                   <div class="form-group">
                       <textarea class="form-control no-round" name="notes" id="notes" rows="7" placeholder="Nhập thông tin ghi chú của bạn"></textarea>
                   </div>
+                  <input type="hidden" name="k_branch_id" id="k_branch_id" value="">
                   <div class="form-group clearfix checkout-action">
                       <div class="pull-right" style="margin-left:5px"><button id="btnSave" type="button" class="btn btn-yellow btn-flat">Tiếp theo</button></div>
                       <div class="pull-right"><a href="#" class="btn btn-grey btn-flat">Hủy bỏ</a></div>
@@ -239,11 +240,17 @@
                 dataType : 'html',
                 success : function(data){
                   $('#branch_div').html(data);
-                  $('input[name="branch_id"]').eq(0).prop('checked', true);
+                  var br = $('input[name="branch_id"]').eq(0);
+                  br.prop('checked', true);
+                  $('#k_branch_id').val(br.val());
                 }
               })                               
             }
           });
+      $(document).on('click', '.reqBranchId', function(){
+        var obj = $(this);
+        $('#k_branch_id').val(obj.val());
+      });
       $('.city_id').change(function(){         
         var obj = $(this);
             $.ajax({

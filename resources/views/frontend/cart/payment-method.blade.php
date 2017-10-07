@@ -84,10 +84,10 @@
                                       <th class="text-left">Phí phục vụ<br/><small>(<span class="cl_ea0000">10%</span> trên tổng đơn hàng)</small></th>
                                       <td class="text-right"><strong><span>{{ number_format($total*10/100) }}đ</span></strong> </td>
                                   </tr>
-                                  <!--<tr>
-                                      <th class="text-left">Phí vận chuyển <span class="cl_ea0000">4,6km</span></th>
-                                      <td class="text-right"><strong><span>57,520,000đ</span></strong> </td>
-                                  </tr>-->
+                                  <tr>
+                                      <th class="text-left">Phí vận chuyển <span class="cl_ea0000">{!! Session::get('phi_van_chuyen')['text'] !!}</span></th>
+                                      <td class="text-right"><strong><span>{!! number_format(Session::get('phi_van_chuyen')['phi']) !!}đ</span></strong> </td>
+                                  </tr>
                                   <tr class="order-total">
                                   </tr>
                               </tfoot>
@@ -101,7 +101,7 @@
                                   <b>Tổng cộng</b>
                               </div>
                               <div class="pull-right text-right">
-                                  <b class="cl_ea0000">{!! number_format($total + $total*10/100) !!}đđ</b><br/>
+                                  <b class="cl_ea0000">{!! number_format($total + $total*10/100 + Session::get('phi_van_chuyen')['phi']) !!}đ</b><br/>
                                   <small>(Chưa bao gồm phí COD)</small>
                               </div>
                           </div>

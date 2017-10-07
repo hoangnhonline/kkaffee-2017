@@ -84,7 +84,7 @@ class CartController extends Controller
 
     public function storeAddress(Request $request){
         $dataArr = $request->all();
-        //dd($dataArr);
+        
         Session::put('address_info', $dataArr);
         if(!isset($dataArr['address_id'])){
             $rs = CustomerAddress::create(
@@ -120,7 +120,39 @@ class CartController extends Controller
         }else{
             $address_id = isset($dataArr['address_id']) ? $dataArr['address_id'] : $address_id;
         }
-       
+        //
+        $branch_id = $dataArr['k_branch_id'];
+        $branchDetail = Branch::find($branch_id);
+        
+        $branchAddress = $branchDetail->address.", ".$branchDetail->ward->name.", ".$branchDetail->district->name.", ".$branchDetail->city->name.", Việt Nam";
+        $addressDetail = CustomerAddress::find($address_id);
+        $addressNhan = $addressDetail->address.", ".$addressDetail->ward->name.", ".$addressDetail->district->name.", ".$addressDetail->city->name.", Việt Nam";
+
+        $url = 'https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins='.urlencode($branchAddress).'&destinations='.urlencode($addressNhan).'&key=AIzaSyAhxs7FQ3DcyDm8Mt7nCGD05BjUskp_k7w';
+        // create curl resource
+        $ch = curl_init();
+        // set url
+        curl_setopt($ch, CURLOPT_URL, $url);
+        //return the transfer as a string
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        // $output contains the output string
+        $output = curl_exec($ch);
+        // close curl resource to free up system resources
+        curl_close($ch);
+        $data = json_decode($output, true);
+
+        $status = $data['rows'][0]['elements'][0]['status'];
+        if($status == 'NOT_FOUND'){
+            $text_dis = "Không tìm thấy địa chỉ";
+            $km_dis = 0;
+        }else{
+            $text_dis = $data['rows'][0]['elements'][0]['distance']['text'];
+            $tmp = explode(" ", $text_dis);
+            $km_dis = $tmp['0'];    
+        }        
+
+        Session::put('phi_van_chuyen', ['km' => $km_dis, 'text' => $text_dis, 'phi' => 5000*$km_dis]);       
+
         Session::put('address_id', $address_id);
 
         return redirect()->route('payment-method');
@@ -128,8 +160,7 @@ class CartController extends Controller
     public function paymentInfo(Request $request){     
         
         $addressInfo = Session::get('address_info');
-      //  dd($addressInfo);
-        //dd(Session::get('address_id'));
+     
         $detailPrimary = CustomerAddress::find(Session::get('address_id'));
         //dd($detailPrimary);
         $getlistProduct = Session::get('products');
@@ -164,9 +195,6 @@ class CartController extends Controller
     public function addProduct(Request $request)
     {
         $listProduct = Session::get('products');
-
-
-
         if(!empty($listProduct[$request->id])) {
             $listProduct[$request->id] += 1;
         } else {
@@ -176,103 +204,6 @@ class CartController extends Controller
         Session::put('products', $listProduct);
 
         return 'sucess';
-    }
-
-    public function shippingStep1(Request $request)
-    {
-        $getlistProduct = Session::get('products');
-        //$chon_dich_vu = $request->chon_dich_vu;
-        $so_dich_vu = $request->so_dich_vu;
-        $phi_dich_vu = $request->phi_dich_vu;        
-        $listProductId = array_keys($getlistProduct);
-        /*
-        $service_fee = [];
-        $totalServiceFee = 0;
-        foreach($listProductId as $product_id){
-            if(isset($chon_dich_vu[$product_id]) && $chon_dich_vu[$product_id] == 1){
-                $service_fee[$product_id]['fee'] = $so_dich_vu[$product_id]*$phi_dich_vu[$product_id];
-                $service_fee[$product_id]['so_luong'] = $so_dich_vu[$product_id];
-                $service_fee[$product_id]['don_gia_dich_vu'] = $phi_dich_vu[$product_id];
-                $totalServiceFee+= $service_fee[$product_id]['fee'];
-            }
-        }
-        */
-        //Session::set('service_fee', $service_fee);
-        //Session::set('totalServiceFee', $totalServiceFee);
-        
-        if(Session::get('login') || Session::get('new-register')) {
-            return redirect()->route('shipping-step-2');
-        }
-
-        if(empty($getlistProduct)) {
-            return redirect()->route('home');
-        }
-        
-        $listProductId = array_keys($getlistProduct);
-
-        /*$chon_dich_vu = $request->chon_dich_vu;
-        $so_dich_vu = $request->so_dich_vu;
-        $phi_dich_vu = $request->phi_dich_vu;
-
-        
-        $service_fee = [];
-        $totalServiceFee = 0;
-        foreach($listProductId as $product_id){
-            if(isset($chon_dich_vu[$product_id]) && $chon_dich_vu[$product_id] == 1){
-                $service_fee[$product_id]['fee'] = $so_dich_vu[$product_id]*$phi_dich_vu[$product_id];
-                $service_fee[$product_id]['so_luong'] = $so_dich_vu[$product_id];
-                $service_fee[$product_id]['don_gia_dich_vu'] = $phi_dich_vu[$product_id];
-                $totalServiceFee+= $service_fee[$product_id]['fee'];
-            }
-        }
-        */
-        $arrProductInfo = Product::whereIn('product.id', $listProductId)
-                            ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
-                            ->select('sp_hinh.image_url', 'product.*')->get();
-
-        //$service_fee = Session::get('service_fee') ? Session::get('service_fee') : 0;
-        $seo = Helper::seo();
-        return view('frontend.cart.shipping-step-1', compact('arrProductInfo', 'getlistProduct' , 'seo' ));
-    }
-
-    public function shippingStep2(Request $request)
-    {
-        $is_vanglai = Session::get('is_vanglai') ? Session::get('is_vanglai') : 0;
-        $getlistProduct = Session::get('products');
-        if($is_vanglai == 0){
-            if((empty($getlistProduct) || !Session::get('login')) && !Session::has('new-register') )  {
-                return redirect()->route('home');
-            }
-        }
-
-        $listProductId = $getlistProduct ? array_keys($getlistProduct) : [];
-        $arrProductInfo = Product::whereIn('product.id', $listProductId)
-                            ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
-                            ->select('sp_hinh.image_url', 'product.*')->get();
-        $listCity = City::orderBy('display_order')->get();
-
-        $userId = Session::get('userId');
-        $customer = Customer::find($userId);
-
-        // check info
-        // if(!$customer->fullname ||
-        //    !$customer->email ||
-        //    !$customer->address ||
-        //    !$customer->phone ||
-        //    !$customer->district_id ||
-        //    !$customer->city_id ||
-        //    !$customer->ward_id
-        // ) {
-        //     Session::flash('update-information', true);
-        //     return redirect()->route('cap-nhat-thong-tin');
-        // }
-        // end
-        //$totalServiceFee = Session::get('totalServiceFee') ? Session::get('totalServiceFee') : 0;
-        $totalServiceFee = 0;
-        if(is_null($customer)) $customer = new Customer;
-        $seo = Helper::seo();
-        
-        return view('frontend.cart.shipping-step-2', compact('customer', 'listCity', 'seo', 'is_vanglai', 'getlistProduct', 'arrProductInfo'));
     }
 
     public function updateUserInformation(Request $request)
@@ -289,73 +220,6 @@ class CartController extends Controller
         if(is_null($customer)) $customer = new Customer;
         $seo = Helper::seo();
         return view('frontend.cart.register-infor', compact('customer', 'listCity', 'seo'));
-    }
-
-    public function setService(Request $request){
-        
-        Session::set('is_vanglai', 1);
-
-    }
-
-    public function shippingStep3(Request $request)
-    {
-        $userId = Session::get('userId');
-        $customer = Customer::find($userId);
-        
-
-        $getlistProduct = Session::get('products');
-        $is_vanglai = Session::get('is_vanglai') ? Session::get('is_vanglai') : 0;
-
-        if($is_vanglai == 0){
-            
-            if(empty($getlistProduct) || !Session::get('login') || Session::has('new-register')) {
-                return redirect()->route('home');
-            }
-            // check info
-            if(!$customer->fullname ||
-               !$customer->email ||
-               !$customer->address ||
-               !$customer->phone ||
-               !$customer->district_id ||
-               !$customer->city_id ||
-               !$customer->ward_id
-            ) {
-                Session::flash('update-information', true);
-                return redirect()->route('cap-nhat-thong-tin');
-            }
-        }        
-        // end
-
-        $listProductId = array_keys($getlistProduct);
-
-        $arrProductInfo = Product::whereIn('product.id', $listProductId)
-                            ->leftJoin('sp_hinh', 'sp_hinh.id', '=','product.thumbnail_id')
-                            ->select('sp_hinh.image_url', 'product.*')->get();
-        $totalCanNang = 0;
-        foreach( $arrProductInfo as $product ){
-            $canNangCongKenh = ($product->chieu_dai * $product->chieu_cao * $product->chieu_rong)/6000;
-            $tmpCanNang =  $canNangCongKenh > $product->can_nang ? $canNangCongKenh : $product->can_nang;
-            $totalCanNang += $tmpCanNang;
-        }
-        $vangLaiArr = Session::get('vanglai');
-        $city_id = $is_vanglai == 1 && isset($vangLaiArr['city_id']) ? $vangLaiArr['city_id'] : $customer->city_id;
-        $district_id = $is_vanglai == 1 && isset($vangLaiArr['district_id']) ? $vangLaiArr['district_id'] : $customer->district_id;    
-
-        $phi_giao_hang = Helper::phiVanChuyen( $totalCanNang, $city_id, $district_id );
-       
-        //$totalServiceFee = Session::get('totalServiceFee') ? Session::get('totalServiceFee') : 0;
-        $totalServiceFee = 0;
-        
-        $seo = Helper::seo();
-        $total = 0;
-        foreach($arrProductInfo as $product){
-            $price = $product->is_sale ? $product->price_sale : $product->price;                
-            $total += $getlistProduct[$product->id]*$price;                            
-        }        
-        $totalAmount = $total + $totalServiceFee + $phi_giao_hang;        
-        $phi_cod = Helper::calCod($totalAmount, $city_id);                
-        
-        return view('frontend.cart.shipping-step-3', compact('arrProductInfo', 'getlistProduct', 'customer', 'phi_giao_hang', 'seo', 'is_vanglai', 'phi_cod', 'totalAmount'));
     }
 
     public function saveOrder(Request $request)
