@@ -1,6 +1,140 @@
 @extends('frontend.layout')
 @include('frontend.partials.meta')
 @section('content')
+<article>
+  <section class="block-image marg40">
+      <img src="img/banner.png" alt=""/>
+  </section>
+  <div class="container">
+      <div class="breadcrumbs">
+          <ul>
+              <li><a href="/">Trang chủ</a></li>
+              <li>Thông tin đặt hàng</li>
+          </ul>
+      </div>
+  </div>
+  <section id="account" class="marg40">
+      <div class="container">
+          <div class="tabs-custom">
+              <div class="col-tab-menu">
+                  <div class="clearfix marg10 user-account">
+                      <div class="image"><img src="img/icon.png" alt=""/></div>
+                      <span>
+                          Tài khoản của<br/>
+                          <b>Chris Lai</b>
+                      </span>
+                  </div>
+                  <ul class="tab-menu">
+                      <li class="active"><a href="#" data-target-id="all"><i class="fa fa-user" aria-hidden="true"></i> Thông tin tài khoản</a></li>
+                      <li><a href="javascript:void(0)" data-target-id="tab01"><i class="fa fa-list-alt" aria-hidden="true"></i> Quản lý đơn hàng</a></li>
+                      <li><a href="javascript:void(0)" data-target-id="tab02"><i class="fa fa-home" aria-hidden="true"></i> Số địa chỉ</a></li>
+                      <li><a href="javascript:void(0)" data-target-id="tab03"><i class="fa fa-star" aria-hidden="true"></i> Điểm tích luỹ</a></li>
+                  </ul>
+              </div>
+              <div class="col-tab-content admin-content" id="all">
+                  <div class="title-section">
+                      THÔNG TIN TÀI KHOẢN
+                  </div>
+                  <form class="form">
+                      <div class="row">
+                          <div class="col-md-6 form-group clearfix">
+                              <div class="col-form-label"><label for="username">Họ và tên</label></div>
+                              <div class="col-form-input"><input type="text" class="form-control" id="username" value="Chris Lai"></div>
+                          </div>
+                          <div class="col-md-6  form-group clearfix">
+                              <div class="col-form-label"><label for="phone">Điện thoại</label></div>
+                              <div class="col-form-input"><input type="text" class="form-control" id="phone" value="090xxx"></div>
+                          </div>
+                      </div>
+                      <div class="form-group row clearfix">
+                          <div class="col-md-6">
+                              <div class="col-form-label"><label for="email">Email</label></div>
+                              <div class="col-form-input"><input type="email" class="form-control" id="email" value="Chris_Lai_0204@yahoo.com" disabled></div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="col-form-label"><label for="optradio">Giới tính</label></div>
+                              <div class="col-form-input  row clearfix">
+                                  <div class="col-md-6">
+                                      <div class="radio">
+                                          <label><input type="radio" name="optradio">Nam</label>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="radio">
+                                          <label><input type="radio" name="optradio">Nữ</label>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="clearfix">
+                          <div class="col-form-label"><label for="optradio">Ngày sinh</label></div>
+                          <div class="col-form-input">
+                              <div class="row clearfix">
+                                  <div class="col-md-3">
+                                      <select class="form-group form-control">
+                                          <option>Ngày</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                      </select>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <select class="form-group form-control">
+                                          <option>Tháng</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                      </select>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <select class="form-group form-control">
+                                          <option>Năm</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                      </select>
+                                  </div>
+                                  <div class="col-md-3">
+                                      <select class="form-group form-control">
+                                          <option>Khu vực</option>
+                                          <option>2</option>
+                                          <option>3</option>
+                                          <option>4</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="checkbox clearfix">
+                          <div class="col-form-label"></div>
+                          <div class="col-form-input"><label><input class="action-change-password" type="checkbox" value="">Thay đổi mật khẩu</label></div>
+                      </div>
+                      <div class="info-change-password">
+                          <div class="form-group clearfix">
+                              <div class="col-form-label"><label for="oldpwd">Pass cũ</label></div>
+                              <div class="col-form-input"><input type="password" class="form-control" id="oldpwd"></div>                                        
+                          </div>
+                          <div class="form-group clearfix">
+                              <div class="col-form-label"><label for="newpwd">Pass mới</label></div>
+                              <div class="col-form-input"><input type="password" class="form-control" id="newpwd"></div>                                        
+                          </div>
+                          <div class="form-group marg30 clearfix">
+                              <div class="col-form-label"><label for="repwd">Nhập lại</label></div>
+                              <div class="col-form-input"><input type="password" class="form-control" id="repwd"></div>                                        
+                          </div>
+                          <div class="clearfix account-action">
+                              <div class="col-form-label"></div>
+                              <div class="col-form-input"><a href="#" class="btn btn-yellow btn-flat">Cập nhật</a></div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+             
+          </div><!--End tab custom-->
+      </div>
+  </section><!-- End News -->
+</article>
 <div class="content-shop left-sidebar">
     <div class="container">
         <div class="row">
