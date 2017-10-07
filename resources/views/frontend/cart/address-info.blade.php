@@ -171,7 +171,7 @@
                       <textarea class="form-control no-round" name="notes" id="notes" rows="7" placeholder="Nhập thông tin ghi chú của bạn"></textarea>
                   </div>
                   <div class="form-group clearfix checkout-action">
-                      <div class="pull-right"><a href="javascript:;" id="btnSave" class="btn btn-yellow btn-flat">Tiếp theo</a></div>
+                      <div class="pull-right" style="margin-left:5px"><button id="btnSave" type="button" class="btn btn-yellow btn-flat">Tiếp theo</button></div>
                       <div class="pull-right"><a href="#" class="btn btn-grey btn-flat">Hủy bỏ</a></div>
                   </div>
                   </form>
@@ -213,7 +213,9 @@
           }, 500);
           return false;
         }        
+
         $('#dataForm').submit();
+        $(this).html('<i class="fa fa-spin fa-spinner"></i>').attr('disabled', 'disabled');
       });
       $('#branch_city_id').val(294);   
        $.ajax({

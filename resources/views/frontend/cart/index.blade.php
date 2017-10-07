@@ -75,7 +75,7 @@
                   </tbody>
               </table>
               <div class="clearfix text-right">
-                  <a href="{{ route('cate-parent', 'coffee') }}" class="btn btn-yellow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Tiếp tục mua hàng</a>
+                  <a href="{{ route('cate-parent', 'coffee') }}" class="btn btn-yellow"><i class="fa fa-long-arrow-left" aria-hidden="true" ></i> Tiếp tục mua hàng</a>
                   @if(!empty(Session::get('products')))
                   <a href="{{ route('empty-cart') }}" onclick="return confirm('Quý khách có chắc chắn bỏ hết hàng ra khỏi giỏ?'); " class="btn btn-grey"><i class="fa fa-trash-o" aria-hidden="true"></i> Xóa toàn bộ</a>
                   @endif
@@ -104,7 +104,7 @@
                   </table>
               </div>
               @if(!empty(Session::get('products')))
-              <a href="{{ route('address-info') }}" class="btn btn-block btn-yellow">Tiến hành đặt hàng</a>
+              <button id="btnDatHang" data-href="{{ route('address-info') }}" class="btn btn-block btn-yellow">Tiến hành đặt hàng</button>
               @endif
           </div>
       </div>
@@ -134,6 +134,10 @@
                 addToCart(product_id);
                 
               });
+        });
+        $('#btnDatHang').click(function(){
+          $(this).html('<i class="fa fa-spin fa-spinner"><i>').attr('disabled', 'disabled');
+          location.href=$(this).data('href');
         });
         $(document).on('change', '.change_quantity', function() {
             var quantity = $(this).val();

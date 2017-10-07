@@ -52,7 +52,7 @@
                         {!! $detail->description !!}
                     </p>
                     @endif
-                    <a href="javascript:;" data-id="{{ $detail->id }}" class="btn btn-yellow btn-lg btn-flat @if(Session::has('login')) btn-order-main @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif>ĐẶT HÀNG</a>
+                    <button type="button" data-id="{{ $detail->id }}" class="btn btn-yellow btn-flat @if(Session::has('login')) btn-order-main @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif> <i class="glyphicon glyphicon-shopping-cart"></i> ĐẶT HÀNG</button>
                 </div>
             </div>
         </div>
@@ -223,13 +223,13 @@
    		});
 
         $(document).ready(function($){  
-          $('a.btn-order').click(function() {
+          $('.btn-order').click(function() {
             $(this).html('<i class="fa fa-spin fa-spinner" style="margin-left:5px"></i>');
             var product_id = $(this).data('id');
             addToCart(product_id);
           });
-        $('a.btn-order-main').click(function() {
-            $(this).html('<i class="fa fa-spin fa-spinner"></i>');
+        $('.btn-order-main').click(function() {
+            $(this).html('<i class="fa fa-spin fa-spinner"></i>').attr('disabled', 'disabled');
             var product_id = $(this).data('id');
             addToCartMain(product_id);
             

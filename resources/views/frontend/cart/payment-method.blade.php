@@ -113,7 +113,7 @@
                               <label><input type="radio" name="method_id" value="2">Thanh toán bằng thẻ của K KAFFEE</label>
                           </div>
                           <div class="form-group clearfix checkout-action">
-                              <div class="pull-right"><a href="javascript:;" id="btnPayment" class="btn btn-yellow btn-flat">THANH TOÁN</a></div>
+                              <div class="pull-right" style="margin-left:5px"><button type="button" id="btnPayment" class="btn btn-yellow btn-flat">THANH TOÁN</button></div>
                               <div class="pull-right"><a href="{{ route('address-info')}}" class="btn btn-grey btn-flat">QUAY LẠI</a></div>
                           </div>
                         </form>
@@ -127,10 +127,10 @@
 @stop
 @section('js')
    <script type="text/javascript">
-   $(document).ready(function(){   
-    $('#btnPayment').click(function(){
-      $(this).html('<i class="fa fa-spin fa-spinner"></i>').attr('disabled', 'disabled');
-      $('#paymentForm').submit();
+   $(document).ready(function(){
+    $('#btnPayment').click(function(){            
+        $(this).html('<i class="fa fa-spin fa-spinner"></i>').attr('disabled', 'disabled');
+        $('#paymentForm').submit();      
     });
   });
   </script>
