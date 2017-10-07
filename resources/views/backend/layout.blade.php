@@ -75,6 +75,7 @@
        immediately after the control sidebar -->
 <input type="hidden" id="route_update_order" value="{{ route('update-order') }}">
 <input type="hidden" id="route_get_slug" value="{{ route('get-slug') }}">
+<input type="hidden" id="url_open_kc_finder" value="{{ URL::asset('public/admin/dist/js/kcfinder/browse.php?type=images') }}">
   <div class="control-sidebar-bg"></div>
 </div>
 <input type="hidden" id="upload_url" value="{{ config('K KAFFEE.upload_url') }}">
@@ -100,10 +101,6 @@
 <script src="{{ URL::asset('public/admin/dist/js/select2.min.js') }}"></script>
 <script src="{{ URL::asset('public/admin/dist/js/es6-promise.min.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
-
-<!-- Slimscroll -->
-<script src="{{ URL::asset('public/admin/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ URL::asset('public/admin/plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src="{{ URL::asset('public/admin/dist/js/app.min.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
@@ -130,6 +127,6 @@ $(document).ready(function(){
   } 
 </style>
 
-@yield('javascript_page')
+@yield('js')
 </body>
 </html>

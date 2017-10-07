@@ -5,21 +5,14 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Models\City;
 use App\Models\Product;
-use App\Models\District;
-use App\Models\Ward;
-use App\Models\Street;
-use App\Models\Project;
-use App\Models\EstateType;
 use App\Models\MetaData;
-use App\Models\ProductImg;
 use App\Models\Tag;
 use App\Models\TagObjects;
 use App\Models\Articles;
-use App\Models\ThongSo;
 use App\Models\Settings;
 use App\Models\CateParent;
+use App\Models\ArticlesCate;
 use App\Models\Cate;
 
 
@@ -27,14 +20,9 @@ use Helper, File, Session, Auth, Image;
 
 class DetailController extends Controller
 {
-    
-    public static $loaiSp = []; 
-    public static $loaiSpArrKey = [];    
-
+  
     public function __construct(){
         
-       
-
     }
     /**
     * Display a listing of the resource.
@@ -82,7 +70,9 @@ class DetailController extends Controller
 
         Helper::counter($detail->id, 1);
         $hotProductList = Product::getList(['is_hot' => 1, 'parent_id' => $detail->parent_id, 'limit' => 5]);
-        return view('frontend.detail.index', compact('detail', 'seo', 'socialImage', 'otherList', 'cateList', 'parentDetail', 'productArr', 'hotProductList'));
+
+        $catePromotion = ArticlesCate::find(1);
+        return view('frontend.detail.index', compact('detail', 'seo', 'socialImage', 'otherList', 'cateList', 'parentDetail', 'productArr', 'hotProductList', 'catePromotion'));
         
     }
     public function tagDetail(Request $request){

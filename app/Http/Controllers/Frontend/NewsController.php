@@ -34,24 +34,8 @@ class NewsController extends Controller
         $seo['description'] = $cateDetail->meta_description ? $cateDetail->meta_description : $cateDetail->title;
         $seo['keywords'] = $cateDetail->meta_keywords ? $cateDetail->meta_keywords : $cateDetail->title;
         $socialImage = $cateDetail->image_url; 
-         //widget
-        $widgetProduct = (object) [];        
-        $wParent = CateParent::where('is_widget', 1)->first();
-        if($wParent){
-
-            $widgetProduct = Product::where('product.slug', '<>', '')
-                    ->where('product.parent_id', $wParent->id)                    
-                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-            
-        }else{
-            $wCate = Cate::where('is_widget', 1)->first();
-            $widgetProduct = Product::where('product.slug', '<>', '')
-                    ->where('product.cate_id', $wCate->id)                    
-                    ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-        }      
-        return view('frontend.news.index', compact('title', 'hotArr', 'articlesArr', 'cateDetail', 'seo', 'socialImage', 'widgetProduct'));
+             
+        return view('frontend.news.index', compact('title', 'hotArr', 'articlesArr', 'cateDetail', 'seo', 'socialImage'));
     }      
 
      public function newsDetail(Request $request)
@@ -73,43 +57,9 @@ class NewsController extends Controller
             $tagSelected = Articles::getListTag($id);
             $cateDetail = ArticlesCate::find($detail->cate_id);
             Helper::counter($id, 2);
-            if($detail->type == 1){
-                 $widgetProduct = (object) [];
-                    $settingArr = Helper::setting();
-                    $wParent = CateParent::where('is_widget', 1)->first();
-                    if($wParent){
-
-                        $widgetProduct = Product::where('product.slug', '<>', '')
-                                ->where('product.parent_id', $wParent->id)                    
-                                ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                                ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-                        
-                    }else{
-                        $wCate = Cate::where('is_widget', 1)->first();
-                        $widgetProduct = Product::where('product.slug', '<>', '')
-                                ->where('product.cate_id', $wCate->id)                    
-                                ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                                ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-                    } 
-                return view('frontend.news.news-detail', compact('title',  'otherList', 'detail', 'otherArr', 'seo', 'socialImage', 'tagSelected', 'cateDetail', 'widgetProduct'));
-            }else{
-                 $servicesList = Articles::where('cate_id', 7)->orderBy('display_order')->orderBy('id')->get();
-                 if($id == 100){
-                    $settingBaogia = SettingBaogia::orderBy('type')->orderBy('display_order')->get();
-                    foreach($settingBaogia as $value){
-                        $arrSetting[$value->type][] = $value;
-                    }                   
-                    return view('frontend.services.thiet-ke', compact('title', 'detail', 'otherArr', 'seo', 'socialImage', 'tagSelected', 'cateDetail', 'servicesList', 'arrSetting', 'id'));    
-                 }
-                 if($id == 103){
-                    $settingBaogia = SettingBaogia::orderBy('type')->orderBy('display_order')->get();
-                    foreach($settingBaogia as $value){
-                        $arrSetting[$value->type][] = $value;
-                    }                   
-                    return view('frontend.services.thi-cong', compact('title', 'detail', 'otherArr', 'seo', 'socialImage', 'tagSelected', 'cateDetail', 'servicesList', 'arrSetting', 'id'));    
-                 }
-                return view('frontend.pages.services-detail', compact('title', 'detail', 'otherArr', 'seo', 'socialImage', 'tagSelected', 'cateDetail', 'servicesList'));
-            }
+            
+            return view('frontend.news.news-detail', compact('title',  'otherList', 'detail', 'otherArr', 'seo', 'socialImage', 'tagSelected', 'cateDetail'));
+        
         }else{
             return view('erros.404');
         }

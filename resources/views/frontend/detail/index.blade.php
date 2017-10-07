@@ -59,14 +59,13 @@
         <div class="container">
             <div class="bg-eaeaea">
                 <span>THỰC ĐƠN</span>
-                <a href="#">KHUYẾN MÃI</a>
+                <a href="{{ route('news-list', $catePromotion->slug) }}">KHUYẾN MÃI</a>
             </div>
         </div>
         <div class="container">
             <div class="tabs-custom">
                 <div id="myScrollspy" class="col-tab-menu hidden-xs">
-                    <ul class="tab-menu affix-top">
-                        <li><a href="{{ route('cate-parent', $detail->cateParent->name ) }}">{!! $detail->cateParent->name !!}</a></li>
+                    <ul class="tab-menu affix-top">                        
                         <li><a href="#tab01" data-target-id="">Sản phẩm hot</a></li>
                         @foreach($cateList as $cate)
                         <li><a href="#{{ $cate->slug }}" data-target-id="">{!! $cate->name !!}</a></li>
