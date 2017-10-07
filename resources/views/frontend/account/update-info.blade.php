@@ -109,7 +109,7 @@
       </div>
   </section><!-- End News -->
 </article>
-@endsection
+@stop
 @section('js')
  <script type="text/javascript">
  $(document).ready(function(){
@@ -123,4 +123,4 @@
   });
  });    
 </script>
-@endsection
+@stop

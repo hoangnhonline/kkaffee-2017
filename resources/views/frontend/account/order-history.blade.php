@@ -2,89 +2,73 @@
 @include('frontend.partials.meta')
 
 @section('content')
-<div class="content-shop left-sidebar">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-sm-8 col-xs-12 main-content">
-                <div class="main-content-shop">                 
-                    <h1 class="page-heading">
-                        <span class="page-heading-title2">Đơn hàng của tôi</span>
-                    </h1>
-                               
-                    <div class="dashboard-order have-margin">
-                        <table class="table-responsive table table-bordered">
-                            <thead>
+<article>
+  <section class="block-image marg40">
+      <img src="img/banner.png" alt=""/>
+  </section>
+  <div class="container">
+      <div class="breadcrumbs">
+          <ul>
+              <li><a href="/">Trang chủ</a></li>
+              <li>Thông tin đặt hàng</li>
+          </ul>
+      </div>
+  </div>
+  <section id="account" class="marg40">
+      <div class="container">
+          <div class="tabs-custom">
+              <div class="col-tab-menu">
+                  <div class="clearfix marg10 user-account">
+                      <div class="image"><img src="{{ URL::asset('public/assets/img/icon.png') }}" alt="avatar"/></div>
+                      <span>
+                          Tài khoản của<br/>
+                          <b>{!! $customer->fullname !!}</b>
+                      </span>
+                  </div>
+                  <ul class="tab-menu">
+                      <li ><a href="{{ route('account-info') }}"><i class="fa fa-user" aria-hidden="true"></i> Thông tin tài khoản</a></li>
+                      <li class="active"><a href="{{ route('order-history') }}"><i class="fa fa-list-alt" aria-hidden="true"></i> Quản lý đơn hàng</a></li>
+                      <li><a href="javascript:void(0)" ><i class="fa fa-home" aria-hidden="true"></i> Số địa chỉ</a></li>
+                      <li><a href="javascript:void(0)" ><i class="fa fa-star" aria-hidden="true"></i> Điểm tích luỹ</a></li>
+                  </ul>
+              </div>
+              <div class="col-tab-content admin-content" id="all">
+                    <div class="title-section">
+                        ĐƠN HÀNG CỦA TÔI
+                    </div>
+                    <table class="table bill-booked">
+                        <thead>
                             <tr>
-                                <th style="text-align:center">
-                                    <span class="hidden-xs hidden-sm hidden-md">Mã đơn hàng</span>
-                                    <span class="hidden-lg">Mã ĐH</span>
-                                </th>
-                                <th>Ngày mua</th>
-                                <th>Sản phẩm</th>
-                                <th style="text-align:right">Tổng tiền</th>
-                                <th style="text-align:center">
-                                    <span class="hidden-xs hidden-sm hidden-md">Trạng thái ĐH</span>
-                                    <span class="hidden-lg">Trạng thái</span>
-                                </th>
-                                <th style="text-align:center">
-                                    <span class="hidden-xs hidden-sm hidden-md">Trạng thái thanh toán</span>
-                                    <span class="hidden-lg">Thanh toán</span>
-                                </th>
-                                <th>Chi tiết</th>
+                                <th class="text-center">Mã ĐH</th>
+                                <th class="text-center">Ngày mua</th>
+                                <th class="text-left">Sản phẩm</th>
+                                <th class="text-center">Tổng tiền</th>
+                                <th class="text-center">Trạng thái ĐH</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             @foreach($orders as $order)
-                                <tr>
-                                    <td style="text-align:center;"><a style="color:#ec1c24" href="{{ route('order-detail', $order->id)}}">{{ str_pad($order->id, 6, "0", STR_PAD_LEFT)}}</a></td>
-                                    <td>{{ date('d/m/Y', strtotime($order->created_at)) }}</td>
-                                    <td>                                        
+                            <tr>
+                                <td class="text-center cl_ea0000">
+                                    <a href="{{ route('order-detail', $order->id) }}">{{ str_pad($order->id, 6, "0", STR_PAD_LEFT) }}</a>
+                                </td>
+                                <td class="text-center">{{ date('d/m/Y', strtotime($order->created_at)) }}</td>
+                                <td>
                                     @foreach($order->order_detail()->get() as $detail)
-                                    
                                     <p>{{ Helper::getName($detail->sp_id, 'product') }}</p>
                                     @endforeach
-                                    </td>
-                                    <td style="text-align:right">{{ number_format($order->tong_tien_vnd) }}</td>                                    
-                                    <td style="text-align:center">
-                                        <span class="order-status">
-                                            {{ $status[$order->status] }}
-                                        </span>
-                                    </td>
-                                    <td style="text-align:center">
-                                        <span class="order-status">
-                                            {{ $order->da_thanh_toan == 1  ? "Đã thanh toán" : "Chưa thanh toán" }}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <a style="color:#ec1c24" href="{{ route('order-detail', $order->id)}}">Xem chi tiết</a>
-                                    </td>
-                                </tr>
+                                </td>
+                                <td class="text-center"><strong>{{ number_format($order->tong_tien) }}đ</strong></td>
+                                <td class="text-center text-success">{{ $status[$order->status] }}</td>
+                            </tr>
                             @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
+                    
                 </div>
-                <!-- End Main Content Shop -->
-            </div>
-            @include('frontend.account.sidebar')
-            
-        </div>
-    </div>
-</div>
-
-<style type="text/css">    
-    .dashboard-order.have-margin {
-        margin-bottom: 20px;
-    }   
-    table.table-responsive thead tr th {
-        display: table-cell;
-        padding: 8px;
-        background: #f8f8f8;
-        font-weight: 500;    
-    }
-    table.table-responsive tbody tr td{
-        font-size: 14px !important;
-    }
-</style>
-<div class="clearfix"></div>
-@endsection
+             
+          </div><!--End tab custom-->
+      </div>
+    </section><!-- End News -->
+</article>
+@stop
