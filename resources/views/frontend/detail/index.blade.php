@@ -52,7 +52,7 @@
                         {!! $detail->description !!}
                     </p>
                     @endif
-                    <a href="javascript:;" data-id="{{ $detail->id }}" class="btn btn-yellow btn-lg btn-flat @if(Session::has('login')) btn-order @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif>ĐẶT HÀNG</a>
+                    <a href="javascript:;" data-id="{{ $detail->id }}" class="btn btn-yellow btn-lg btn-flat @if(Session::has('login')) btn-order-main @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif>ĐẶT HÀNG</a>
                 </div>
             </div>
         </div>
@@ -224,10 +224,16 @@
 
         $(document).ready(function($){  
           $('a.btn-order').click(function() {
-                var product_id = $(this).data('id');
-                addToCart(product_id);
-                
-              });
+            $(this).html('<i class="fa fa-spin fa-spinner" style="margin-left:5px"></i>');
+            var product_id = $(this).data('id');
+            addToCart(product_id);
+          });
+        $('a.btn-order-main').click(function() {
+            $(this).html('<i class="fa fa-spin fa-spinner"></i>');
+            var product_id = $(this).data('id');
+            addToCartMain(product_id);
+            
+          });
         });
         $(document).on('change', '.change_quantity', function() {
             var quantity = $(this).val();
@@ -293,6 +299,18 @@ function addToCart(product_id) {
     },
     success : function(data){
        window.location.reload();
+    }
+  });
+}
+function addToCartMain(product_id) {
+  $.ajax({
+    url: $('#route-add-to-cart').val(),
+    method: "GET",
+    data : {
+      id: product_id
+    },
+    success : function(data){
+       location.href="{{ route('cart') }}";
     }
   });
 }	
