@@ -278,7 +278,7 @@ class CartController extends Controller
         
         $addressInfo = CustomerAddress::find($customer_id);
 
-        $email = $addressInfo->email ? $address_info->email :  "";
+        $email = $addressInfo->email ? $addressInfo->email :  "";
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
         $adminMailArr = explode(',', $settingArr['admin_email']);
         if($email != ''){
