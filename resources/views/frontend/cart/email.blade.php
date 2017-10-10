@@ -35,15 +35,15 @@
                           <tbody>
                             
                            <tr>
-                              <td valign="top" style="padding:3px 9px 9px 9px;border-top:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"><span style="text-transform:capitalize">{!! $addressInfo->fullname !!}</span><br>
-                                <a href="mailto:{!! $addressInfo->email !!}" target="_blank">{!! $addressInfo->email !!}</a><br>
-                                {!! $addressInfo->phone !!} </td>
-                              <td valign="top" style="padding:3px 9px 9px 9px;border-top:0;border-left:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"><span style="text-transform:capitalize">{!! $addressInfo->fullname !!}</span><br>
-                                <a href="mailto:{!! $addressInfo->email !!}" target="_blank">{!! $addressInfo->email !!}</a><br>                                
-                                  {!! $addressInfo->city->name !!},                                
-                                  {!! $addressInfo->district->name !!},                                
-                                {!! $addressInfo->address !!} <br>
-                                {!! $addressInfo->phone !!}<br>
+                              <td valign="top" style="padding:3px 9px 9px 9px;border-top:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"><span style="text-transform:capitalize">{{ $orderDetail->address->fullname }}</span><br>
+                                
+                                {!! $orderDetail->address->phone !!} </td>
+                              <td valign="top" style="padding:3px 9px 9px 9px;border-top:0;border-left:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"><span style="text-transform:capitalize">{!! $orderDetail->address->fullname !!}</span><br>
+                                <a href="mailto:{!! $addressInfo->email !!}" target="_blank">{!! $orderDetail->address->email !!}</a><br>                                
+                                  {!! $orderDetail->address->city->name !!},                                
+                                  {!! $orderDetail->address->district->name !!},                                
+                                {!! $orderDetail->address->address !!} <br>
+                                {!! $orderDetail->address->phone !!}<br>
                             </tr>
                             
                             <tr>
@@ -100,7 +100,7 @@
                             </tr>
                             <tr>
                               <td colspan="4" align="right" style="padding:5px 9px">Chi phí vận chuyển</td>
-                              <td align="right" style="padding:5px 9px"><span>0&nbsp;₫</span></td>
+                              <td align="right" style="padding:5px 9px"><span>{{ number_format($orderDetail->phi_van_chuyen) }}&nbsp;₫</span></td>
                             </tr>
                             <tr bgcolor="#eee">
                               <td colspan="4" align="right" style="padding:7px 9px"><strong><big>Tổng giá trị đơn hàng</big></strong></td>
