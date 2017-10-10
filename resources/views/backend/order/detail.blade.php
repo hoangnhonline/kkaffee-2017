@@ -42,27 +42,28 @@
                 </select>                  
              <div class="clearfix" style="margin:5px"></div>
               <span>Khách hàng : <span><br>
-              <span>{{ $order->fullname }}( # {{ $order->email }})</span>
+              <span>{{ $order->customer->fullname }}( # {{ $order->customer->email }})</span>
               
             </p>
           </div>
           <div class="col-md-4">
             <h4>Thông tin thanh toán</h4>
             <p>
-              <span>Địa chỉ :</span><br> {{ $order->address }}, {{ $order->ward_id ? Helper::getName($order->ward_id, 'ward') : "" }}, {{ $order->district_id ? Helper::getName($order->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->city_id, 'city') : "" }}<br>
+              <span>Địa chỉ :</span><br> {{ $order->customer->address }}, {{ $order->customer->ward_id ? Helper::getName($order->customer->ward_id, 'ward') : "" }}, {{ $order->customer->district_id ? Helper::getName($order->customer->district_id, 'district') : "" }}, {{ $order->customer->city_id ? Helper::getName($order->customer->city_id, 'city') : "" }}<br>
               <div class="clearfix" style="margin-bottom:5px"></div>
               <span>Email : </span><br />
-              <span>{{ $order->email }}</span>                  
+              <span>{{ $order->customer->email }}</span>                  
              <div class="clearfix" style="margin:5px"></div>
               <span>Điện thoại : <span><br>
-              <span>{{ $order->phone }}</span>
+              <span>{{ $order->customer->phone }}</span>
               
             </p>
           </div>
           <div class="col-md-4">
             <h4>Chi tiết giao nhận hàng</h4>
+            <strong>{{ $order->address->fullname }} - {{ $order->address->phone }}</strong>
             <p>
-              <span>Địa chỉ :</span><br> {{ $order->address }}, {{ $order->ward_id ? Helper::getName($order->ward_id, 'ward') : "" }}, {{ $order->district_id ? Helper::getName($order->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->city_id, 'city') : "" }}<br>         
+              <span>Địa chỉ :</span><br> {{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->address->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}<br>         
               
             </p>
           </div>
