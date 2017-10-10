@@ -276,7 +276,7 @@ class CartController extends Controller
         $customer_id = Session::get('userId');
         $customer = Customer::find($customer_id);
         
-        $addressInfo = CustomerAddress::find($customer_id);
+        $addressInfo = CustomerAddress::find(Session::get('address_id'));
 
         $email = $addressInfo->email ? $addressInfo->email :  "";
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
