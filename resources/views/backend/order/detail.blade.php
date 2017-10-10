@@ -98,7 +98,7 @@
                   <td></td>
                   <td></td>
                   <td style="text-align:right"><b>Phí vận chuyển</b></td>
-                  <td style="text-align:right">{{number_format($order->phi_giao_hang)}} đ</td>
+                  <td style="text-align:right">{{number_format($order->phi_van_chuyen)}} đ</td>
               </tr>
               <tr>
                   <td></td>
