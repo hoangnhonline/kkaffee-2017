@@ -32,6 +32,7 @@ class CustomerAddress extends Model  {
                             'ward_id',
                             'address',
                             'phone',
+                            'email',
                             'is_primary',                            
                             'created_user', 
                             'updated_user'
