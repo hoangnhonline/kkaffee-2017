@@ -72,7 +72,7 @@
               <th style="width: 1%">No.</th>
               <th style="width: 1%;white-space:nowrap;width:200px"> Đơn hàng</th>
               <th style="text-align:center;width:150px">Ngày đặt hàng</th>
-              <th style="text-align:right;width:200px">Giao hàng đến</th>           
+              <th style="text-align:left;width:200px">Giao hàng đến</th>           
               <th style="text-align:right;width:100px">Tổng hoá đơn</th>
               <th width="120px" style="white-space:nowrap">Trạng thái</th>
               <th width="1%" style="white-space:nowrap"> </th>
@@ -91,17 +91,17 @@
 
                 ?>
                 #{{ str_pad($order->id, 6,'0', STR_PAD_LEFT) }}</a> 
-                <span style="color:#555"> bởi {{$order->fullname}}</span>
+                <span style="color:#555"> bởi {{$order->customer->fullname}}</span>
                 <br>
-                <a href="mailto:">{{ $order->email }}</a>
+                <a href="mailto:">{{ $order->customer->email }}</a>
                 <br>
-                {{ $order->phone }}
+                {{ $order->customer->phone }}
                 </td>
                 <td style="text-align:center;width:150px;white-space:nowrap">{{ date('d-m-Y H:i ', strtotime($order->created_at))}}</td>
                 <td>
-
-                <a href="http://maps.google.com/maps?&q={{ $order->address }}, {{ $order->ward_id ? Helper::getName($order->ward_id, 'ward') : "" }}, {{ $order->district_id ? Helper::getName($order->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->city_id, 'city') : "" }}" target="_blank"> 
-                {{ $order->fullname }}, {{ $order->address }}, {{ $order->ward_id ? Helper::getName($order->ward_id, 'ward') : "" }}, {{ $order->district_id ? Helper::getName($order->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->city_id, 'city') : "" }}</a>
+                  <strong>{{ $order->address->fullname }} - {{ $order->address->phone }}</strong>
+                <a href="http://maps.google.com/maps?&q={{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}" target="_blank"> 
+                <br> {{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->address->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}</a>
                 </td>
                              
                 <td style="text-align:right;width:100px">{{number_format($order->tong_tien)}}</td>
