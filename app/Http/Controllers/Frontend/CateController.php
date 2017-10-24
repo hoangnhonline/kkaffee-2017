@@ -69,7 +69,7 @@ class CateController extends Controller
             $settingArr = Helper::setting();
             
             $productList = Product::getList( ['cate_id' => $cate_id, 'pagination' => $settingArr['product_per_page']] );
-			
+            
             if( $cateDetail->meta_id > 0){
                $seo = MetaData::find( $cateDetail->meta_id )->toArray();
             }else{

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Branch;
+use App\Models\City;
 
 use Helper, Session, Auth;
 
@@ -39,7 +40,8 @@ class BranchController extends Controller
     */
     public function create(Request $request)
     {   
-        return view('backend.branch.create');
+        $cityList = City::all();  
+        return view('backend.branch.create', compact('cityList'));
     }
 
     /**
@@ -54,9 +56,17 @@ class BranchController extends Controller
         
         $this->validate($request,[                                  
             'name' => 'required',
+            'city_id' => 'required',
+            'address' => 'required',
+            'district_id' => 'required',
+            'ward_id' => 'required',
         ],
         [          
             'name.required' => 'Bạn chưa nhập tên',
+            'address.required' => 'Bạn chưa nhập địa chỉ',
+            'city_id.required' => 'Bạn chưa nhập tên',
+            'district_id.required' => 'Bạn chưa nhập tên',
+            'ward_id.required' => 'Bạn chưa nhập tên',           
            
         ]);   
         
@@ -94,7 +104,7 @@ class BranchController extends Controller
     */
     public function edit($id)
     {
-
+        $cityList = City::all();  
         $detail = Branch::find($id);
         if( Auth::user()->role < 3 ){
             if($detail->created_user != Auth::user()->id){
@@ -102,7 +112,7 @@ class BranchController extends Controller
             }
         }       
 
-        return view('backend.branch.edit', compact('detail'));
+        return view('backend.branch.edit', compact('detail', 'cityList'));
     }
 
     /**
@@ -117,11 +127,20 @@ class BranchController extends Controller
         $dataArr = $request->all();
         
         $this->validate($request,[                                  
-            'name' => 'required'          
+            'name' => 'required',
+            'city_id' => 'required',
+            'address' => 'required',
+            'district_id' => 'required',
+            'ward_id' => 'required',
         ],
         [          
-            'name.required' => 'Bạn chưa nhập tên'            
-        ]);       
+            'name.required' => 'Bạn chưa nhập tên',
+            'address.required' => 'Bạn chưa nhập địa chỉ',
+            'city_id.required' => 'Bạn chưa nhập tên',
+            'district_id.required' => 'Bạn chưa nhập tên',
+            'ward_id.required' => 'Bạn chưa nhập tên',           
+           
+        ]);        
         
         $dataArr['alias'] = Helper::stripUnicode($dataArr['name']);
        

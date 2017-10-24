@@ -104,7 +104,7 @@
         </a>       
       </li>       
       @if(Auth::user()->role == 3)
-      <li class="treeview {{ in_array(\Request::route()->getName(), ['menu.index', 'account.index', 'info-seo.index', 'settings.index', 'settings.noti', 'menu.index', 'video.index', 'video.edit', 'video.create']) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 2 ) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 1 ) ? 'active' : '' }}">
+      <li class="treeview {{ in_array(\Request::route()->getName(), ['branch.edit', 'branch.index', 'branch.create', 'menu.index', 'account.index', 'info-seo.index', 'settings.index', 'settings.noti', 'menu.index', 'video.index', 'video.edit', 'video.create']) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 2 ) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 1 ) ? 'active' : '' }}">
         <a href="#">
           <i class="fa  fa-gears"></i>
           <span>Cài đặt</span>
@@ -115,6 +115,12 @@
         <ul class="treeview-menu">
           @if(Auth::user()->role == 3)        
           <li {{ \Request::route()->getName() == "settings.index" ? "class=active" : "" }}><a href="{{ route('settings.index') }}"><i class="fa fa-circle-o"></i> Thông tin K KAFFEE</a></li>
+          <li {{ (in_array(\Request::route()->getName(), ['branch.edit', 'branch.index', 'branch.create']))? "class=active" : "" }}>
+            <a href="{{ route('branch.index') }}">
+              <i class="fa fa-circle-o"></i>
+              <span>Chi nhánh</span>         
+            </a>       
+          </li>
           <li><a target="_blank" href="{{ route('rss') }}"><i class="fa fa-circle-o"></i> RSS</a></li>
           <li {{ (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 1 )? "class=active" : "" }}>
             <a href="{{ route('custom-link.index', ['block_id' => 1 ]) }}">

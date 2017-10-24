@@ -208,6 +208,9 @@
             obj.removeClass('error');
           }
         });
+        if( $(':radio[name="branch_id"]:checked').length == 0){
+          alert('Vui lòng chọn chi nhánh'); return false;
+        }
         if(errReq > 0){          
          $('html, body').animate({
               scrollTop: $("#branch-info").offset().top

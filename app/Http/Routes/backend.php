@@ -28,15 +28,16 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
          Route::get('load-create',   ['as' => 'menu.load-create', 'uses' => 'MenuController@loadCreate']);       
         Route::get('{id}/destroy', ['as' => 'menu.destroy', 'uses' => 'MenuController@destroy']);
     });
+    
     Route::group(['prefix' => 'branch'], function () {
         Route::get('/', ['as' => 'branch.index', 'uses' => 'BranchController@index']);
         Route::get('/create', ['as' => 'branch.create', 'uses' => 'BranchController@create']);
         Route::post('/store', ['as' => 'branch.store', 'uses' => 'BranchController@store']);
-        Route::post('/store-order', ['as' => 'branch.store-order', 'uses' => 'BranchController@storeOrder']);
-        Route::get('{id}/edit',   ['as' => 'branch.edit', 'uses' => 'BranchController@edit']); 
-         Route::get('load-create',   ['as' => 'branch.load-create', 'uses' => 'BranchController@loadCreate']);       
+        Route::get('{id}/edit',   ['as' => 'branch.edit', 'uses' => 'BranchController@edit']);
+        Route::post('/update', ['as' => 'branch.update', 'uses' => 'BranchController@update']);
         Route::get('{id}/destroy', ['as' => 'branch.destroy', 'uses' => 'BranchController@destroy']);
     });
+
     Route::group(['prefix' => 'order'], function () {
         Route::get('/', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
         Route::post('/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);
