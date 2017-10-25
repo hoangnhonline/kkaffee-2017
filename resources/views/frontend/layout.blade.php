@@ -78,8 +78,8 @@
                 <nav id="nav">
                     <a class="hidden-sm hidden-md hidden-lg nav-button-mobi" href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a>
                     <ul class="clearfix">
-                        <li><a class="active" href="{{ route('cate-parent', 'coffee') }}">COFFEE</a></li>
-                        <li><a href="#">SHOP 24h</a></li>
+                        <li><a class="{{ isset($parentDetail) && $parentDetail->slug == 'coffee' ? "active" : "" }}" href="{{ route('cate-parent', 'coffee') }}">COFFEE</a></li>
+                        <li><a class="{{ isset($parentDetail) && $parentDetail->slug == 'shop-24h' ? "active" : "" }}" href="{{ route('cate-parent', 'shop-24h') }}">SHOP 24h</a></li>
                         <li><a href="#">HỖ TRỢ TIÊU DÙNG</a></li>
                         <li><a href="#">BẤT ĐỘNG SẢN</a></li>
                         <li><a href="#">ĐẶT GIAO HÀNG</a></li>
