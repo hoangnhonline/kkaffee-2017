@@ -17,7 +17,6 @@ use App\Models\HotCate;
 use App\Models\CateParent;
 use App\Models\Cate;
 use App\Models\Pages;
-use App\Models\Member;
 use App\Models\Rating;
 
 use Helper, File, Session, Auth, Hash, Response;
@@ -84,11 +83,8 @@ class HomeController extends Controller
         }
         $seo['title'] = $detailPage->meta_title ? $detailPage->meta_title : $detailPage->title;
         $seo['description'] = $detailPage->meta_description ? $detailPage->meta_description : $detailPage->title;
-        $seo['keywords'] = $detailPage->meta_keywords ? $detailPage->meta_keywords : $detailPage->title;      
-        
-        $memberList = Member::orderBy('display_order', 'asc')->get();
-
-        return view('frontend.pages.index', compact('detailPage', 'seo', 'memberList', 'slug'));    
+        $seo['keywords'] = $detailPage->meta_keywords ? $detailPage->meta_keywords : $detailPage->title;     
+        return view('frontend.pages.index', compact('detailPage', 'seo', 'slug'));    
     }
 
     public function services(Request $request){
