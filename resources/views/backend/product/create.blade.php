@@ -163,10 +163,7 @@
                 <label>Meta keywords</label>
                 <textarea class="form-control" rows="4" name="meta_keywords" id="meta_keywords">{{ old('meta_keywords') }}</textarea>
               </div>  
-              <div class="form-group">
-                <label>Custom text</label>
-                <textarea class="form-control" rows="6" name="custom_text" id="custom_text">{{ old('custom_text') }}</textarea>
-              </div>
+              <input type="hidden" name="custom_text">
             
         </div>
         <!-- /.box -->     
@@ -238,13 +235,47 @@ $(document).on('click', '.remove-image', function(){
         }
 
       });
-      $('#is_sale').change(function(){
+       $('#is_sale').change(function(){
         if($(this).prop('checked') == true){
-          $('#price_sale').addClass('req');          
+          $('#price_sale, #sale_percent').addClass('req');          
         }else{
-          $('#price_sale').val('').removeClass('req');
+          $('#price_sale, #sale_percent').val('').removeClass('req');
         }
       });
+      $('#price_sale').blur(function(){
+
+        var sale_percent = 0;
+        var price = parseInt($('#price').val());
+        var price_sale = parseInt($('#price_sale').val());
+        if(price_sale > 0){
+          $('#is_sale').prop('checked', true);          
+          if(price_sale > price){
+            price_sale = price;
+            $('#price_sale').val(price_sale);
+          }
+          if( price > 0 ){
+            sale_percent = 100 - Math.floor(price_sale*100/price);
+            $('#sale_percent').val(sale_percent);
+          }
+        }
+      }); 
+       $('#sale_percent').blur(function(){
+        var price_sale = 0;
+        var price = parseInt($('#price').val());
+        var sale_percent = parseInt($('#sale_percent').val());
+        sale_percent = sale_percent > 100 ? 100 : sale_percent;
+        if( sale_percent > 0){
+          $('#is_sale').prop('checked', true);
+        }
+        if(sale_percent > 100){
+          sale_percent = 100;
+          $('#sale_percent').val(100);
+        }
+        if( price > 0 ){
+          price_sale = Math.ceil((100-sale_percent)*price/100);
+          $('#price_sale').val(price_sale);
+        }
+      }); 
       $('#dataForm .req').blur(function(){    
         if($(this).val() != ''){
           $(this).removeClass('error');
@@ -265,46 +296,6 @@ $(document).on('click', '.remove-image', function(){
       $('#btnUploadImage').click(function(){        
         openKCFinder_singleFile();
       }); 
-     
-      var files = "";
-      $('#file-image').change(function(e){
-         files = e.target.files;
-         
-         if(files != ''){
-           var dataForm = new FormData();        
-          $.each(files, function(key, value) {
-             dataForm.append('file[]', value);
-          });   
-          
-          dataForm.append('date_dir', 0);
-          dataForm.append('folder', 'tmp');
-
-          $.ajax({
-            url: $('#route_upload_tmp_image_multiple').val(),
-            type: "POST",
-            async: false,      
-            data: dataForm,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-                $('#div-image').append(response);
-                if( $('input.thumb:checked').length == 0){
-                  $('input.thumb').eq(0).prop('checked', true);
-                }
-            },
-            error: function(response){                             
-                var errors = response.responseJSON;
-                for (var key in errors) {
-                  
-                }
-                //$('#btnLoading').hide();
-                //$('#btnSave').show();
-            }
-          });
-        }
-      });
-     
-
       $('#name').change(function(){
          var name = $.trim( $(this).val() );
          if( name != ''){
@@ -319,14 +310,6 @@ $(document).on('click', '.remove-image', function(){
                 if( response.str ){                  
                   $('#slug').val( response.str );
                 }                
-              },
-              error: function(response){                             
-                  var errors = response.responseJSON;
-                  for (var key in errors) {
-                    
-                  }
-                  //$('#btnLoading').hide();
-                  //$('#btnSave').show();
               }
             });
          }
