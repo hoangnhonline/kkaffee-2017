@@ -36,9 +36,10 @@ class DetailController extends Controller
         if(!$detail){
             return redirect()->route('home');
         }
-      
+        
         if( $detail->meta_id > 0){
            $meta = MetaData::find( $detail->meta_id )->toArray();
+           //dd($meta);
            $seo['title'] = $meta['title'] != '' ? $meta['title'] : $detail->title;
            $seo['description'] = $meta['description'] != '' ? $meta['description'] : $detail->title;
            $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $detail->title;
