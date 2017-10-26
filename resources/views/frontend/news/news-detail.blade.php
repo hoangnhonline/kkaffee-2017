@@ -42,17 +42,26 @@
                 {!! $detail->content !!}
                 <div class="clearfix"></div>
                 @if($tagSelected->count() > 0)
-				<div class="block-tags">
-					<ul>
-						<li class="tags-first">Tags:</li>
-						<?php $i = 0; ?>
-				        @foreach($tagSelected as $tag)
-				        <?php $i++; ?>
-						<li class="tags-link"><a href="{{ route('tag', $tag->slug) }}" title="{!! $tag->name !!}">{!! $tag->name !!}</a></li>
-						@endforeach
-					</ul>
-				</div><!-- /block-tags -->
-				@endif
+        				<div class="tags">
+        					Tags:
+        						<?php $i = 0; ?>
+        				        @foreach($tagSelected as $tag)
+        				        <?php $i++; ?>
+        						<a href="{{ route('tag', $tag->slug) }}" title="{!! $tag->name !!}">{!! $tag->name !!}</a>
+        						@endforeach
+        					
+        				</div><!-- /block-tags -->
+        				@endif
+                @if($otherList->count() > 0)
+                <div class="related-posts">
+                    <div class="title-related"><span>TIN LIÊN QUAN</span></div>
+                    <ul>
+                        @foreach( $otherList as $articles)
+                        <li><a href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}" title="{!! $articles->title !!}" ><i class="fa fa-newspaper-o" aria-hidden="true"></i> {!! $articles->title !!}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
             </div>            
             <div class="cart-info cart-side">
               <div class="title-cart-info">THÔNG TIN GIỎ HÀNG</div>

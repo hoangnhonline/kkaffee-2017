@@ -24,7 +24,7 @@
               <div class="item-promotion">
                   <div class="image">
                     <a href="{{ route('news-detail', ['slug' => $articles->slug, 'id' => $articles->id]) }}">
-                      <img title="{!! $articles->title !!}" src="{{ $articles->image_url ? Helper::showImage($articles->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $articles->title !!}">
+                      <img title="{!! $articles->title !!}" src="{{ $articles->image_url ? Helper::showImage($articles->image_url) : URL::asset('public/assets/img/no-img.png') }}" alt="{!! $articles->title !!}">
                     </a>
                   </div>
                   <div class="info-item-promotion">

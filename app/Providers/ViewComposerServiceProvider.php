@@ -53,8 +53,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 	        if($tinRandom->count() > 0){
 	        	$tinRandom = $tinRandom->limit(5)->get();
 	        }
-	        $footerLink1 = CustomLink::where('block_id', 1)->orderBy('display_order', 'asc')->get();	        	        
-        	$footerLink2 = CustomLink::where('block_id', 2)->orderBy('display_order', 'asc')->get();        	
+	        $footerLink = CustomLink::where('block_id', 1)->orderBy('display_order', 'asc')->get();	        	                	       	
 	       	$menuList = Menu::where('menu_id', 1)->orderBy('display_order', 'asc')->get();
 	       	$cateParentList = CateParent::orderBy('display_order')->get();       	
 
@@ -76,8 +75,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 					'settingArr' => $settingArr, 
 					'articleCate' => $articleCate, 
 					'tinRandom' => $tinRandom, 					
-					'footerLink1' => $footerLink1,
-					'footerLink2' => $footerLink2,
+					'footerLink' => $footerLink,					
 					'menuList' => $menuList,
 					'cateParentList' => $cateParentList,
 					'routeName' => $routeName,

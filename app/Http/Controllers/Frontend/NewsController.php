@@ -9,9 +9,9 @@ use App\Models\ArticlesCate;
 use App\Models\Articles;
 use App\Models\CateParent;
 use App\Models\Cate;
-use App\Models\SettingBaogia;
 use App\Models\Settings;
 use App\Models\Product;
+use App\Models\MetaData;
 
 use Helper, File, Session, Auth;
 use Mail;
@@ -24,10 +24,12 @@ class NewsController extends Controller
         $cateArr = $cateActiveArr = $moviesActiveArr = [];
        
         $cateDetail = ArticlesCate::where('slug' , $slug)->first();
-
+        if(!$cateDetail){
+            return redirect()->route('home');
+        }
         $title = trim($cateDetail->meta_title) ? $cateDetail->meta_title : $cateDetail->name;
         $settingArr = Helper::setting();
-        $articlesArr = Articles::where('cate_id', $cateDetail->id)->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->paginate($settingArr['articles_per_page']);
+        $articlesArr = Articles::where('cate_id', $cateDetail->id)->where('status', 1)->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->paginate($settingArr['articles_per_page']);
 
         $hotArr = Articles::where( ['cate_id' => $cateDetail->id, 'is_hot' => 1] )->orderBy('id', 'desc')->limit(5)->get();
         $seo['title'] = $cateDetail->meta_title ? $cateDetail->meta_title : $cateDetail->title;
@@ -48,10 +50,15 @@ class NewsController extends Controller
 
             $title = trim($detail->meta_title) ? $detail->meta_title : $detail->title;
             $settingArr = Helper::setting();
-            $otherList = Articles::where( ['cate_id' => $detail->cate_id] )->where('id', '<>', $id)->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['article_related'])->get();            
-            $seo['title'] = $detail->meta_title ? $detail->meta_title : $detail->title;
-            $seo['description'] = $detail->meta_description ? $detail->meta_description : $detail->title;
-            $seo['keywords'] = $detail->meta_keywords ? $detail->meta_keywords : $detail->title;
+            $otherList = Articles::where( ['cate_id' => $detail->cate_id] )->where('status', 1)->where('id', '<>', $id)->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['article_related'])->get();            
+            if( $detail->meta_id > 0){
+               $meta = MetaData::find( $detail->meta_id )->toArray();
+               $seo['title'] = $meta['title'] != '' ? $meta['title'] : $detail->name;
+               $seo['description'] = $meta['description'] != '' ? $meta['description'] : $detail->name;
+               $seo['keywords'] = $meta['keywords'] != '' ? $meta['keywords'] : $detail->name;
+            }else{
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $detail->name;
+            } 
             $socialImage = $detail->image_url; 
           
             $tagSelected = Articles::getListTag($id);

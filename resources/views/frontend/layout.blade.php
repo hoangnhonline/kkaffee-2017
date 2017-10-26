@@ -186,13 +186,12 @@
                     </p>
                 </div>
                 <div class="col-footer col-footer-3">
-                    <div class="title-col-footer">TẬP ĐOÀN K KAFFEE</div>
-                    <a href="welcome.html">Giới thiệu</a>
-                    <a href="#">Quy trình đặt món </a>
-                    <a href="#">Hướng dẫn thanh toán</a>
-                    <a href="#">Giải quyết khiếu nại</a>
-                    <a href="#">Dành cho đối tác</a>
-                    <a href="contact.html">Liên hệ</a>
+                    <div class="title-col-footer">TẬP ĐOÀN K KAFFEE</div>                    
+                    @if($footerLink)
+                    @foreach($footerLink as $link)
+                    <a href="{{ $link->link_url }}" title="{!! $link->link_text !!}">{!! $link->link_text !!}</a>
+                    @endforeach
+                    @endif   
                 </div>
                 <div class="col-footer col-footer-4">
                     <div class="title-col-footer">K KAFFEE APP</div>
@@ -375,6 +374,7 @@
 <script src="{{ URL::asset('public/assets/js/jquery.min.js') }}"></script>
 <script src="{{ URL::asset('public/assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('public/assets/js/home.js') }}"></script>
+<script src="{{ URL::asset('public/assets/lib/owlcarousel/dist/owl.carousel.min.js') }}"></script>
         @if($routeName == "product")
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         @endif
@@ -406,6 +406,14 @@
                 {
                     jQuery(this).parent().addClass("active");
                 }
+            });
+            jQuery('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: true,
+                items: 1,
+                dots: false
+
             });
         </script>      
     

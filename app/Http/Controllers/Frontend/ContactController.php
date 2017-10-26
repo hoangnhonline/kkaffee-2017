@@ -36,15 +36,16 @@ class ContactController extends Controller
         ]);       
          $settingArr = Helper::setting();
         $rs = Contact::create($dataArr);
+        $emailArr = explode(',', $settingArr['admin_email']);
         Mail::send('frontend.contact.email',
             [                   
                 'dataArr'             => $rs
             ],
-            function($message) use ($dataArr, $settingArr) {                    
+            function($message) use ($dataArr, $settingArr, $emailArr) {                    
                 $message->subject('Khách hàng gửi liên hệ');
-                $message->to([$settingArr['admin_email']]);
-                $message->from('web.0917492306@gmail.com', 'Admin Website Houseland');
-                $message->sender('web.0917492306@gmail.com', 'Admin Website Houseland');
+                $message->to($emailArr);
+                $message->from('web.0917492306@gmail.com', 'Admin Website Kkaffee');
+                $message->sender('web.0917492306@gmail.com', 'Admin Website Kkaffee');
         });
         Session::flash('message', 'Gửi liên hệ thành công.');
 

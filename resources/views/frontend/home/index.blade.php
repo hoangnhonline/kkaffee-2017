@@ -3,9 +3,28 @@
 @include('frontend.partials.meta')
 
 @section('content')
-<article>
-    <section class="block-image marg40">
-        <img src="{{ URL::asset('public/assets/img/banner.png') }}" alt=""/>
+<article>    
+     <?php 
+    $bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3])->orderBy('display_order', 'asc')->get();   
+    ?>
+    <section class="block-slide marg40">
+        @if($bannerArr)
+        <div class="owl-carousel owl-theme">            
+            <?php $i = 0; ?>
+            @foreach($bannerArr as $banner)
+            <?php $i++; ?>
+            <div class="item">
+            @if($banner->ads_url !='')
+            <a href="{{ $banner->ads_url }}" title="banner slide {{ $i }}">
+            @endif
+            <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner slide {{ $i }}">
+            @if($banner->ads_url !='')
+            </a>
+            @endif
+            </div><!-- item-banner -->
+            @endforeach
+        </div>
+        @endif
     </section>
     <section id="welcome" class="marg40">
         <div class="container">
@@ -20,9 +39,22 @@
             </div>
         </div>
     </section><!-- End News -->
+    <?php 
+    $bannerArr = DB::table('banner')->where(['object_id' => 5, 'object_type' => 3])->orderBy('display_order', 'asc')->get();   
+    ?>
+    <?php $i = 0; ?>
+    @foreach($bannerArr as $banner)
+    <?php $i++; ?>
     <section class="block-image marg40">
-        <img src="{{ URL::asset('public/assets/img/banner-ngang.png') }}" alt=""/>
+    @if($banner->ads_url !='')
+    <a href="{{ $banner->ads_url }}" title="banner slide {{ $i }}">
+    @endif
+    <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner slide {{ $i }}">
+    @if($banner->ads_url !='')
+    </a>
+    @endif
     </section>
+    @endforeach    
     <section id="service-us" class="marg40">
         <div class="container">
             <div class="title-section text-center @if($isEdit) edit @endif" data-text="3">{!! $textList[3] !!}</div>
