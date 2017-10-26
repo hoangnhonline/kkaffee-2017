@@ -1,4 +1,7 @@
-﻿@import url(../lib/starrating/css/star-rating.css);
+@import url(../lib/starrating/css/star-rating.css);
+.affix{
+    position: fixed !important;
+}
 .wrapper{
     max-width: 1349px;
     width: 100%;
@@ -1590,11 +1593,11 @@ h1.title_page span:after{
     padding-top: 6px;
     padding-bottom: 5px;
     margin-bottom: 0;
-    width: 140px;
+    width: 95px;
     float: left;
 }
 #account .col-form-input{
-    width: calc(100% - 140px);
+    width: calc(100% - 95px);
     float: left;
 }
 #account .btn span.glyphicon {    			
@@ -2223,4 +2226,84 @@ span.txt-account{
  font-size: 13px;     
  margin-top: 5px;
     display: block;
+}
+/*---*/
+.reviews-summary {
+  margin-bottom: 10px;
+}
+.reviews-summary .rating-title,
+.reviews-summary .rating-summary,
+.reviews-summary .rating-action {
+  display: inline-block;
+  margin-right: 5px;
+}
+.reviews-summary .rating-title {
+  font-weight: bold;
+}
+.rating-summary .rating-xs {
+  font-size: 18px;
+}
+.rating-summary .clear-rating,
+.rating-summary .caption {
+  display: none;
+}
+.rating-summary .rating-container .star {
+  margin: 0 2px;
+}
+.rating-summary .rating-container .star .glyphicon {
+  top: 0;
+}
+.rating-summary .rating-container .filled-stars {
+  color: #ffd900;
+  -webkit-text-stroke: transparent;
+}
+.rating-summary #kartik {
+  display: none;
+}
+.rating-action span {
+  position: relative;
+  color: #898989;
+  padding-left: 15px;
+}
+.dot>span {
+  position: relative;
+  padding-left: 15px;
+}
+.dot>span:after {
+  content: "\f111";
+  font-family: "FontAwesome";
+  color: #898989;
+  font-size: 5px;
+  position: absolute;
+  top: 5px;
+  left: 0;
+}
+
+.block-author {
+  margin-bottom: 15px;
+}
+.block-author ul {
+  padding-left: 0 !important;
+}
+.block-author ul li {
+  display: inline-block;
+  list-style-type: none;
+  padding-right: 25px;
+  color: #898989;
+  position: relative;
+}
+.block-author ul li .name {
+  color: #f60;
+}
+.block-author ul li:before {
+  content: "\f111";
+  font-family: "FontAwesome";
+  color: #898989;
+  font-size: 5px;
+  position: absolute;
+  top: 8px;
+  left: -17px;
+}
+.block-author ul li:first-child:before {
+  display: none;
 }

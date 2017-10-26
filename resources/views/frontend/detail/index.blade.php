@@ -260,10 +260,11 @@
         jQuery(document).ready(function () {
                 var voffset = jQuery("#myScrollspy").offset();
                 var vtop = voffset.top;
-
+                var vbot = jQuery("footer").height() + 160;
                 jQuery("#myScrollspy ul").affix({
                     offset: {
-                        top: vtop
+                        top: vtop,
+                        bottom: vbot
                     }
                 });
                 // Add smooth scrolling on all links inside the navbar
