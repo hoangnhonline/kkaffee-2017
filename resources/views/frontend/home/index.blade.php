@@ -73,3 +73,17 @@
     </section><!-- End -->
 </article>
 @stop
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function(){
+        jQuery('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 0,
+            nav: true,
+            items: 1,
+            dots: false
+
+        });
+    });
+</script>
+@stop

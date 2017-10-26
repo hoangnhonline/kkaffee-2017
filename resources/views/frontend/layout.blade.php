@@ -406,15 +406,7 @@
                 {
                     jQuery(this).parent().addClass("active");
                 }
-            });
-            jQuery('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 0,
-                nav: true,
-                items: 1,
-                dots: false
-
-            });
+            });            
         </script>      
     
     <input type="hidden" id="route-newsletter" value="{{ route('register.newsletter') }}">
