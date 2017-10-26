@@ -8,7 +8,7 @@
         <div class="breadcrumbs">
             <ul>
                 <li><a href="{{ route('home') }}" title="Trở về trang chủ">Trang chủ</a></li>
-                <li><a href="{{ route('news-list', $cateDetail->slug ) }}" title="{!! $cateDetail->name !!}">{!! $cateDetail->name !!}</a></li>
+                <li><a href="{{ route('cate-parent', $cateDetail->slug ) }}" title="{!! $cateDetail->name !!}">{!! $cateDetail->name !!}</a></li>
                 <li>{!! $detail->title !!}</li>
             </ul>
         </div>

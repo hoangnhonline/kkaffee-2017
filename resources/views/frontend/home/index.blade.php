@@ -82,7 +82,6 @@
             nav: true,
             items: 1,
             dots: false
-
         });
     });
 </script>

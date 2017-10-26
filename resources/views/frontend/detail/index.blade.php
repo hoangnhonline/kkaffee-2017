@@ -59,7 +59,7 @@
         <div class="container">
             <div class="bg-eaeaea">
                 <span>THỰC ĐƠN</span>
-                <a href="{{ route('news-list', $catePromotion->slug) }}">KHUYẾN MÃI</a>
+                <a href="{{ route('cate-parent', $catePromotion->slug) }}">KHUYẾN MÃI</a>
             </div>
         </div>
         <div class="container">
