@@ -69,8 +69,8 @@ class AccountController extends Controller
         
          $this->validate($request,[ 
             'old_pass' => 'required',
-            'new_pass' => 'required|between:6,30',
-            'new_pass_re' => 'required|same:new_pass|between:6,30'
+            'new_pass' => 'required|min:6',
+            'new_pass_re' => 'required|same:new_pass|min:6'
         ],
         [   
             'old_pass.required' => 'Bạn chưa nhập mật khẩu hiện tại',     
@@ -110,8 +110,8 @@ class AccountController extends Controller
          
         $this->validate($request,[            
             'email' => 'email|required|unique:users,email',
-            'password' => 'required|between:6,30',
-            're_password' => 'required|same:password|between:6,30',
+            'password' => 'required|min:6',
+            're_password' => 'required|same:password|min:6',
             'display_name' => 'required',
             'role' => 'required'
         ],
