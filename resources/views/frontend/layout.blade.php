@@ -82,7 +82,7 @@
                         $menuLists = DB::table('menu')->where('parent_id', 0)->orderBy('display_order')->get();
                         ?>
                         @foreach($menuLists as $menu)                                          
-                        <li class="level0 @if($menuCap1List)  parent @endif "><a href="{{ $menu->url }}" title="{{ $menu->title }}">{{ $menu->title }}</a></li>
+                        <li class="level0"><a href="{{ $menu->url }}" title="{{ $menu->title }}">{{ $menu->title }}</a></li>
                         @endforeach
                     </ul>
                 </nav>
