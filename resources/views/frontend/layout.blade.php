@@ -77,12 +77,13 @@
                 <div class="banner-top"><img src="{{ URL::asset('public/assets/img/banner-top.png') }}" alt=""/></div>
                 <nav id="nav">
                     <a class="hidden-sm hidden-md hidden-lg nav-button-mobi" href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a>
-                    <ul class="clearfix">
-                        <li><a class="{{ isset($parentDetail) && $parentDetail->slug == 'coffee' ? "active" : "" }}" href="{{ route('cate-parent', 'coffee') }}">COFFEE</a></li>
-                        <li><a class="{{ isset($parentDetail) && $parentDetail->slug == 'shop-24h' ? "active" : "" }}" href="{{ route('cate-parent', 'shop-24h') }}">SHOP 24h</a></li>
-                        <li><a href="#">HỖ TRỢ TIÊU DÙNG</a></li>
-                        <li><a href="#">BẤT ĐỘNG SẢN</a></li>
-                        <li><a href="#">ĐẶT GIAO HÀNG</a></li>
+                    <ul class="clearfix">                       
+                        <?php 
+                        $menuLists = DB::table('menu')->where('parent_id', 0)->orderBy('display_order')->get();
+                        ?>
+                        @foreach($menuLists as $menu)                                          
+                        <li class="level0 @if($menuCap1List)  parent @endif "><a href="{{ $menu->url }}" title="{{ $menu->title }}">{{ $menu->title }}</a></li>
+                        @endforeach
                     </ul>
                 </nav>
             </div>
