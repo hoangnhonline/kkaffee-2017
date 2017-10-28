@@ -45,12 +45,19 @@
                 </td>
               </tr>               
               <tr>
-                <td><span class="order">5</span></td>                                                                           
+                <td><span class="order">2</span></td>                                                                           
                 <td><a href="{{ route( 'banner.index', [ 'object_id' => 5, 'object_type' => 3 ]) }}" class="link_edit">Banner giữa trang ( 1349 x 200 px )</a></td>
                 <td style="white-space:nowrap; text-align:right">                 
                   <a href="{{ route( 'banner.index', [ 'object_id' => 5, 'object_type' => 3 ]) }}" class="btn-sm btn btn-primary">Banner</a>
                 </td>
               </tr>
+              <tr>
+                <td><span class="order">3</span></td>                                                                           
+                <td><a href="{{ route( 'banner.index', [ 'object_id' => 2, 'object_type' => 3 ]) }}" class="link_edit">Banner top ( 1150 x 60 px)</a></td>
+                <td style="white-space:nowrap; text-align:right">                 
+                  <a href="{{ route( 'banner.index', [ 'object_id' => 2, 'object_type' => 3 ]) }}" class="btn-sm btn btn-primary">Banner</a>
+                </td>
+              </tr>  
              <!-- <tr>
                 <td><span class="order">2</span></td>                                                                           
                 <td><a href="{{ route( 'banner.index', [ 'object_id' => 2, 'object_type' => 3 ]) }}" class="link_edit">Banner sidebar các trang con (tin tức, danh mục con ...)</a></td>

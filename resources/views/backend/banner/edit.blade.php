@@ -45,6 +45,8 @@
                     echo "( 1349 x 505 px)";
                   }elseif($object_id == 5){
                     echo "( 1349 x 200 px)";
+                  }elseif($object_id == 2){
+                    echo "( 1150 x 60 px)";
                   }
                   ?></label>  
                   <input type="hidden" name="id" value="{{ $detailBanner->id }}">  

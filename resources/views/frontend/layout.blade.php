@@ -74,7 +74,22 @@
     <header>
         <div class="bg_black">
             <div class="container">
-                <div class="banner-top"><img src="{{ URL::asset('public/assets/img/banner-top.png') }}" alt=""/></div>
+                   <?php 
+                    $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])->orderBy('display_order', 'asc')->get();   
+                    ?>
+                    <?php $i = 0; ?>
+                    @foreach($bannerArr as $banner)
+                    <?php $i++; ?>
+                    <div class="banner-top">
+                    @if($banner->ads_url !='')
+                    <a href="{{ $banner->ads_url }}" title="banner slide {{ $i }}">
+                    @endif
+                    <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner slide {{ $i }}">
+                    @if($banner->ads_url !='')
+                    </a>
+                    @endif
+                    </div>
+                    @endforeach 
                 <nav id="nav">
                     <a class="hidden-sm hidden-md hidden-lg nav-button-mobi" href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a>
                     <ul class="clearfix">                       
