@@ -7,7 +7,7 @@
 <!--[if (gt IE 9)|!(IE)]><!-->
 <html lang="vn">
 <head>
-	<title>@yield('title')</title>
+    <title>@yield('title')</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="content-language" content="vi"/>
     <meta name="description" content="@yield('site_description')"/>
@@ -28,20 +28,20 @@
     <meta name="twitter:description" content="@yield('site_description')" />
     <meta name="twitter:title" content="@yield('title')" />     
     <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />
-	<link rel="icon" href="{{ URL::asset('public/assets/favicon.ico') }}" type="image/x-icon">
-	<!-- ===== Style CSS ===== -->
-	<link rel="stylesheet" href="{{ URL::asset('public/assets/lib/owlcarousel/dist/assets/owl.carousel.min.css') }}">
+    <link rel="icon" href="{{ URL::asset('public/assets/favicon.ico') }}" type="image/x-icon">
+    <!-- ===== Style CSS ===== -->
+    <link rel="stylesheet" href="{{ URL::asset('public/assets/lib/owlcarousel/dist/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('public/assets/lib/owlcarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/lib/fontawesome/css/font-awesome.min.css') }}" media="screen"/>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/bootstrap.min.css') }}" media="screen"/>
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('public/assets/css/style.css') }}" media="screen"/>
-  	<!-- HTML5 Shim and Respond.js') }}" IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js') }}" doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<link href='css/animations-ie-fix.css' rel='stylesheet'>
-		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}""></script>
-		<script src="https://oss.maxcdn.com/libs/respond.js') }}"/1.4.2/respond.min.js') }}""></script>
-	<![endif]-->
+    <!-- HTML5 Shim and Respond.js') }}" IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js') }}" doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <link href='css/animations-ie-fix.css' rel='stylesheet'>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js') }}""></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js') }}"/1.4.2/respond.min.js') }}""></script>
+    <![endif]-->
 </head>
 <body>
 @if($routeName == "product")
@@ -84,7 +84,7 @@
                     @if($banner->ads_url !='')
                     <a href="{{ $banner->ads_url }}" title="banner slide {{ $i }}">
                     @endif
-                    <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner slide {{ $i }}">
+                    <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner top {{ $i }}">
                     @if($banner->ads_url !='')
                     </a>
                     @endif
@@ -107,9 +107,9 @@
             <div class="container">
                 <div class="pull-left">
                     <div id="logo">
-                    	<a href="{{ route('home') }}" title="Logo K KAFFEE">
-							<img src="{{ Helper::showImage($settingArr['logo']) }}" alt="Logo K KAFFEE">
-						</a>
+                        <a href="{{ route('home') }}" title="Logo K KAFFEE">
+                            <img src="{{ Helper::showImage($settingArr['logo']) }}" alt="Logo K KAFFEE">
+                        </a>
                     </div>
                     <div class="option-hd option-kv dropdown">
                         <button class="dropdown-toggle" type="button" data-toggle="dropdown">
@@ -225,7 +225,7 @@
             <div class="pos_rel hidden-sm hidden-xs">
                 <div class="cf_chat">
                     <a href="javascript:void(0)"><i class="fa fa-weixin" aria-hidden="true"></i> Chat tư vấn</a>
-                    <div class="fb-page" data-tabs="messages" data-href="https://www.facebook.com/Surimy-shop-705004346240684/" data-width="280" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">                               
+                    <div class="fb-page" data-tabs="messages" data-href="{!! $settingArr['facebook_fanpage'] !!}" data-width="280" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true" data-show-posts="false">                               
                     </div>
                 </div>
             </div>
@@ -370,7 +370,7 @@
         <textarea rows="5" class="form-control" name="content" id="txtContent"></textarea>
       </div>
       <div class="modal-footer">
-      	<button type="button" class="btn btn-primary" id="btnSaveContent">Save</button>
+        <button type="button" class="btn btn-primary" id="btnSaveContent">Save</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
       </form>
@@ -426,53 +426,53 @@
         </script>      
     
     <input type="hidden" id="route-newsletter" value="{{ route('register.newsletter') }}">
-	
-	{!! $settingArr['google_analystic'] !!}
-	<script type="text/javascript">	
-	
-	$(document).on('keypress', '.txtSearch', function(e) {
-	    var obj = $(this);
-	    if (e.which == 13) {
-	        if ($.trim(obj.val()) == '') {
-	            return false;
-	        }
-	    }
-	});
-	
-		
-	
-	</script>
-	@include('frontend.partials.custom-css')
-	@yield('js')
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$.ajaxSetup({
-			      headers: {
-			          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-			      }
-			  });
+    
+    {!! $settingArr['google_analystic'] !!}
+    <script type="text/javascript"> 
+    
+    $(document).on('keypress', '.txtSearch', function(e) {
+        var obj = $(this);
+        if (e.which == 13) {
+            if ($.trim(obj.val()) == '') {
+                return false;
+            }
+        }
+    });
+    
+        
+    
+    </script>
+    @include('frontend.partials.custom-css')
+    @yield('js')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+              });
 
-			$('.edit').click(function(){
-				$('#txtId').val($(this).data('text'));
-				$('#txtContent').val($(this).html());
-				$('#editContentModal').modal('show');
-			});
-			$('#btnSaveContent').click(function(){
-				$.ajax({
-					url : '{{ route('save-content') }}',
-					type : "POST",
-					data : {
-						id : $('#txtId').val(),
-						content : $('#txtContent').val()
-					},
-					success:  function(){
-						window.location.reload();
-					}
+            $('.edit').click(function(){
+                $('#txtId').val($(this).data('text'));
+                $('#txtContent').val($(this).html());
+                $('#editContentModal').modal('show');
+            });
+            $('#btnSaveContent').click(function(){
+                $.ajax({
+                    url : '{{ route('save-content') }}',
+                    type : "POST",
+                    data : {
+                        id : $('#txtId').val(),
+                        content : $('#txtContent').val()
+                    },
+                    success:  function(){
+                        window.location.reload();
+                    }
 
-				});
-			});
-		});
-	</script>
+                });
+            });
+        });
+    </script>
 
 @if(!in_array($routeName, ['news-detail', 'product']))
 <div class="reviews-summary" id="rating-summary" itemscope="" itemtype="http://schema.org/Review" style="display:none">
