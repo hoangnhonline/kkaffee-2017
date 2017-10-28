@@ -29,10 +29,7 @@
 	                        	</a>
 	                        </div>
 	                        <div class="info-product">
-	                            <h3><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}">{!! $product->name !!}</a></h3>
-	                            @if($product->description)
-	                            <p>{!! $product->description !!}</p>
-	                            @endif
+	                            <h3><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}">{!! $product->name !!}</a></h3>	                            
 	                            <div class="price">
 	                                Giá: 
 	                                <span>
