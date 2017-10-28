@@ -126,9 +126,7 @@
                           <label class="col-md-3 row">Thumbnail ( 560x316 px)</label>    
                           <div class="col-md-9">
                             <img id="thumbnail_image" src="{{ $detail->image_url ? Helper::showImage($detail->image_url ) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="206" height="116">
-                            
-                            <input type="file" id="file-image" style="display:none" />
-                         
+                            <input type="hidden" name="image_url" value="{{ old('image_url', $detail->image_url) }}">
                             <button class="btn btn-default btn-sm" id="btnUploadImage" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
                           </div>
                             <div class="clearfix"></div>
