@@ -148,24 +148,8 @@ class DetailController extends Controller
             }else{
                 $seo['title'] = $seo['description'] = $seo['keywords'] = 'Tag - '. $detail->name;
             }  
-            //widget
-            $widgetProduct = (object) [];
-            $wParent = CateParent::where('is_widget', 1)->first();
-            if($wParent){
-
-                $widgetProduct = Product::where('product.slug', '<>', '')
-                        ->where('product.parent_id', $wParent->id)                    
-                        ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                        ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-                
-            }else{
-                $wCate = Cate::where('is_widget', 1)->first();
-                $widgetProduct = Product::where('product.slug', '<>', '')
-                        ->where('product.cate_id', $wCate->id)                    
-                        ->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                        ->select('product_img.image_url as image_url', 'product.*')->orderBy('is_hot', 'desc')->orderBy('id', 'desc')->limit($settingArr['product_widget'])->get();
-            }         
-            return view('frontend.news.tag', compact('title', 'articlesArr', 'seo', 'socialImage', 'detail', 'widgetProduct'));
+          
+            return view('frontend.news.tag', compact('title', 'articlesArr', 'seo', 'socialImage', 'detail'));
         }
     }
     public function ajaxTab(Request $request){
