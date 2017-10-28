@@ -59,7 +59,6 @@
                             </div>
                             <div class="info-product">
                                 <h3><a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">{!! $product->name !!}</a></h3>
-                                <p>{!! $product->description !!}</p>
                                 <div class="price">
                                     Giá: 
                                     <span>
