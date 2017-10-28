@@ -94,7 +94,7 @@
                     <a class="hidden-sm hidden-md hidden-lg nav-button-mobi" href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a>
                     <ul class="clearfix">                       
                         <?php 
-                        $menuLists = DB::table('menu')->where('parent_id', 0)->orderBy('display_order')->get();
+                        $menuLists = DB::table('menu')->where('parent_id', 0)->where('menu_id', 1)->orderBy('display_order')->get();
                         ?>
                         @foreach($menuLists as $menu)                                          
                         <li class="level0"><a href="{{ $menu->url }}" title="{{ $menu->title }}">{{ $menu->title }}</a></li>
@@ -112,24 +112,28 @@
                         </a>
                     </div>
                     <div class="option-hd option-kv dropdown">
-                        <button class="dropdown-toggle" type="button" data-toggle="dropdown">
-                            HCM
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu-header">
-                            <li><a href="#">HCM</a></li>                            
-                        </ul>
+                        <?php 
+                        $menuLists = DB::table('menu')->where('parent_id', 0)->where('menu_id', 2)->orderBy('display_order')->get();                        
+                        ?>
+                        @if(!empty($menuLists))
+                        <select class="form-control">
+                        @foreach($menuLists as $menu)                                          
+                        <option value="{{ $menu->url }}">{{ $menu->title }}</option>                        
+                        @endforeach
+                        </select>              
+                        @endif          
                     </div>
                     <div class="option-hd option-dv dropdown">
-                        <button class="dropdown-toggle" type="button" data-toggle="dropdown">
-                            Dịch vụ
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu-header">
-                            @foreach($servicesList as $services)
-                            <li><a href="{{ $services->url }}">{!! $services->title !!}</a></li>
-                            @endforeach
-                        </ul>
+                        <?php 
+                        $menuLists = DB::table('menu')->where('parent_id', 0)->where('menu_id', 3)->orderBy('display_order')->get();                        
+                        ?>
+                        @if(!empty($menuLists))
+                        <select class="form-control">
+                        @foreach($menuLists as $menu)                                          
+                        <option value="{{ $menu->url }}">{{ $menu->title }}</option>                        
+                        @endforeach
+                        </select>              
+                        @endif    
                     </div>
                 </div>
                 <div class="pull-right @if(Session::get('login')) logined @endif">
