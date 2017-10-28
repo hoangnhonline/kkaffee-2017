@@ -17,17 +17,16 @@ class MenuController extends Controller
     public function index(Request $request){
         //$dirs = array_filter(glob(public_path()."/uploads/*"), 'is_dir');
         //print_r( $dirs);
-        $menu_id = $request->menu_id ? $request->menu_id : 1;
-        $menuLists = Menu::where('parent_id', 0)->where('menu_id', $menu_id)->orderBy('display_order')->get();
         
-        return view('backend.menu.index', compact('menuLists', 'menu_id'));
+        $menuLists = Menu::where('parent_id', 0)->orderBy('display_order')->get();
+        
+        return view('backend.menu.index', compact('menuLists'));
     }
     public function loadCreate(Request $request){
         $articlesCateList = ArticlesCate::where('status', 1)->where('type', 1)->orderBy('display_order', 'asc')->get();
         $pageList = Pages::where('status', 1)->get();
         $parent_id = $request->parent_id ? $request->parent_id : 0;
-        $menu_id = $request->menu_id ? $request->menu_id : 1;
-        return view('backend.menu.ajax-create', compact('menuList', 'articlesCateList', 'menu_id','pageList', 'parent_id'));   
+        return view('backend.menu.ajax-create', compact('menuList', 'articlesCateList', 'pageList', 'parent_id'));   
     }
     public function getSlug(Request $request){
     	$strReturn = '';
@@ -49,14 +48,15 @@ class MenuController extends Controller
         return view('backend.menu.render-menu', compact( 'dataArr' ));   
     }
     public function store(Request $request){
-        $data = $request->all();        
+        $data = $request->all();
+        $data['menu_id'] = 1;
         $data['slug'] = str_slug($data['title']);
         $data['title_attr'] = str_slug($data['title']);
-        $data['display_order'] = Helper::getNextOrder('menu', ['parent_id' => $data['parent_id'], 'menu_id' => $data['menu_id']]);
+        $data['display_order'] = Helper::getNextOrder('menu', ['parent_id' => $data['parent_id'], 'menu_id' => 1]);
         Menu::create($data);
         Session::flash('message', 'Cập nhật menu thành công.');
 
-        return redirect()->route('menu.index', ['menu_id' => $data['menu_id']]);
+        return redirect()->route('menu.index');
     }
     public function storeOrder(Request $request){
         $idArr = $request->id;
@@ -68,7 +68,7 @@ class MenuController extends Controller
         }
         Session::flash('message', 'Cập nhật thứ tự thành công.');
 
-        return redirect()->route('menu.index', ['menu_id' => $request->menu_id]);
+        return redirect()->route('menu.index');
     }
     public function destroy($id)
     {

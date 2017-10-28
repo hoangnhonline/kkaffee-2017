@@ -28,7 +28,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
          Route::get('load-create',   ['as' => 'menu.load-create', 'uses' => 'MenuController@loadCreate']);       
         Route::get('{id}/destroy', ['as' => 'menu.destroy', 'uses' => 'MenuController@destroy']);
     });
-    
+  
     Route::group(['prefix' => 'branch'], function () {
         Route::get('/', ['as' => 'branch.index', 'uses' => 'BranchController@index']);
         Route::get('/create', ['as' => 'branch.create', 'uses' => 'BranchController@create']);

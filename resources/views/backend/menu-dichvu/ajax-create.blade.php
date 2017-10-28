@@ -133,7 +133,6 @@
         <input type="hidden" name="type" id="type" value="">
         <input type="hidden" name="parent_id" id="parent_id" value="{{ $parent_id }}">
         <input type="hidden" name="object_id" id="object_id" value="">
-        <input type="hidden" name="menu_id" id="menu_id" value="{{ $menu_id }}">
     </div>
     <!-- /.box-body -->                
     <div class="box-footer">
