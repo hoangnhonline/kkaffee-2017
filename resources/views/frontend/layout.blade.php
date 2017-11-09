@@ -200,9 +200,9 @@
                     <div class="title-col-footer">ĐỊA CHỈ</div>
                     <p>
                         <b @if($isEdit) class="edit" @endif" data-text="7">{!! $textList[7] !!}</b><br/>
-                        Địa chỉ: 216 Hoàng Văn Thụ, phường 4, quận Tân Bình<br/>
-                        Hotline: 0909 58 57 49<br/>
-                        Email: tungocsang88@gmail.com
+                        <span@if($isEdit) class="edit" @endif" data-text="8">{!! $textList[8] !!}</span><br/>
+                        <span@if($isEdit) class="edit" @endif" data-text="9">{!! $textList[9] !!}</span><br/>
+                        <span@if($isEdit) class="edit" @endif" data-text="10">{!! $textList[10] !!}</span>
                     </p>
                 </div>
                 <div class="col-footer col-footer-3">

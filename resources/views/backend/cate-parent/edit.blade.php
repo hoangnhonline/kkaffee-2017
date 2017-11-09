@@ -70,6 +70,15 @@
                 </div>
                 <div class="clearfix"></div>
               <!-- textarea -->
+              <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
+                  <label class="col-md-3 row">Thumbnail ( 284x284 px)</label>    
+                  <div class="col-md-9">
+                    <img id="thumbnail_image" src="{{ $detail->image_url ? Helper::showImage($detail->image_url ) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="206" height="116">
+                    <input type="hidden" name="image_url" id="image_url" value="{{ old('image_url', $detail->image_url) }}">
+                    <button class="btn btn-default btn-sm" id="btnUploadImage" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
+                  </div>
+                    <div class="clearfix"></div>
+                </div>
               <div class="form-group">
                 <label>Mô tả</label>
                 <textarea class="form-control" rows="4" name="description" id="description">{{ $detail->description }}</textarea>
@@ -144,7 +153,28 @@
 @stop
 @section('js')
 <script type="text/javascript">
+  var h = screen.height;
+var w = screen.width;
+var left = (screen.width/2)-((w-300)/2);
+var top = (screen.height/2)-((h-100)/2);
+function openKCFinder_singleFile() {
+      window.KCFinder = {};
+      window.KCFinder.callBack = function(url) {
+         $('#image_url').val(url);
+         $('#thumbnail_image').attr('src', $('#app_url').val() + url);
+          window.KCFinder = null;
+      };
+      window.open('{{ URL::asset("public/admin/dist/js/kcfinder/browse.php?type=images") }}', 'kcfinder_single','scrollbars=1,menubar=no,width='+ (w-300) +',height=' + (h-300) +',top=' + top+',left=' + left);
+  }
+$(document).on('click', '.remove-image', function(){
+  if( confirm ("Bạn có chắc chắn không ?")){
+    $(this).parents('.col-md-3').remove();
+  }
+});
     $(document).ready(function(){
+      $('#btnUploadImage').click(function(){        
+        openKCFinder_singleFile();
+      }); 
       $('#name').change(function(){
          var name = $.trim( $(this).val() );
          
