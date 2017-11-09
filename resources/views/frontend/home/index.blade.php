@@ -61,11 +61,11 @@
             <p class="text-center @if($isEdit) edit @endif" data-text="4">{!! $textList[4] !!}</p>
         </div>
         <div class="container clearfix">
-            @foreach($servicesList as $services)
+            @foreach($cateParentList as $services)
             <div class="item-service">
-                <a href="{{ $services->url }}" title="{!! $services->title !!}">
-                    <div class="image"><img src="{{ Helper::showImage($services->image_url) }}" alt="{!! $services->title !!}"/></div>
-                    <h2>{!! $services->title !!}</h2>
+                <a href="{{ route('cate-parent', $services->slug ) }}" title="{!! $services->name !!}">
+                    <div class="image"><img src="{{ Helper::showImage($services->image_url) }}" alt="{!! $services->name !!}"/></div>
+                    <h2>{!! $services->name !!}</h2>
                 </a>
             </div>
             @endforeach
