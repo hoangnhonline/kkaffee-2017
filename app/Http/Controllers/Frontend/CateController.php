@@ -39,7 +39,7 @@ class CateController extends Controller
             
             if($cateList){
                 foreach($cateList as $cate){
-                    $productArr[$cate->id] = Product::getList( ['cate_id' => $cate->id, 'limit' => 10] );
+                    $productArr[$cate->id] = Product::getList( ['cate_id' => $cate->id, 'limit' => 20] );
                 }
             }       
             if( $parentDetail->meta_id > 0){
@@ -48,7 +48,7 @@ class CateController extends Controller
                 $seo['title'] = $seo['description'] = $seo['keywords'] = $parentDetail->name;
             }  
             
-            $hotProductList = Product::getList(['is_hot' => 1, 'parent_id' => $parent_id, 'limit' => 10]);
+            $hotProductList = Product::getList(['is_hot' => 1, 'parent_id' => $parent_id, 'limit' => 20]);
             return view('frontend.cate.parent', compact('parent_id', 'parentDetail', 'cateList', 'productArr', 'seo', 'hotProductList'));
 
         }else{
@@ -94,7 +94,7 @@ class CateController extends Controller
                 $seo['title'] = $seo['description'] = $seo['keywords'] = $cateDetail->name;
             }  
             $page = $request->page ? $request->page : 1;    
-            $hotProductList = Product::getList(['is_hot' => 1, 'cate_id' => $cate_id, 'limit' => 10]);    
+            $hotProductList = Product::getList(['is_hot' => 1, 'cate_id' => $cate_id, 'limit' => 20]);    
             return view('frontend.cate.child', compact('parent_id', 'cateDetail', 'productList', 'seo', 'page', 'hotProductList'));
             
         }else{
