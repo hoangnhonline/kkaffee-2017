@@ -200,9 +200,9 @@
                     <div class="title-col-footer">ĐỊA CHỈ</div>
                     <p>
                         <b @if($isEdit) class="edit" @endif" data-text="7">{!! $textList[7] !!}</b><br/>
-                        <span@if($isEdit) class="edit" @endif" data-text="8">{!! $textList[8] !!}</span><br/>
-                        <span@if($isEdit) class="edit" @endif" data-text="9">{!! $textList[9] !!}</span><br/>
-                        <span@if($isEdit) class="edit" @endif" data-text="10">{!! $textList[10] !!}</span>
+                        <span @if($isEdit) class="edit" @endif" data-text="8">{!! $textList[8] !!}</span><br/>
+                        <span @if($isEdit) class="edit" @endif" data-text="9">{!! $textList[9] !!}</span><br/>
+                        <span @if($isEdit) class="edit" @endif" data-text="10">{!! $textList[10] !!}</span>
                     </p>
                 </div>
                 <div class="col-footer col-footer-3">
