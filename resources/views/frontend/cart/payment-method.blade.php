@@ -77,7 +77,7 @@
                               </tbody>
                               <tfoot>
                                   <tr class="cart-subtotal">
-                                      <th class="text-left">Tổng phụ</th>
+                                      <th class="text-left">Tiền hàng</th>
                                       <td class="text-right"><strong><span>{{ number_format($total) }}đ</span></strong></td>
                                   </tr>
                                   <tr>
@@ -102,7 +102,7 @@
                               </div>
                               <div class="pull-right text-right">
                                   <b class="cl_ea0000">{!! number_format($total + $total*10/100 + Session::get('phi_van_chuyen')['phi']) !!}đ</b><br/>
-                                  <small>(Chưa bao gồm phí COD)</small>
+                                  
                               </div>
                           </div>
                           <p><b>Hình thức thanh toán</b></p>
