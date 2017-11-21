@@ -280,7 +280,7 @@ class CartController extends Controller
 
         $email = $addressInfo->email ? $addressInfo->email :  "";
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
-        $adminMailArr = explode(',', $settingArr['admin_email']);
+        $adminMailArr = explode(',', $settingArr['email_header']);
         if($email != ''){
 
             $emailArr = array_merge([$email], $adminMailArr);
