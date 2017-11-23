@@ -1,6 +1,6 @@
 <header class="main-header">
   <!-- Logo -->
-  <a href="{{ route('product.index')}}" class="logo">
+  <a href="{{ Auth::user()->id != 5 ? route('product.index') : route('orders.index')}}" class="logo">
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"><b>K KAFFEE</b></span>
     <!-- logo for regular state and mobile devices -->
