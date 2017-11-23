@@ -20,8 +20,11 @@ class UserController extends Controller
     public function loginForm()
     {        
         if(Auth::check()){
-
-            return redirect()->route('product.index');
+            if(Auth::user()->id != 5){
+                return redirect()->route('product.index');    
+            }else{
+                return redirect()->route('orders.index');    
+            }
             
         } 
         return view('backend.login');
@@ -52,7 +55,11 @@ class UserController extends Controller
         if (Auth::validate($dataArr)) {
             $dataArr['status'] = 1;
             if (Auth::attempt($dataArr)) {                    
-                return redirect()->route('product.index'); 
+                if(Auth::user()->id != 5){
+                    return redirect()->route('product.index');    
+                }else{
+                    return redirect()->route('orders.index');    
+                }
             }else{
                 Session::flash('error', 'Tài khoản đã bị khóa.'); 
                 return redirect()->route('backend.login-form'); 

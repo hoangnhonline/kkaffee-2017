@@ -15,7 +15,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->    
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
-     
+      @if(Auth::user()->id != 5)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'cate-type.index', 'cate-type.edit', 'cate-type.create', 'cate.index', 'cate.edit', 'cate.create', 'cate-parent.index', 'cate-parent.edit', 'cate-parent.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-opencart"></i> 
@@ -32,19 +32,15 @@
           <li {{ in_array(\Request::route()->getName(), ['cate.index', 'cate.edit', 'cate.create']) ? "class=active" : "" }}><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục con</a></li>
           
         </ul>
-      </li>            
-      <li class="treeview {{ \Request::route()->getName() == "orders.index" ? "active" : "" }}">
-        <a href="#">
-          <i class="fa fa-reorder"></i> 
-          <span>Đơn hàng</span>
-          <span class="pull-right-container">
-            <i class="fa fa-angle-left pull-right"></i>
-          </span>
-        </a>
-        <ul class="treeview-menu">
-          <li {{ \Request::route()->getName() == "orders.index" ? "class=active" : "" }}><a href="{{ route('orders.index') }}"><i class="fa fa-circle-o"></i> Đơn hàng</a></li>          
-        </ul>
-      </li>
+      </li>  
+      @endif  
+      <li {{ in_array(\Request::route()->getName(), ['orders.index']) ? "class=active" : "" }}>
+        <a href="{{ route('orders.index') }}">
+          <i class="fa fa-pencil-square-o"></i> 
+          <span>Đơn hàng</span>          
+        </a>       
+      </li>              
+      @if(Auth::user()->id != 5)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
@@ -133,6 +129,7 @@
           <li {{ \Request::route()->getName() == "account.index" ? "class=active" : "" }}><a href="{{ route('account.index') }}"><i class="fa fa-circle-o"></i> Users</a></li>              
         </ul>
       </li>
+      @endif
       @endif      
     </ul>
   </section>
