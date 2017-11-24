@@ -147,6 +147,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+  setTimeout(function(){ window.location.reload(); }, 15000);
   $('#status').change(function(){
     $('#searchForm').submit();
 
