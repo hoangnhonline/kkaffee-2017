@@ -73,9 +73,9 @@
                     </ul>
                 </div>
                 <div class="col-tab-content admin-content">
-                    <p class="blockquote-promotion">
+                    <!--<p class="blockquote-promotion">
                         <span>Giảm giá 30%</span> cho tất cả các sản phẩm dưới đây
-                    </p>                    
+                    </p>-->                    
                     <div class="list-box-items" id="tab01">
                         <div class="title-admin-content">SẢN PHẨM HOT</div>                        
                         @foreach($hotProductList as $product)
