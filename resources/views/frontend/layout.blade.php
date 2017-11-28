@@ -111,30 +111,18 @@
                             <img src="{{ Helper::showImage($settingArr['logo']) }}" alt="Logo K KAFFEE">
                         </a>
                     </div>
-                    <div class="option-hd option-kv dropdown">
-                        <?php 
-                        $menuLists = DB::table('menu')->where('parent_id', 0)->where('menu_id', 2)->orderBy('display_order')->get();                        
-                        ?>
-                        @if(!empty($menuLists))
-                        <select class="form-control">
-                        @foreach($menuLists as $menu)                                          
-                        <option value="{{ $menu->url }}">{{ $menu->title }}</option>                        
-                        @endforeach
-                        </select>              
-                        @endif          
-                    </div>
-                    <div class="option-hd option-dv dropdown">
-                        <?php 
-                        $menuLists = DB::table('menu')->where('parent_id', 0)->where('menu_id', 3)->orderBy('display_order')->get();                        
-                        ?>
-                        @if(!empty($menuLists))
-                        <select class="form-control">
-                        @foreach($menuLists as $menu)                                          
-                        <option value="{{ $menu->url }}">{{ $menu->title }}</option>                        
-                        @endforeach
-                        </select>              
-                        @endif    
-                    </div>
+                    <div id="custom-search-input" class="pull-left">
+                        <div class="input-group col-md-12">
+                            <form class=""  action="{{ route('search') }}" method="GET">
+                                <input type="text" name="keyword" value="{!! isset($tu_khoa) ? $tu_khoa : "" !!}" class="txtSearch form-control" placeholder="Tìm kiếm" />
+                                <span class="input-group-btn">
+                                    <button class="btn" type="button">
+                                        <i class="glyphicon glyphicon-search"></i>
+                                    </button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>                    
                 </div>
                 <div class="pull-right @if(Session::get('login')) logined @endif">
                     <div class="block-login ">

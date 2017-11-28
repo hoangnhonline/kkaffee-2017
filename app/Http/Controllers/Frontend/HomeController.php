@@ -110,15 +110,10 @@ class HomeController extends Controller
     */
     public function search(Request $request)
     {
-        $tu_khoa = $request->keyword;
-        $parent_id = $request->cid ? $request->cid : null;
-        $tu_khoa_find = Helper::stripUnicode($tu_khoa);
-        $query = Product::where('product.alias', 'LIKE', '%'.$tu_khoa_find.'%')->orWhere('product.code', 'LIKE', '%'.$tu_khoa_find.'%');
-            if($parent_id > 0){
-                $query->where('parent_id', $parent_id);
-            }
-                    $query->leftJoin('product_img', 'product_img.id', '=','product.thumbnail_id')
-                    ->select('product_img.image_url', 'product.*')                                                  
+        $tu_khoa = $request->keyword;        
+        $tu_khoa_find = Helper::stripUnicode($tu_khoa);        
+        $query = Product::where('product.alias', 'LIKE', '%'.$tu_khoa_find.'%')->orWhere('product.code', 'LIKE', '%'.$tu_khoa_find.'%')             
+                    ->select('product.*')                                                  
                     ->orderBy('product.id', 'desc');
                    $productList = $query->paginate(15);
         $seo['title'] = $seo['description'] =$seo['keywords'] = "Tìm kiếm sản phẩm theo từ khóa '".$tu_khoa."'";
