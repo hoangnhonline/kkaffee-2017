@@ -56,6 +56,28 @@
                 </div>
             </div>
         </div>
+        @if($otherList)
+                    
+        <div class="container">
+            <div id="nvn_sp_goiy" class="owl-carousel">
+            @foreach($otherList as $product)
+                <div class="item">
+                    <div class="imgleft">
+                        <div class="image"><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}"><img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->name !!}"/></div>
+                        <h3><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}">{!! $product->name !!}</a></h3>
+                        <p><span>{!! $product->description !!}</span></p>
+                        <p><b class="cl_ea0000">@if($product->is_sale == 1 && $product->price_sale > 0)
+                                            {{ number_format($product->price_sale) }}đ
+                                        @else
+                                            {{ number_format($product->price) }}đ
+                                        @endifđ</b></p>
+                    </div>
+                </div>
+                @endforeach
+                
+            </div>
+        </div>
+        @endif
         <div class="container">
             <div class="bg-eaeaea">
                 <span>THỰC ĐƠN</span>
@@ -208,6 +230,16 @@
 @section('js')    
 <script type="text/javascript">
 	$(document).ready(function(){
+        jQuery('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                responsive: {
+                    1200: {
+                        items: 5
+                    }
+                }
+            });
 		$.ajax({
 	        url : $('#rating-route').val(),
 	        type : 'POST',

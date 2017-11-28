@@ -56,7 +56,7 @@ class DetailController extends Controller
                     ->where('product.cate_id', $detail->cate_id)
                     ->where('product.id', '<>', $detail->id)  
                     ->orderBy('product.id', 'desc')
-                    ->limit($settingArr['product_related'])
+                    ->limit(10)
                     ->get();   
         //
         $parentDetail = CateParent::find($detail->parent_id);
