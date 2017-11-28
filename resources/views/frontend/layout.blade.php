@@ -112,16 +112,18 @@
                         </a>
                     </div>
                     <div id="custom-search-input" class="pull-left">
+                    <form class=""  action="{{ route('search') }}" method="GET">
                         <div class="input-group col-md-12">
-                            <form class=""  action="{{ route('search') }}" method="GET">
+                            
                                 <input type="text" name="keyword" value="{!! isset($tu_khoa) ? $tu_khoa : "" !!}" class="txtSearch form-control" placeholder="Tìm kiếm" />
                                 <span class="input-group-btn">
                                     <button class="btn" type="button">
                                         <i class="glyphicon glyphicon-search"></i>
                                     </button>
                                 </span>
-                            </form>
+                            
                         </div>
+                        </form>
                     </div>                    
                 </div>
                 <div class="pull-right @if(Session::get('login')) logined @endif">
