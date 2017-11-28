@@ -74,6 +74,10 @@
                 <div class="form-group col-md-6">
                   <label>Twitter</label>
                   <input type="text" class="form-control" name="twitter_fanpage" id="twitter_fanpage" value="{{ $settingArr['twitter_fanpage'] }}">
+                </div>  
+                <div class="form-group col-md-6">
+                  <label>VIDEO ID YOUTUBE</label>
+                  <input type="text" class="form-control" name="video_youtube_id" id="video_youtube_id" value="{{ $settingArr['video_youtube_id'] }}">
                 </div>                
                
                   
