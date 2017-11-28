@@ -438,12 +438,26 @@
     @yield('js')
     <script type="text/javascript">
         $(document).ready(function(){
+            @if(!Session::get('choose_district'))
+            jQuery("#popup_khuvuc").modal();
+            @endif
             $.ajaxSetup({
                   headers: {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                   }
               });
-
+            $('a.choose_district').click(function(){
+                $.ajax({
+                    url : "{{ route('choose-district') }}",
+                    type : "GET",
+                    data : {
+                        id : $(this).data('id')
+                    },
+                    success: function(){
+                        window.location.reload();
+                    }
+                });
+            });
             $('.edit').click(function(){
                 $('#txtId').val($(this).data('text'));
                 $('#txtContent').val($(this).html());
@@ -474,6 +488,25 @@
    </div>
 </div>
 @endif
+<!-- Modal -->
+<div class="modal fade" id="popup_khuvuc" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="bg-333 text-center">
+                    <img id="imglogo" src="{{ URL::asset('public/assets/img/logo-header.png') }}" alt="Logo"/>
+                </div>
+                <p>Chọn nơi bạn đang sinh sống</p>
+                <Div class="box-khuvuc">
+                    @foreach($loadDistrict as $dis)
+                    <p><a href="javascript:;" class="choose_district" data-id="{{ $dis->id }}"><i class="cl_ffd900 fa fa-map-marker" aria-hidden="true"></i> {!! $dis->name !!}</a></p>
+                    @endforeach
+                </Div>
+            </div>
+        </div>
+    </div>
+</div>
 <style type="text/css">
     
 

@@ -232,12 +232,13 @@
             type : 'POST',
             dataType : 'html',
             success : function(data){
-              $('#branch_district_id').html(data); 
-              $('#branch_district_id').val(485);
+              $('#branch_district_id').html(data);
+              @if(Session::get('choose_district'))
+              $('#branch_district_id').val({{ Session::get('choose_district') }});
               $.ajax({
                 url : '{{ route('get-branch') }}',
                 data : {                
-                  district_id : 485
+                  district_id : {{ Session::get('choose_district') }}
                 },
                 type : 'GET',
                 dataType : 'html',
@@ -247,7 +248,9 @@
                   br.prop('checked', true);
                   $('#k_branch_id').val(br.val());
                 }
-              })                               
+              });
+              @endif 
+                                             
             }
           });
       $(document).on('click', '.reqBranchId', function(){

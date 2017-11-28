@@ -120,6 +120,11 @@ class HomeController extends Controller
        
         return view('frontend.cate.search', compact('productList', 'tu_khoa', 'seo', 'parent_id'));
     }
+    public function chooseDistrict(Request $request){
+        $id = $request->id;
+        Session::put('choose_district', $id);
+        return redirect()->route('home');
+    }
     public function ajaxTab(Request $request){
         $table = $request->type ? $request->type : 'category';
         $id = $request->id;
