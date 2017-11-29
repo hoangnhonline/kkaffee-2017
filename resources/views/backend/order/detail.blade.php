@@ -29,6 +29,7 @@
               <h4>Chi tiết chung</h4>
             <p>
               <span>Thời gian đặt hàng :</span><br> {{ date('d-m-Y H:i', strtotime($order->created_at )) }} <br>
+              <span>Ngày nhận hàng :</span><br> <strong>{{ $order->date_delivery ? date('d/m/Y', strtotime($order->date_delivery)) : "" }} {{ $order->time_delivery }} </strong><br>
               <div class="clearfix" style="margin-bottom:5px"></div>
               <span>Tình trạng đơn hàng : </span><br />
               <select class="select-change-status form-control" order-id="{{ $order->id }}" style="width:200px;" >

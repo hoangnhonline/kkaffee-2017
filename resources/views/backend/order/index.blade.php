@@ -72,6 +72,7 @@
               <th style="width: 1%">No.</th>
               <th style="width: 1%;white-space:nowrap;width:200px"> Đơn hàng</th>
               <th style="text-align:center;width:150px">Ngày đặt hàng</th>
+              <th style="text-align:center;width:150px">Ngày nhận hàng</th>
               <th style="text-align:left;width:200px">Giao hàng đến</th>           
               <th style="text-align:right;width:100px">Tổng hoá đơn</th>
               <th width="120px" style="white-space:nowrap">Trạng thái</th>
@@ -97,7 +98,9 @@
                 <br>
                 {{ $order->customer->phone }}
                 </td>
-                <td style="text-align:center;width:150px;white-space:nowrap">{{ date('d-m-Y H:i ', strtotime($order->created_at))}}</td>
+                <td style="text-align:center;width:150px;white-space:nowrap">{{ date('d/m/Y H:i ', strtotime($order->created_at))}}</td>
+                <td style="text-align:center;width:150px;white-space:nowrap">
+                {{ $order->date_delivery ? date('d/m/Y', strtotime($order->date_delivery)) : "" }} {{ $order->time_delivery }} </td>
                 <td>
                   <strong>{{ $order->address->fullname }} - {{ $order->address->phone }}</strong>
                 <a href="http://maps.google.com/maps?&q={{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}" target="_blank"> 
