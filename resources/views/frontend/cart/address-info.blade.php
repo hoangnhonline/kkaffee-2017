@@ -166,6 +166,19 @@
                           <div class="col-md-12"><input type="text" class="form-control no-round" id="other_address" name="other_address" placeholder="Địa chỉ" value="{{ old('other_address') }}"></div>
                       </div>
                   </div>
+                   <p><i class="fa fa-circle cl_ffd900" aria-hidden="true"></i> Thời gian nhận hàng</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="form-group col-xs-6">
+                                       <input type="text" name="date_delivery" id="date_delivery" class="form-control">
+                                    </div>
+                                    <div class="form-group col-xs-6" style="width:120px">
+                                        <input type="text" name="time_delivery" id="time_delivery" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                   <p><i class="fa fa-circle text-primary" aria-hidden="true"></i> Ghi chú cho đơn hàng</p>
                   <div class="form-group">
                       <textarea class="form-control no-round" name="notes" id="notes" rows="7" placeholder="Nhập thông tin ghi chú của bạn"></textarea>
@@ -186,10 +199,25 @@
     border : 1px solid red;
   }
 </style>
+<link rel="stylesheet" href="{{ URL::asset('public/admin/dist/css/datetimepicker.css') }}">  
 @stop
 @section('js')
+<script type="text/javascript" src="{{ URL::asset('public/admin/dist/js/datetimepicker.js') }}"></script>
    <script type="text/javascript">
    $(document).ready(function(){   
+    $('#time_delivery').datetimepicker({
+      format:'H:i',
+      step:15,
+      minDate:0,
+      datepicker: false,
+      minTime:0
+
+    });
+    $('#date_delivery').datetimepicker({
+      format:'d/m/Y',      
+      minDate:0,
+      timepicker: false
+    });
     $('#dataForm .req').blur(function(){    
         if($(this).val() != ''){
           $(this).removeClass('error');

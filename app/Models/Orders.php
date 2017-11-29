@@ -38,7 +38,9 @@ class Orders extends Model  {
       'fullname',      
       'da_thanh_toan',
       'address_id',
-      'branch_id'
+      'branch_id',
+      'date_delivery',
+      'time_delivery'
     ];
 
     public function order_detail()
