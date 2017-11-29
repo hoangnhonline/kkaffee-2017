@@ -225,7 +225,7 @@ class CartController extends Controller
 
     public function saveOrder(Request $request)
     {
-        
+        $addInfo = Session::get('address_info');
         $getlistProduct = Session::get('products');
         $listProductId = array_keys($getlistProduct);
         $customer_id = Session::get('userId');
@@ -241,14 +241,15 @@ class CartController extends Controller
         $order['status'] = 0;
         $order['coupon_id'] = 0;
         $order['method_id'] = $request->method_id;
-        $date_delivery = $request->date_delivery ? str_replace('/', '-', $request->date_delivery) : null;
+        
+        $date_delivery = $addInfo['date_delivery'] ? str_replace('/', '-', $addInfo['date_delivery'] ) : null;
         if($date_delivery){
             $date_delivery = date('Y-m-d', strtotime($date_delivery));
         }else{
             $date_delivery = null;
         }
         $order['date_delivery'] = $date_delivery;
-        $order['time_delivery'] = $request->time_delivery;
+        $order['time_delivery'] = $addInfo['time_delivery'];
         $order['address_id'] = Session::get('address_id');
         $order['branch_id'] = Session::get('branch_id');
 
