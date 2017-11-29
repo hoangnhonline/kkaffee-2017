@@ -1180,8 +1180,6 @@ h1.title_page span:after{
 .cart-side.cart-info{
     float: left;
     width: 280px;
-    border: 1px solid #ffd900;
-    border-radius: 5px 5px 0 0;
 }
 .cart-side.cart-info .title-cart-info{
     font-size: 15px;
@@ -2375,7 +2373,6 @@ span.txt-account{
 #nvn_sp_goiy .imgleft h3{
     font-size: 13px;
     margin: 0 0 7px 110px;
-    background: #ffe533;
     color: #333;
     padding: 2px 5px;
     border-radius: 3px;
@@ -2418,6 +2415,8 @@ span.txt-account{
 #popup_khuvuc .modal-dialog{
     width: 240px;
     text-align: center;
+	margin-left:auto;
+	margin-right:auto;
 }
 #popup_khuvuc .modal-dialog .bg-333{
     background: #333;
@@ -2444,4 +2443,15 @@ span.txt-account{
 #popup_khuvuc .modal-dialog a:hover{
     text-decoration: nonel;
     background: #eee;
+}
+@media (max-width: 380px){
+    #detail-product .list-box-items .box-item .title-box-item{
+        width: 120px;
+        font-weight: normal;
+        font-size: 12px;
+    }
+}
+.cart-side.cart-info .nvn-class-affix{
+    border: 1px solid #ffd900;
+    border-radius: 5px 5px 0 0;
 }

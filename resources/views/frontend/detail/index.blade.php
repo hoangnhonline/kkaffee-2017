@@ -64,13 +64,12 @@
                 <div class="item">
                     <div class="imgleft">
                         <div class="image"><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}"><img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->name !!}"/></div>
-                        <h3><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}">{!! $product->name !!}</a></h3>
-                        <p><span>{!! $product->description !!}</span></p>
+                        <h3><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}">{!! $product->name !!}</a></h3>                        
                         <p><b class="cl_ea0000">@if($product->is_sale == 1 && $product->price_sale > 0)
                                             {{ number_format($product->price_sale) }}đ
                                         @else
                                             {{ number_format($product->price) }}đ
-                                        @endifđ</b></p>
+                                        @endif</b></p>
                     </div>
                 </div>
                 @endforeach
@@ -157,6 +156,7 @@
                 </div>
             </div><!--End tab custom-->
             <div class="cart-info cart-side">
+                <div class="nvn-class-affix">
                 <div class="title-cart-info">THÔNG TIN GIỎ HÀNG</div>
                 <div class="content-cart-info">
                     @if(!empty(Session::get('products')))
@@ -216,6 +216,7 @@
                     @endif
                 </div>
             </div>
+            </div>
         </div>
     </section><!-- End product -->
 </article>
@@ -235,6 +236,15 @@
                 margin: 10,
                 nav: true,
                 responsive: {
+                    380: {
+                       items: 2
+                    },
+                    603: {
+                       items: 3
+                    },
+                    768: {
+                       items: 4
+                    },
                     1200: {
                         items: 5
                     }
@@ -290,15 +300,23 @@
             updateQuantity(obj.data('id'), (currQuantity - 1), 'normal');
         });
         jQuery(document).ready(function () {
-                var voffset = jQuery("#myScrollspy").offset();
-                var vtop = voffset.top;
-                var vbot = jQuery("footer").height() + 160;
-                jQuery("#myScrollspy ul").affix({
-                    offset: {
-                        top: vtop,
-                        bottom: vbot
-                    }
-                });
+                if (jQuery(document).width() >= 992) {
+                   var voffset = jQuery("#myScrollspy").offset();
+                   var vtop = voffset.top;
+                   var vbot = jQuery("footer").height() + 160;
+                   jQuery("#myScrollspy ul").affix({
+                       offset: {
+                           top: vtop,
+                           bottom: vbot
+                       }
+                   });
+                   jQuery(".cart-side.cart-info .nvn-class-affix").affix({
+                       offset: {
+                           top: vtop,
+                           bottom: vbot
+                       }
+                   });
+               }
                 // Add smooth scrolling on all links inside the navbar
                 $("#myScrollspy a").on('click', function (event) {
                     // Make sure this.hash has a value before overriding default behavior
