@@ -154,6 +154,14 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::post('/update', ['as' => 'cate.update', 'uses' => 'CateController@update']);
         Route::get('{id}/destroy', ['as' => 'cate.destroy', 'uses' => 'CateController@destroy']);
     });
+    Route::group(['prefix' => 'grand'], function () {
+        Route::get('/', ['as' => 'grand.index', 'uses' => 'GrandController@index']);
+        Route::get('/create/', ['as' => 'grand.create', 'uses' => 'GrandController@create']);
+        Route::post('/store', ['as' => 'grand.store', 'uses' => 'GrandController@store']);
+        Route::get('{id}/edit',   ['as' => 'grand.edit', 'uses' => 'GrandController@edit']);
+        Route::post('/update', ['as' => 'grand.update', 'uses' => 'GrandController@update']);
+        Route::get('{id}/destroy', ['as' => 'grand.destroy', 'uses' => 'GrandController@destroy']);
+    });
     Route::group(['prefix' => 'banner'], function () {
         Route::get('/', ['as' => 'banner.index', 'uses' => 'BannerController@index']);
         Route::get('/create/', ['as' => 'banner.create', 'uses' => 'BannerController@create']);

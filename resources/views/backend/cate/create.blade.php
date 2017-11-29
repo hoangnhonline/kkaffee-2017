@@ -4,11 +4,11 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Danh mục con      
+      Danh mục cha      
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{ route('cate.index') }}">Danh mục con</a></li>
+      <li><a href="{{ route('cate.index') }}">Danh mục cha</a></li>
       <li class="active">Tạo mới</li>
     </ol>
   </section>
@@ -40,7 +40,7 @@
                   </div>
               @endif               
                 <div class="form-group">
-                    <label for="email">Danh mục cha <span class="red-star">*</span></label>
+                    <label for="email">Loại sản phẩm <span class="red-star">*</span></label>
                     <select class="form-control req" name="parent_id" id="parent_id">
                         <option value="">-- chọn --</option>
                         @foreach( $cateParentList as $value )

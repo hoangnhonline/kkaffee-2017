@@ -4,11 +4,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Sản phẩm
+    Danh mục con
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="{{ route( 'product.index' ) }}">Sản phẩm</a></li>
+    <li><a href="{{ route( 'grand.index' ) }}">Danh mục con</a></li>
     <li class="active">Danh sách</li>
   </ol>
 </section>
@@ -20,22 +20,22 @@
       @if(Session::has('message'))
       <p class="alert alert-info" >{{ Session::get('message') }}</p>
       @endif
-      <a href="{{ route('product.create', ['parent_id' => $arrSearch['parent_id'], 'cate_id' => $arrSearch['cate_id']]) }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
+      <a href="{{ route('grand.create', ['parent_id' => $parent_id, 'cate_id' => $cate_id]) }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
       <div class="panel panel-default">
         <div class="panel-heading">
           <h3 class="panel-title">Bộ lọc</h3>
         </div>
         <div class="panel-body">
-          <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('product.index') }}">
+          <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('grand.index') }}">
            
           
             
             <div class="form-group">
-              <label for="email">Loại sản phẩm</label>
+              <label for="email">Loại danh mục con</label>
               <select class="form-control" name="parent_id" id="parent_id">
                 <option value="">--Tất cả--</option>
                 @foreach( $cateParentList as $value )
-                <option value="{{ $value->id }}" {{ $value->id == $arrSearch['parent_id'] ? "selected" : "" }}>{{ $value->name }}</option>
+                <option value="{{ $value->id }}" {{ $value->id == $parent_id ? "selected" : "" }}>{{ $value->name }}</option>
                 @endforeach
               </select>
             </div>
@@ -45,23 +45,14 @@
               <select class="form-control" name="cate_id" id="cate_id">
                 <option value="">--Tất cả--</option>
                 @foreach( $cateList as $value )
-                <option value="{{ $value->id }}" {{ $value->id == $arrSearch['cate_id'] ? "selected" : "" }}>{{ $value->name }}</option>
+                <option value="{{ $value->id }}" {{ $value->id == $cate_id ? "selected" : "" }}>{{ $value->name }}</option>
                 @endforeach
               </select>
             </div>
             <div class="form-group">
               <label for="email">Tên</label>
-              <input type="text" class="form-control" name="name" value="{{ $arrSearch['name'] }}">
-            </div>            
-            <div class="form-group">
-              <label><input type="checkbox" name="is_hot" value="1" {{ $arrSearch['is_hot'] == 1 ? "checked" : "" }}> HOT</label>              
-            </div>
-            <div class="form-group">
-              <label><input type="checkbox" name="is_sale" value="1" {{ $arrSearch['is_sale'] == 1 ? "checked" : "" }}> SALE</label>              
-            </div>
-            <div class="form-group">
-              <label><input type="checkbox" name="out_of_stock" value="1" {{ $arrSearch['out_of_stock'] == 1 ? "checked" : "" }}> Hết hàng</label>              
-            </div>                       
+              <input type="text" class="form-control" name="name" value="{{ $name }}">
+            </div>                                            
             <button type="submit" style="margin-top:-5px" class="btn btn-primary btn-sm">Lọc</button>
           </form>         
         </div>
@@ -69,81 +60,59 @@
       <div class="box">
 
         <div class="box-header with-border">
-          <h3 class="box-title">Danh sách ( {{ $items->total() }} sản phẩm )</h3>
+          <h3 class="box-title">Danh sách</h3>
         </div>
         
         <!-- /.box-header -->
-        <div class="box-body">
-          <div style="text-align:center">
-           {{ $items->appends( $arrSearch )->links() }}
-          </div>  
+        <div class="box-body">        
           <table class="table table-bordered" id="table-list-data">
             <tr>
               <th style="width: 1%">#</th>
-              @if($arrSearch['is_hot'] == 1 && $arrSearch['parent_id'] > 0 )
+              @if($parent_id > 0 && $cate_id>0)
               <th style="width: 1%;white-space:nowrap">Thứ tự</th>
               @endif
               <th width="210px">Hình ảnh</th>
-              <th style="text-align:center">Thông tin sản phẩm</th>                              
+              <th style="text-align:center">Thông tin</th>                              
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
             <tbody>
             @if( $items->count() > 0 )
-              <?php $i = 0; ?>
-              @foreach( $items as $item )
-                <?php $i ++; 
-
-                ?>
-              <tr id="row-{{ $item->id }}">
+            <?php $i = 0; ?>
+            @foreach( $items as $item )
+            <?php $i ++; ?>
+            <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>
-                @if($arrSearch['is_hot'] == 1 && $arrSearch['parent_id'] > 0 )
                 <td style="vertical-align:middle;text-align:center">
-                  <img src="{{ URL::asset('backend/dist/img/move.png')}}" class="move img-thumbnail" alt="Cập nhật thứ tự"/>
+                    <img src="{{ URL::asset('public/admin/dist/img/move.png')}}" class="move img-thumbnail" alt="Cập nhật thứ tự"/>
                 </td>
-                @endif
                 <td>
-                  <img class="img-thumbnail lazy" width="206" data-original="{{ $item->image_url ? Helper::showImage($item->image_url) : URL::asset('backend/dist/img/no-image.jpg') }}" alt="{{ $item->name }}" title="{{ $item->name }}" />
+                  <img class="img-thumbnail lazy" width="100" data-original="{{ $item->image_url ? Helper::showImage($item->image_url) : URL::asset('public/admin/dist/img/no-image.jpg') }}" alt="Nổi bật" title="Nổi bật" />
                 </td>
-                <td>                  
-                  <a style="color:#333;font-weight:bold" href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a> &nbsp; @if( $item->is_hot == 1 )
-                  <label class="label label-danger">HOT</label>
-                  @endif<br />
-                  <strong style="color:#337ab7;font-style:italic"> {{ $item->cate_parent_name }} / {{ $item->cate_name }}</strong>
-                 <p style="margin-top:10px">
-                    @if( $item->is_sale == 1)
-                   <b style="color:red">                  
-                    {{ number_format($item->price_sale) }}
-                   </b>
-                   <span style="text-decoration: line-through">
-                    {{ number_format($item->price) }}  
-                    </span>
-                    @else
-                    <b style="color:red">                  
-                    {{ number_format($item->price) }}
-                   </b>
-                    @endif 
-                  </p>
-                  
-                </td>
+                <td>
+                    <a href="{{ route( 'grand.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
+                     @if( $item->is_hot == 1 )
+                      <label class="label label-danger">HOT</label>
+                      @endif                   
+                    <p>{{ $item->description }}</p>
+                </td>                                   
                 <td style="white-space:nowrap; text-align:right">
-                  <a class="btn btn-default btn-sm" href="{{ route('product', [ $item->slug, $item->product_id ]) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                 
-                  <a href="{{ route( 'product.edit', [ 'id' => $item->id ]) }}" class="btn btn-warning btn-sm">Chỉnh sửa</a>                 
-
-                  <a onclick="return callDelete('{{ $item->name }}','{{ route( 'product.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm">Xóa</a>
-
+                    <a class="btn btn-default btn-sm" href="{{ route('cate', [$item->cateParent->slug, $item->slug] ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                
+                    <a href="{{ route( 'grand.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>                 
+                    @if( $item->product->count() == 0)
+                    <a onclick="return callDelete('{{ $item->name }}','{{ route( 'grand.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    @endif
                 </td>
-              </tr> 
-              @endforeach
+            </tr>
+            @endforeach
             @else
             <tr>
-              <td colspan="9">Không có dữ liệu.</td>
+                <td colspan="9">Không có dữ liệu.</td>
             </tr>
             @endif
-
           </tbody>
           </table>
           <div style="text-align:center">
-           {{ $items->appends( $arrSearch )->links() }}
+           {{ $items->appends( ['parent_id' => $parent_id, 'cate_id' => $cate_id] )->links() }}
           </div>  
         </div>        
       </div>

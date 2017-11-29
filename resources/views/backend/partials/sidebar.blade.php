@@ -16,7 +16,7 @@
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
       @if(Auth::user()->id != 5)
-      <li class="treeview {{ in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'cate-type.index', 'cate-type.edit', 'cate-type.create', 'cate.index', 'cate.edit', 'cate.create', 'cate-parent.index', 'cate-parent.edit', 'cate-parent.create']) ? 'active' : '' }}">
+      <li class="treeview {{ in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'cate-type.index', 'cate-type.edit', 'cate-type.create', 'cate.index', 'cate.edit', 'cate.create', 'cate-parent.index', 'cate-parent.edit', 'cate-parent.create', 'grand.index', 'grand.edit', 'grand.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-opencart"></i> 
           <span>Sản phẩm</span>
@@ -28,8 +28,9 @@
           <li {{ in_array(\Request::route()->getName(), ['product.index', 'product.edit']) ? "class=active" : "" }}><a href="{{ route('product.index') }}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
           <li {{ \Request::route()->getName() == "product.create" ? "class=active" : "" }}><a href="{{ route('product.create') }}"><i class="fa fa-circle-o"></i> Thêm sản phẩm</a></li>        
                
-          <li {{ in_array(\Request::route()->getName(), ['cate-parent.index', 'cate-parent.edit', 'cate-parent.create']) ? "class=active" : "" }}><a href="{{ route('cate-parent.index') }}"><i class="fa fa-circle-o"></i> Danh mục cha</a></li>
-          <li {{ in_array(\Request::route()->getName(), ['cate.index', 'cate.edit', 'cate.create']) ? "class=active" : "" }}><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục con</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['cate-parent.index', 'cate-parent.edit', 'cate-parent.create']) ? "class=active" : "" }}><a href="{{ route('cate-parent.index') }}"><i class="fa fa-circle-o"></i> Loại sản phẩm</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['cate.index', 'cate.edit', 'cate.create']) ? "class=active" : "" }}><a href="{{ route('cate.index') }}"><i class="fa fa-circle-o"></i> Danh mục cha</a></li>
+          <li {{ in_array(\Request::route()->getName(), ['grand.index', 'grand.edit', 'grand.create']) ? "class=active" : "" }}><a href="{{ route('grand.index') }}"><i class="fa fa-circle-o"></i> Danh mục con</a></li>
           
         </ul>
       </li>  

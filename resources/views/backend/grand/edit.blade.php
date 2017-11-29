@@ -4,20 +4,20 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Sản phẩm    
+      Danh mục con    
     </h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a href="{{ route('product.index') }}">Sản phẩm</a></li>
+      <li><a href="{{ route('grand.index') }}">Danh mục con</a></li>
       <li class="active">Cập nhật</li>
     </ol>
   </section>
 
   <!-- Main content -->
   <section class="content">
-    <a class="btn btn-default btn-sm" href="{{ route('product.index') }}" style="margin-bottom:5px">Quay lại</a>
+    <a class="btn btn-default btn-sm" href="{{ route('grand.index') }}" style="margin-bottom:5px">Quay lại</a>
     <a class="btn btn-primary btn-sm" href="{{ route('product', [ $detail->slug, $detail->id ]) }}" target="_blank" style="margin-top:-6px"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>
-    <form role="form" method="POST" action="{{ route('product.update') }}" id="dataForm">
+    <form role="form" method="POST" action="{{ route('grand.update') }}" id="dataForm">
         <input type="hidden" name="id" value="{{ $detail->id }}">    
     <div class="row">
       <!-- left column -->
@@ -78,10 +78,7 @@
                             @endforeach
                           </select>
                         </div> 
-                         <div class="form-group" >                  
-                          <label>Mã sản phẩm <span class="red-star">*</span></label>
-                          <input type="text" class="form-control req" name="code" id="code" value="{{ old('code', $detail->code) }}">
-                        </div>
+                       
                         <div class="form-group" >                  
                           <label>Tên <span class="red-star">*</span></label>
                           <input type="text" class="form-control req" name="name" id="name" value="{{ old('name', $detail->name) }}">
@@ -95,50 +92,12 @@
                               <label><input type="checkbox" name="is_hot" value="1" {{ old('is_hot', $detail->is_hot) == 1 ? "checked" : "" }}> HOT </label>
                           </div>                          
                         </div>
-                        <div class="col-md-4 none-padding">
-                          <div class="checkbox">
-                              <label><input type="checkbox" name="is_sale" value="1" {{ old('is_sale', $detail->is_sale) == 1 ? "checked" : "" }} id="is_sale">  SALE </label>
-                          </div>                          
-                        </div>                        
-                        <div class="clearfix"></div>
-                        <div class="form-group col-md-6 none-padding" >                  
-                            <label>Giá<span class="red-star">*</span></label>
-                            <input type="text" class="form-control req number" name="price" id="price" value="{{ old('price', $detail->price) }}">
-                        </div>
-                                           
-                         <div class="col-md-6">
-                          <label>Số lượng tồn</label>                  
-                          <input type="text" class="form-control number" name="inventory" id="inventory" value="{{ old('inventory', $detail->inventory) }}">                        
-                        </div>
-                        <div class="clearfix"></div>
-                         <div class="form-group col-md-6 none-padding" >
-                            <label>Giá SALE</label>
-                            <input type="text" class="form-control number" name="price_sale" id="price_sale" value="{{ old('price_sale', $detail->price_sale) }}">
-                        </div>    
-                        <div class="form-group col-md-6 " >
-                            <label>Phần trăm (%) SALE</label>
-                            <input type="text" class="form-control number" name="sale_percent" id="sale_percent" value="{{ old('sale_percent', $detail->sale_percent) }}">
-                        </div>    
-
-                        <div class="clearfix"></div>
-                       
-                        <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
-                          <label class="col-md-3 row">Thumbnail ( 560x316 px)</label>    
-                          <div class="col-md-9">
-                            <img id="thumbnail_image" src="{{ $detail->image_url ? Helper::showImage($detail->image_url ) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="206" height="116">
-                            <input type="hidden" name="image_url" id="image_url" value="{{ old('image_url', $detail->image_url) }}">
-                            <button class="btn btn-default btn-sm" id="btnUploadImage" type="button"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload</button>
-                          </div>
-                            <div class="clearfix"></div>
-                        </div>
+                         <div class="clearfix"></div>
                         <div class="form-group">
                           <label>Mô tả</label>
                           <textarea class="form-control" rows="4" name="description" id="description">{{ old('description', $detail->description) }}</textarea>
                         </div>  
-                        <div class="form-group">
-                          <label>Chi tiết</label>
-                          <textarea class="form-control" rows="4" name="content" id="content">{{ old('content', $detail->content) }}</textarea>
-                        </div>                                               
+                                                            
                         
                         <div class="clearfix"></div>
                     </div><!--end thong tin co ban-->                    
@@ -150,7 +109,7 @@
             <div class="box-footer">              
               <button type="button" class="btn btn-default" id="btnLoading" style="display:none"><i class="fa fa-spin fa-spinner"></i></button>
               <button type="submit" class="btn btn-primary" id="btnSave">Lưu</button>
-              <a class="btn btn-default" class="btn btn-primary" href="{{ route('product.index')}}">Hủy</a>
+              <a class="btn btn-default" class="btn btn-primary" href="{{ route('grand.index')}}">Hủy</a>
             </div>
             
         </div>
@@ -306,7 +265,7 @@ $(document).on('click', '.remove-image', function(){
         }
       });
       $('#parent_id').change(function(){
-        location.href="{{ route('product.create') }}?parent_id=" + $(this).val();
+        location.href="{{ route('grand.create') }}?parent_id=" + $(this).val();
       })
       $(".select2").select2();
       $('#dataForm').submit(function(){       

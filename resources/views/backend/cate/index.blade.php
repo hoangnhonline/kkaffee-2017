@@ -4,11 +4,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Danh mục con 
+            Danh mục cha 
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="{{ route( 'cate.index' ) }}">Danh mục con</a></li>
+            <li><a href="{{ route( 'cate.index' ) }}">Danh mục cha</a></li>
             <li class="active">Danh sách</li>
         </ol>
     </section>
@@ -28,7 +28,7 @@
                         <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('cate.index') }}">                           
                             <div class="form-group">
                                 <select class="form-control" name="parent_id" id="parent_id">
-                                    <option value="">--Danh mục cha--</option>                                   
+                                    <option value="">--Loại sản phẩm--</option>                                   
                                     @foreach( $cateParentList as $value )
                                     <option value="{{ $value->id }}"
                                     {{ $parent_id == $value->id ? "selected" : "" }}                        
