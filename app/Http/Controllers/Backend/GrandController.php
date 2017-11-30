@@ -110,7 +110,7 @@ class GrandController extends Controller
         
         $dataArr['is_hot'] = isset($dataArr['is_hot']) ? 1 : 0;
         $dataArr['is_widget'] = isset($dataArr['is_widget']) ? 1 : 0;
-        $dataArr['display_order'] = Helper::getNextOrder('cate', ['parent_id' => $dataArr['parent_id'], 'cate_id' => $dataArr['cate_id']]);         
+        $dataArr['display_order'] = Helper::getNextOrder('grand', ['parent_id' => $dataArr['parent_id'], 'cate_id' => $dataArr['cate_id']]);         
         $rs = Grand::create($dataArr);        
         $id = $rs->id;
 

@@ -70,8 +70,7 @@
               <th style="width: 1%">#</th>
               @if($parent_id > 0 && $cate_id>0)
               <th style="width: 1%;white-space:nowrap">Thứ tự</th>
-              @endif
-              <th width="210px">Hình ảnh</th>
+              @endif              
               <th style="text-align:center">Thông tin</th>                              
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
@@ -82,12 +81,11 @@
             <?php $i ++; ?>
             <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>
+                @if($parent_id > 0 && $cate_id>0)
                 <td style="vertical-align:middle;text-align:center">
                     <img src="{{ URL::asset('public/admin/dist/img/move.png')}}" class="move img-thumbnail" alt="Cập nhật thứ tự"/>
-                </td>
-                <td>
-                  <img class="img-thumbnail lazy" width="100" data-original="{{ $item->image_url ? Helper::showImage($item->image_url) : URL::asset('public/admin/dist/img/no-image.jpg') }}" alt="Nổi bật" title="Nổi bật" />
-                </td>
+                </td>               
+                @endif
                 <td>
                     <a href="{{ route( 'grand.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
                      @if( $item->is_hot == 1 )
@@ -181,7 +179,7 @@ $(document).ready(function(){
                 strTemp = rows[i].id;
                 strOrder += strTemp.replace('row-','') + ";";
             }     
-            updateOrder("san_pham", strOrder);
+            updateOrder("grand", strOrder);
         }
     });
 });
