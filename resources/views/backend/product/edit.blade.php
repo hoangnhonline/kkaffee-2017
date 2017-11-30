@@ -54,7 +54,7 @@
                   <div class="tab-content">
                    
                     <div role="tabpanel" class="tab-pane active" id="home">
-                        <div class="form-group col-md-6 none-padding">
+                        <div class="form-group col-md-4 none-padding">
                           <label for="email">Loại sản phẩm<span class="red-star">*</span></label>
                           <select class="form-control req" name="parent_id" id="parent_id">
                             <option value="">--Chọn--</option>
@@ -63,7 +63,7 @@
                             @endforeach
                           </select>
                         </div>
-                          <div class="form-group col-md-6 none-padding pleft-5">
+                          <div class="form-group col-md-4 none-padding pleft-5">
                           <label for="email">Danh mục cha<span class="red-star">*</span></label>
                           <?php 
                           $parent_id = old('parent_id', $detail->parent_id);
@@ -75,6 +75,21 @@
                             <option value="">--Chọn--</option>
                             @foreach( $cateList as $value )
                             <option value="{{ $value->id }}" {{ $value->id == old('cate_id', $detail->cate_id) ? "selected" : "" }}>{{ $value->name }}</option>
+                            @endforeach
+                          </select>
+                        </div> 
+                         <div class="form-group col-md-4 none-padding pleft-5">
+                          <label for="email">Danh mục con<span class="red-star">*</span></label>
+                          <?php 
+                          $grand_id = old('grand_id', $detail->grand_id);
+                          if($grand_id > 0){
+                            $grandList = DB::table('grand')->where('grand_id', $grand_id)->orderBy('display_order')->get();
+                          }
+                          ?>
+                          <select class="form-control req" name="grand_id" id="grand_id">
+                            <option value="">--Chọn--</option>
+                            @foreach( $grandList as $value )
+                            <option value="{{ $value->id }}" {{ $value->id == old('grand_id', $detail->grand_id) ? "selected" : "" }}>{{ $value->name }}</option>
                             @endforeach
                           </select>
                         </div> 
@@ -307,7 +322,10 @@ $(document).on('click', '.remove-image', function(){
       });
       $('#parent_id').change(function(){
         location.href="{{ route('product.create') }}?parent_id=" + $(this).val();
-      })
+      });
+      $('#cate_id').change(function(){
+        location.href="{{ route('product.create') }}?parent_id=" + $('#parent_id').val() + '&cate_id=' + $(this).val();
+      });
       $(".select2").select2();
       $('#dataForm').submit(function(){       
         $('#btnSave').htm('<i class="fa fa-spinner fa-spin"></i>').attr('disabled', 'disabled');

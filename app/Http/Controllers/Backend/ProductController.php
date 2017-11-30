@@ -16,6 +16,8 @@ use App\Models\Tag;
 use App\Models\TagObjects;
 use App\Models\ThongSo;
 use App\Models\Rating;
+use App\Models\Grand;
+
 
 use Helper, File, Session, Auth, Hash, URL, Image;
 
@@ -29,7 +31,8 @@ class ProductController extends Controller
     public function index(Request $request)
     {   
         $arrSearch['parent_id'] = $parent_id = isset($request->parent_id) ? $request->parent_id : null;
-        $arrSearch['cate_id'] = $cate_id = isset($request->cate_id) ? $request->cate_id : null;        
+        $arrSearch['cate_id'] = $cate_id = isset($request->cate_id) ? $request->cate_id : null;    
+        $arrSearch['grand_id'] = $grand_id = isset($request->grand_id) ? $request->grand_id : null;        
         $arrSearch['code'] = $code = isset($request->code) && trim($request->code) != '' ? trim($request->code) : '';
         $arrSearch['status'] = $status = isset($request->status) ? $request->status : 1;
         $arrSearch['is_hot'] = $is_hot = isset($request->is_hot) ? $request->is_hot : null;
@@ -50,6 +53,9 @@ class ProductController extends Controller
         if( $cate_id ){
             $query->where('product.cate_id', $cate_id);
         }
+        if( $grand_id ){
+            $query->where('product.grand_id', $grand_id);
+        }
         if( $out_of_stock ){
             $query->where('product.out_of_stock', $out_of_stock);
         }        
@@ -61,7 +67,8 @@ class ProductController extends Controller
         }
         $query->join('users', 'users.id', '=', 'product.created_user');
         $query->join('cate_parent', 'cate_parent.id', '=', 'product.parent_id');
-        $query->join('cate', 'cate.id', '=', 'product.cate_id');        
+        $query->join('cate', 'cate.id', '=', 'product.cate_id');
+        $query->join('grand', 'grand.id', '=', 'product.grand_id');
         $query->orderBy('product.is_hot', 'desc')->orderBy('product.id', 'desc');
         $items = $query->select(['product.*','product.id as product_id', 'display_name' , 'product.created_at as time_created', 'cate_parent.name as cate_parent_name', 'cate.name as cate_name'])
         ->paginate(50);   
@@ -134,14 +141,21 @@ class ProductController extends Controller
         $cateList = Cate::whereRaw('1=2')->get();
         $parent_id = $request->parent_id ? $request->parent_id : null;
         $cate_id = $request->cate_id ? $request->cate_id : null;
+        $grand_id = $request->grand_id ? $request->grand_id : null;
         
         if( $parent_id ){
             $cateList = Cate::where('parent_id', $parent_id)->orderBy('display_order', 'desc')->get();
         }else{
             $cateList = (object) [];
+        } 
+
+        if( $cate_id ){
+            $grandList = Grand::where('cate_id', $cate_id)->orderBy('display_order', 'desc')->get();
+        }else{
+            $grandList = (object) [];
         }        
         
-        return view('backend.product.create', compact('cateList', 'parent_id', 'cate_id', 'tagList'));
+        return view('backend.product.create', compact('cateList', 'parent_id', 'cate_id', 'tagList', 'grandList', 'grand_id'));
     }
 
     /**
@@ -154,21 +168,23 @@ class ProductController extends Controller
     {
         $dataArr = $request->all();        
         
-        $this->validate($request,[            
+         $this->validate($request,[            
             'parent_id' => 'required',
-            'cate_id' => 'required',   
+            'cate_id' => 'required',
+            'grand_id' => 'required',   
             'code' => 'required',              
             'name' => 'required',
             'slug' => 'required',            
-            'price' => 'required'                      
+            'price' => 'required'
         ],
         [   
-            'parent_id.required' => 'Bạn chưa chọn danh mục cha',
-            'cate_id.required' => 'Bạn chưa chọn danh mục con',
+            'parent_id.required' => 'Bạn chưa chọn loại sản phẩm',
+            'cate_id.required' => 'Bạn chưa chọn danh mục cha',
+            'grand_id.required' => 'Bạn chưa chọn danh mục con',
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
             'slug.required' => 'Bạn chưa nhập slug',
-            'price.required' => 'Bạn chưa nhập giá'           
+            'price.required' => 'Bạn chưa nhập giá'
         ]);
            
         $dataArr['slug'] = str_replace(".", "-", $dataArr['slug']);
@@ -251,6 +267,7 @@ class ProductController extends Controller
         $detail = Product::find($id);  
         
         $cateList = Cate::where('parent_id', $detail->parent_id)->get();
+        $grandList = Grand::where('cate_id', $detail->cate_id)->get();
 
         $meta = (object) [];
         if ( $detail->meta_id > 0){
@@ -259,7 +276,7 @@ class ProductController extends Controller
         
         $tagSelected = Product::productTag($id);
 
-        return view('backend.product.edit', compact( 'detail', 'meta', 'cateList', 'tagList', 'tagSelected'));
+        return view('backend.product.edit', compact( 'detail', 'meta', 'cateList', 'tagList', 'tagSelected', 'grandList'));
     }
     public function ajaxDetail(Request $request)
     {       
@@ -280,15 +297,17 @@ class ProductController extends Controller
         
          $this->validate($request,[            
             'parent_id' => 'required',
-            'cate_id' => 'required',   
+            'cate_id' => 'required',
+            'grand_id' => 'required',   
             'code' => 'required',              
             'name' => 'required',
             'slug' => 'required',            
             'price' => 'required'
         ],
         [   
-            'parent_id.required' => 'Bạn chưa chọn danh mục cha',
-            'cate_id.required' => 'Bạn chưa chọn danh mục con',
+            'parent_id.required' => 'Bạn chưa chọn loại sản phẩm',
+            'cate_id.required' => 'Bạn chưa chọn danh mục cha',
+            'grand_id.required' => 'Bạn chưa chọn danh mục con',
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
             'slug.required' => 'Bạn chưa nhập slug',
