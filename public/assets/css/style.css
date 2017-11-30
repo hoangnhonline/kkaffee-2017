@@ -167,6 +167,48 @@ header .banner-top{
     background: #fff;
     text-decoration: none;
 }
+/*-------------*/
+#nav ul li ul{
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 100%;
+    width: 300px;
+    background: #fff;
+    -webkit-box-shadow: 3px 5px 6px -1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 3px 5px 6px -1px rgba(0,0,0,0.5);
+    box-shadow: 3px 5px 6px -1px rgba(0,0,0,0.5);
+    z-index: 9999;
+    background: #fff;
+}
+#nav ul li ul li a{
+    color: #333;
+    text-transform: none;
+    width: 300px;
+    background: #fff;
+}
+#nav ul li ul li a:before{
+    content: "\00BB";
+    margin-right: 10px;
+    float: left;
+}
+#nav ul li ul li a:hover{
+    background: #999;
+    color: #fff;
+}
+#nav ul li ul li a:hover:before{
+
+}
+
+#nav ul li ul ul{
+    position: absolute;
+    left: 100%;
+    top: 0;
+    z-index: -1;
+}
+#nav ul li:hover>ul{
+    display: block;
+}
 /* Reponsive */
 a.nav-button-mobi{
     color: #333;
@@ -201,6 +243,22 @@ a.nav-button-mobi{
     body.active-menu .wrapper{
         margin-right: -240px;
     }
+    .active-menu #nav ul ul{
+        position: relative;width: 240px;
+        display: block;
+    }
+    .active-menu #nav ul li ul li a{
+        width: 240px;
+    }
+    #nav ul li ul li a{
+        background: #666;
+        color: #f1f1f1;
+    }
+    #nav ul ul ul li a{
+        background: #999;
+        color: #f1f1f1;
+    }
+    
 }
 /* end menu */
 header #logo{

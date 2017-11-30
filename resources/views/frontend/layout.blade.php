@@ -91,13 +91,41 @@
                     </div>
                     @endforeach 
                 <nav id="nav">
-                    <a class="hidden-sm hidden-md hidden-lg nav-button-mobi" href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a>
-                    <ul class="clearfix">                       
-                        <?php 
-                        $menuLists = DB::table('menu')->where('parent_id', 0)->where('menu_id', 1)->orderBy('display_order')->get();
-                        ?>
-                        @foreach($menuLists as $menu)                                          
-                        <li class="level0"><a href="{{ $menu->url }}" title="{{ $menu->title }}">{{ $menu->title }}</a></li>
+                            <a class="hidden-sm hidden-md hidden-lg nav-button-mobi" href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                            <ul class="clearfix">                 
+                        
+                        @foreach($cateParentList as $parent)                                          
+                        <li class="level0">
+                            <a  href="{{ route('cate-parent', $parent->slug) }}" title="{{ $parent->name }}">
+                                {{ $parent->name }}
+                            </a>
+                            <?php 
+                            $cateList = \DB::table('cate')->where('parent_id', $parent->id)->orderBy('display_order')->get();
+
+                            ?>
+                            @if(!empty($cateList))
+                            <ul>
+                                @foreach($cateList as $cate)
+                                <li>
+                                    <a href="{{ route('cate', [$parent->slug, $cate->slug]) }}">{!! $cate->name !!}</a>
+                                    <?php 
+                                    $grandList = \DB::table('grand')->where('cate_id', $cate->id)->orderBy('display_order')->get();
+
+                                    ?>
+                                    @if(!empty($grandList))
+                                    <ul>
+                                        @foreach($grandList as $grand)
+                                        <li>
+                                            <a href="{{ route('grand', [$parent->slug, $cate->slug, $grand->slug]) }}">{!! $grand->name !!}</a>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                    @endif
+                                </li>
+                                @endforeach
+                            </ul>
+                            @endif
+                        </li>
                         @endforeach
                     </ul>
                 </nav>

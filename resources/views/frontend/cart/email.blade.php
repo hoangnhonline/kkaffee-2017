@@ -57,6 +57,16 @@
                               ?>
                               </td>
                             </tr>
+                            <tr>
+                             <td valign="top" style="padding:7px 9px 0px 9px;border-top:0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444" colspan="2"><p style="font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"> <strong>Ngày nhận hàng: </strong> 
+                              {{
+                                $orderDetail->date_delivery ? date('d-m-Y', strtotime($orderDetail->date_delivery))
+                              }}
+                              {{
+                                $orderDetail->time_delivery
+                              }}
+                              </td>
+                            </tr>
                           </tbody>
                         </table></td>
                     </tr>
