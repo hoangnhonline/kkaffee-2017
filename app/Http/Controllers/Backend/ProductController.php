@@ -68,7 +68,7 @@ class ProductController extends Controller
         $query->join('users', 'users.id', '=', 'product.created_user');
         $query->join('cate_parent', 'cate_parent.id', '=', 'product.parent_id');
         $query->join('cate', 'cate.id', '=', 'product.cate_id');
-        $query->join('grand', 'grand.id', '=', 'product.grand_id');
+        //$query->join('grand', 'grand.id', '=', 'product.grand_id');
         $query->orderBy('product.is_hot', 'desc')->orderBy('product.id', 'desc');
         $items = $query->select(['product.*','product.id as product_id', 'display_name' , 'product.created_at as time_created', 'cate_parent.name as cate_parent_name', 'cate.name as cate_name'])
         ->paginate(50);   
