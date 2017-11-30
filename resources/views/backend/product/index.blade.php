@@ -54,7 +54,7 @@
 
               <select class="form-control" name="grand_id" id="grand_id">
                 <option value="">--Tất cả--</option>
-                @foreach( $cateList as $value )
+                @foreach( $grandList as $value )
                 <option value="{{ $value->id }}" {{ $value->id == $arrSearch['grand_id'] ? "selected" : "" }}>{{ $value->name }}</option>
                 @endforeach
               </select>
