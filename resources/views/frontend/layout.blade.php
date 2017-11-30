@@ -43,7 +43,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js') }}"/1.4.2/respond.min.js') }}""></script>
     <![endif]-->
 </head>
-<body>
+<body @if($routeName == 'product') data-spy="scroll" data-target="#myScrollspy" @endif>
 @if($routeName == "product")
 <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -74,22 +74,22 @@
     <header>
         <div class="bg_black">
             <div class="container">
-                   <?php 
-                    $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])->orderBy('display_order', 'asc')->get();   
-                    ?>
-                    <?php $i = 0; ?>
-                    @foreach($bannerArr as $banner)
-                    <?php $i++; ?>
-                    <div class="banner-top">
-                    @if($banner->ads_url !='')
-                    <a href="{{ $banner->ads_url }}" title="banner slide {{ $i }}">
-                    @endif
-                    <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner top {{ $i }}">
-                    @if($banner->ads_url !='')
-                    </a>
-                    @endif
-                    </div>
-                    @endforeach 
+               <?php 
+                $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])->orderBy('display_order', 'asc')->get();   
+                ?>
+                <?php $i = 0; ?>
+                @foreach($bannerArr as $banner)
+                <?php $i++; ?>
+                <div class="banner-top">
+                @if($banner->ads_url !='')
+                <a href="{{ $banner->ads_url }}" title="banner slide {{ $i }}">
+                @endif
+                <img src="{{ Helper::showImage($banner->image_url) }}" alt="banner top {{ $i }}">
+                @if($banner->ads_url !='')
+                </a>
+                @endif
+                </div>
+                @endforeach 
                 <nav id="nav">
                             <a class="hidden-sm hidden-md hidden-lg nav-button-mobi" href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a>
                             <ul class="clearfix">                 
