@@ -84,6 +84,10 @@
           <div class="colright">
               <div class="total-bill">
                   <table class="table">
+                    <tr>
+                          <td style="text-align: left" >Phí vận chuyển (Est.)</th>
+                          <td class="text-left"><b>5.000đ/km</b></td>
+                      </tr>
                       <tr>
                           <td style="text-align: left" >Tạm tính:</th>
                           <td class="text-left"><b>{{ number_format($total) }}đ</b></td>
