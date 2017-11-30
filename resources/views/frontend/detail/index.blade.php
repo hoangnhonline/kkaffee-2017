@@ -133,9 +133,12 @@
                                 <a href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">
                                 <img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->name !!}"/></a>
                             </div>
-                            <p class="title-box-item">
+                            
                                 <a class="title-box-item" href="{{ route('product', [$product->slug, $product->id ]) }}" title="{!! $product->name !!}">{!! $product->name !!}</a>
-                            </p>
+                                @if(Helper::slm($product->id))
+                            <div class="font12 cl_999">Đã được đặt <span class="cl_333">{{ Helper::slm($product->id) }}</span> lần
+                           
+                        </div> @endif
                             <div class="box-price">
                                 <a href="javascript:;" class="@if(Session::has('login')) btn-order @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif data-id="{{ $product->id }}"><i class="fa fa-plus-square" aria-hidden="true"></i></a>
                                 <div class="price">

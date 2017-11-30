@@ -7,6 +7,8 @@ use App\Models\Area;
 use App\Models\CounterValues;
 use App\Models\CounterIps;
 use App\Models\Settings;
+use App\Models\OrderDetail;
+
 use DB, Image, Auth;
 
 class Helper
@@ -21,6 +23,10 @@ class Helper
         if( Auth::user()->status == 2 ){
             echo "Tài khoản đã bị khóa. ";die();
         }
+    }
+    public static function slm($product_id){
+        $total = OrderDetail::where('sp_id', $product_id)->sum('so_luong');
+        return $total > 0 ? $total : 0;
     }
     public static function getChild($table, $column, $parent_id){
         $listData = DB::table($table)->where($column, $parent_id)->get();
