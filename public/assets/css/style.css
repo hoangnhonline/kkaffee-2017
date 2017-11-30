@@ -161,11 +161,23 @@ header .banner-top{
     color: #fff;
     display: block;
     text-decoration: none;
+    position: relative;
 }
 #nav ul>li>a:hover,#nav ul>li>a.active{
     color: #333;
     background: #fff;
     text-decoration: none;
+}
+#nav ul li i{
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 11px;
+}
+#nav ul li a:hover i{
+    color: #333;
 }
 /*-------------*/
 #nav ul li ul{
@@ -258,7 +270,11 @@ a.nav-button-mobi{
         background: #999;
         color: #f1f1f1;
     }
-    
+    #nav ul li i{
+        position: absolute;
+        right: 10px;
+    }
+
 }
 /* end menu */
 header #logo{
@@ -2296,90 +2312,90 @@ section .title-section {
 }
 /* add Css mr Hoang */
 span.txt-account{
- color:#333;
- font-size: 13px;     
- margin-top: 5px;
+    color:#333;
+    font-size: 13px;     
+    margin-top: 5px;
     display: block;
 }
 /*---*/
 .reviews-summary {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .reviews-summary .rating-title,
 .reviews-summary .rating-summary,
 .reviews-summary .rating-action {
-  display: inline-block;
-  margin-right: 5px;
+    display: inline-block;
+    margin-right: 5px;
 }
 .reviews-summary .rating-title {
-  font-weight: bold;
+    font-weight: bold;
 }
 .rating-summary .rating-xs {
-  font-size: 18px;
+    font-size: 18px;
 }
 .rating-summary .clear-rating,
 .rating-summary .caption {
-  display: none;
+    display: none;
 }
 .rating-summary .rating-container .star {
-  margin: 0 2px;
+    margin: 0 2px;
 }
 .rating-summary .rating-container .star .glyphicon {
-  top: 0;
+    top: 0;
 }
 .rating-summary .rating-container .filled-stars {
-  color: #ffd900;
-  -webkit-text-stroke: transparent;
+    color: #ffd900;
+    -webkit-text-stroke: transparent;
 }
 .rating-summary #kartik {
-  display: none;
+    display: none;
 }
 .rating-action span {
-  position: relative;
-  color: #898989;
-  padding-left: 15px;
+    position: relative;
+    color: #898989;
+    padding-left: 15px;
 }
 .dot>span {
-  position: relative;
-  padding-left: 15px;
+    position: relative;
+    padding-left: 15px;
 }
 .dot>span:after {
-  content: "\f111";
-  font-family: "FontAwesome";
-  color: #898989;
-  font-size: 5px;
-  position: absolute;
-  top: 5px;
-  left: 0;
+    content: "\f111";
+    font-family: "FontAwesome";
+    color: #898989;
+    font-size: 5px;
+    position: absolute;
+    top: 5px;
+    left: 0;
 }
 
 .block-author {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 .block-author ul {
-  padding-left: 0 !important;
+    padding-left: 0 !important;
 }
 .block-author ul li {
-  display: inline-block;
-  list-style-type: none;
-  padding-right: 25px;
-  color: #898989;
-  position: relative;
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 25px;
+    color: #898989;
+    position: relative;
 }
 .block-author ul li .name {
-  color: #f60;
+    color: #f60;
 }
 .block-author ul li:before {
-  content: "\f111";
-  font-family: "FontAwesome";
-  color: #898989;
-  font-size: 5px;
-  position: absolute;
-  top: 8px;
-  left: -17px;
+    content: "\f111";
+    font-family: "FontAwesome";
+    color: #898989;
+    font-size: 5px;
+    position: absolute;
+    top: 8px;
+    left: -17px;
 }
 .block-author ul li:first-child:before {
-  display: none;
+    display: none;
 }
 /*--------------------------------*/
 #custom-search-input{
@@ -2473,8 +2489,8 @@ span.txt-account{
 #popup_khuvuc .modal-dialog{
     width: 240px;
     text-align: center;
-	margin-left:auto;
-	margin-right:auto;
+    margin-left:auto;
+    margin-right:auto;
 }
 #popup_khuvuc .modal-dialog .bg-333{
     background: #333;

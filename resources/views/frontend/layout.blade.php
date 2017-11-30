@@ -435,6 +435,7 @@
             jQuery("a.gotop").click(function () {
                 $('html, body').animate({scrollTop: 0}, 'fast');
             });
+
             jQuery(".cf_chat>a").click(function(){
                 if (jQuery(this).parent().hasClass("active"))
                 {
@@ -444,7 +445,10 @@
                 {
                     jQuery(this).parent().addClass("active");
                 }
-            });            
+            });  
+            if (jQuery(document).width() >= 992) {
+                jQuery(".cf_chat>a").click();
+            }          
         </script>      
     
     <input type="hidden" id="route-newsletter" value="{{ route('register.newsletter') }}">
