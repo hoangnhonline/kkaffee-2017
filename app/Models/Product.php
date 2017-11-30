@@ -45,7 +45,8 @@ class Product extends Model  {
                             'inventory',
                             'display_order',
                             'created_user',
-                            'updated_user'                            
+                            'updated_user',
+                            'grand_id'                          
                         ];
 
     public static function getList($params = []){

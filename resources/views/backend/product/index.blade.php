@@ -50,6 +50,16 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="email">Danh mục con</label>
+
+              <select class="form-control" name="grand_id" id="grand_id">
+                <option value="">--Tất cả--</option>
+                @foreach( $cateList as $value )
+                <option value="{{ $value->id }}" {{ $value->id == $arrSearch['grand_id'] ? "selected" : "" }}>{{ $value->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
               <label for="email">Tên</label>
               <input type="text" class="form-control" name="name" value="{{ $arrSearch['name'] }}">
             </div>            
@@ -58,10 +68,7 @@
             </div>
             <div class="form-group">
               <label><input type="checkbox" name="is_sale" value="1" {{ $arrSearch['is_sale'] == 1 ? "checked" : "" }}> SALE</label>              
-            </div>
-            <div class="form-group">
-              <label><input type="checkbox" name="out_of_stock" value="1" {{ $arrSearch['out_of_stock'] == 1 ? "checked" : "" }}> Hết hàng</label>              
-            </div>                       
+            </div>                                 
             <button type="submit" style="margin-top:-5px" class="btn btn-primary btn-sm">Lọc</button>
           </form>         
         </div>
