@@ -93,6 +93,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('{slug}.html', ['as' => 'pages', 'uses' => 'HomeController@pages']);    
     Route::get('{slugCateParent}', ['as' => 'cate-parent', 'uses' => 'CateController@cateParent']);    
     Route::get('{slugCateParent}/{slugCateChild}', ['as' => 'cate', 'uses' => 'CateController@cateChild']);
+    Route::get('{slugCateParent}/{slugCateChild}/{slugGrand}', ['as' => 'grand', 'uses' => 'CateController@grand']);
 
     
 

@@ -94,7 +94,7 @@
                     <p>{{ $item->description }}</p>
                 </td>                                   
                 <td style="white-space:nowrap; text-align:right">
-                    <a class="btn btn-default btn-sm" href="{{ route('cate', [$item->cateParent->slug, $item->slug] ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                
+                    <a class="btn btn-default btn-sm" href="{{ route('grand', [$item->cateParent->slug, $item->cate->slug, $item->slug] ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                
                     <a href="{{ route( 'grand.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>                 
                     @if( $item->product->count() == 0)
                     <a onclick="return callDelete('{{ $item->name }}','{{ route( 'grand.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>

@@ -57,6 +57,9 @@ class Product extends Model  {
         if( isset($params['cate_id']) && $params['cate_id'] ){
             $query->where('cate_id', $params['cate_id']);
         }
+        if( isset($params['grand_id']) && $params['grand_id'] ){
+            $query->where('grand_id', $params['grand_id']);
+        }
         if( isset($params['is_hot']) && $params['is_hot'] ){
             $query->where('is_hot', $params['is_hot']);
         }

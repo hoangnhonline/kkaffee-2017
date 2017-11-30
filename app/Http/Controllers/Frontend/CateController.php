@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\MetaData;
 use App\Models\ArticlesCate;
 use App\Models\Articles;
+use App\Models\Grand;
 use Helper;
 
 class CateController extends Controller
@@ -96,6 +97,36 @@ class CateController extends Controller
             $page = $request->page ? $request->page : 1;    
             $hotProductList = Product::getList(['is_hot' => 1, 'cate_id' => $cate_id, 'limit' => 20]);    
             return view('frontend.cate.child', compact('parent_id', 'cateDetail', 'productList', 'seo', 'page', 'hotProductList'));
+            
+        }else{
+            return redirect()->route('home');   
+        }
+    }  
+    public function grand(Request $request){
+       
+        $slugCateChild = $request->slugCateChild;
+        $slugGrand = $request->slugGrand;
+        
+        if(!$slugCateChild || !$slugGrand){
+            return redirect()->route('home');
+        }
+        $cateDetail = Cate::where('slug', $slugCateChild)->first();
+        $grandDetail = Grand::where('slug', $slugGrand)->first();
+        if($grandDetail){
+            $cate_id = $cateDetail->id;
+            $grand_id = $grandDetail->id;            
+            $settingArr = Helper::setting();
+            
+            $productList = Product::getList( ['grand_id' => $grand_id,'pagination' => $settingArr['product_per_page']] );
+            
+            if( $grandDetail->meta_id > 0){
+               $seo = MetaData::find( $grandDetail->meta_id )->toArray();
+            }else{
+                $seo['title'] = $seo['description'] = $seo['keywords'] = $grandDetail->name;
+            }  
+            $page = $request->page ? $request->page : 1;    
+            $hotProductList = Product::getList(['is_hot' => 1, 'cate_id' => $cate_id, 'limit' => 20]);    
+            return view('frontend.cate.grand', compact('parent_id', 'cateDetail', 'productList', 'seo', 'page', 'hotProductList', 'grandDetail'));
             
         }else{
             return redirect()->route('home');   
