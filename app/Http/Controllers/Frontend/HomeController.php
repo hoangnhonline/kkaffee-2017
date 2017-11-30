@@ -71,7 +71,8 @@ class HomeController extends Controller
         $module = $request->mod;
         $id = $request->id;
         $column = $request->col;
-        return Helper::getChild($module, $column, $id);
+        $is_branch = isset($request->is_branch) ? 1 : 0;
+        return Helper::getChild($module, $column, $id, $is_branch);
     }
     public function pages(Request $request){
         $slug = $request->slug;

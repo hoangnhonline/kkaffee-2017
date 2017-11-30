@@ -211,7 +211,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-footer col-footer-1">
-                    <div id="logo-footer"><img src="{{ URL::asset('public/assets/img/logo-header.png') }}" alt=""/></div>
+                    <div id="logo-footer"><img src="{{ URL::asset('public/assets/img/logo-2.png') }}" alt=""/></div>
                     <p @if($isEdit) class="edit" @endif" data-text="5">{!! $textList[5] !!}</p>
                 </div>
                 <div class="col-footer col-footer-2">

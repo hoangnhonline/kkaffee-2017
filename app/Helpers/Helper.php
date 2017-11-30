@@ -8,6 +8,7 @@ use App\Models\CounterValues;
 use App\Models\CounterIps;
 use App\Models\Settings;
 use App\Models\OrderDetail;
+use App\Models\Branch;
 
 use DB, Image, Auth;
 
@@ -28,16 +29,27 @@ class Helper
         $total = OrderDetail::where('sp_id', $product_id)->sum('so_luong');
         return $total > 0 ? $total : 0;
     }
-    public static function getChild($table, $column, $parent_id){
+    public static function getChild($table, $column, $parent_id, $is_branch = 0){
         $listData = DB::table($table)->where($column, $parent_id)->get();
         
             echo '<option value="">--Chọn--</option>';
-        
-        if(!empty(  (array) $listData  )){
-            
-            foreach($listData as $data){
-                echo "<option value=".$data->id.">".$data->name."</option>";
+        if($is_branch == 0){
+            if(!empty(  (array) $listData  )){
+                
+                foreach($listData as $data){
+                    echo "<option value=".$data->id.">".$data->name."</option>";
+                }
             }
+        }else{
+            $branchArr = Branch::whereRaw('1=1')->groupBy('district_id')->pluck('district_id')->toArray(); 
+            if(!empty(  (array) $listData  )){
+                
+                foreach($listData as $data){
+                    if(in_array($data->id, $branchArr)){
+                        echo "<option value=".$data->id.">".$data->name."</option>";
+                    }
+                }
+            }   
         }
     }
     public static function setting(){

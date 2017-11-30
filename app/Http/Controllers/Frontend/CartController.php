@@ -78,8 +78,8 @@ class CartController extends Controller
         $customer = Customer::find($userId);
         
         $addressList = $customer->customerAddress;
-
-        return view('frontend.cart.address-info', compact('arrProductInfo', 'getlistProduct', 'seo', 'cityList', 'customer', 'addressList'));
+        $branchArr = Branch::whereRaw('1=1')->groupBy('district_id')->pluck('district_id')->toArray();        
+        return view('frontend.cart.address-info', compact('arrProductInfo', 'getlistProduct', 'seo', 'cityList', 'customer', 'addressList', 'branchArr'));
     }
 
     public function storeAddress(Request $request){

@@ -255,6 +255,7 @@
             data : {
               mod : 'district',
               col : 'city_id',
+              is_branch : 1,
               id : 294
             },
             type : 'POST',
