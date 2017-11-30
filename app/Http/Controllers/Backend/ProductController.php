@@ -78,8 +78,13 @@ class ProductController extends Controller
         }else{
             $cateList = (object) [];
         }
+        if( $cate_id ){
+            $grandList = Grand::where('cate_id', $cate_id)->orderBy('display_order', 'desc')->get();
+        }else{
+            $grandList = (object) [];
+        }
 
-        return view('backend.product.index', compact( 'items', 'arrSearch', 'cateList'));        
+        return view('backend.product.index', compact( 'items', 'arrSearch', 'cateList', 'grandList'));        
     }
    
     public function ajaxGetTienIch(Request $request){
