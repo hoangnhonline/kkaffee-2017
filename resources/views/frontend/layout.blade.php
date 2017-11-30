@@ -185,7 +185,7 @@
                             </a>
                         </div>
                         <div class="account-header dropdown">                            
-                            <img src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/img/icon.png') }}" alt="{{ Session::get('username') }}" >
+                            <img src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/img/icon.png') }}" alt="{{ Session::get('username') }}" style="border-radius: 25px">
                             <a class="dropdown-toggle" data-toggle="dropdown">
                                 Chào, <b>{{ Session::get('username') }}</b><br/>
                                 <span class="txt-account">Tài khoản</span>
