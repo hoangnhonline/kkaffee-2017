@@ -184,8 +184,8 @@
                                 <span><b>{{ Session::get('products') ? array_sum(Session::get('products')) : 0 }}</b> sản phẩm</span>
                             </a>
                         </div>
-                        <div class="account-header dropdown">
-                            <img src="{{ URL::asset('public/assets/img/icon.png') }}" alt="avatar">
+                        <div class="account-header dropdown">                            
+                            <img src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/img/icon.png') }}" alt="{{ Session::get('username') }}" >
                             <a class="dropdown-toggle" data-toggle="dropdown">
                                 Chào, <b>{{ Session::get('username') }}</b><br/>
                                 <span class="txt-account">Tài khoản</span>

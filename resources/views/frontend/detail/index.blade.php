@@ -162,6 +162,12 @@
                 <div class="nvn-class-affix">
                 <div class="title-cart-info">THÔNG TIN GIỎ HÀNG</div>
                 <div class="content-cart-info">
+                    <ul class="nvn-user">
+                        <li class="bg_ddd">
+                            <span class="pull-left cl_333"><img src="{{ Session::get('avatar') ? Session::get('avatar') :  URL::asset('public/assets/img/icon.png') }}" alt="{{ Session::get('username') }}" width="30">{{ Session::get('username') }}</span>
+                            <span class="pull-right cl_333 cart-number">{{ Session::get('products') ? array_sum(Session::get('products')) : 0 }} món</span>
+                        </li>
+                    </ul>
                     @if(!empty(Session::get('products')))
                     <div class="list-items-cart">                        
                         <?php $total = 0; ?>
