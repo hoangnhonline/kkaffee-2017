@@ -145,7 +145,7 @@
                             
                                 <input type="text" name="keyword" value="{!! isset($tu_khoa) ? $tu_khoa : "" !!}" class="txtSearch form-control" placeholder="Tìm kiếm" />
                                 <span class="input-group-btn">
-                                    <button class="btn" type="button">
+                                    <button class="btn" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>
                                     </button>
                                 </span>
