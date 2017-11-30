@@ -201,6 +201,10 @@
                             <span class="pull-left cl_666">Phí phục vụ<br><small>(10% trên tổng đơn hàng)</small></span>
                             <span class="pull-right cl_333">{{ number_format($total*10/100) }}đ</span>
                         </li>
+                        <tr>
+                          <td style="text-align: left" >Phí vận chuyển (Est.)</th>
+                          <td class="text-left"><b>5.000đ/km</b></td>
+                      </tr>
                         <li class="bg_fffdee">
                             <span class="pull-left cl_666">Tạm tính<br><small>(Giá chưa bao gồm COD)</small></span>
                             <span class="pull-right cl_ea0000">{!! number_format($total + $total*10/100) !!}đ</span>
