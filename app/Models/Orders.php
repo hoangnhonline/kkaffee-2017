@@ -62,4 +62,8 @@ class Orders extends Model  {
     {
         return $this->hasOne('App\Models\CustomerAddress', 'id', 'address_id');
     }
+    public function addressL()
+    {
+        return $this->hasOne('App\Models\CustomerAddress', 'id', 'address_id');
+    }
 }

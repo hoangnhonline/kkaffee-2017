@@ -32,7 +32,7 @@
               <span>Ngày nhận hàng :</span><br> <strong>{{ $order->date_delivery ? date('d/m/Y', strtotime($order->date_delivery)) : "" }} {{ $order->time_delivery }} </strong><br>
               <div class="clearfix" style="margin-bottom:5px"></div>
               <span>Tình trạng đơn hàng : </span><br />
-              <select class="select-change-status form-control" order-id="{{ $order->id }}" style="width:200px;" >
+              <select @if($order->status != 0) disabled="disabled" @endif class="select-change-status form-control" order-id="{{ $order->id }}" style="width:200px;" >
                   @foreach($list_status as $index => $status)
                   <option value="{{$index}}"
                     @if($index == $order->status)

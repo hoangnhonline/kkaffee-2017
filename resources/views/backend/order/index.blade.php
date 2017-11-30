@@ -101,15 +101,15 @@
                 <td style="text-align:center;width:150px;white-space:nowrap">{{ date('d/m/Y H:i ', strtotime($order->created_at))}}</td>
                 <td style="text-align:center;width:150px;white-space:nowrap">
                 {{ $order->date_delivery ? date('d/m/Y', strtotime($order->date_delivery)) : "" }} {{ $order->time_delivery }} </td>
-                <td>
-                  <strong>{{ $order->address->fullname }} - {{ $order->address->phone }}</strong>
-                <a href="http://maps.google.com/maps?&q={{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}" target="_blank"> 
-                <br> {{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->address->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}</a>
+                <td>                  
+                  <strong>{{ $order->addressL->fullname }} - {{ $order->addressL->phone }}</strong>
+                <a href="http://maps.google.com/maps?&q={{ $order->addressL->address }}, {{ $order->addressL->ward_id ? Helper::getName($order->addressL->ward_id, 'ward') : "" }}, {{ $order->addressL->district_id ? Helper::getName($order->addressL->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->addressL->city_id, 'city') : "" }}" target="_blank"> 
+                <br> {{ $order->addressL->address }}, {{ $order->addressL->ward_id ? Helper::getName($order->addressL->ward_id, 'ward') : "" }}, {{ $order->addressL->district_id ? Helper::getName($order->addressL->district_id, 'district') : "" }}, {{ $order->addressL->city_id ? Helper::getName($order->addressL->city_id, 'city') : "" }}</a>
                 </td>
                              
                 <td style="text-align:right;width:100px">{{number_format($order->tong_tien)}}</td>
                 <td>
-                  <select class="select-change-status form-control" order-id="{{$order->id}}" customer-id="{{$order->customer_id}}" >
+                  <select @if($order->status != 0) disabled="disabled" @endif class="select-change-status form-control" order-id="{{$order->id}}" customer-id="{{$order->customer_id}}" >
                     @foreach($list_status as $index => $status)
                     <option value="{{$index}}"
                       @if($index == $order->status)

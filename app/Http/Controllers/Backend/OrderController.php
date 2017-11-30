@@ -11,6 +11,9 @@ use App\Models\Orders;
 use App\Models\OrderDetail;
 use App\Models\Customer;
 use App\Models\Product;
+use App\Models\Settings;
+use App\Models\CustomerAddress;
+
 use DB;
 use Mail;
 class OrderController extends Controller
@@ -29,19 +32,20 @@ class OrderController extends Controller
 
         $query = Orders::whereRaw('1');
         if( $status > -1){
-            $query->where('status', $status);
+            $query->where('orders.status', $status);
         }
         if( $date_from ){
             $dateFromFormat = date('Y-m-d', strtotime($date_from));
-            $query->whereRaw("DATE(created_at) >= '".$dateFromFormat."'");
+            $query->whereRaw("DATE(orders.created_at) >= '".$dateFromFormat."'");
         }
         if( $date_to ){
             $dateToFormat = date('Y-m-d', strtotime($date_to));
-            $query->whereRaw("DATE(created_at) <= '".$dateToFormat."'");
+            $query->whereRaw("DATE(orders.created_at) <= '".$dateToFormat."'");
         }
         if( $name != '' ){            
-            $query->whereRaw(" ( email LIKE '%".$name."%' ) OR ( fullname LIKE '%".$name."%' )");
+            $query->whereRaw(" ( customer_address.email LIKE '%".$name."%' ) OR ( customer_address.fullname LIKE '%".$name."%' )");
         }
+        $query->join('customer_address', 'customer_address.id', '=', 'orders.address_id');
         $orders = $query->orderBy('orders.id', 'DESC')->paginate(20);
         $list_status = $this->list_status;
        
@@ -97,16 +101,69 @@ class OrderController extends Controller
             case "3":
                 $orderDetail = OrderDetail::where('order_id', $order_id)->get();
                 foreach($orderDetail as $detail){
-                    $product_id = $detail->product_id;                    
+                    $product_id = $detail->sp_id;                    
                     $so_luong = $detail->so_luong;
                     $modelProduct = Product::find($product_id);
-                    $so_luong_ton =  $modelProduct->so_luong_ton - $so_luong;
+                    $so_luong_ton =  $modelProduct->inventory - $so_luong;
                     $so_luong_ton  = $so_luong_ton > 0 ? $so_luong_ton : 0;
-                    $modelProduct->update(['so_luong_ton' => $so_luong_ton]);
-                }               
+                    $modelProduct->update(['inventory' => $so_luong_ton]);
+                }         
+                $addressInfo = CustomerAddress::find($order->address_id);
+
+                $email = $addressInfo->email ? $addressInfo->email :  "";
+                $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+                $adminMailArr = explode(',', $settingArr['email_header']);
+                if($email != ''){
+
+                    $emailArr = array_merge([$email], $adminMailArr);
+                }else{
+                    $emailArr = $adminMailArr;
+                }
+                // send email
+                $order_id =str_pad($order->id, 6, "0", STR_PAD_LEFT);
+                
+                if(!empty($emailArr)){
+                    Mail::send('frontend.cart.done-email',
+                        [
+                            'fullname'          => $addressInfo->fullname,
+                            'order_id' => $order_id                    
+                        ],
+                        function($message) use ($emailArr, $order_id) {
+                            $message->subject('Hoàn tất đơn hàng #'.$order_id);
+                            $message->to($emailArr);
+                            $message->from('kkaffee.vn@gmail.com', 'KKAFFEE');
+                            $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
+                    });
+                }      
                 break;            
             case "4":
+                $addressInfo = CustomerAddress::find($order->address_id);
 
+                $email = $addressInfo->email ? $addressInfo->email :  "";
+                $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+                $adminMailArr = explode(',', $settingArr['email_header']);
+                if($email != ''){
+
+                    $emailArr = array_merge([$email], $adminMailArr);
+                }else{
+                    $emailArr = $adminMailArr;
+                }
+                // send email
+                $order_id =str_pad($order->id, 6, "0", STR_PAD_LEFT);
+                
+                if(!empty($emailArr)){
+                    Mail::send('frontend.cart.cancel-email',
+                        [
+                            'fullname'          => $addressInfo->fullname,
+                            'order_id' => $order_id                    
+                        ],
+                        function($message) use ($emailArr, $order_id) {
+                            $message->subject('Hủy đơn hàng #'.$order_id);
+                            $message->to($emailArr);
+                            $message->from('kkaffee.vn@gmail.com', 'KKAFFEE');
+                            $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
+                    });
+                }
                 break;
             default:
 
