@@ -109,7 +109,7 @@
                           <span class="pull-right cl_333">{{ number_format($total*10/100) }}đ</span>
                       </li>
                       <li class="bg_fffdee">
-                          <span class="pull-left cl_666">Tạm tính<br><small>(Giá chưa bao gồm COD)</small></span>
+                          <span class="pull-left cl_666">Tạm tính</span>
                           <span class="pull-right cl_ea0000">{!! number_format($total + $total*10/100) !!}đ</span>
                           <div class="clearfix"></div>
                           <div class="action-cart ">
