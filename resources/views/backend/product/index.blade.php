@@ -199,6 +199,10 @@ $(document).ready(function(){
     $('#searchForm').submit();
   });
   $('#cate_id').change(function(){
+    $('#grand_id').val('');
+    $('#searchForm').submit();
+  });
+  $('#grand_id').change(function(){    
     $('#searchForm').submit();
   });
   $('#table-list-data tbody').sortable({

@@ -28,6 +28,11 @@ class ProductController extends Controller
     *
     * @return Response
     */
+    public function change(Request $request){
+        $parent_id = isset($request->parent_id) ? $request->parent_id : null;
+        $cate_id = isset($request->cate_id) ? $request->cate_id : null;    
+        return view('backend.product.change', compact('parent_id', 'cate_id'));   
+    }
     public function index(Request $request)
     {   
         $arrSearch['parent_id'] = $parent_id = isset($request->parent_id) ? $request->parent_id : null;
@@ -217,6 +222,44 @@ class ProductController extends Controller
         Session::flash('message', 'Tạo mới thành công');
 
         return redirect()->route('product.index', ['parent_id' => $dataArr['parent_id'], 'cate_id' => $dataArr['cate_id']]);
+    }
+    public function storeChange(Request $request)
+    {
+        $dataArr = $request->all();
+       // var_dump("<pre>", $dataArr);die;        
+        if(!empty($dataArr['parent_id_select'])){
+            foreach($dataArr['parent_id_select'] as $cate_id){
+                $cateDetail = Cate::find($cate_id);
+                //echo "<pre>";
+               // print_r($cateDetail);die;
+                $grandDetail = Grand::create([
+                    'cate_id' => $dataArr['cate_id'],
+                    'name' => $cateDetail->name,
+                    'slug' => $cateDetail->slug,
+                    'description' => $cateDetail->description,
+                    'image_url' => $cateDetail->image_url,
+                    'parent_id' => $cateDetail->parent_id,
+                    'display_order' => $cateDetail->display_order,
+                    'meta_id' => $cateDetail->meta_id,
+                    'is_hot' => $cateDetail->is_hot,
+                    'is_widget' => $cateDetail->is_widget,
+                    'status' => $cateDetail->status,
+                    'created_user' => $cateDetail->created_user,
+                    'updated_user' => $cateDetail->updated_user,
+                    ]);
+                $grand_id = $grandDetail->id;
+
+                $productList = Product::where('cate_id', $cate_id)->get();
+                foreach($productList as $pro){
+                    $pro->grand_id = $grand_id;
+                    $pro->cate_id = $dataArr['cate_id'];
+                    $pro->save();
+                }
+                $cateDetail->delete();
+            }
+        }
+         Session::flash('message', 'Cập nhật thành công');
+        return redirect()->route('product.change', ['parent_id' => $dataArr['parent_id'], 'cate_id' => $dataArr['cate_id']]);
     }
     private function processRelation($dataArr, $object_id, $type = 'add'){
     

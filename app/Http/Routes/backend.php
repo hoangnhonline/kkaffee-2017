@@ -174,6 +174,8 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
     Route::group(['prefix' => 'product'], function () {
         Route::get('/', ['as' => 'product.index', 'uses' => 'ProductController@index']); 
         Route::get('/kygui', ['as' => 'product.kygui', 'uses' => 'ProductController@kygui']);        
+        Route::get('/change', ['as' => 'product.change', 'uses' => 'ProductController@change']);
+        Route::post('/store-change', ['as' => 'product.store-change', 'uses' => 'ProductController@storeChange']);
         Route::get('/ajax-get-detail-product', ['as' => 'ajax-get-detail-product', 'uses' => 'ProductController@ajaxDetail']);        
         Route::get('/create/', ['as' => 'product.create', 'uses' => 'ProductController@create']);        
         Route::post('/store', ['as' => 'product.store', 'uses' => 'ProductController@store']);        
