@@ -68,12 +68,14 @@
                     <div class="clearfix"></div>
                     <div class="row clearfix" style="margin-top:20px">
                     @foreach($cateList as $cate)
+                    @if($cate->id != $cate_id)
                         <div class="col-md-4">
                           <label>
                             <input type="checkbox" name="parent_id_select[]" value="{{ $cate->id }}">
                             {{ $cate->name }}
                           </label>
                         </div>
+                        @endif
                         @endforeach
                     </div>                                        
                     
