@@ -87,7 +87,7 @@
             <div class="tabs-custom">
                 <div id="myScrollspy" class="col-tab-menu hidden-xs">
                     <ul class="nav tab-menu affix">                        
-                        <li><a href="#tab01" data-target-id="">Sản phẩm hot</a></li>
+                        <li class="active" ><a href="#all" data-target-id="">Sản phẩm hot</a></li>
                         @foreach($cateList as $cate)
                         <li><a href="#{{ $cate->slug }}" data-target-id="">{!! $cate->name !!}</a></li>
                         @endforeach
@@ -97,7 +97,7 @@
                     <!--<p class="blockquote-promotion">
                         <span>Giảm giá 30%</span> cho tất cả các sản phẩm dưới đây
                     </p>-->                    
-                    <div class="list-box-items" id="tab01">
+                    <div class="list-box-items" id="all">
                         <div class="title-admin-content">SẢN PHẨM HOT</div>                        
                         @foreach($hotProductList as $product)
                         <div class="box-item">
@@ -317,7 +317,7 @@
                 if (jQuery(document).width() >= 992) {
                     
                    var voffset = jQuery("#myScrollspy").offset();
-                   var vtop = voffset.top;
+                   var vtop = voffset.top + 50;
                    var vbot = jQuery("footer").height() + 160;
                    jQuery("#myScrollspy ul").affix({
                        offset: {
