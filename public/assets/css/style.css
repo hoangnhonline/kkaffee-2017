@@ -2487,7 +2487,7 @@ span.txt-account{
 }
 /*----------------------------*/
 #popup_khuvuc .modal-dialog{
-    width: 240px;
+    width: 320px;
     text-align: center;
     margin-left:auto;
     margin-right:auto;
@@ -2506,17 +2506,27 @@ span.txt-account{
     padding: 0 15px;
     height: 166px;
 }
-#popup_khuvuc .modal-dialog a{
-    background: #f1f1f1;
-    color: #333;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    display: block;
-    padding: 7px 0;
+.nvn-select-khuvuc button{
+    width: 100%;
 }
-#popup_khuvuc .modal-dialog a:hover{
-    text-decoration: nonel;
-    background: #eee;
+.nvn-select-khuvuc .dropdown-menu{
+    width: 100%;
+    position: static;
+    float: none;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+   -webkit-box-shadow: none;
+   max-height: 200px;
+   overflow-y: scroll;
+}
+.nvn-select-khuvuc .dropdown-menu li a{
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.nvn-select-khuvuc .dropdown-menu li a:hover{
+    background: #ffd900;
+    color: #fff;
 }
 @media (max-width: 380px){
     #detail-product .list-box-items .box-item .title-box-item{

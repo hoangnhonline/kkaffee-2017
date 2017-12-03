@@ -124,6 +124,7 @@ class HomeController extends Controller
     public function chooseDistrict(Request $request){
         $id = $request->id;
         Session::put('choose_district', $id);
+        Session::put('choose_city', $request->city_id);
         return redirect()->route('home');
     }
     public function ajaxTab(Request $request){

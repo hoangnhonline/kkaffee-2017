@@ -485,7 +485,8 @@
                     url : "{{ route('choose-district') }}",
                     type : "GET",
                     data : {
-                        id : $(this).data('id')
+                        id : $(this).data('id'),
+                        city_id : $(this).data('city')
                     },
                     success: function(){
                         window.location.reload();
@@ -527,23 +528,23 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-body">
+             <div class="modal-body">
                 <div class="bg-333 text-center">
-                    <img id="imglogo" src="{{ URL::asset('public/assets/img/logo-header.png') }}" alt="Logo"/>
+                    <img id="imglogo" src="http://kshop247.vn/public/assets/img/logo-2.png" alt=""/>
                 </div>
-                <p>Chọn nơi bạn đang sinh sống</p>
-                <Div class="box-khuvuc">
-                    @foreach($loadDistrict as $dis)
-                    <p><a href="javascript:;" class="choose_district" data-id="{{ $dis->id }}"><i class="cl_ffd900 fa fa-map-marker" aria-hidden="true"></i> {!! $dis->name !!}</a></p>
-                    @endforeach
-                </Div>
+                <p>Chọn chi nhánh KSHOP 24/7</p>
+                <div class="dropdown nvn-select-khuvuc">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Chọn quận/huyện
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        @foreach($loadDistrict as $dis)
+                        <li><a href="javascript:;" class="choose_district" data-city="{{ $dis->city_id }}" data-id="{{ $dis->id }}">{!! $dis->name !!}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<style type="text/css">
-    
-
-</style>
 </body>
 </html>
