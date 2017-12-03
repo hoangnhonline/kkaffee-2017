@@ -86,7 +86,7 @@
         <div class="container">
             <div class="tabs-custom">
                 <div id="myScrollspy" class="col-tab-menu hidden-xs">
-                    <ul class="tab-menu affix">                        
+                    <ul class="nav tab-menu affix">                        
                         <li><a href="#tab01" data-target-id="">Sản phẩm hot</a></li>
                         @foreach($cateList as $cate)
                         <li><a href="#{{ $cate->slug }}" data-target-id="">{!! $cate->name !!}</a></li>
