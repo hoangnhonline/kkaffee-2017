@@ -64,7 +64,7 @@
                 <div class="item">
                     <div class="imgleft">
                         <div class="image"><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}"><img src="{{ $product->image_url ? Helper::showImage($product->image_url) : URL::asset('public/assets/images/no-img.png') }}" alt="{!! $product->name !!}"/></div>
-                        <h3><a href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}">{!! $product->name !!}</a></h3>                        
+                        <h3><a  style="color:#333" href="{{ route('product', [$product->slug, $product->id ])}}" title="{!! $product->title !!}">{!! $product->name !!}</a></h3>                        
                         <p><b class="cl_ea0000">@if($product->is_sale == 1 && $product->price_sale > 0)
                                             {{ number_format($product->price_sale) }}đ
                                         @else
