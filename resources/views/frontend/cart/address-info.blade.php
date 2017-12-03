@@ -45,16 +45,25 @@
                 <form id="dataForm" action="{{ route('store-address') }}" method="POST">
                 {{ csrf_field() }}
                   <p><i class="fa fa-circle cl_ea0000" aria-hidden="true"></i> Chọn chi nhánh</p>
+                  <?php 
+                  $arrCityBranch = [];
+                  foreach($loadDistrict as $dis){
+                    $arrCityBranch[] = $dis->city_id;
+                  }
+
+                  ?>
                   <div class="row div-parent" id="branch-info" >
                       <div class="col-md-6">
-                           <select name="branch_city_id" class="form-control city_id req" id="branch_city_id" data-bv-field="branch_city_id">
+                           <select name="branch_city_id" class="form-control req" id="branch_city_id" data-bv-field="branch_city_id">
                               <option value="">Tỉnh/TP</option>
                               @foreach($cityList as $city)
+                              @if(in_array($city->id, $arrCityBranch))
                                 <option value="{{$city->id}}"
                                 @if(old('branch_city_id') == $city->id)
                                 selected
                                 @endif
                                 >{{$city->name}}</option>
+                                @endif
                               @endforeach
                             </select>
                       </div>
@@ -249,14 +258,14 @@
         $('#dataForm').submit();
         $(this).html('<i class="fa fa-spin fa-spinner"></i>').attr('disabled', 'disabled');
       });
-      $('#branch_city_id').val(294);   
+      $('#branch_city_id').val({{ Session::get('choose_city') ? Session::get('choose_city') : "294" }});   
        $.ajax({
             url : '{{ route('get-child') }}',
             data : {
               mod : 'district',
               col : 'city_id',
               is_branch : 1,
-              id : 294
+              id : {{ Session::get('choose_city') ? Session::get('choose_city') : "294" }}
             },
             type : 'POST',
             dataType : 'html',
@@ -294,6 +303,25 @@
                 mod : 'district',
                 col : 'city_id',
                 id : obj.val()
+              },
+              type : 'POST',
+              dataType : 'html',
+              success : function(data){
+                obj.parents('.div-parent').find('.district_id').html(data);      
+                $('#branch_div').html('');                          
+              }
+            });
+          
+        });
+      $('#branch_city_id').change(function(){         
+        var obj = $(this);
+            $.ajax({
+              url : '{{ route('get-child') }}',
+              data : {
+                mod : 'district',
+                col : 'city_id',
+                id : obj.val(),
+                is_branch : 1
               },
               type : 'POST',
               dataType : 'html',
