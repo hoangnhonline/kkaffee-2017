@@ -98,6 +98,10 @@ class Product extends Model  {
     {
         return $this->belongsTo('App\Models\Cate', 'cate_id');
     }
+	public function grand()
+    {
+        return $this->belongsTo('App\Models\Grand', 'grand_id');
+    }
     public function createdUser()
     {
         return $this->belongsTo('App\Models\Account', 'created_user');

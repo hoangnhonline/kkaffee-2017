@@ -298,12 +298,39 @@ $(document).on('click', '.remove-image', function(){
           $(this).addClass('error');
         }
       });
-      $('#parent_id').change(function(){
-        location.href="{{ route('product.create') }}?parent_id=" + $(this).val();
+       $('#cate_id').change(function(){
+        //location.href="{{ route('product.create') }}?parent_id=" + $(this).val();
+		$.ajax({
+            url : '{{ route('get-child') }}',
+            data : {
+              mod : 'grand',
+              col : 'cate_id',              
+              id : $(this).val()
+            },
+            type : 'POST',
+            dataType : 'html',
+            success : function(data){
+              $('#grand_id').html(data);                                             
+            }
+          });
       });
-      $('#cate_id').change(function(){
-        location.href="{{ route('product.create') }}?parent_id=" + $('#parent_id').val() + '&cate_id=' + $(this).val();
-      });
+	  $('#parent_id').change(function(){
+        //location.href="{{ route('product.create') }}?parent_id=" + $(this).val();
+		$.ajax({
+            url : '{{ route('get-child') }}',
+            data : {
+              mod : 'cate',
+              col : 'parent_id',              
+              id : $(this).val()
+            },
+            type : 'POST',
+            dataType : 'html',
+            success : function(data){
+              $('#cate_id').html(data);
+				$('#grand_id').html('');			  
+            }
+          });
+      });	
       $(".select2").select2();
       $('#dataForm').submit(function(){       
         $('#btnSave').htm('<i class="fa fa-spinner fa-spin"></i>').attr('disabled', 'disabled');

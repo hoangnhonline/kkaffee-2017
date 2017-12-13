@@ -81,9 +81,9 @@
                          <div class="form-group col-md-4 none-padding pleft-5">
                           <label for="email">Danh mục con<span class="red-star">*</span></label>
                           <?php 
-                          $grand_id = old('grand_id', $detail->grand_id);
-                          if($grand_id > 0){
-                            $grandList = DB::table('grand')->where('grand_id', $grand_id)->orderBy('display_order')->get();
+                          $cate_id = old('cate_id', $detail->cate_id);
+                          if($cate_id > 0){
+                            $grandList = DB::table('grand')->where('cate_id', $cate_id)->orderBy('display_order')->get();
                           }
                           ?>
                           <select class="form-control req" name="grand_id" id="grand_id">
@@ -320,12 +320,39 @@ $(document).on('click', '.remove-image', function(){
           $(this).addClass('error');
         }
       });
-      $('#parent_id').change(function(){
-        location.href="{{ route('product.create') }}?parent_id=" + $(this).val();
-      });
       $('#cate_id').change(function(){
-        location.href="{{ route('product.create') }}?parent_id=" + $('#parent_id').val() + '&cate_id=' + $(this).val();
+        //location.href="{{ route('product.create') }}?parent_id=" + $(this).val();
+		$.ajax({
+            url : '{{ route('get-child') }}',
+            data : {
+              mod : 'grand',
+              col : 'cate_id',              
+              id : $(this).val()
+            },
+            type : 'POST',
+            dataType : 'html',
+            success : function(data){
+              $('#grand_id').html(data);                                             
+            }
+          });
       });
+	  $('#parent_id').change(function(){
+        //location.href="{{ route('product.create') }}?parent_id=" + $(this).val();
+		$.ajax({
+            url : '{{ route('get-child') }}',
+            data : {
+              mod : 'cate',
+              col : 'parent_id',              
+              id : $(this).val()
+            },
+            type : 'POST',
+            dataType : 'html',
+            success : function(data){
+              $('#cate_id').html(data);
+				$('#grand_id').html('');			  
+            }
+          });
+      });	
       $(".select2").select2();
       $('#dataForm').submit(function(){       
         $('#btnSave').htm('<i class="fa fa-spinner fa-spin"></i>').attr('disabled', 'disabled');
