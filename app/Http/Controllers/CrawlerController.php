@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Goutte, File, Auth;
+use Goutte, File, Auth, Mail;
 use App\Helpers\simple_html_dom;
 use App\Helpers\Helper;
 use App\Models\CrawlerUrl;
@@ -22,6 +22,31 @@ use App\Models\ProductImg;
 
 class CrawlerController extends Controller
 {
+    public function trau(){
+        //https://api-zcash.flypool.org/miner/t1fGB3HA7Vr62k38JNfbCpgoZK7gFLRMQ58/currentStats
+         $url = 'https://api-zcash.flypool.org/miner/t1fGB3HA7Vr62k38JNfbCpgoZK7gFLRMQ58/currentStats'; 
+        $chs = curl_init();            
+        curl_setopt($chs, CURLOPT_URL, $url);
+        curl_setopt($chs, CURLOPT_RETURNTRANSFER, 1); 
+        curl_setopt($chs, CURLOPT_HEADER, 0);
+        $result = curl_exec($chs);
+        
+        curl_close($chs);
+
+        $data = json_decode($result, true);
+        $workers = $data['data']['activeWorkers'];
+        if($workers != 4 )
+        Mail::send('trau',
+            [                    
+                
+            ],
+            function($message) {
+                $message->subject("Trâu lỗi.");
+                $message->to("hoangnhonline@gmail.com");
+                $message->from('web.0917492306@gmail.com', 'TRAU');
+                $message->sender('web.0917492306@gmail.com', 'TRAU');
+        });
+    }
     public function ward(){
         set_time_limit(10000);
         $districtArr = [72,73,74,75,76];
