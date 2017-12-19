@@ -180,8 +180,7 @@ class ProductController extends Controller
         
          $this->validate($request,[            
             'parent_id' => 'required',
-            'cate_id' => 'required',
-            'grand_id' => 'required',   
+            'cate_id' => 'required',            
             'code' => 'required',              
             'name' => 'required',
             'slug' => 'required',            
@@ -189,8 +188,7 @@ class ProductController extends Controller
         ],
         [   
             'parent_id.required' => 'Bạn chưa chọn loại sản phẩm',
-            'cate_id.required' => 'Bạn chưa chọn danh mục cha',
-            'grand_id.required' => 'Bạn chưa chọn danh mục con',
+            'cate_id.required' => 'Bạn chưa chọn danh mục cha',            
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
             'slug.required' => 'Bạn chưa nhập slug',
@@ -345,8 +343,7 @@ class ProductController extends Controller
         
          $this->validate($request,[            
             'parent_id' => 'required',
-            'cate_id' => 'required',
-            'grand_id' => 'required',   
+            'cate_id' => 'required',             
             'code' => 'required',              
             'name' => 'required',
             'slug' => 'required',            
@@ -354,8 +351,7 @@ class ProductController extends Controller
         ],
         [   
             'parent_id.required' => 'Bạn chưa chọn loại sản phẩm',
-            'cate_id.required' => 'Bạn chưa chọn danh mục cha',
-            'grand_id.required' => 'Bạn chưa chọn danh mục con',
+            'cate_id.required' => 'Bạn chưa chọn danh mục cha',            
             'code.required' => 'Bạn chưa nhập mã sản phẩm',
             'name.required' => 'Bạn chưa nhập tên sản phẩm',
             'slug.required' => 'Bạn chưa nhập slug',

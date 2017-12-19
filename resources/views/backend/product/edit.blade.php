@@ -86,7 +86,7 @@
                             $grandList = DB::table('grand')->where('cate_id', $cate_id)->orderBy('display_order')->get();
                           }
                           ?>
-                          <select class="form-control req" name="grand_id" id="grand_id">
+                          <select class="form-control" name="grand_id" id="grand_id">
                             <option value="">--Chọn--</option>
                             @foreach( $grandList as $value )
                             <option value="{{ $value->id }}" {{ $value->id == old('grand_id', $detail->grand_id) ? "selected" : "" }}>{{ $value->name }}</option>

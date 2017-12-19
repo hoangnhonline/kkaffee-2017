@@ -57,7 +57,7 @@
                         $cateList = DB::table('cate')->where('parent_id', $parent_id)->orderBy('display_order')->get();
                       }
                       ?>
-                      <select class="form-control req" name="cate_id" id="cate_id">
+                      <select class="form-control" name="cate_id" id="cate_id">
                         <option value="">--Chọn--</option>
                         @foreach( $cateList as $value )
                         <option value="{{ $value->id }}" {{ $value->id == old('cate_id') || $value->id == $cate_id ? "selected" : "" }}>{{ $value->name }}</option>
