@@ -72,7 +72,21 @@
                 </div>
             </div>
         </div>
-    </section><!-- End News -->    
+    </section><!-- End News -->
+    <section id="customer" class="marg40">
+        <div class="container">
+            <div class="owl-carousel">
+                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+            </div>
+        </div>
+    </section>    
     
 </article>
 @stop
@@ -85,7 +99,7 @@
             nav: true,
             items: 1,
             dots: false
-        });
+        });        
     });
 </script>
 @stop

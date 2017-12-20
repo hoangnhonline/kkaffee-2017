@@ -52,6 +52,20 @@ class HomeController extends Controller
         }
         return view('frontend.partials.rating', compact('object_id', 'object_type'));
     }
+    public function searchProduct(Request $request){
+        $data = $request->all();
+       // var_dump($data);
+        $search = trim($data['q']);
+        $query = Product::where('product.status', 1);
+        
+        if( $search != ''){
+            $query->where('product.alias', 'LIKE', ''.$search.'%');           
+        }
+        $query->orderBy('id', 'desc');
+        $list = $query->limit(10)->pluck('name', 'id')->toArray(); 
+        return Response::json($list);    
+
+    }
     public function index(Request $request)
     {   
         $settingArr = Helper::setting();     

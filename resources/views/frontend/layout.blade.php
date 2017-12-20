@@ -143,7 +143,7 @@
                     <form class=""  action="{{ route('search') }}" method="GET">
                         <div class="input-group col-md-12">
                             
-                                <input type="text" name="keyword" value="{!! isset($tu_khoa) ? $tu_khoa : "" !!}" class="txtSearch form-control" placeholder="Tìm kiếm" />
+                                <input type="text" name="keyword" id="txtSearch" value="{!! isset($tu_khoa) ? $tu_khoa : "" !!}" class="txtSearch form-control" placeholder="Tìm kiếm" />
                                 <span class="input-group-btn">
                                     <button class="btn" type="submit">
                                         <i class="glyphicon glyphicon-search"></i>
@@ -413,6 +413,7 @@
 <script src="{{ URL::asset('public/assets/js/bootstrap.min.js') }}"></script>
 <script src="{{ URL::asset('public/assets/js/home.js') }}"></script>
 <script src="{{ URL::asset('public/assets/lib/owlcarousel/dist/owl.carousel.min.js') }}"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         @if($routeName == "product")
         <script src="https://apis.google.com/js/platform.js" async defer></script>
         @endif
@@ -513,6 +514,36 @@
                 });
             });
         });
+        jQuery('#customer .owl-carousel').owlCarousel({
+            nav: true,
+            items: 5
+        });
+         $( "#txtSearch" ).autocomplete({
+              source: function( request, response ) {
+                $.ajax({
+                  url: "{{ route('search-product') }}",
+                  dataType: "jsonp",
+                  data: {
+                    q: request.term
+                  },
+                  success: function( data ) {
+                    console.log(data);
+                  }
+                });
+              },
+              minLength: 3,
+              select: function( event, ui ) {
+                log( ui.item ?
+                  "Selected: " + ui.item.label :
+                  "Nothing selected, input was " + this.value);
+              },
+              open: function() {
+                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+              },
+              close: function() {
+                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+              }
+            });
     </script>
 
 @if(!in_array($routeName, ['news-detail', 'product']))
