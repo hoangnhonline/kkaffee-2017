@@ -77,7 +77,6 @@ class HomeController extends Controller
         $socialImage = $settingArr['banner'];
 
         
-        
         return view('frontend.home.index', compact('socialImage', 'seo'));
 
     }

@@ -71,7 +71,9 @@ class ViewComposerServiceProvider extends ServiceProvider
 	        	$listProductId = array_keys($getlistProduct);
 	        	$arrProductInfo = Product::whereIn('product.id', $listProductId)->get();
 	        }
-	        $loadDistrict = District::join('branch', 'branch.district_id', '=', 'district.id')->select('district.id', 'district.name', 'district.city_id')->orderBy('branch.display_order')->get();	        
+	        $loadDistrict = District::join('branch', 'branch.district_id', '=', 'district.id')->select('district.id', 'district.name', 'district.city_id')->orderBy('branch.display_order')->get();	
+	        $listProduct = Product::where('product.status', 1)->orderBy('id', 'desc')->pluck('name', 'id')->toArray(); 
+                
 			$view->with( [
 					'settingArr' => $settingArr, 
 					'articleCate' => $articleCate, 
@@ -86,7 +88,8 @@ class ViewComposerServiceProvider extends ServiceProvider
 					'getlistProduct' => $getlistProduct,
 					'arrProductInfo' => $arrProductInfo,
 					'listProductId' => $listProductId,
-					'loadDistrict' => $loadDistrict
+					'loadDistrict' => $loadDistrict,
+					'listProduct' => $listProduct
 			] );
 			
 		});

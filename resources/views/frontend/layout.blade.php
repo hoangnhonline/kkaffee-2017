@@ -518,32 +518,17 @@
             nav: true,
             items: 5
         });
-         $( "#txtSearch" ).autocomplete({
-              source: function( request, response ) {
-                $.ajax({
-                  url: "{{ route('search-product') }}",
-                  dataType: "jsonp",
-                  data: {
-                    q: request.term
-                  },
-                  success: function( data ) {
-                    console.log(data);
-                  }
-                });
-              },
-              minLength: 3,
-              select: function( event, ui ) {
-                log( ui.item ?
-                  "Selected: " + ui.item.label :
-                  "Nothing selected, input was " + this.value);
-              },
-              open: function() {
-                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
-              },
-              close: function() {
-                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
-              }
-            });
+        var availableTags = [
+        @foreach($listProduct as $pro)
+          "{{ $pro }}",
+          @endforeach
+        ];
+        $( "#txtSearch" ).autocomplete({
+          source: availableTags,
+          select: function( event, ui ) {
+            $('#txtSearch').parents('form').submit();
+          },
+        });         
     </script>
 
 @if(!in_array($routeName, ['news-detail', 'product']))
@@ -577,5 +562,6 @@
         </div>
     </div>
 </div>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </body>
 </html>
