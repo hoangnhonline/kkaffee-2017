@@ -224,7 +224,7 @@
                     </p>
                 </div>
                 <div class="col-footer col-footer-3 col-md-3">
-                    <div class="title-col-footer">TẬP ĐOÀN K MINIMART & KAFFEE</div>                    
+                    <div class="title-col-footer">TẬP ĐOÀN</div>                    
                     @if($footerLink)
                     @foreach($footerLink as $link)
                     <a href="{{ $link->link_url }}" title="{!! $link->link_text !!}">{!! $link->link_text !!}</a>
@@ -232,7 +232,7 @@
                     @endif   
                 </div>
                 <div class="col-footer col-footer-4 col-md-3">
-                    <div class="title-col-footer">K MINIMART & KAFFEE APP</div>
+                    <div class="title-col-footer">APP STORE</div>
                     <a href="#"><img src="{{ URL::asset('public/assets/img/apple.png') }}" alt=""/></a>
                     <a href="#"><img src="{{ URL::asset('public/assets/img/androi.png') }}" alt=""/></a>
                     <p>Hoặc đặt món qua <a href="#">Foody App</a>
