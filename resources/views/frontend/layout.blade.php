@@ -43,7 +43,8 @@
         <script src="https://oss.maxcdn.com/libs/respond.js') }}"/1.4.2/respond.min.js') }}""></script>
     <![endif]-->
 </head>
-<body @if($routeName == 'product') data-spy="scroll" data-target="#myScrollspy" @endif>
+<body>
+<div class="fog"></div>
 @if($routeName == "product")
 <div id="fb-root"></div>
     <script>(function(d, s, id) {
@@ -432,6 +433,9 @@
                 {
                     jQuery("body").addClass("active-menu");
                 }
+            });
+            jQuery(".fog").click(function () {
+                jQuery("body").removeClass("active-menu");
             });
             jQuery("a.gotop").click(function () {
                 $('html, body').animate({scrollTop: 0}, 'fast');

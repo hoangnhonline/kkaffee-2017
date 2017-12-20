@@ -226,11 +226,19 @@
                         </li>
                     </ul>
                     @else
-                    <p class="cart-empty">Chưa có sản phẩm nào.</p>
+                     <div class="list-items-cart">           
+                    
+                    </div>
+                     <ul class="">
+                     <li><p class="cart-empty">Chưa có sản phẩm nào.</p></li>
+                     </ul>
                     @endif
                 </div>
+                <div class="clearfix"></div>
             </div>
+
             </div>
+            <div class="clearfix"></div>
         </div>
     </section><!-- End product -->
 </article>
