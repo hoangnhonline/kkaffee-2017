@@ -19,9 +19,9 @@
                       
                       <h1 style="font-size:17px;font-weight:bold;color:#444;padding:0 0 5px 0;margin:0"> Cảm ơn
                           quý khách {{ $addressInfo->fullname }}
-                          đã đặt hàng tại <strong>KKAFFEE</strong>,</h1>                    
-                        <p style="margin:4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"> <strong>KKAFFEE</strong> rất vui thông báo đơn hàng #{{ $order_id }} của quý khách đã
-                          được tiếp nhận và đang trong quá trình xử lý. <strong>KKAFFEE</strong> sẽ thông báo đến quý khách ngay khi hàng chuẩn bị được giao. </p>
+                          đã đặt hàng tại <strong>K Minimart & Kaffee</strong>,</h1>                    
+                        <p style="margin:4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal"> <strong>K Minimart & Kaffee</strong> rất vui thông báo đơn hàng #{{ $order_id }} của quý khách đã
+                          được tiếp nhận và đang trong <strong>“Quá trình xử lý”</strong>. <strong>K Minimart & Kaffee</strong> sẽ thông báo đến quý khách ngay khi hàng chuẩn bị được giao. </p>
                         </td>
                     </tr>
                     <tr>

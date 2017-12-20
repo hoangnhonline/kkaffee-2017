@@ -15,10 +15,10 @@
               <td align="left" width="600" height="auto" style="padding:15px"><table>
                   <tbody>
                     <tr>
-                      <td>                      
+                      <td>                                     
                       <h1 style="font-size:17px;font-weight:bold;color:#444;padding:0 0 5px 0;margin:0"> Chào
                           quý khách {{ $fullname }},</h1>                    
-                        <p style="margin:4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal; font-size: 15px"> <strong style="color:#ffde00">K Minimart & Kaffee</strong> xin thông báo đơn hàng <strong style="color:#ffde00">#{{ $order_id }}</strong> của quý khách đã được <strong>“Hủy”</strong>.<strong>K Minimart & Kaffee</strong> rất mong tiếp tục nhận được sự ủng hộ của quý khách.</p>
+                        <p style="margin:4px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#444;line-height:18px;font-weight:normal; font-size: 15px"> <strong style="color:#ffde00">K Minimart & Kaffee</strong> xin thông báo đơn hàng <strong style="color:#ffde00">#{{ $order_id }}</strong> của quý khách đang được <strong>“Vận chuyển”</strong>. Quý khách vui lòng sắp xếp thời gian để chuẩn bị nhận hàng.</p>
                         <br>
                         <p style="font-size: 15px; "><strong>Cảm ơn quý khách.</strong></p>
                         </td>
