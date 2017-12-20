@@ -121,7 +121,7 @@
                 </td>
                 <td style="text-align:right">
                 @if($order->status == 0)
-                <button class="btn btn-sm btn-primary btnXacnhan" id="" order-id="{{$order->id}}" customer-id="{{$order->customer_id}}" data-value="{{ $order->id }}">Xác nhận</button>
+                <button class="btn btn-sm btn-primary btnXacnhan" id="" order-id="{{$order->id}}" customer-id="{{$order->customer_id}}" data-value="{{ $order->id }}" status="{{ $order->status }}">Xác nhận</button>
                 @endif                   
                   <a href="{{route('order.detail', $order->id)}}?status={{ $s['status'] }}&name={{ $s['name'] }}&date_from={{ $s['date_from'] }}&date_to={{ $s['date_to'] }}" class="btn btn-info btn-sm">Chi tiết</a>
                                  
