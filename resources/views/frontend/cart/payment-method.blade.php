@@ -85,7 +85,9 @@
                                       <td class="text-right"><strong><span>{{ number_format($total*10/100) }}đ</span></strong> </td>
                                   </tr>
                                   <tr>
-                                      <th class="text-left">Phí vận chuyển <span class="cl_ea0000">{!! Session::get('phi_van_chuyen')['text'] !!}</span></th>
+                                      <th class="text-left">Phí vận chuyển <span class="cl_ea0000">{!! Session::get('phi_van_chuyen')['text'] !!}</span><br>
+                                        (Giá 5.000đ/km)
+                                      </th>
                                       <td class="text-right"><strong><span>{!! number_format(Session::get('phi_van_chuyen')['phi']) !!}đ</span></strong> </td>
                                   </tr>
                                   <tr class="order-total">
