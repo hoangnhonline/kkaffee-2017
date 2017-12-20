@@ -440,7 +440,26 @@
             jQuery("a.gotop").click(function () {
                 $('html, body').animate({scrollTop: 0}, 'fast');
             });
-
+            jQuery(".cf_chat>a").click(function () {
+                if (jQuery(this).parent().hasClass("active"))
+                {
+                    jQuery(this).parent().removeClass("active");
+                }
+                else
+                {
+                    jQuery(this).parent().addClass("active");
+                }
+            });
+            jQuery('.block-slide .owl-carousel').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: true,
+                items: 1
+            });
+            jQuery('#customer .owl-carousel').owlCarousel({
+                nav: true,
+                items: 5
+            });
             jQuery(".cf_chat>a").click(function(){
                 if (jQuery(this).parent().hasClass("active"))
                 {
@@ -518,10 +537,7 @@
                 });
             });
         });
-        jQuery('#customer .owl-carousel').owlCarousel({
-            nav: true,
-            items: 5
-        });
+        
         var availableTags = [
         @foreach($listProduct as $pro)
           "{{ $pro }}",
