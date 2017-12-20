@@ -610,8 +610,7 @@ footer .col-footer{
     float: left;
 }
 footer .col-footer-1{
-  
-    margin-right: 25px;
+      
     line-height: 20px;
 }
 footer .col-footer-1 p{
@@ -619,12 +618,12 @@ footer .col-footer-1 p{
 }
 footer .col-footer-2{
     
-    margin-right: 50px;
+  
     line-height: 25px;
 }
 footer .col-footer-3{
     
-    margin-right: 40px;
+    
 }
 footer .col-footer-3 a{
     display: block;
