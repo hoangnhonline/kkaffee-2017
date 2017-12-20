@@ -182,7 +182,7 @@ $(document).ready(function(){
         customer_id : customer_id
       },
       success: function (response) {
-        location.reload()
+        //location.reload()
       },
       error: function(response){
 
