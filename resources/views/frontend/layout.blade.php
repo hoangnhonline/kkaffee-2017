@@ -210,11 +210,11 @@
     <footer>
         <div class="container">
             <div class="row">
-                <div class="col-footer col-footer-1">
+                <div class="col-footer col-footer-1 col-md-3">
                     <div id="logo-footer"><img src="{{ URL::asset('public/assets/img/logo-2.png') }}" alt=""/></div>
                     <p @if($isEdit) class="edit" @endif" data-text="5">{!! $textList[5] !!}</p>
                 </div>
-                <div class="col-footer col-footer-2">
+                <div class="col-footer col-footer-2 col-md-3">
                     <div class="title-col-footer">ĐỊA CHỈ</div>
                     <p>
                         <b @if($isEdit) class="edit" @endif" data-text="7">{!! $textList[7] !!}</b><br/>
@@ -223,7 +223,7 @@
                         <span @if($isEdit) class="edit" @endif" data-text="10">{!! $textList[10] !!}</span>
                     </p>
                 </div>
-                <div class="col-footer col-footer-3">
+                <div class="col-footer col-footer-3 col-md-3">
                     <div class="title-col-footer">TẬP ĐOÀN K MINIMART & KAFFEE</div>                    
                     @if($footerLink)
                     @foreach($footerLink as $link)
@@ -231,7 +231,7 @@
                     @endforeach
                     @endif   
                 </div>
-                <div class="col-footer col-footer-4">
+                <div class="col-footer col-footer-4 col-md-3">
                     <div class="title-col-footer">K MINIMART & KAFFEE APP</div>
                     <a href="#"><img src="{{ URL::asset('public/assets/img/apple.png') }}" alt=""/></a>
                     <a href="#"><img src="{{ URL::asset('public/assets/img/androi.png') }}" alt=""/></a>
