@@ -136,7 +136,36 @@ class OrderController extends Controller
                             $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
                     });
                 }      
-                break;            
+                break;
+                case "2":
+                $addressInfo = CustomerAddress::find($order->address_id);
+
+                $email = $addressInfo->email ? $addressInfo->email :  "";
+                $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+                $adminMailArr = explode(',', $settingArr['email_header']);
+                if($email != ''){
+
+                    $emailArr = array_merge([$email], $adminMailArr);
+                }else{
+                    $emailArr = $adminMailArr;
+                }
+                // send email
+                $order_id =str_pad($order->id, 6, "0", STR_PAD_LEFT);
+                
+                if(!empty($emailArr)){
+                    Mail::send('frontend.cart.vc-email',
+                        [
+                            'fullname'          => $addressInfo->fullname,
+                            'order_id' => $order_id                    
+                        ],
+                        function($message) use ($emailArr, $order_id) {
+                            $message->subject('Đang vận chuyển đơn hàng #'.$order_id);
+                            $message->to($emailArr);
+                            $message->from('kkaffee.vn@gmail.com', 'KKAFFEE');
+                            $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
+                    });
+                }
+                break;         
             case "4":
                 $addressInfo = CustomerAddress::find($order->address_id);
 

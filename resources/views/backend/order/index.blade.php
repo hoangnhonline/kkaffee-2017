@@ -119,7 +119,10 @@
                     @endforeach
                   </select>
                 </td>
-                <td style="text-align:right">                   
+                <td style="text-align:right">
+                @if($order->status == 0)
+                <button class="btn btn-sm btn-info btnXacnhan" id="" data-value="{{ $order->id }}">Xác nhận</button>
+                @endif                   
                   <a href="{{route('order.detail', $order->id)}}?status={{ $s['status'] }}&name={{ $s['name'] }}&date_from={{ $s['date_from'] }}&date_to={{ $s['date_to'] }}" class="btn btn-info btn-sm">Chi tiết</a>
                                  
                
@@ -155,6 +158,9 @@ $(document).ready(function(){
     $('#searchForm').submit();
 
   });
+  $('.btnXacnhan').click(function(){
+    $(this).parents('tr').find('select.select-change-status').val(2).change();
+  })
   $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
   $('.select-change-status').change(function(){
     var status_id = $(this).val();
