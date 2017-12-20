@@ -20,6 +20,7 @@ class OrderController extends Controller
 {
     protected $list_status = [
         0 => 'Chờ xử lý',       
+        2 => 'Đang vận chuyển',
         3 => 'Đã hoàn thành',
         4 => 'Đã huỷ'    
       ];
