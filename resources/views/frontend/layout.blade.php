@@ -526,6 +526,7 @@
         $( "#txtSearch" ).autocomplete({
           source: availableTags,
           select: function( event, ui ) {
+            $('#txtSearch').val(ui.item.label);
             $('#txtSearch').parents('form').submit();
           },
         });         
