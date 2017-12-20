@@ -121,7 +121,7 @@
                 </td>
                 <td style="text-align:right">
                 @if($order->status == 0)
-                <button class="btn btn-sm btn-primary btnXacnhan" id="" data-value="{{ $order->id }}">Xác nhận</button>
+                <button class="btn btn-sm btn-primary btnXacnhan" id="" order-id="{{$order->id}}" customer-id="{{$order->customer_id}}" data-value="{{ $order->id }}">Xác nhận</button>
                 @endif                   
                   <a href="{{route('order.detail', $order->id)}}?status={{ $s['status'] }}&name={{ $s['name'] }}&date_from={{ $s['date_from'] }}&date_to={{ $s['date_to'] }}" class="btn btn-info btn-sm">Chi tiết</a>
                                  
@@ -158,8 +158,11 @@ $(document).ready(function(){
     $('#searchForm').submit();
 
   });
-  $('.btnXacnhan').click(function(){
-    $(this).parents('tr').find('select.select-change-status').val(2).change();
+  $('.btnXacnhan').click(function(){   
+    var status_id = 2;
+    var order_id  = $(this).attr('order-id');
+    var customer_id = $(this).attr('customer-id');
+    update_status_orders(status_id, order_id, customer_id);
   })
   $('.datepicker').datepicker({ dateFormat: 'dd-mm-yy' });
   $('.select-change-status').change(function(){
