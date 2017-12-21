@@ -513,7 +513,7 @@
                         city_id : $(this).data('city')
                     },
                     success: function(){
-                        window.location.reload();
+                        location.reload();
                     }
                 });
             });
