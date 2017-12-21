@@ -118,6 +118,12 @@
               <span>Chi nhánh</span>         
             </a>       
           </li>
+          <li {{ (in_array(\Request::route()->getName(), ['doitac.edit', 'doitac.index', 'doitac.create']))? "class=active" : "" }}>
+            <a href="{{ route('doitac.index') }}">
+              <i class="fa fa-circle-o"></i>
+              <span>Đối tác</span>         
+            </a>       
+          </li>
           <li><a target="_blank" href="{{ route('rss') }}"><i class="fa fa-circle-o"></i> RSS</a></li>
           <li {{ (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 1 )? "class=active" : "" }}>
             <a href="{{ route('custom-link.index', ['block_id' => 1 ]) }}">
