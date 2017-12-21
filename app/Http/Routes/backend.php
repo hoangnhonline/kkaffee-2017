@@ -37,7 +37,14 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::post('/update', ['as' => 'branch.update', 'uses' => 'BranchController@update']);
         Route::get('{id}/destroy', ['as' => 'branch.destroy', 'uses' => 'BranchController@destroy']);
     });
-
+    Route::group(['prefix' => 'doitac'], function () {
+        Route::get('/', ['as' => 'doitac.index', 'uses' => 'DoitacController@index']);
+        Route::get('/create', ['as' => 'doitac.create', 'uses' => 'DoitacController@create']);
+        Route::post('/store', ['as' => 'doitac.store', 'uses' => 'DoitacController@store']);
+        Route::get('{id}/edit',   ['as' => 'doitac.edit', 'uses' => 'DoitacController@edit']);
+        Route::post('/update', ['as' => 'doitac.update', 'uses' => 'DoitacController@update']);
+        Route::get('{id}/destroy', ['as' => 'doitac.destroy', 'uses' => 'DoitacController@destroy']);
+    });
     Route::group(['prefix' => 'order'], function () {
         Route::get('/', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
         Route::post('/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);
