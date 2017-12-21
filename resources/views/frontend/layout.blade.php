@@ -459,17 +459,7 @@
             jQuery('#customer .owl-carousel').owlCarousel({
                 nav: true,
                 items: 5
-            });
-            jQuery(".cf_chat>a").click(function(){
-                if (jQuery(this).parent().hasClass("active"))
-                {
-                    jQuery(this).parent().removeClass("active");
-                }
-                else
-                {
-                    jQuery(this).parent().addClass("active");
-                }
-            });  
+            });             
             if (jQuery(document).width() >= 992) {
                 jQuery(".cf_chat>a").click();
             }          
