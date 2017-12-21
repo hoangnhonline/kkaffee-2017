@@ -4,11 +4,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            Danh mục cha 
+            Đối tác 
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="{{ route( 'cate.index' ) }}">Danh mục cha</a></li>
+            <li><a href="{{ route( 'doitac.index' ) }}">Đối tác</a></li>
             <li class="active">Danh sách</li>
         </ol>
     </section>
@@ -19,38 +19,7 @@
                 @if(Session::has('message'))
                 <p class="alert alert-info" >{{ Session::get('message') }}</p>
                 @endif
-                <a href="{{ route('cate.create', ['parent_id' => $parent_id]) }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>
-                <div class="panel panel-default">
-                      <div class="panel-heading">
-                        <h3 class="panel-title">Bộ lọc</h3>
-                      </div>
-                      <div class="panel-body">
-                        <form class="form-inline" id="searchForm" role="form" method="GET" action="{{ route('cate.index') }}">                           
-                            <div class="form-group">
-                                <select class="form-control" name="parent_id" id="parent_id">
-                                    <option value="">--Loại sản phẩm--</option>                                   
-                                    @foreach( $cateParentList as $value )
-                                    <option value="{{ $value->id }}"
-                                    {{ $parent_id == $value->id ? "selected" : "" }}                        
-                                    >{{ $value->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">              
-                                <input type="text" placeholder="Tên" class="form-control" name="name" value="{{ $name }}" >
-                            </div>                            
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label style="color:red; font-weight:bold">
-                                    <input type="checkbox" name="is_hot" id="is_hot" value="1" {{ $is_hot == 1 ? "checked" : "" }}>
-                                    HOT
-                                    </label>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-sm">Lọc</button>
-                        </form>
-                        </div></div>
+                <a href="{{ route('doitac.create') }}" class="btn btn-info btn-sm" style="margin-bottom:5px">Tạo mới</a>              
                 <div class="box">
                     <div class="box-header with-border">
                         <h3 class="box-title">Danh sách</h3>
@@ -62,7 +31,7 @@
                             <tr>
                                 <th style="width: 1%">#</th>
                                 <th style="width: 1%;white-space:nowrap">Thứ tự</th>
-                                <th width="150">Hình ảnh</th>
+                                <th width="150">Logo</th>
                                 <th>Tên</th>
                                 <th width="1%;white-space:nowrap">Thao tác</th>
                             </tr>
@@ -80,20 +49,13 @@
                                       <img class="img-thumbnail lazy" width="100" data-original="{{ $item->image_url ? Helper::showImage($item->image_url) : URL::asset('public/admin/dist/img/no-image.jpg') }}" alt="Nổi bật" title="Nổi bật" />
                                     </td>
                                     <td>
-                                        <a href="{{ route( 'cate.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
-                                         @if( $item->is_hot == 1 )
-                                          <label class="label label-danger">HOT</label>
-                                          @endif
-                                          @if($item->is_widget == 1)
-                                          <label class="label label-primary">WIDGET</label>
-                                          @endif
-                                        <p>{{ $item->description }}</p>
+                                        <a href="{{ route( 'doitac.edit', [ 'id' => $item->id ]) }}">{{ $item->name }}</a>
                                     </td>                                   
                                     <td style="white-space:nowrap; text-align:right">
-                                        <a class="btn btn-default btn-sm" href="{{ route('cate', [$item->cateParent->slug, $item->slug] ) }}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Xem</a>                
-                                        <a href="{{ route( 'cate.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>                 
+                                               
+                                        <a href="{{ route( 'doitac.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>                 
                                         @if( $item->product->count() == 0)
-                                        <a onclick="return callDelete('{{ $item->name }}','{{ route( 'cate.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a onclick="return callDelete('{{ $item->name }}','{{ route( 'doitac.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -160,7 +122,7 @@
                     strTemp = rows[i].id;
                     strOrder += strTemp.replace('row-','') + ";";
                 }     
-                updateOrder("cate", strOrder);
+                updateOrder("doitac", strOrder);
             }
         });
     });
