@@ -47,7 +47,7 @@
                 </div>               
                 
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-3 row">Logo (0 x 173px)</label>    
+                  <label class="col-md-3 row">Logo (0 x 120px)</label>    
                   <div class="col-md-9">
                     <img id="thumbnail_image" src="{{ old('image_url') ? Helper::showImage(old('image_url')) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="145" height="85">
                     

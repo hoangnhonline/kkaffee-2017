@@ -80,7 +80,7 @@
              $bannerArr = DB::table('doitac')->orderBy('display_order', 'asc')->get();   
              ?>
              @foreach($bannerArr as $banner)
-                <div class="item"><img src="{{ $banner->image_url }}" height="173" alt="{!! $banner->name !!}"></div>
+                <div class="item"><img src="{{ $banner->image_url }}" height="120" alt="{!! $banner->name !!}"></div>
                 @endforeach
                
             </div>
