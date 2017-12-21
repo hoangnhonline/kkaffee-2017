@@ -76,14 +76,13 @@
     <section id="customer" class="marg40">
         <div class="container">
             <div class="owl-carousel">
-                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
-                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
-                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
-                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
-                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
-                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
-                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
-                <div class="item"><img src="http://www.todayins.com/wp-content/uploads/citizens-logo.png" alt=""></div>
+             <?php 
+             $bannerArr = DB::table('doitac')->orderBy('display_order', 'asc')->get();   
+             ?>
+             @foreach($bannerArr as $banner)
+                <div class="item"><img src="{{ $banner->image_url }}" height="173" alt="{!! $banner->name !!}"></div>
+                @endforeach
+               
             </div>
         </div>
     </section>    
