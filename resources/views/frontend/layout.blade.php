@@ -43,7 +43,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js') }}"/1.4.2/respond.min.js') }}""></script>
     <![endif]-->
 </head>
-<body>
+<body @if($routeName == "product") data-spy="scroll" data-target="#myScrollspy" data-offset="15" @endif>
 <div class="fog"></div>
 @if($routeName == "product")
 <div id="fb-root"></div>
