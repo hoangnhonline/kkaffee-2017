@@ -54,9 +54,9 @@
                                     <td style="white-space:nowrap; text-align:right">
                                                
                                         <a href="{{ route( 'doitac.edit', [ 'id' => $item->id ]) }}" class="btn-sm btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>                 
-                                        @if( $item->product->count() == 0)
+                                       
                                         <a onclick="return callDelete('{{ $item->name }}','{{ route( 'doitac.destroy', [ 'id' => $item->id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-                                        @endif
+                                        
                                     </td>
                                 </tr>
                                 @endforeach
