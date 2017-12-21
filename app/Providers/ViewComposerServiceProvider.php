@@ -72,7 +72,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 	        	$arrProductInfo = Product::whereIn('product.id', $listProductId)->get();
 	        }
 	        $loadDistrict = District::join('branch', 'branch.district_id', '=', 'district.id')->select('district.id', 'district.name', 'district.city_id')->orderBy('branch.display_order')->get();	
-	        $listProduct = Product::where('product.status', 1)->orderBy('id', 'desc')->pluck('name', 'id')->toArray(); 
+	        $listProduct = Product::where('product.status', 1)->orderBy('id', 'desc')->select('slug', 'name', 'id', 'alias')->get(); 
                 
 			$view->with( [
 					'settingArr' => $settingArr, 
