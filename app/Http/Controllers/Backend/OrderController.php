@@ -46,7 +46,8 @@ class OrderController extends Controller
         if( $name != '' ){            
             $query->whereRaw(" ( customer_address.email LIKE '%".$name."%' ) OR ( customer_address.fullname LIKE '%".$name."%' )");
         }
-        $query->join('customer_address', 'customer_address.id', '=', 'orders.address_id');
+        $query->join('customer_address', 'customer_address.id', '=', 'orders.address_id')
+        $query->select(['orders.*', 'customer_address.*', 'orders.id as order_id']);
         $orders = $query->orderBy('orders.id', 'DESC')->paginate(20);
         $list_status = $this->list_status;
        

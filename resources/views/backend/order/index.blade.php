@@ -109,7 +109,7 @@
                              
                 <td style="text-align:right;width:100px">{{number_format($order->tong_tien)}}</td>
                 <td>
-                  <select @if($order->status != 0) disabled="disabled" @endif class="select-change-status form-control" order-id="{{$order->id}}" customer-id="{{$order->customer_id}}" >
+                  <select @if($order->status != 0) disabled="disabled" @endif class="select-change-status form-control" order-id="{{$order->order_id}}" customer-id="{{$order->customer_id}}" >
                     @foreach($list_status as $index => $status)
                     <option value="{{$index}}"
                       @if($index == $order->status)
@@ -121,9 +121,9 @@
                 </td>
                 <td style="text-align:right">
                 @if($order->status == 0)
-                <button class="btn btn-sm btn-primary btnXacnhan" id="" order-id="{{$order->id}}" customer-id="{{$order->customer_id}}" data-value="{{ $order->id }}" status="{{ $order->status }}">Xác nhận</button>
+                <button class="btn btn-sm btn-primary btnXacnhan" id="" order-id="{{$order->order_id}}" customer-id="{{$order->customer_id}}" data-value="{{ $order->order_id }}" status="{{ $order->status }}">Xác nhận</button>
                 @endif                   
-                  <a href="{{route('order.detail', $order->id)}}?status={{ $s['status'] }}&name={{ $s['name'] }}&date_from={{ $s['date_from'] }}&date_to={{ $s['date_to'] }}" class="btn btn-info btn-sm">Chi tiết</a>
+                  <a href="{{route('order.detail', $order->order_id)}}?status={{ $s['status'] }}&name={{ $s['name'] }}&date_from={{ $s['date_from'] }}&date_to={{ $s['date_to'] }}" class="btn btn-info btn-sm">Chi tiết</a>
                                  
                
                 </td>
