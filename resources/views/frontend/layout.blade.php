@@ -458,7 +458,7 @@
             });
             jQuery('#customer .owl-carousel').owlCarousel({
                 nav: true,
-                items: 6
+                items: 7
             });             
             if (jQuery(document).width() >= 992) {
                 jQuery(".cf_chat>a").click();
