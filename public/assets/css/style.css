@@ -288,7 +288,7 @@ a.nav-button-mobi{
     }
     .active-menu #nav ul ul{
         position: relative;width: 240px;
-        display: block;
+        display: none;
     }
     .active-menu #nav ul li ul li a{
         width: 240px;
@@ -301,9 +301,13 @@ a.nav-button-mobi{
         background: #999;
         color: #f1f1f1;
     }
+    #nav ul li:hover>ul{
+        display: none;
+    }
     #nav ul li i{
         position: absolute;
         right: 10px;
+        border: 1px solid #666;
     }
 
 }
@@ -610,20 +614,18 @@ footer .col-footer{
     float: left;
 }
 footer .col-footer-1{
-      
+   
     line-height: 20px;
 }
 footer .col-footer-1 p{
     text-align: justify;
 }
 footer .col-footer-2{
-    
-  
+   
     line-height: 25px;
 }
 footer .col-footer-3{
-    
-    
+   
 }
 footer .col-footer-3 a{
     display: block;
@@ -631,7 +633,7 @@ footer .col-footer-3 a{
     margin-bottom: 5px;
 }
 footer .col-footer-4{
-   
+    
 }
 footer .col-footer-4>a{
     margin-bottom: 10px;
@@ -2569,6 +2571,12 @@ span.txt-account{
     border: 1px solid #ffd900;
     border-radius: 5px 5px 0 0;
 	width: 280px;
+        max-width: 100%;
+}
+@media (max-width: 992px){
+    .cart-side.cart-info .nvn-class-affix{
+        width: 100%;
+    }
 }
 body .fog{
 	background: transparent;

@@ -96,9 +96,9 @@
                             <ul class="clearfix">                 
                         
                         @foreach($cateParentList as $parent)                                          
-                        <li class="level0">
-                            <a  href="{{ route('cate-parent', $parent->slug) }}" title="{{ $parent->name }}">
-                                {{ $parent->name }}
+                        <li class="">
+                            <a  href="javascript:void(0)" title="{{ $parent->name }}">
+                                {{ $parent->name }} <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             </a>
                             <?php 
                             $cateList = \DB::table('cate')->where('parent_id', $parent->id)->orderBy('display_order')->get();
@@ -107,12 +107,13 @@
                             @if(!empty($cateList))
                             <ul>
                                 @foreach($cateList as $cate)
-                                <li>
-                                    <a href="{{ route('cate', [$parent->slug, $cate->slug]) }}">{!! $cate->name !!}</a>
-                                    <?php 
+                                <?php 
                                     $grandList = \DB::table('grand')->where('cate_id', $cate->id)->orderBy('display_order')->get();
 
                                     ?>
+                                <li>
+                                    <a href="#">{!! $cate->name !!}<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    
                                     @if(!empty($grandList))
                                     <ul>
                                         @foreach($grandList as $grand)
@@ -434,6 +435,9 @@
                     jQuery("body").addClass("active-menu");
                 }
             });
+             jQuery('#nav ul>li>a i').click(function(){
+                jQuery(this).parent().parent().find('>ul').slideToggle('fast');
+          });
             jQuery(".fog").click(function () {
                 jQuery("body").removeClass("active-menu");
             });
