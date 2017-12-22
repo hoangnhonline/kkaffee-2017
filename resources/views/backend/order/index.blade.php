@@ -159,6 +159,7 @@ $(document).ready(function(){
 
   });
   $('.btnXacnhan').click(function(){   
+    $(this).attr('disabled', 'disabled');
     var status_id = 2;
     var order_id  = $(this).attr('order-id');
     var customer_id = $(this).attr('customer-id');
@@ -182,7 +183,7 @@ $(document).ready(function(){
         customer_id : customer_id
       },
       success: function (response) {
-        //location.reload()
+        location.reload()
       },
       error: function(response){
 
