@@ -19,7 +19,7 @@ use App\Models\Cate;
 use App\Models\Pages;
 use App\Models\Rating;
 
-use Helper, File, Session, Auth, Hash, Response;
+use Helper, File, Session, Auth, Hash, Response, URL;
 
 class HomeController extends Controller
 {
@@ -138,7 +138,7 @@ class HomeController extends Controller
         $id = $request->id;
         Session::put('choose_district', $id);
         Session::put('choose_city', $request->city_id);
-        return redirect()->route('home');
+        return redirect(URL::previous());
     }
     public function ajaxTab(Request $request){
         $table = $request->type ? $request->type : 'category';

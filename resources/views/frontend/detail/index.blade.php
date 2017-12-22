@@ -98,7 +98,7 @@
                         <span>Giảm giá 30%</span> cho tất cả các sản phẩm dưới đây
                     </p>-->                    
                     <div class="list-box-items" id="all">
-                        <div class="title-admin-content">SẢN PHẨM HOT</div>                        
+                        <div class="title-admin-content" style="font-size: 15px; color: #ffd900">SẢN PHẨM HOT</div>                        
                         @foreach($hotProductList as $product)
                         <div class="box-item">
                             <div class="image">
@@ -126,7 +126,7 @@
                     @if(isset($productArr[$cate->id]) )
                     <div class="list-box-items" id="{{ $cate->slug }}">
                         
-                        <div class="title-admin-content">{!! $cate->name !!}</div>
+                        <div class="title-admin-content" style="font-size: 15px; color: #ffd900">{!! $cate->name !!}</div>
                         @foreach($productArr[$cate->id] as $product)
                         <div class="box-item">
                             <div class="image">

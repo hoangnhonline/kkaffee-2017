@@ -592,7 +592,7 @@
                         <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         @foreach($loadDistrict as $dis)
-                        <li><a href="javascript:;" class="choose_district" data-city="{{ $dis->city_id }}" data-id="{{ $dis->id }}">{!! $dis->name !!}</a></li>
+                        <li><a href="{{ route('choose-district', ['city_id' => $dis->city_id, 'id' => $dis->id]) }}" data-city="{{ $dis->city_id }}" data-id="{{ $dis->id }}">{!! $dis->name !!}</a></li>
                         @endforeach
                     </ul>
                 </div>
