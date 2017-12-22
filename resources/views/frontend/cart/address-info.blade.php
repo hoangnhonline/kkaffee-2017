@@ -219,8 +219,8 @@
       step:15,
       minDate:0,
       datepicker: false,
-      minTime:0
-
+      minTime:new Date()
+      
     });
     $('#date_delivery').datetimepicker({
       format:'d/m/Y',      
