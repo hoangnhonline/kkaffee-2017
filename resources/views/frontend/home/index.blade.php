@@ -63,17 +63,17 @@
     <section id="welcome" class="marg40">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="title-section @if($isEdit) edit @endif" data-text="1" >{!! $textList[1] !!}</div>
                     <p data-text="2" @if($isEdit) class="edit" @endif>{!! $textList[2] !!}</p>
                 </div>
-                <div class="col-md-6">
+                <!--<div class="col-md-6">
                     <iframe height="315" src="https://www.youtube.com/embed/{!! $settingArr['video_youtube_id'] !!}" frameborder="0" allowfullscreen></iframe>
-                </div>
+                </div>-->
             </div>
         </div>
     </section><!-- End News -->
-    <section id="customer" class="marg40">
+    <!--<section id="customer" class="marg40">
         <div class="container">
             <div class="owl-carousel">
              <?php 
@@ -85,7 +85,7 @@
                
             </div>
         </div>
-    </section>    
+    </section>    -->
     
 </article>
 @stop

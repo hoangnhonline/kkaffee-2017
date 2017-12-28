@@ -226,7 +226,7 @@
                     </p>
                 </div>
                 <div class="col-footer col-footer-3 col-md-3">
-                    <div class="title-col-footer">TẬP ĐOÀN</div>                    
+                    <div class="title-col-footer">THÔNG TIN</div>                    
                     @if($footerLink)
                     @foreach($footerLink as $link)
                     <a href="{{ $link->link_url }}" title="{!! $link->link_text !!}">{!! $link->link_text !!}</a>
