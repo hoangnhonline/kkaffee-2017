@@ -97,7 +97,7 @@
                         
                         @foreach($cateParentList as $parent)                                          
                         <li class="">
-                            <a  href="javascript:void(0)" title="{{ $parent->name }}">
+                            <a  href="{{ route('cate-parent', $parent->slug ) }}" title="{{ $parent->name }}">
                                 {{ $parent->name }} <i class="fa fa-chevron-down" aria-hidden="true"></i>
                             </a>
                             <?php 
@@ -112,10 +112,10 @@
 
                                     ?>
                                 <li>
-                                    <a href="#">{!! $cate->name !!}<i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                                    <a href="{{ route('cate', [$parent->slug, $cate->slug] ) }}">{!! $cate->name !!}@if(!empty($grandList))<i class="fa fa-chevron-down" aria-hidden="true"></i>@endif</a>
                                     
                                     @if(!empty($grandList))
-                                    <ul>
+                                    <ul style="z-index:9999">
                                         @foreach($grandList as $grand)
                                         <li>
                                             <a href="{{ route('grand', [$parent->slug, $cate->slug, $grand->slug]) }}">{!! $grand->name !!}</a>
@@ -437,6 +437,7 @@
             });
              jQuery('#nav ul>li>a i').click(function(){
                 jQuery(this).parent().parent().find('>ul').slideToggle('fast');
+                return false;
           });
             jQuery(".fog").click(function () {
                 jQuery("body").removeClass("active-menu");
