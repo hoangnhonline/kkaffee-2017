@@ -90,7 +90,7 @@
       <li {{ in_array(\Request::route()->getName(), ['contact.edit', 'contact.index']) ? "class=active" : "" }}>
         <a href="{{ route('contact.index') }}">
           <i class="fa fa-pencil-square-o"></i> 
-          <span>Liên hệ</span>          
+          <span>Liên hệ / Khiếu nại</span>          
         </a>       
       </li>
       @endif    

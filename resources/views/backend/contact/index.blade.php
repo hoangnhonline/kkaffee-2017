@@ -25,7 +25,13 @@
           <h3 class="panel-title">Bộ lọc</h3>
         </div>
         <div class="panel-body">
-          <form class="form-inline" role="form" method="GET" action="{{ route('contact.index') }}" id="frmContact">                                             
+          <form class="form-inline" role="form" method="GET" action="{{ route('contact.index') }}" id="frmContact">   <div class="form-group">
+              <label for="email">Loại </label>
+              <select class="form-control" name="type" id="type">
+                <option value="1" {{ $type == 1 ? "selected" : "" }}>Liên hệ</option>
+                <option value="3" {{ $type == 3 ? "selected" : "" }}>Khiếu nại</option>
+              </select>
+            </div>                                          
             <div class="form-group">
               <label for="name">Email :</label>
               <input type="text" class="form-control" name="email" value="{{ $email }}">

@@ -17,39 +17,74 @@ class ContactController extends Controller
    
     public function store(Request $request)
     {
-       
-
         $dataArr = $request->all();
-        
-        $this->validate($request,[                       
-            'email' => 'email|required',
-            'fullname' => 'required',
-            'content' => 'required',
-            'phone' => 'required'         
-        ],
-        [            
-            'fullname.required' => 'Bạn chưa nhập họ và tên.',
-            'email.required' => 'Bạn chưa nhập email.',
-            'email.email' => 'Địa chỉ email không hợp lệ.',
-            'phone.required' => 'Bạn chưa nhập số điện thoại.',
-            'content.required' => 'Bạn chưa nhập nội dung.'            
-        ]);       
+        $type = isset($request->type) ? $request->type : 0;
+       // var_dump($type)
+        if($type == 3){
+            $this->validate($request,[                       
+                'title' => 'required',
+                'fullname' => 'required',
+                'content' => 'required',
+                'phone' => 'required'         
+            ],
+            [            
+                'fullname.required' => 'Bạn chưa nhập họ và tên.',
+                'title.required' => 'Bạn chưa nhập tiêu đề.',            
+                'phone.required' => 'Bạn chưa nhập số điện thoại.',
+                'content.required' => 'Bạn chưa nhập nội dung.'            
+            ]); 
+        }else{
+            $this->validate($request,[                       
+                'email' => 'email|required',
+                'fullname' => 'required',
+                'content' => 'required',
+                'phone' => 'required'         
+            ],
+            [            
+                'fullname.required' => 'Bạn chưa nhập họ và tên.',
+                'email.required' => 'Bạn chưa nhập email.',
+                'email.email' => 'Địa chỉ email không hợp lệ.',
+                'phone.required' => 'Bạn chưa nhập số điện thoại.',
+                'content.required' => 'Bạn chưa nhập nội dung.'            
+            ]);
+        }
+               
          $settingArr = Helper::setting();
         $rs = Contact::create($dataArr);
         $emailArr = explode(',', $settingArr['admin_email']);
-        Mail::send('frontend.contact.email',
-            [                   
-                'dataArr'             => $rs
-            ],
-            function($message) use ($dataArr, $settingArr, $emailArr) {                    
-                $message->subject('Khách hàng gửi liên hệ');
-                $message->to($emailArr);
-                $message->from('web.0917492306@gmail.com', 'Admin Website Kkaffee');
-                $message->sender('web.0917492306@gmail.com', 'Admin Website Kkaffee');
-        });
-        Session::flash('message', 'Gửi liên hệ thành công.');
-
-        return redirect()->route('contact');
+        
+        if($type == 3){
+            Mail::send('frontend.contact.email',
+                [                   
+                    'dataArr'             => $rs
+                ],
+                function($message) use ($dataArr, $settingArr, $emailArr) {                    
+                    $message->subject('Khách hàng gửi khiếu nại');
+                    $message->to($emailArr);
+                    $message->from('web.0917492306@gmail.com', 'Admin Website Kkaffee');
+                    $message->sender('web.0917492306@gmail.com', 'Admin Website Kkaffee');
+            });
+        }else{
+            Mail::send('frontend.contact.email',
+                [                   
+                    'dataArr'             => $rs
+                ],
+                function($message) use ($dataArr, $settingArr, $emailArr) {                    
+                    $message->subject('Khách hàng gửi liên hệ');
+                    $message->to($emailArr);
+                    $message->from('web.0917492306@gmail.com', 'Admin Website Kkaffee');
+                    $message->sender('web.0917492306@gmail.com', 'Admin Website Kkaffee');
+            });
+        }       
+        
+        if($type == 3){
+            Session::flash('message', 'Gửi khiếu nại thành công.');
+            return redirect()->route('pages', 'giai-quyet-khieu-nai');
+        }else{
+            Session::flash('message', 'Gửi liên hệ thành công.');
+            return redirect()->route('contact');
+        }
+        
     }
     public function storeThiCong(Request $request)
     {

@@ -22,7 +22,7 @@ class ContactController extends Controller
             return redirect()->route('product.index');
         }
         $status = isset($request->status) ? $request->status : 0;
-        $type = isset($request->type) ? $request->type : 0;
+        $type = isset($request->type) ? $request->type : 1;
         $email = isset($request->email) && $request->email != '' ? $request->email : '';
         $phone = isset($request->phone) && $request->phone != '' ? $request->phone : '';
         $project_id = isset($request->project_id) && $request->project_id != '' ? $request->project_id : null;

@@ -15,11 +15,57 @@
         <div class="container">
             <div class="title-section">
                 {!! $detailPage->title !!}
+
             </div>
         </div>
         <div class="container">
             <div class="content-single">
                {!! $detailPage->content !!}
+               <div class="clearfix" style="margin-top:20px"></div>
+               @if($detailPage->id == 10)
+               @if(Session::has('message'))
+                        
+                        <p class="alert alert-info" >{{ Session::get('message') }}</p>
+                        
+                        @endif
+                        @if (count($errors) > 0)                        
+                          <div class="alert alert-danger ">
+                            <ul>                           
+                                <li>Vui lòng nhập đầy đủ thông tin.</li>                            
+                            </ul>
+                          </div>                        
+                        @endif  
+                        <form class="block-form" action="{{ route('send-contact') }}" method="POST">
+                        {{ csrf_field() }}
+                        <div class="row">
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Họ tên khách hàng" value="{{ old('fullname') }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Số điện thoại" value="{{ old('phone') }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Tiêu đề" value="{{ old('title') }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <textarea name="content" id="content" rows="4" class="form-control" placeholder="Nội dung" style="margin: 0;">{{ old('content') }}</textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12 col-xs-12">
+                                <button type="submit" id="btnSave" class="btn btn-prmary btn-view" style="color:#FFF">Gửi khiếu nại</button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="type" value="3">
+                    </form>
+                
+                @endif
             </div>
             <div class="cart-info cart-side">
                 <div class="title-cart-info">THÔNG TIN GIỎ HÀNG</div>
