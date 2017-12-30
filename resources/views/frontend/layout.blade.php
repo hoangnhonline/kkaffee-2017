@@ -491,27 +491,27 @@
     @yield('js')
     <script type="text/javascript">
         $(document).ready(function(){
-            @if(!Session::get('choose_district'))
-            jQuery("#popup_khuvuc").modal();
-            @endif
+            //@if(!Session::get('choose_district'))
+            //jQuery("#popup_khuvuc").modal();
+            //@endif
             $.ajaxSetup({
                   headers: {
                       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                   }
               });
-            $('a.choose_district').click(function(){
-                $.ajax({
-                    url : "{{ route('choose-district') }}",
-                    type : "GET",
-                    data : {
-                        id : $(this).data('id'),
-                        city_id : $(this).data('city')
-                    },
-                    success: function(){
-                        location.reload();
-                    }
-                });
-            });
+            // $('a.choose_district').click(function(){
+            //     $.ajax({
+            //         url : "{{ route('choose-district') }}",
+            //         type : "GET",
+            //         data : {
+            //             id : $(this).data('id'),
+            //             city_id : $(this).data('city')
+            //         },
+            //         success: function(){
+            //             location.reload();
+            //         }
+            //     });
+            // });
             $('.edit').click(function(){
                 $('#txtId').val($(this).data('text'));
                 $('#txtContent').val($(this).html());
