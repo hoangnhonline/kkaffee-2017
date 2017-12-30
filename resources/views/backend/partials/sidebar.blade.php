@@ -15,7 +15,7 @@
     <!-- sidebar menu: : style can be found in sidebar.less -->    
     <ul class="sidebar-menu">
       <li class="header">MAIN NAVIGATION</li>
-      @if(Auth::user()->id != 5)
+      @if(Auth::user()->id != 5 && Auth::user()->role > 1)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['product.index', 'product.create', 'product.edit', 'cate-type.index', 'cate-type.edit', 'cate-type.create', 'cate.index', 'cate.edit', 'cate.create', 'cate-parent.index', 'cate-parent.edit', 'cate-parent.create', 'grand.index', 'grand.edit', 'grand.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-opencart"></i> 
