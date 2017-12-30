@@ -76,7 +76,7 @@
               <th style="text-align:left;width:200px">Giao hàng đến</th>           
               <th style="text-align:right;width:100px">Tổng hoá đơn</th>
               <th width="120px" style="white-space:nowrap">Trạng thái</th>
-              <th width="100px" style="white-space:nowrap"> </th>
+              <th width="120px" style="white-space:nowrap"> </th>
             </tr>
             <tbody>
 
@@ -122,7 +122,7 @@
                 <td style="text-align:right">
                            
                   <a href="{{route('order.detail', $order->order_id)}}?status={{ $s['status'] }}&name={{ $s['name'] }}&date_from={{ $s['date_from'] }}&date_to={{ $s['date_to'] }}" class="btn btn-info btn-sm">Chi tiết</a>
-                                 
+                  <a onclick="return callDelete('{{ route( 'order.destroy', [ 'id' => $order->order_id ]) }}');" class="btn-sm btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>               
                
                 </td>
                 </tr>
@@ -149,7 +149,20 @@
 @stop
 @section('js')
 <script type="text/javascript">
-
+function callDelete(url){  
+  swal({
+    title: 'Bạn chắc chắn xóa ?',
+    text: "Dữ liệu sẽ không thể phục hồi.",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes'
+  }).then(function() {
+    location.href= url;
+  })
+  return flag;
+}
 $(document).ready(function(){
   setTimeout(function(){ window.location.reload(); }, 15000);
   $('#status').change(function(){

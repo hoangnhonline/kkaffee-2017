@@ -23,13 +23,12 @@
         <div class="container">
             <div class="content-single">
                 <div class="marg40">
-                    <h3 class="title-contact">TẬP ĐOÀN SIÊU THỊ 24H LIÊN KẾT K KAFFEE</h3>
+                    <h3 class="title-contact">HỆ THỐNG CAFE SIÊU THỊ KHANG AN 24/7</h3>
                     <p class="info-contact">
-                        <b>Địa chỉ:</b> 216 Hoàng Văn Thụ, phường 4, quận Tân Bình, thành phố Hồ Chí Minh<br/>
-                        <b>Điện thoại:</b> 0909 58 57 49<br/>
-                        <b>Email:</b> tungocsang88@gmail.com<br/>
-                        <b>Website:</b> www.nuocuongtinhkhiet.com<br/>
-                        <b>Fax:</b> 0123456789
+                        <b>Địa chỉ:</b>  Cao Ốc An Thịnh, 16A Thái Thuận, Phường An Phú, Quận 2<br/>
+                        <b>Điện thoại:</b> 0981 323 232<br/>
+                        <b>Email:</b> khangan247@gmail.com<br/>
+                        <b>Website:</b> http://kshop247.vn<br/>                      
                     </p>
                 </div>
                 <div class="marg40">
@@ -77,7 +76,7 @@
                         </form>
                 </div>
                 <div id="map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62683.929118135115!2d106.35364200390518!3d10.906930811569973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310b283259d267db%3A0xe8a16cc02a5737fc!2zSOG6rXUgTmdoxKlhLCDEkOG7qWMgSMOyYSwgTG9uZyBBbiwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1506307464721" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.169099259521!2d106.73682421480105!3d10.798357492306684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752611da74503d%3A0x483948608a7770b8!2zMTYgVGjDoWkgVGh14bqtbiwgS2h1IMSRw7QgdGjhu4sgQW4gUGjDuiBBbiBLaMOhbmgsIEFuIFBow7osIFF14bqtbiAyLCBI4buTIENow60gTWluaA!5e0!3m2!1svi!2s!4v1514642000317" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="cart-info cart-side">

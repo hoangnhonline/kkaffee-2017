@@ -50,6 +50,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::post('/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);
         Route::get('/{order_id}/chi-tiet', ['as' => 'order.detail', 'uses' => 'OrderController@orderDetail']);
         Route::post('/delete-order-detail', ['as' => 'order.detail.delete', 'uses' => 'OrderController@orderDetailDelete']);
+        Route::get('{id}/destroy', ['as' => 'order.destroy', 'uses' => 'OrderController@destroy']);
     });
     Route::group(['prefix' => 'hot-cate'], function () {
         Route::get('/', ['as' => 'hot-cate.index', 'uses' => 'HotCateController@index']);

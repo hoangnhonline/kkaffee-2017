@@ -65,7 +65,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-3 row">Thumbnail ( 284x284 px)</label>    
+                  <label class="col-md-3 row">Thumbnail ( 570x284 px)</label>    
                   <div class="col-md-9">
                     <img id="thumbnail_image" src="{{ old('image_url') ? Helper::showImage(old('image_url')) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="206" height="116">
                     

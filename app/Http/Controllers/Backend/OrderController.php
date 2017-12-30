@@ -15,7 +15,7 @@ use App\Models\Settings;
 use App\Models\CustomerAddress;
 
 use DB;
-use Mail;
+use Mail, Session, URL;
 class OrderController extends Controller
 {
     protected $list_status = [
@@ -201,5 +201,15 @@ class OrderController extends Controller
         }
       
         return 'success';
+    }
+    public function destroy($id)
+    {
+        // delete
+        $model = Orders::find($id);
+        $model->delete();
+        OrderDetail::where('order_id', $id)->delete();
+        // redirect
+        Session::flash('message', 'Xóa thành công');
+        return redirect(URL::previous());
     }
 }

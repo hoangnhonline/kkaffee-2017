@@ -71,7 +71,7 @@
                 <div class="clearfix"></div>
               <!-- textarea -->
               <div class="form-group" style="margin-top:10px;margin-bottom:10px">  
-                  <label class="col-md-3 row">Thumbnail ( 284x284 px)</label>    
+                  <label class="col-md-3 row">Thumbnail ( 570x284 px)</label>    
                   <div class="col-md-9">
                     <img id="thumbnail_image" src="{{ $detail->image_url ? Helper::showImage($detail->image_url ) : URL::asset('public/admin/dist/img/img.png') }}" class="img-thumbnail" width="206" height="116">
                     <input type="hidden" name="image_url" id="image_url" value="{{ old('image_url', $detail->image_url) }}">
