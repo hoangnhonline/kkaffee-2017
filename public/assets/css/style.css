@@ -543,7 +543,7 @@ section#welcome p{
 }
 #service-us .item-service{
     float: left;
-    width: calc(25% - 4px);
+    width: calc(50% - 4px);
     margin: 0 2px;
     position: relative;
 }
