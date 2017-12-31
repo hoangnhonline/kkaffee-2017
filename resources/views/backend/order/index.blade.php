@@ -91,7 +91,7 @@
                 <?php 
 
                 ?>
-                #{{ str_pad($order->id, 6,'0', STR_PAD_LEFT) }}</a> 
+                #{{ str_pad($order->order_id, 6,'0', STR_PAD_LEFT) }}</a> 
                 <span style="color:#555"> bởi {{$order->customer->fullname}}</span>
                 <br>
                 <a href="mailto:">{{ $order->customer->email }}</a>
