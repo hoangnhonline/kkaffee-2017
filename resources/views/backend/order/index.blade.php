@@ -98,7 +98,7 @@
                 <br>
                 {{ $order->customer->phone }}
                 </td>
-                <td style="text-align:center;width:150px;white-space:nowrap">{{ date('d/m/Y H:i ', strtotime($order->created_at))}}</td>
+                <td style="text-align:center;width:150px;white-space:nowrap">{{ date('d/m/Y H:i ', strtotime($order->time_mua))}}</td>
                 <td style="text-align:center;width:150px;white-space:nowrap">
                 {{ $order->date_delivery ? date('d/m/Y', strtotime($order->date_delivery)) : "" }} {{ $order->time_delivery }} </td>
                 <td>                  
