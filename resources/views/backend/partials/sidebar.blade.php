@@ -41,7 +41,7 @@
           <span>Đơn hàng</span>          
         </a>       
       </li>              
-      @if(Auth::user()->id != 5)
+      @if(Auth::user()->id != 5 && Auth::user()->role > 1)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : '' }}">
         <a href="#">
           <i class="fa fa-twitch"></i> 
@@ -94,12 +94,14 @@
         </a>       
       </li>
       @endif    
+      @if(Auth::user()->role == 3)
       <li {{ in_array(\Request::route()->getName(), ['banner.list', 'banner.edit', 'banner.create']) ? "class=active" : "" }}>
         <a href="{{ route('banner.list') }}">
           <i class="fa fa-file-image-o"></i> 
           <span>Banner</span>          
         </a>       
       </li>       
+      @endif
       @if(Auth::user()->role == 3)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['branch.edit', 'branch.index', 'branch.create', 'menu.index', 'account.index', 'info-seo.index', 'settings.index', 'settings.noti', 'menu.index', 'video.index', 'video.edit', 'video.create']) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 2 ) || (in_array(\Request::route()->getName(), ['custom-link.edit', 'custom-link.index', 'custom-link.create']) && isset($block_id) && $block_id == 1 ) ? 'active' : '' }}">
         <a href="#">
