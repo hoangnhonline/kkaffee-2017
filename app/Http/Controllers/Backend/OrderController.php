@@ -124,17 +124,17 @@ class OrderController extends Controller
                 $order_id =str_pad($order->id, 6, "0", STR_PAD_LEFT);
                 
                 if(!empty($emailArr)){
-                    // Mail::send('frontend.cart.done-email',
-                    //     [
-                    //         'fullname'          => $addressInfo->fullname,
-                    //         'order_id' => $order_id                    
-                    //     ],
-                    //     function($message) use ($emailArr, $order_id) {
-                    //         $message->subject('Hoàn tất đơn hàng #'.$order_id);
-                    //         $message->to($emailArr);
-                    //         $message->from('kkaffee.vn@gmail.com', 'KKAFFEE');
-                    //         $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
-                    // });
+                    Mail::send('frontend.cart.done-email',
+                        [
+                            'fullname'          => $addressInfo->fullname,
+                            'order_id' => $order_id                    
+                        ],
+                        function($message) use ($emailArr, $order_id) {
+                            $message->subject('Hoàn tất đơn hàng #'.$order_id);
+                            $message->to($emailArr);
+                            $message->from('kkaffee.vn@gmail.com', 'KKAFFEE');
+                            $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
+                    });
                 }      
                 break;
                 case "2":
