@@ -55,7 +55,7 @@ class UserController extends Controller
         if (Auth::validate($dataArr)) {
             $dataArr['status'] = 1;
             if (Auth::attempt($dataArr)) {                    
-                if(Auth::user()->id != 5){
+                if(Auth::user()->id != 5 && Auth::user()->role  > 1){
                     return redirect()->route('product.index');    
                 }else{
                     return redirect()->route('orders.index');    
