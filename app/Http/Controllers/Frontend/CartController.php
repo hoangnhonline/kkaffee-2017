@@ -39,6 +39,7 @@ class CartController extends Controller
         // Session::put('userId', 1);
         // Session::forget('login');
         // Session::forget('userId');
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
 
     }
     public function index(Request $request)

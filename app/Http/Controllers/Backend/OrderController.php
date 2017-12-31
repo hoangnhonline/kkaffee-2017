@@ -24,7 +24,18 @@ class OrderController extends Controller
         3 => 'Đã hoàn thành',
         4 => 'Đã huỷ'    
       ];
+    public function __construct(){
+        // Session::put('products', [
+        //     '1' => 2,
+        //     '3' => 3
+        // ]);
+        // Session::put('login', true);
+        // Session::put('userId', 1);
+        // Session::forget('login');
+        // Session::forget('userId');
+        date_default_timezone_set("Asia/Ho_Chi_Minh");
 
+    }
     public function index(Request $request){     
         $s['status'] = $status = isset($request->status) ? $request->status : -1;
         $s['date_from'] = $date_from = isset($request->date_from) && $request->date_from !='' ? $request->date_from : date('d-m-Y');
