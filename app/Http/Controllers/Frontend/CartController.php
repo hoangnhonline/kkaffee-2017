@@ -262,9 +262,9 @@ class CartController extends Controller
             $price = $product->is_sale ? $product->price_sale : $product->price;        
             $order['tong_tien'] += $price * $getlistProduct[$product->id];
         }
-
-        $order['tong_tien'] = $order['tien_thanh_toan'] = $order['tong_tien'] + $order['phi_van_chuyen'] + $order['service_fee'] + $order['phi_cod'];
-       
+        $order['phi_phuc_vu'] = $order['tong_tien']*10/100;
+        $order['tong_tien'] = $order['tien_thanh_toan'] = $order['tong_tien'] + $order['phi_van_chuyen'] + $order['service_fee'] + $order['phi_cod'] + $order['phi_phuc_vu'];
+        
         $getOrder = Orders::create($order);
 
         $order_id = $getOrder->id;
