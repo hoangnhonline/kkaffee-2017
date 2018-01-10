@@ -72,7 +72,12 @@ Route::group(['namespace' => 'Frontend'], function()
         Route::get('don-hang-cua-toi', ['as' => 'order-history', 'uses' => 'OrderController@history']);
         Route::get('thong-bao-cua-toi', ['as' => 'notification', 'uses' => 'CustomerController@notification']);
         Route::get('thong-tin-tai-khoan', ['as' => 'account-info', 'uses' => 'CustomerController@accountInfo']);
-        Route::get('so-dia-chi', ['as' => 'account-address', 'uses' => 'CustomerController@address']);
+        Route::group(['prefix' => 'so-dia-chi'], function () {
+            Route::get('/', ['as' => 'account-address', 'uses' => 'CustomerController@address']);
+            Route::match(['get', 'post'], '/them-moi', ['as' => 'account-address-create', 'uses' => 'CustomerController@createAddress']);
+            Route::match(['get', 'post'], '/chinh-sua/{id}', ['as' => 'account-address-edit', 'uses' => 'CustomerController@editAddress']);
+            Route::post('/xoa/{id}', ['as' => 'account-address-destroy', 'uses' => 'CustomerController@cAddress']);
+        });
         Route::get('doi-mat-khau', ['as' => 'change-password', 'uses' => 'CustomerController@changePassword']);
         Route::post('cap-nhat', ['as' => 'update-customer', 'uses' => 'CustomerController@update']);
         Route::post('save-new-password', ['as' => 'save-new-password', 'uses' => 'CustomerController@saveNewPassword']);

@@ -10,7 +10,7 @@
       <div class="breadcrumbs">
           <ul>
               <li><a href="/">Trang chủ</a></li>
-              <li>Thông tin đặt hàng</li>
+              <li>Tài khoản</li>
           </ul>
       </div>
   </div>
@@ -36,45 +36,47 @@
                     <div class="title-section">
                         Số địa chỉ
                     </div>
-                    @if(Session::has('message'))                        
-                        <p class="alert alert-info" >{{ Session::get('message') }}</p>                  
-                    @endif
-                    @if (count($errors) > 0)                        
-                        <div class="alert alert-danger ">
-                            <ul>                           
-                                <li>Vui lòng nhập đầy đủ thông tin.</li>                            
-                            </ul>
-                        </div>                        
-                    @endif
-                    <div class="row clearfix">
-                        @if ($addressPrimary)
-                            <div class="col-md-6">
-                                <div class="little-title">ĐỊA CHỈ MẶC ĐỊNH</div>
-                                <div class="well wll">
-                                    <p>
-                                        Tên người nhận: <b>{{ $addressPrimary->fullname }}</b>
-                                    </p>
-                                    <p>
-                                        Địa chỉ: <b>{{ $addressPrimary->address }}, {{ $addressPrimary->ward->name }}, {{ $addressPrimary->district->name }}, {{ $addressPrimary->city->name }}</b>
-                                    </p>
-                                    <p>
-                                        Điện thoại: <b>{{ $addressPrimary->phone }}</b>
-                                    </p>
-                                    @if ($addressPrimary->email)
-                                        Email: <b>{{ $addressPrimary->email }}</b>
-                                    @endif
-                                </div>
-                            </div>
-                        @endif
-                        @if (!$listAddress->isEmpty())
-                            <div class="col-md-12">
-                                <div class="little-title">ĐỊA CHỈ KHÁC</div>
-                                <div class="row clearfix">
-                                    @foreach ($listAddress as $address)
-                                        <div class="col-md-6">
-                                            <div class="well wll">
+                    <div class="box-acount-address text-center">
+                        <a href="{{ route('account-address-create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Thêm địa chỉ mới</a>
+                    </div>
+                    @if ($addressPrimary)
+                        <div class="box-acount-address">
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <p>
+                                                <b>{{ $addressPrimary->fullname }}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-success"><i class="fa fa-check-square-o" aria-hidden="true"></i> Địa chỉ chính</span>
+                                            </p>
+                                            <p>
+                                                Địa chỉ: <b>{{ $addressPrimary->address }}, {{ $addressPrimary->ward->name }}, {{ $addressPrimary->district->name }}, {{ $addressPrimary->city->name }}</b>
+                                            </p>
+                                            <p>
+                                                Điện thoại: <b>{{ $addressPrimary->phone }}</b>
+                                            </p>
+                                            @if ($addressPrimary->email)
                                                 <p>
-                                                    Tên người nhận: <b>{{ $address->fullname }}</b>
+                                                    Email: <b>{{ $addressPrimary->email }}</b>
+                                                </p>
+                                            @endif
+                                        </td>
+                                        <td></td>
+                                        <td><a href="{{ route('account-address-edit', [$addressPrimary->id]) }}">Chỉnh sửa</a></td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+                    @if (!$listAddress->isEmpty())
+                        @foreach ($listAddress as $address)
+                            <div class="box-acount-address">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p>
+                                                    <b>{{ $address->fullname }}</b>
                                                 </p>
                                                 <p>
                                                     Địa chỉ: <b>{{ $address->address }}, {{ $address->ward->name }}, {{ $address->district->name }}, {{ $address->city->name }}</b>
@@ -82,18 +84,22 @@
                                                 <p>
                                                     Điện thoại: <b>{{ $address->phone }}</b>
                                                 </p>
-                                                @if ($addressPrimary->email)
-                                                    Email: <b>{{ $address->email }}</b>
+                                                @if ($address->email)
+                                                    <p>
+                                                        Email: <b>{{ $address->email }}</b>
+                                                    </p>
                                                 @endif
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
+                                            </td>
+                                            <td></td>
+                                            <td><a href="{{ route('account-address-edit', [$address->id]) }}">Chỉnh sửa</a></td>
+                                            <td><a href="{{ route('account-address-destroy', [$address->id]) }}" class="text-danger">Xóa</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        @endif
-                    </div>
+                        @endforeach
+                    @endif
               </div>
-             
           </div><!--End tab custom-->
       </div>
     </section><!-- End News -->

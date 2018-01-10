@@ -10,7 +10,7 @@
       <div class="breadcrumbs">
           <ul>
               <li><a href="/">Trang chủ</a></li>
-              <li>Thông tin đặt hàng</li>
+              <li>Tài khoản</li>
           </ul>
       </div>
   </div>
