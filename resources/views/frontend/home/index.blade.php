@@ -5,7 +5,8 @@
 @section('content')
 <article>    
      <?php 
-    $bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3])->orderBy('display_order', 'asc')->get();   
+    $bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+    $deals = DB::table('product')->where(['is_sale' => 1])->count();
     ?>
     <section class="block-slide marg40">
         @if($bannerArr)
@@ -32,14 +33,36 @@
             <p class="text-center @if($isEdit) edit @endif" data-text="4">{!! $textList[4] !!}</p>
         </div>
         <div class="container clearfix">
-            @foreach($cateParentList as $services)
-            <div class="item-service">
-                <a href="{{ route('cate-parent', $services->slug ) }}" title="{!! $services->name !!}">
-                    <div class="image"><img src="{{ Helper::showImage($services->image_url) }}" alt="{!! $services->name !!}"/></div>
-                    <h2>{!! $services->name !!}</h2>
-                </a>
+            <div class="row marg-20">
+                <div class="col-md-3 marg20">
+                    <div class="index-sidebar">
+                        <div class="nvn-title-side">
+                            <i class="fa fa-star" aria-hidden="true"></i> Deals hot today
+                        </div>
+                        <div class="nvn-body-side">
+                            <ul>
+                                <li><a href="#">All deals</a><span>{{ $deals }}</span></li>
+                                @foreach($cateParentList as $services)
+                                    <?php
+                                    $deals = DB::table('product')->where(['is_sale' => 1, 'parent_id' => $services->id])->count();
+                                    ?>
+                                    <li><a href="{{ route('cate-parent', $services->slug ) }}">{{ $services->name }}</a><span>{{ $deals }}</span></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9 marg20">
+                    @foreach($cateParentList as $services)
+                        <div class="item-service">
+                            <a href="{{ route('cate-parent', $services->slug ) }}" title="{!! $services->name !!}">
+                                <div class="image"><img src="{{ Helper::showImage($services->image_url) }}" alt="{!! $services->name !!}"/></div>
+                                <h2>{!! $services->name !!}</h2>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
             </div>
-            @endforeach
         </div>
     </section><!-- End -->
     <?php 

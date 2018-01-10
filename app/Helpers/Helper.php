@@ -241,7 +241,9 @@ class Helper
           $seo = $arrSeo[url()->current()];
         }
         if(empty($seo)){
-          $seo['title'] = $seo['description'] = $seo['keywords'] = "Trang chủ NhaDat";
+            $seo['title'] = 'HỆ THỐNG CAFE SIÊU THỊ KHANG AN 24/7';
+            $seo['description'] = 'HỆ THỐNG CAFE SIÊU THỊ KHANG AN 24/7 là siêu thị tiện ích 24h bán lẻ bánh kẹo, đồ hộp, đồ dùng gia đình giá rẻ, sản phẩm ... Với nhiều chi nhánh giúp cho bạn dễ dàng chọn lựa.';
+            $seo['keywords'] = "kshop247";
         }      
         return $seo;
     }

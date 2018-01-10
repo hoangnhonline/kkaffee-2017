@@ -13,6 +13,7 @@ use App\Models\Country;
 use App\Models\CustomerNotification;
 use Helper, File, Session, Auth, Hash, Validator;
 use Mail;
+use App\Models\CustomerAddress;
 
 class CustomerController extends Controller
 {
@@ -226,6 +227,19 @@ class CustomerController extends Controller
        $customer = Customer::where('email', $email)->first();
 
        return is_null($customer) ? 0 : 1;
+    }
+    public function address(){
+        if(!Session::get('userId')){
+            return redirect()->route('home');
+        }
+        $seo['title'] = $seo['description'] = $seo['keywords'] = "Thông tin tài khoản";     
+        $customer_id = Session::get('userId');
+        $customer = Customer::find($customer_id);
+        
+        $addressPrimary = CustomerAddress::where(['customer_id' => $customer_id, 'is_primary' => 1])->first();
+        $listAddress = CustomerAddress::where(['customer_id' => $customer_id, 'is_primary' => 0])->get();
+        
+        return view('frontend.account.address', compact('seo', 'customer', 'addressPrimary', 'listAddress'));
     }
 }
 

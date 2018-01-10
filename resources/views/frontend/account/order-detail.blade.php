@@ -25,8 +25,8 @@
                   <ul class="tab-menu">
                       <li ><a href="{{ route('account-info') }}"><i class="fa fa-user" aria-hidden="true"></i> Thông tin tài khoản</a></li>
                       <li class="active"><a href="{{ route('order-history') }}"><i class="fa fa-list-alt" aria-hidden="true"></i> Quản lý đơn hàng</a></li>
-                      <li><a href="javascript:void(0)" ><i class="fa fa-home" aria-hidden="true"></i> Số địa chỉ</a></li>
-                      <li><a href="javascript:void(0)" ><i class="fa fa-star" aria-hidden="true"></i> Điểm tích luỹ</a></li>
+                      <li><a href="{{ route('account-address') }}" ><i class="fa fa-home" aria-hidden="true"></i> Số địa chỉ</a></li>
+                      <!--<li><a href="javascript:void(0)" ><i class="fa fa-star" aria-hidden="true"></i> Điểm tích luỹ</a></li>-->
                   </ul>
               </div>              
               <div class="col-tab-content admin-content" id="all">

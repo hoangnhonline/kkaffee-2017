@@ -31,7 +31,7 @@
                         @endif
                         
                         @if($detail->is_sale == 1 && $detail->price_sale > 0)
-                        <small>{{ number_format($detail->price_sale) }}đ</small>
+                            <small>{{ number_format($detail->price_sale) }}đ</small>
                         @endif
                     </div>
                     <div class="social block-share">
@@ -52,7 +52,8 @@
                         {!! $detail->description !!}
                     </p>
                     @endif
-                    <button type="button" data-id="{{ $detail->id }}" class="btn btn-yellow btn-flat @if(Session::has('login')) btn-order-main @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif> <i class="glyphicon glyphicon-shopping-cart"></i> ĐẶT HÀNG</button>
+                    <button type="button" data-id="{{ $detail->id }}" class="btn btn-yellow btn-flat @if(Session::has('login')) btn-order-main @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif> <i class="glyphicon glyphicon-shopping-cart"></i> MUA NGAY</button>
+                    <button type="button" data-id="{{ $detail->id }}" class="btn btn-yellow btn-flat @if(Session::has('login')) btn-order @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif> <i class="glyphicon glyphicon-shopping-cart"></i> THÊM VÀO GIỎ HÀNG</button>
                 </div>
             </div>
         </div>

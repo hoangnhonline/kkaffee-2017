@@ -2649,3 +2649,43 @@ body.active-menu .fog{
     display:block;
     color: #333;
 }
+.index-sidebar{
+    box-shadow: 0 0 1px 2px #ddd;
+    border-radius: 5px;
+}
+.index-sidebar .nvn-title-side{
+    line-height: 40px;
+    color: #fff;
+    background: #ffd900;
+    border-radius: 5px 5px 0 0;
+    font-size: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 15px;
+}
+.index-sidebar .nvn-body-side{
+    padding: 0 15px;
+}
+.index-sidebar .nvn-body-side ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.index-sidebar .nvn-body-side ul li{
+    position: relative;
+}
+.index-sidebar .nvn-body-side ul li a{
+    color: #333;
+    display: block;
+    padding: 10px 0;
+}
+.index-sidebar .nvn-body-side ul li a:hover{
+    color: #ffd900;
+    text-decoration: none;
+}
+.index-sidebar .nvn-body-side ul li span{
+    position: absolute;
+    top: 10px;
+    right: 0;
+    font-size: 11px;
+}
