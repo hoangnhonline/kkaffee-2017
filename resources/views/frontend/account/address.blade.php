@@ -46,8 +46,8 @@
                             </ul>
                         </div>                        
                     @endif
-                    @if ($addressPrimary)
-                        <div class="row clearfix">
+                    <div class="row clearfix">
+                        @if ($addressPrimary)
                             <div class="col-md-6">
                                 <div class="little-title">ĐỊA CHỈ MẶC ĐỊNH</div>
                                 <div class="well wll">
@@ -65,8 +65,33 @@
                                     @endif
                                 </div>
                             </div>
-                        </div>
-                    @endif
+                        @endif
+                        @if (!$listAddress->isEmpty())
+                            <div class="col-md-12">
+                                <div class="little-title">ĐỊA CHỈ KHÁC</div>
+                                <div class="row clearfix">
+                                    @foreach ($listAddress as $address)
+                                        <div class="col-md-6">
+                                            <div class="well wll">
+                                                <p>
+                                                    Tên người nhận: <b>{{ $address->fullname }}</b>
+                                                </p>
+                                                <p>
+                                                    Địa chỉ: <b>{{ $address->address }}, {{ $address->ward->name }}, {{ $address->district->name }}, {{ $address->city->name }}</b>
+                                                </p>
+                                                <p>
+                                                    Điện thoại: <b>{{ $address->phone }}</b>
+                                                </p>
+                                                @if ($addressPrimary->email)
+                                                    Email: <b>{{ $address->email }}</b>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+                    </div>
               </div>
              
           </div><!--End tab custom-->

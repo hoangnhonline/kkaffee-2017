@@ -74,7 +74,7 @@ class OrderController extends Controller
         $s['name'] = $request->name;
         $s['date_from'] = $request->date_from;
         $s['date_to'] = $request->date_to;
-
+        
         return view('backend.order.detail', compact('order', 'order_detail', 'list_status', 's'));
     }
 

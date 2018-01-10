@@ -307,7 +307,6 @@
               dataType : 'html',
               success : function(data){
                 obj.parents('.div-parent').find('.district_id').html(data);      
-                $('#branch_div').html('');                          
               }
             });
           
