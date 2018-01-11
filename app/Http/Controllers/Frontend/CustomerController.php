@@ -97,14 +97,14 @@ class CustomerController extends Controller
         $customer = Customer::where('email', $email)->first();
         $customer->key_reset = $key;
         $customer->save();
-        // Mail::send('frontend.account.forgot', [
-        //     'key' => $key
-        //         ], function($message) use ($email) {
-        //     $message->subject('Yêu cầu thay đổi mật khẩu');
-        //     $message->to($email);
-        //     $message->from('kkaffee.vn@gmail.com', 'K Minimart & Kaffee');
-        //             $message->sender('kkaffee.vn@gmail.com', 'K Minimart & Kaffee');
-        // });
+        Mail::send('frontend.account.forgot', [
+            'key' => $key
+                ], function($message) use ($email) {
+            $message->subject('Yêu cầu thay đổi mật khẩu');
+            $message->to($email);
+            $message->from('kkaffee.vn@gmail.com', 'K Minimart & Kaffee');
+                    $message->sender('kkaffee.vn@gmail.com', 'K Minimart & Kaffee');
+        });
 
         return redirect()->route('gui-lai-mk', "success=1");
     }
