@@ -52,8 +52,8 @@
                         {!! $detail->description !!}
                     </p>
                     @endif
-                    <button type="button" data-id="{{ $detail->id }}" class="btn btn-yellow btn-lg btn-flat @if(Session::has('login')) btn-order-main @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif>MUA NGAY</button>
-                    <button type="button" data-id="{{ $detail->id }}" class="btn btn-grey btn-lg btn-flat @if(Session::has('login')) btn-order @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif>THÊM VÀO GIỎ HÀNG</button>
+                    <button type="button" data-id="{{ $detail->id }}" class="btn btn-yellow btn-flat @if(Session::has('login')) btn-order-main @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif>MUA NGAY</button>
+                    <button type="button" data-id="{{ $detail->id }}" class="btn btn-grey btn-flat @if(Session::has('login')) btn-order @endif" @if(!Session::has('login')) data-dismiss="modal" data-toggle="modal" data-target="#login-form" @endif>THÊM VÀO GIỎ HÀNG</button>
                 </div>
             </div>
         </div>
