@@ -21,10 +21,10 @@ class OrderController extends Controller
 {
 
   protected $status = [
-    0 => 'Chờ xử lý',
-    1 => 'Đang giao hàng',    
-    3 => 'Đã hoàn thành',
-    4 => 'Đã huỷ'    
+     0 => 'Chờ xử lý',       
+      2 => 'Đang vận chuyển',
+      3 => 'Đã hoàn thành',
+      4 => 'Đã huỷ'    
   ];
 
   public function detail(Request $request)
