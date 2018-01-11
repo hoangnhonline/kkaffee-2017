@@ -13,6 +13,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Settings;
 use App\Models\CustomerAddress;
+use App\Models\City;
 
 use DB;
 use Mail, Session, URL;
@@ -74,8 +75,9 @@ class OrderController extends Controller
         $s['name'] = $request->name;
         $s['date_from'] = $request->date_from;
         $s['date_to'] = $request->date_to;
-        
-        return view('backend.order.detail', compact('order', 'order_detail', 'list_status', 's'));
+        $cityList = City::orderBy('display_order')->get();
+        $success = isset($request->success) ? 1 : 0;
+        return view('backend.order.detail', compact('order', 'order_detail', 'list_status', 's', 'cityList', 'success'));
     }
 
     public function orderDetailDelete(Request $request)
@@ -212,6 +214,12 @@ class OrderController extends Controller
         }
       
         return 'success';
+    }
+    public function updateDetail(Request $request){
+        $data = $request->all();
+        $rs = CustomerAddress::find($data['id']);
+        $rs->update($data);
+        return redirect(URL::previous()."&success=1");
     }
     public function destroy($id)
     {

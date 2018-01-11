@@ -48,6 +48,7 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
     Route::group(['prefix' => 'order'], function () {
         Route::get('/', ['as' => 'orders.index', 'uses' => 'OrderController@index']);
         Route::post('/update', ['as' => 'orders.update', 'uses' => 'OrderController@update']);
+        Route::post('/update-detail', ['as' => 'orders.update-detail', 'uses' => 'OrderController@updateDetail']);
         Route::get('/{order_id}/chi-tiet', ['as' => 'order.detail', 'uses' => 'OrderController@orderDetail']);
         Route::post('/delete-order-detail', ['as' => 'order.detail.delete', 'uses' => 'OrderController@orderDetailDelete']);
         Route::get('{id}/destroy', ['as' => 'order.destroy', 'uses' => 'OrderController@destroy']);

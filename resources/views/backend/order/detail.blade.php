@@ -22,9 +22,19 @@
       @if(Session::has('message'))
       <p class="alert alert-info" >{{ Session::get('message') }}</p>
       @endif
-      <div class="box">
-
+      <div class="box">      
+        @if ($success == 1)
+            <div class="alert alert-info" style="text-align: left;">
+                <ul>
+                    
+                  <li>Cập nhật thành công.</li>
+                    
+                </ul>
+            </div>
+        @endif    
         <div class="box-header with-border">
+        <form method="POST" action="{{ route('orders.update-detail')}}">
+        {{ csrf_field() }}
           <div class="col-md-4">
               <h4>Chi tiết chung</h4>
             <p>
@@ -47,28 +57,72 @@
               
             </p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <h4>Thông tin thanh toán</h4>
             <p>
-              <span>Địa chỉ :</span><br> {{ $order->customer->address }}, {{ $order->customer->ward_id ? Helper::getName($order->customer->ward_id, 'ward') : "" }}, {{ $order->customer->district_id ? Helper::getName($order->customer->district_id, 'district') : "" }}, {{ $order->customer->city_id ? Helper::getName($order->customer->city_id, 'city') : "" }}<br>
+              <span>Địa chỉ :</span><br> {{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->address->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}<br>
               <div class="clearfix" style="margin-bottom:5px"></div>
               <span>Email : </span><br />
-              <span>{{ $order->customer->email }}</span>                  
+              <span>{{ $order->address->email }}</span>                  
              <div class="clearfix" style="margin:5px"></div>
               <span>Điện thoại : <span><br>
-              <span>{{ $order->customer->phone }}</span>
+              <span>{{ $order->address->phone }}</span>
               
             </p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-5">
             <h4>Chi tiết giao nhận hàng</h4>
-            <strong>{{ $order->address->fullname }} - {{ $order->address->phone }}</strong>
-            <p>
-              <span>Địa chỉ :</span><br> {{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->address->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}<br>         
-              
-            </p>
-          </div>
 
+            <div class="other-address">
+                      <div class="row">
+                      <input type="hidden" name="id" value="{{ $order->address->id }}">
+                          <div class="form-group col-md-12">
+                            <input type="text" class="form-control no-round req" id="fullname" name="fullname" placeholder="Họ tên" value="{{ $order->address->fullname }}">
+                          </div>
+                          <div class="form-group col-md-12">
+                            <input type="text" class="form-control no-round req" id="phone" name="phone" placeholder="Số điện thoại" value="{{ $order->address->phone }}">
+                          </div>
+                          <div class="form-group col-md-12">
+                            <input type="email" class="form-control no-round" id="email" name="email" placeholder="Email" value="{{ $order->address->email }}">
+                          </div>
+                      </div>
+                      
+                      <div class="div-parent" id="primary_address">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <select class="form-group form-control city_id req" name="city_id" id="city_id">
+                                    <option>Tỉnh/TP</option>
+                                    @foreach($cityList as $city)
+                                      <option value="{{$city->id}}"
+                                      @if($order->address->city_id == $city->id)
+                                      selected
+                                      @endif
+                                      >{{$city->name}}</option>
+                                    @endforeach                                
+                                                                    </select>
+                            </div>
+                            <div class="col-md-12">
+                                <select class="form-group form-control no-round district_id req" name="district_id" id="district_id">
+                                    <option>Quận/Huyện</option>                              
+                                </select>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <select class="form-control no-round ward_id req" name="ward_id" id="ward_id">
+                                    <option>Phường/Xã</option>
+                                </select>
+                            </div>
+                        </div>                    
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-12"><input type="text" class="form-control no-round req" id="address" name="address" placeholder="Địa chỉ" value="{{ $order->address->address }}"></div>
+                      </div>
+                  </div>          
+          </div>
+            <div class="box-footer" style="text-align:right">             
+              <button type="submit" class="btn btn-primary btn-sm" id="btnSave">Lưu</button>
+              <button type="reset" class="btn btn-default btn-sm" class="btn btn-primary btn-sm">Hủy</button>
+            </div>
+            </form>
         </div>
 
         <!-- /.box-header -->
@@ -125,6 +179,72 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+  $('.city_id').change(function(){         
+        var obj = $(this);
+            $.ajax({
+              url : '{{ route('get-child') }}',
+              data : {
+                mod : 'district',
+                col : 'city_id',
+                id : obj.val()
+              },
+              type : 'POST',
+              dataType : 'html',
+              success : function(data){
+                obj.parents('.div-parent').find('.district_id').html(data);      
+              }
+            });
+          
+        });
+  @if($order->address->city_id)
+  $.ajax({
+              url : '{{ route('get-child') }}',
+              data : {
+                mod : 'district',
+                col : 'city_id',
+                id : {{ $order->address->city_id }}
+              },
+              type : 'POST',
+              dataType : 'html',
+              success : function(data){
+                $('#district_id').html(data).val({{ $order->address->district_id }});      
+
+              }
+            });
+  @endif
+   @if($order->address->district_id)
+  $.ajax({
+              url : '{{ route('get-child') }}',
+              data : {
+                mod : 'ward',
+                col : 'district_id',
+                id : {{ $order->address->district_id }}
+              },
+              type : 'POST',
+              dataType : 'html',
+              success : function(data){
+                $('#ward_id').html(data).val({{ $order->address->ward_id }});      
+
+              }
+            });
+  @endif
+  $('#district_id').change(function(){         
+        var obj = $(this);
+            $.ajax({
+              url : '{{ route('get-child') }}',
+              data : {
+                mod : 'ward',
+                col : 'district_id',
+                id : obj.val()
+              },
+              type : 'POST',
+              dataType : 'html',
+              success : function(data){
+                $('#ward_id').html(data);                                
+              }
+            });
+          
+        });
   $('.btn-delete-order-detail').click(function(){
     var order_detail_id = $(this).attr('order-detail-id');
     var order_id = $(this).attr('order-id');
