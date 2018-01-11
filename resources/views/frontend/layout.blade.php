@@ -280,7 +280,7 @@
                             <small data-bv-result="NOT_VALIDATED" data-bv-for="password" data-bv-validator="notEmpty" class="help-block" style="display: none;">Vui lòng nhập Mật khẩu</small>
                         </div>
                         <div class="form-group" id="error_captcha" style="margin-bottom: 15px;color:red;font-style:italic"> <span class="help-block ajax-message"></span> </div>
-                      <!-- <p>Quên mật khẩu? Nhấn vào <a href="#">đây</a></p>-->
+                        <p>Quên mật khẩu? Nhấn vào <a href="{{ route('gui-lai-mk') }}">đây</a></p>
                         <input class="btn btn-success btn-block" id="login_popup_submit" type="button" value="Đăng nhập">
                         <a href="javascript:;" class="btn btn-primary btn-block text-center login-by-facebook-popup"><i class="fa fa-facebook-square" aria-hidden="true"></i> Đăng nhập bằng facebook</a>
                     </fieldset>
@@ -299,6 +299,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title"><b>Đăng ký</b></h4>
                 <div>Bạn đã có tài khoản? <a href="javascript:;" data-dismiss="modal" data-toggle="modal" data-target="#login-form">Đăng nhập</a></div>
+                <p>Quên mật khẩu? Nhấn vào <a href="{{ route('gui-lai-mk') }}">đây</a></p>
             </div>
             <div class="modal-body">
                 <form accept-charset="UTF-8" role="form">

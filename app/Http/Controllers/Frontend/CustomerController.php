@@ -78,7 +78,11 @@ class CustomerController extends Controller
         Session::put('new-register', true);
         return "1";
     }
-
+        public function guilaiMatkhau(Request $request){
+            $success = isset($request->success) ? 1 : 0;
+             $seo['title'] = $seo['description'] = $seo['keywords'] = "Quên mật khẩu";
+            return view('frontend.account.gui-lai-mat-khau', compact('seo', 'success'));
+        }
     public function forgetPassword(Request $request)
     {
         $this->validate($request, [
@@ -86,21 +90,23 @@ class CustomerController extends Controller
                 ], [
             'email_reset.required' => 'Vui lòng nhập email.',
             'email_reset.email' => 'Vui lòng nhập email hợp lệ.',
-            'email_reset.exists' => 'Email không tồn tại trong hệ thống DN.',
+            'email_reset.exists' => 'Email không tồn tại trong hệ thống K Minimart & Kaffee',
         ]);
         $email = $request->email_reset;
-        $key = md5($request->email_reset . time() . 'iCho.vn');
+        $key = md5($request->email_reset . time() . 'kshop247.vn');
         $customer = Customer::where('email', $email)->first();
         $customer->key_reset = $key;
         $customer->save();
-        Mail::send('frontend.account.forgot', [
-            'key' => $key
-                ], function($message) use ($email) {
-            $message->subject('Yêu cầu thay đổi mật khẩu');
-            $message->to($email);
-            $message->from('icho.vn@gmail.com', 'iCho.vn');
-            $message->sender('icho.vn@gmail.com', 'iCho.vn');
-        });
+        // Mail::send('frontend.account.forgot', [
+        //     'key' => $key
+        //         ], function($message) use ($email) {
+        //     $message->subject('Yêu cầu thay đổi mật khẩu');
+        //     $message->to($email);
+        //     $message->from('kkaffee.vn@gmail.com', 'K Minimart & Kaffee');
+        //             $message->sender('kkaffee.vn@gmail.com', 'K Minimart & Kaffee');
+        // });
+
+        return redirect()->route('gui-lai-mk', "success=1");
     }
 
     public function resetPassword(Request $request)

@@ -70,6 +70,7 @@ Route::group(['namespace' => 'Frontend'], function()
     });
     Route::group(['prefix' => 'tai-khoan'], function () {
         Route::get('don-hang-cua-toi', ['as' => 'order-history', 'uses' => 'OrderController@history']);
+
         Route::get('thong-bao-cua-toi', ['as' => 'notification', 'uses' => 'CustomerController@notification']);
         Route::get('thong-tin-tai-khoan', ['as' => 'account-info', 'uses' => 'CustomerController@accountInfo']);
         Route::group(['prefix' => 'so-dia-chi'], function () {
@@ -84,6 +85,7 @@ Route::group(['namespace' => 'Frontend'], function()
         Route::get('/chi-tiet-don-hang/{order_id}', ['as' => 'order-detail', 'uses' => 'OrderController@detail']);
         Route::post('/huy-don-hang', ['as' => 'order-cancel', 'uses' => 'OrderController@huy']);
         Route::post('/forget-password', ['as' => 'forget-password', 'uses' => 'CustomerController@forgetPassword']);
+        Route::get('/gui-lai-mat-khau', ['as' => 'gui-lai-mk', 'uses' => 'CustomerController@guilaiMatkhau']);
         Route::get('/reset-password/{key}', ['as' => 'reset-password', 'uses' => 'CustomerController@resetPassword']);
         Route::post('save-reset-password', ['as' => 'save-reset-password', 'uses' => 'CustomerController@saveResetPassword']);
     });

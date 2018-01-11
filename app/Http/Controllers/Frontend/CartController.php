@@ -314,8 +314,8 @@ class CartController extends Controller
                 function($message) use ($emailArr, $order_id) {
                     $message->subject('Xác nhận đơn hàng hàng #'.$order_id);
                     $message->to($emailArr);
-                    $message->from('kkaffee.vn@gmail.com', 'KKAFFEE');
-                    $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
+                    $message->from('kkaffee.vn@gmail.com', 'K Minimart & Kaffee');
+                    $message->sender('kkaffee.vn@gmail.com', 'K Minimart & Kaffee');
             });
         }
         
