@@ -33,8 +33,10 @@
             </div>
         @endif    
         <div class="box-header with-border">
+        @if(Auth::user()->role == 3)
         <form method="POST" action="{{ route('orders.update-detail')}}">
         {{ csrf_field() }}
+        @endif
           <div class="col-md-4">
               <h4>Chi tiết chung</h4>
             <p>
@@ -72,7 +74,7 @@
           </div>
           <div class="col-md-5">
             <h4>Chi tiết giao nhận hàng</h4>
-
+            @if(Auth::user()->role == 3)
             <div class="other-address">
                       <div class="row">
                       <input type="hidden" name="id" value="{{ $order->address->id }}">
@@ -116,13 +118,24 @@
                       <div class="form-group row">
                           <div class="col-md-12"><input type="text" class="form-control no-round req" id="address" name="address" placeholder="Địa chỉ" value="{{ $order->address->address }}"></div>
                       </div>
-                  </div>          
+                  </div>  
+                  @else
+                        <strong>{{ $order->address->fullname }} - {{ $order->address->phone }}</strong>
+       -            <p>
+       -              <span>Địa chỉ :</span><br> {{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->address->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}<br>         
+       -              
+       -            </p>
+                  @endif
+
           </div>
+          @if(Auth::user()->role == 3)
             <div class="box-footer" style="text-align:right">             
               <button type="submit" class="btn btn-primary btn-sm" id="btnSave">Lưu</button>
               <button type="reset" class="btn btn-default btn-sm" class="btn btn-primary btn-sm">Hủy</button>
             </div>
+
             </form>
+            @endif
         </div>
 
         <!-- /.box-header -->
