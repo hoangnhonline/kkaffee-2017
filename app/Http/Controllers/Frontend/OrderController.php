@@ -12,6 +12,7 @@ use App\Models\ProductImg;
 use App\Models\Banner;
 use App\Models\Orders;
 use App\Models\OrderDetail;
+use App\Models\Settings;
 use App\Models\Customer;
 use Helper, File, Session, Auth;
 use Mail;
@@ -57,6 +58,35 @@ class OrderController extends Controller
     if( $customer_id == $order->customer_id && $order->status == 0){
       $order->status = 4;
       $order->save();
+
+      $addressInfo = CustomerAddress::find($order->address_id);
+
+      $email = $addressInfo->email ? $addressInfo->email :  "";
+      $settingArr = Settings::whereRaw('1')->lists('value', 'name');
+      $adminMailArr = explode(',', $settingArr['email_header']);
+      if($email != ''){
+
+          $emailArr = array_merge([$email], $adminMailArr);
+      }else{
+          $emailArr = $adminMailArr;
+      }
+      // send email
+      $order_id =str_pad($order->id, 6, "0", STR_PAD_LEFT);
+      
+      if(!empty($emailArr)){
+          Mail::send('frontend.cart.cancel-email',
+              [
+                  'fullname'          => $addressInfo->fullname,
+                  'order_id' => $order_id                    
+              ],
+              function($message) use ($emailArr, $order_id) {
+                  $message->subject('Hủy đơn hàng #'.$order_id);
+                  $message->to($emailArr);
+                  $message->from('kkaffee.vn@gmail.com', 'KKAFFEE');
+                  $message->sender('kkaffee.vn@gmail.com', 'KKAFFEE');
+          });
+      }
+
     }
   }
   public function show(Request $request)

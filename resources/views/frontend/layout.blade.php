@@ -467,7 +467,7 @@
                 items: 7
             });             
             if (jQuery(document).width() >= 992) {
-                jQuery(".cf_chat>a").click();
+               // jQuery(".cf_chat>a").click();
             }          
         </script>      
     

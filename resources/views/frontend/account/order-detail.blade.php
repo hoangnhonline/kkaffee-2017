@@ -157,6 +157,7 @@
     $(document).ready(function() {
 
       $('#btnHuy').click(function(){ 
+        $(this).attr('disabled', 'disabled');
         var obj = $(this);       
         if(confirm('Chắc chắn hủy đơn hàng?')){
           $.ajax({
@@ -166,8 +167,8 @@
               id : {{ $order->id }}
             },
             success : function(){
-              swal({ title: '', text: 'Hủy đơn hàng #{{ $str_order_id }}', type: 'success' });
-              obj.remove();
+              alert('Hủy đơn hàng #{{ $str_order_id }} thành công');
+              window.location.reload();
             }
           });
         }
