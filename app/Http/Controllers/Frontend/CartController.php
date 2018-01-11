@@ -293,7 +293,7 @@ class CartController extends Controller
         $adminMailArr = explode(',', $settingArr['email_header']);
         if($email != ''){
 
-            $emailArr = array_merge([$email], $adminMailArr);
+            $emailArr = array_merge( $adminMailArr, [$email]);
         }else{
             $emailArr = $adminMailArr;
         }
