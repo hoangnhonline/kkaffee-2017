@@ -272,12 +272,49 @@ class CustomerController extends Controller
             $customer_id = Session::get('userId');
             $customer = Customer::find($customer_id);
 
-            $addressPrimary = CustomerAddress::where(['customer_id' => $customer_id, 'is_primary' => 1])->first();
-            $listAddress = CustomerAddress::where(['customer_id' => $customer_id, 'is_primary' => 0])->get();
+            $cityList = City::orderBy('display_order')->get();
 
-            return view('frontend.account.address_create', compact('seo', 'customer', 'addressPrimary', 'listAddress'));
+            return view('frontend.account.address_create', compact('seo', 'customer', 'cityList'));
         } else {
+            $this->validate($request, [
+                'fullname' => 'required|max:100',
+                'phone' => 'required|max:25',
+                'email' => 'email',
+                'city_id' => 'required',
+                'district_id' => 'required',
+                'ward_id' => 'required',
+                'address' => 'required',
+            ], [
+                'fullname.required' => 'Vui lòng nhập họ tên.',
+                'fullname.max' => 'Họ tên quá dài, vui lòng nhập lại.',
+                'phone.required' => 'Vui lòng nhập số điện thoại.',
+                'phone.max' => 'Số điện thoại quá dài, vui lòng nhập lại.',
+                'email.email' => 'Emil không đúng, vui lòng nhập lại.',
+                'city_id.required' => 'Vui lòng chọn tỉnh/thành phố.',
+                'district_id.required' => 'Vui lòng chọn quận/huyện.',
+                'ward_id.required' => 'Vui lòng chọn phường/xã.',
+                'address.required' => 'Vui lòng nhập địa chỉ.',
+            ]);
             
+            if ($request->is_primary == 1) {
+                CustomerAddress::where(['customer_id' => Session::get('userId')])->update(['is_primary' => 0]);
+            }
+            
+            CustomerAddress::create([
+                'customer_id' => Session::get('userId'),
+                'city_id' => $request->city_id,
+                'district_id' => $request->district_id,
+                'ward_id' => $request->ward_id,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'fullname' => $request->fullname,
+                'address' => $request->address,
+                'is_primary' => $request->is_primary
+            ]);
+            
+            Session::flash('message', 'Thêm mới thành công.');
+            
+            return redirect()->route('account-address');
         }
     }
 
@@ -297,9 +334,49 @@ class CustomerController extends Controller
             $customer_id = Session::get('userId');
             $customer = Customer::find($customer_id);
 
-            return view('frontend.account.address_edit', compact('seo', 'customer', 'customer_address'));
+            $cityList = City::orderBy('display_order')->get();
+
+            return view('frontend.account.address_edit', compact('seo', 'customer', 'customer_address', 'cityList'));
         } else {
+            $this->validate($request, [
+                'fullname' => 'required|max:100',
+                'phone' => 'required|max:25',
+                'email' => 'email',
+                'city_id' => 'required',
+                'district_id' => 'required',
+                'ward_id' => 'required',
+                'address' => 'required',
+            ], [
+                'fullname.required' => 'Vui lòng nhập họ tên.',
+                'fullname.max' => 'Họ tên quá dài, vui lòng nhập lại.',
+                'phone.required' => 'Vui lòng nhập số điện thoại.',
+                'phone.max' => 'Số điện thoại quá dài, vui lòng nhập lại.',
+                'email.email' => 'Emil không đúng, vui lòng nhập lại.',
+                'city_id.required' => 'Vui lòng chọn tỉnh/thành phố.',
+                'district_id.required' => 'Vui lòng chọn quận/huyện.',
+                'ward_id.required' => 'Vui lòng chọn phường/xã.',
+                'address.required' => 'Vui lòng nhập địa chỉ.',
+            ]);
             
+            if ($request->is_primary == 1 && $customer_address->is_primary == 0) {
+                CustomerAddress::where(['customer_id' => Session::get('userId')])->update(['is_primary' => 0]);
+            }
+            
+            $customer_address->update([
+                'customer_id' => Session::get('userId'),
+                'city_id' => $request->city_id,
+                'district_id' => $request->district_id,
+                'ward_id' => $request->ward_id,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'fullname' => $request->fullname,
+                'address' => $request->address,
+                'is_primary' => $request->is_primary ? 1 : 0
+            ]);
+            
+            Session::flash('message', 'Cập nhật thành công.');
+            
+            return redirect()->route('account-address');
         }
     }
 
@@ -313,7 +390,7 @@ class CustomerController extends Controller
         
         $customer_address->delete();
         
-        return response()->json(['error' => 0, 'message' => 'Deleted.']);
+        return response()->json(['error' => 0, 'message' => 'Xóa thành công.']);
     }
 
 }

@@ -36,6 +36,9 @@
                     <div class="title-section">
                         Số địa chỉ
                     </div>
+                    @if(Session::has('message'))                        
+                        <p class="alert alert-info" >{{ Session::get('message') }}</p>                  
+                    @endif
                     <div class="box-acount-address text-center">
                         <a href="{{ route('account-address-create') }}"><i class="fa fa-plus" aria-hidden="true"></i> Thêm địa chỉ mới</a>
                     </div>
@@ -105,3 +108,27 @@
     </section><!-- End News -->
 </article>
 @stop
+
+@section('js')
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.box-acount-address').on('click', 'a.text-danger', function(evt){
+            evt.preventDefault();
+            var obj = $(this);
+            
+            if (confirm('Bạn có chắc là muốn xóa địa chỉ này không?')) {
+                $.ajax({
+                    url: obj.attr('href'),
+                    type: 'POST',
+                    success: function(data){
+                        if (data.error == 0) {
+                            alert(data.message);
+                            obj.parents('.box-acount-address').remove();
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+@endsection

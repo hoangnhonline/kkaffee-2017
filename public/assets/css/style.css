@@ -1128,11 +1128,12 @@ h1.title_page span:after{
     text-align: justify;
     color: #666;
 }
-#detail-product .btn-order{
+#detail-product .btn-order-main, #detail-product .btn-order{
     font-size: 13px;
-    width: 160px;
+    min-width: 160px;
 }
-#detail-product .btn-order:visited,#detail-product .btn-order:focus{
+#detail-product .btn-order{margin-left: 20px;}
+#detail-product .btn-order-main:visited,#detail-product .btn-order-main:focus, #detail-product .btn-order:visited,#detail-product .btn-order:focus{
     color: #fff;
 }
 /* Tabs */
@@ -2688,4 +2689,18 @@ body.active-menu .fog{
     top: 10px;
     right: 0;
     font-size: 11px;
+}
+/*------------------*/
+.modal-title{margin: 0 0 5px;}
+.box-reset-password{
+    width: 480px;
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 15px;
+    text-align: center;
+    background: #fff;
+    box-shadow: 0 0 1px 1px #ddd;
+}
+.box-reset-password h3{
+    margin: 0 0 15px;
 }

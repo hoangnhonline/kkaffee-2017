@@ -152,7 +152,7 @@
                                     <option>Tỉnh/TP</option>
                                     @foreach($cityList as $city)
                                       <option value="{{$city->id}}"
-                                      @if(old('branch_city_id') == $city->id)
+                                      @if(old('other_city_id') == $city->id)
                                       selected
                                       @endif
                                       >{{$city->name}}</option>

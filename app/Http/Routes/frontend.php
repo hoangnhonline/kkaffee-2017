@@ -76,7 +76,7 @@ Route::group(['namespace' => 'Frontend'], function()
             Route::get('/', ['as' => 'account-address', 'uses' => 'CustomerController@address']);
             Route::match(['get', 'post'], '/them-moi', ['as' => 'account-address-create', 'uses' => 'CustomerController@createAddress']);
             Route::match(['get', 'post'], '/chinh-sua/{id}', ['as' => 'account-address-edit', 'uses' => 'CustomerController@editAddress']);
-            Route::post('/xoa/{id}', ['as' => 'account-address-destroy', 'uses' => 'CustomerController@cAddress']);
+            Route::post('/xoa/{id}', ['as' => 'account-address-destroy', 'uses' => 'CustomerController@destroyAddress']);
         });
         Route::get('doi-mat-khau', ['as' => 'change-password', 'uses' => 'CustomerController@changePassword']);
         Route::post('cap-nhat', ['as' => 'update-customer', 'uses' => 'CustomerController@update']);
