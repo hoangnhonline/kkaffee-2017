@@ -156,6 +156,7 @@ class CartController extends Controller
         Session::put('phi_van_chuyen', ['km' => $km_dis, 'text' => $text_dis, 'phi' => 5000*$km_dis]);       
 
         Session::put('address_id', $address_id);
+        Session::put('notes', $dataArr['notes']);
 
         return redirect()->route('payment-method');
     }
@@ -253,6 +254,7 @@ class CartController extends Controller
         $order['time_delivery'] = $addInfo['time_delivery'];
         $order['address_id'] = Session::get('address_id');
         $order['branch_id'] = Session::get('branch_id');
+        $order['notes'] = Session::get('notes');
 
         // check if ho chi minh free else 150k
         $order['phi_van_chuyen'] = Session::get('phi_van_chuyen')['phi'];
@@ -330,6 +332,7 @@ class CartController extends Controller
         Session::forget('address_id');
         Session::forget('address_info');
         Session::forget('phi_van_chuyen');
+        Session::forget('notes');
         Session::forget('branch_id');
         
         $seo = Helper::seo();
