@@ -67,9 +67,11 @@
                               }}
                               </td>
                             </tr>
+                            @if($orderDetail->notes)
                             <tr>
                               <td colspan="2" style="color:red">Ghi chú : {{ $orderDetail->notes }}</td>
                             </tr>
+                            @endif
                           </tbody>
                         </table></td>
                     </tr>
