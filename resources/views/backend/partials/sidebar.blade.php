@@ -40,7 +40,13 @@
           <i class="fa fa-pencil-square-o"></i> 
           <span>Đơn hàng</span>          
         </a>       
-      </li>              
+      </li>  
+      <li {{ in_array(\Request::route()->getName(), ['customer.index']) ? "class=active" : "" }}>
+        <a href="{{ route('customer.index') }}">
+          <i class="fa fa-pencil-square-o"></i> 
+          <span>Thành viên</span>          
+        </a>       
+      </li>             
       @if(Auth::user()->id != 5 && Auth::user()->role > 1)
       <li class="treeview {{ in_array(\Request::route()->getName(), ['pages.index', 'pages.create']) ? 'active' : '' }}">
         <a href="#">
