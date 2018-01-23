@@ -41,7 +41,8 @@ class Orders extends Model  {
       'branch_id',
       'date_delivery',
       'time_delivery',
-      'phi_phuc_vu'
+      'phi_phuc_vu',
+      'notes'
     ];
 
     public function order_detail()
