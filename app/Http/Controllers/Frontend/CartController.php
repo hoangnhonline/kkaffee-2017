@@ -291,11 +291,14 @@ class CartController extends Controller
         $email = $addressInfo->email ? $addressInfo->email :  "";
         $settingArr = Settings::whereRaw('1')->lists('value', 'name');
         $adminMailArr = explode(',', $settingArr['email_header']);
+		foreach($adminMailArr as $emailS){
+			$adminEmail[] = trim($emailS);
+		}
         if($email != ''){
 
-            $emailArr = array_merge( $adminMailArr, [$email]);
+            $emailArr = array_merge( $adminEmail, [$email]);
         }else{
-            $emailArr = $adminMailArr;
+            $emailArr = $adminEmail;
         }
         // send email
         $order_id =str_pad($order_id, 6, "0", STR_PAD_LEFT);
