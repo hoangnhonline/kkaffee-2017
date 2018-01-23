@@ -67,6 +67,9 @@
                               }}
                               </td>
                             </tr>
+                            <tr>
+                              <td colspan="2" style="color:red">Ghi chú : {{ $orderDetail->notes }}</td>
+                            </tr>
                           </tbody>
                         </table></td>
                     </tr>
