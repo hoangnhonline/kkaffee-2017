@@ -59,7 +59,7 @@
                                     @endforeach
                                 </td>
                                 <td class="text-center"><strong>{{ number_format($order->tong_tien) }}đ</strong></td>
-                                <td class="text-center text-success">{{ $status[$order->status] }}</td>
+                                <td class="text-center text-success">{{ isset($status[$order->status]) ? $status[$order->status] : ""  }}</td>
                             </tr>
                             @endforeach
                         </tbody>
