@@ -127,8 +127,11 @@ Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => '
         Route::get('/', ['as' => 'customer.index', 'uses' => 'CustomerController@index']);
         Route::post('/store', ['as' => 'customer.store', 'uses' => 'CustomerController@store']);
         Route::get('{id}/edit',   ['as' => 'customer.edit', 'uses' => 'CustomerController@edit']);
+        Route::get('/address/{id}',   ['as' => 'customer.address', 'uses' => 'CustomerController@address']);
+        Route::get('/edit-address/{address_id}',   ['as' => 'customer.edit-address', 'uses' => 'CustomerController@editAddress']);
         Route::get('/export',   ['as' => 'customer.export', 'uses' => 'CustomerController@download']);
         Route::post('/update', ['as' => 'customer.update', 'uses' => 'CustomerController@update']);
+        Route::post('/update-address', ['as' => 'customer.update-address', 'uses' => 'CustomerController@updateAddress']);
         Route::get('{id}/destroy', ['as' => 'customer.destroy', 'uses' => 'CustomerController@destroy']);
     });
     Route::group(['prefix' => 'contact'], function () {

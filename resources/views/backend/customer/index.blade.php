@@ -94,8 +94,10 @@
                   {{ $item->facebook_id > 0 ? "Facebook" : "Đăng ký" }}
                 </td>           
                 <td>{{ date('d-m-Y H:i', strtotime($item->created_at)) }}</td>
-                <td style="white-space:nowrap">                                  
-                  
+                <td style="white-space:nowrap;text-align: right">      
+                @if($item->customerAddress->count() > 0)                            
+                  <a href="{{ route('customer.address', $item->id) }}" class="btn btn-sm btn-info">Sổ địa chỉ</a>
+                  @endif
                   <a onclick="return callDelete('{{ $item->email }}','{{ route( 'customer.destroy', [ 'id' => $item->id ]) }}');" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
                   
                 </td>

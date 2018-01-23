@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
+use App\Models\CustomerAddress;
+use App\Models\City;
+
 use Helper, File, Session, Auth;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -73,6 +76,26 @@ class CustomerController extends Controller
                 $sheet->fromArray($contents, null, 'A1', false, true);
             });
         })->download('xls');
+    }
+    public function address(Request $request){
+        $customer_id = $request->id;
+        $order = Customer::find($customer_id);
+        $addressList = $order->customerAddress;        
+        return view('backend.customer.address', compact( 'addressList', 'order'));
+    }
+    public function editAddress(Request $request){
+        $address_id = $request->address_id;
+        $detail = CustomerAddress::find($address_id);
+        $customer = Customer::find($detail->customer_id);
+        $cityList = City::orderBy('display_order')->get();
+        return view('backend.customer.edit-address', compact( 'detail', 'customer', 'cityList'));
+    }
+    public function updateAddress(Request $request){
+        $data = $request->all();
+        $rs = CustomerAddress::find($data['id']);
+        $rs->update($data);
+        Session::flash('message', 'Cập nhật địa chỉ thành công');    
+        return redirect()->route('customer.address', $data['customer_id']);
     }
     /**
     * Store a newly created resource in storage.
