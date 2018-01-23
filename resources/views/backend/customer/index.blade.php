@@ -4,11 +4,11 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Khách hàng
+    Thành viên
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-    <li><a href="{{ route( 'customer.index') }}">Khách hàng</a></li>
+    <li><a href="{{ route( 'customer.index') }}">Thành viên</a></li>
     <li class="active">Danh sách</li>
   </ol>
 </section>
@@ -25,12 +25,21 @@
           <h3 class="panel-title">Bộ lọc</h3>
         </div>
         <div class="panel-body">
-          <form class="form-inline" role="form" method="GET" action="{{ route('customer.index') }}" id="frmContact">  <div class="form-group">
-              <label for="name">Họ tên :</label>
+          <form class="form-inline" role="form" method="GET" action="{{ route('customer.index') }}" id="frmContact">  
+             <div class="form-group">
+                <label for="name">Loại thành viên :</label>
+                <select class="form-control" name="type" id="type">
+                    <option value="">--Tất cả--</option>                                   
+                    <option value="1" {{ $type == 1 ? "selected" : "" }}>Facebook</option>
+                    <option value="2" {{ $type == 2 ? "selected" : "" }}>Đăng ký</option>                    
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="name">&nbsp;&nbsp;Họ tên :</label>
               <input type="text" class="form-control" name="fullname" value="{{ $fullname }}">
             </div>                                                 
             <div class="form-group">
-              <label for="name">Email :</label>
+              <label for="name">&nbsp;&nbsp;Email :</label>
               <input type="text" class="form-control" name="email" value="{{ $email }}">
             </div>
             <div class="form-group">
@@ -49,14 +58,16 @@
         
         <!-- /.box-header -->
         <div class="box-body">        
-          <a href="{{ route('customer.export') }}" class="btn btn-info btn-sm" style="margin-bottom:5px;float:left" target="_blank">Export</a>
+          <!--<a href="{{ route('customer.export') }}" class="btn btn-info btn-sm" style="margin-bottom:5px;float:left" target="_blank">Export</a>-->
           <div style="text-align:center">
-            {{ $items->appends( ['status' => $status, 'email' => $email, 'phone' => $phone, 'fullname' => $fullname] )->links() }}
+            {{ $items->appends( ['status' => $status, 'email' => $email, 'phone' => $phone, 'fullname' => $fullname, 'type' => $type] )->links() }}
           </div>  
           <table class="table table-bordered" id="table-list-data">
             <tr>
               <th style="width: 1%">#</th>                            
-              <th>Thông tin liên hệ</th>              
+              <th>Họ tên - Email</th>
+              <th>Số điện thoại</th>
+              <th width="120">Loại thành viên</th>              
               <th width="10%">Thời gian tạo</th>
               <th width="1%;white-space:nowrap">Thao tác</th>
             </tr>
@@ -68,16 +79,20 @@
               <tr id="row-{{ $item->id }}">
                 <td><span class="order">{{ $i }}</span></td>                       
                 <td>                  
-                  @if($item->name != '')
-                  {{ $item->name }}</br>
+                  @if($item->fullname != '')
+                  {{ $item->fullname }}</br>
                   @endif
                   @if($item->email != '')
-                  <a href="{{ route( 'customer.edit', [ 'id' => $item->id ]) }}">{{ $item->email }}</a> -
+                  <a href="{{ route( 'customer.edit', [ 'id' => $item->id ]) }}">{{ $item->email }}</a>
                   @endif
-                  @if($item->phone != '')
+                 
+                </td>   
+                <td> @if($item->phone != '')
                   {{ $item->phone }}</br>
-                  @endif
-                </td>              
+                  @endif</td>
+                <td>
+                  {{ $item->facebook_id > 0 ? "Facebook" : "Đăng ký" }}
+                </td>           
                 <td>{{ date('d-m-Y H:i', strtotime($item->created_at)) }}</td>
                 <td style="white-space:nowrap">                                  
                   
@@ -95,7 +110,7 @@
           </tbody>
           </table>
           <div style="text-align:center">
-            {{ $items->appends( ['status' => $status, 'email' => $email, 'phone' => $phone, 'fullname' => $fullname] )->links() }}
+            {{ $items->appends( ['status' => $status, 'email' => $email, 'phone' => $phone, 'fullname' => $fullname, 'type' => $type] )->links() }}
           </div>  
         </div>        
       </div>
