@@ -78,6 +78,7 @@
             <div class="other-address">
                       <div class="row">
                       <input type="hidden" name="id" value="{{ $order->address->id }}">
+                      <input type="hidden" name="order_id" value="{{ $order->id }}">
                           <div class="form-group col-md-12">
                             <input type="text" class="form-control no-round req" id="fullname" name="fullname" placeholder="Họ tên" value="{{ $order->address->fullname }}">
                           </div>
@@ -118,6 +119,12 @@
                       <div class="form-group row">
                           <div class="col-md-12"><input type="text" class="form-control no-round req" id="address" name="address" placeholder="Địa chỉ" value="{{ $order->address->address }}"></div>
                       </div>
+                      <div class="form-group row" style="margin-top: 15px;">
+                          <div class="col-md-12">
+                            <label style="color:red">Ghi chú đơn hàng</label>
+                            <textarea name="notes" id="notes" class="form-control" placeholder="">{{ $order->notes }}</textarea>
+                          </div>
+                      </div>
                   </div>  
                   @else
                         <strong>{{ $order->address->fullname }} - {{ $order->address->phone }}</strong>
@@ -125,6 +132,9 @@
        -              <span>Địa chỉ :</span><br> {{ $order->address->address }}, {{ $order->address->ward_id ? Helper::getName($order->address->ward_id, 'ward') : "" }}, {{ $order->address->district_id ? Helper::getName($order->address->district_id, 'district') : "" }}, {{ $order->address->city_id ? Helper::getName($order->address->city_id, 'city') : "" }}<br>         
        -              
        -            </p>
+                @if($order->notes)
+                <p style="color:red; padding-top: 15px; margin-top: 15px; clear: both"><u>Ghi chú: </u><span >{{ $order->notes }}</span></p>
+                @endif
                   @endif
 
           </div>
@@ -134,7 +144,7 @@
           @if(Auth::user()->role == 3)
             <div class="box-footer" style="text-align:right">             
               <button type="submit" class="btn btn-primary btn-sm" id="btnSave">Lưu</button>
-              <button type="reset" class="btn btn-default btn-sm" class="btn btn-primary btn-sm">Hủy</button>
+              <a href="{{ route('orders.index') }}" class="btn btn-default btn-sm" class="btn btn-primary btn-sm">Hủy</a>
             </div>
 
             </form>

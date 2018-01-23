@@ -218,7 +218,14 @@ class OrderController extends Controller
     public function updateDetail(Request $request){
         $data = $request->all();
         $rs = CustomerAddress::find($data['id']);
-        $rs->update($data);
+        $dataA = $data;
+        unset($dataA['notes']);
+        unset($dataA['order_id']);
+        $rs->update($dataA);
+
+        //update notes
+        $rs2 = Orders::find($data['order_id']);
+        $rs2->update(['notes' => $data['notes']]);
         return redirect(URL::previous()."&success=1");
     }
     public function destroy($id)
