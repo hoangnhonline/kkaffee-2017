@@ -110,13 +110,17 @@
                               <td align="right" style="padding:5px 9px"><span>{!! number_format($total) !!}&nbsp;₫</span></td>
                             </tr>
                             <tr>
+                              <td colspan="4" align="right" style="padding:5px 9px">Phí phục vụ (10%)</td>
+                              <td align="right" style="padding:5px 9px"><span>{{ number_format($orderDetail->phi_phuc_vu) }}&nbsp;₫</span></td>
+                            </tr>
+                            <tr>
                               <td colspan="4" align="right" style="padding:5px 9px">Giảm giá </td>
                               <td align="right" style="padding:5px 9px"><span>0&nbsp;₫</span></td>
                             </tr>
                             <tr>
                               <td colspan="4" align="right" style="padding:5px 9px">Chi phí vận chuyển</td>
                               <td align="right" style="padding:5px 9px"><span>{{ number_format($orderDetail->phi_van_chuyen) }}&nbsp;₫</span></td>
-                            </tr>
+                            </tr>                            
                             <tr bgcolor="#eee">
                               <td colspan="4" align="right" style="padding:7px 9px"><strong><big>Tổng giá trị đơn hàng</big></strong></td>
                               <td align="right" style="padding:7px 9px"><strong><big><span>{!! number_format($orderDetail->tong_tien) !!}&nbsp;₫</span></big></strong></td>
