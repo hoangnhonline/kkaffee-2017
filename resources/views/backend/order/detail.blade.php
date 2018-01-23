@@ -128,6 +128,9 @@
                   @endif
 
           </div>
+           @if($order->notes)
+                <p style="color:red; padding-top: 15px; margin-top: 15px; clear: both"><u>Ghi chú: </u><span >{{ $order->notes }}</span></p>
+                @endif
           @if(Auth::user()->role == 3)
             <div class="box-footer" style="text-align:right">             
               <button type="submit" class="btn btn-primary btn-sm" id="btnSave">Lưu</button>

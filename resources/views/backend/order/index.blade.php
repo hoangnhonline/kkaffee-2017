@@ -105,6 +105,9 @@
                   <strong>{{ $order->addressL->fullname }} - {{ $order->addressL->phone }}</strong>
                 <a href="http://maps.google.com/maps?&q={{ $order->addressL->address }}, {{ $order->addressL->ward_id ? Helper::getName($order->addressL->ward_id, 'ward') : "" }}, {{ $order->addressL->district_id ? Helper::getName($order->addressL->district_id, 'district') : "" }}, {{ $order->city_id ? Helper::getName($order->addressL->city_id, 'city') : "" }}" target="_blank"> 
                 <br> {{ $order->addressL->address }}, {{ $order->addressL->ward_id ? Helper::getName($order->addressL->ward_id, 'ward') : "" }}, {{ $order->addressL->district_id ? Helper::getName($order->addressL->district_id, 'district') : "" }}, {{ $order->addressL->city_id ? Helper::getName($order->addressL->city_id, 'city') : "" }}</a>
+                @if($order->notes)
+                <p style="color:red"><u>Ghi chú: </u><span >{{ $order->notes }}</span></p>
+                @endif
                 </td>
                              
                 <td style="text-align:right;width:100px">{{number_format($order->tong_tien)}}</td>
